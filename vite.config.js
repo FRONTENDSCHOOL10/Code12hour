@@ -10,7 +10,7 @@ export default defineConfig({
   },
   build: {
     // 빌드 결과물이 저장될 폴더를 dist로 설정
-    outDir: '../dist',
+    outDir: 'dist',
     rollupOptions: {
       input: {
         // 기본 입력 파일을 설정 (index.html이 src 폴더 내에 위치한다고 가정)
@@ -27,7 +27,12 @@ export default defineConfig({
     // CSS 전처리기 옵션 설정
     preprocessorOptions: {
       scss: {
-        additionalData: `@import "@/styles/variables.scss";`, // SCSS 변수 파일을 모든 SCSS 파일에 자동으로 포함
+        // SCSS 변수 파일을 모든 SCSS 파일에 자동으로 포함
+        additionalData: `
+          @import "@/styles/reset.scss";
+          @import "@/styles/fonts.scss";
+          @import "@/styles/variables.scss";
+        `,
       },
       modules: {
         scopeBehaviour: 'local', // CSS Modules를 사용하여 CSS의 범위를 모듈 단위로 제한
