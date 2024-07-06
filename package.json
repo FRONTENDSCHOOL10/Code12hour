@@ -1,0 +1,22 @@
+{
+  "name": "vite-scss",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "format": "prettier --write --cache .",
+    "lint": "eslint src/**/*.js --fix"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.6.0",
+    "eslint": "^9.6.0",
+    "globals": "^15.8.0",
+    "prettier": "^3.3.2",
+    "sass": "^1.69.5",
+    "vite": "^5.0.8",
+    "vite-plugin-style-import": "^2.0.0"
+  }
+}
