@@ -1,0 +1,7 @@
+// Mixin
+@mixin size($width, $height: null) {
+  width: $width;
+  inline-size: $width;
+  height: $height;
+  block-size: $height;
+}

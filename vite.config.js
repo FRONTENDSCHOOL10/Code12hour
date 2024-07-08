@@ -29,9 +29,10 @@ export default defineConfig({
       scss: {
         // SCSS 변수 파일을 모든 SCSS 파일에 자동으로 포함
         additionalData: `
-          @import "@/styles/reset.scss";
-          @import "@/styles/fonts.scss";
-          @import "@/styles/variables.scss";
+          @import "@/styles/base/reset.scss";
+          @import "@/styles/abstracts/variables.scss";
+          @import "@/styles/base/fonts.scss";
+          @import "@/styles/abstracts/mixins.scss";
         `,
       },
       modules: {
