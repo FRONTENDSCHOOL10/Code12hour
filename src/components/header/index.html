@@ -1,8 +1,12 @@
-import './header.scss';
-
-const headerTemplate = document.createElement('template');
-headerTemplate.innerHTML = `
-  <style>@import url('/components/header/header.scss');</style>
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>마켓칼리 - 홈</title>
+    <script type="module" src="./header.js"></script>
+  </head>
+  <body>
     <header>
       <div class="top-banner" role="banner">
         <nav class="top-banner__nav" aria-label="프로모션 배너">
@@ -175,14 +179,5 @@ headerTemplate.innerHTML = `
         <button class="notification" aria-label="배송 안내"><span>샛별·낮</span> 배송안내</button>
       </nav>
     </header>
-`;
-
-export class header extends HTMLElement {
-  constructor() {
-    super();
-    this.attachShadow({ mode: 'open' });
-    this.shadowRoot.appendChild(headerTemplate.content.cloneNode(true));
-  }
-
-  connectedCallback() {}
-}
+  </body>
+</html>
