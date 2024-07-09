@@ -14,23 +14,24 @@
       <h1 class="title">로그인</h1>
 
       <form class="login-form" action="/">
-        <div class="login-form__input-group">
-          <label class="sr-only" for="login-id">아이디를 입력해주세요</label>
-          <input id="login-id" type="text" placeholder="아이디를 입력해주세요" />
-          <label class="sr-only" for="login-pw">비밀번호를 입력해주세요</label>
-          <input id="login-pw" type="password" placeholder="비밀번호를 입력해주세요" />
-        </div>
-        <div class="login-find">
+        <fieldset>
+          <legend class="sr-only">로그인 폼</legend>
+          <div class="login-form__input-group">
+            <label class="sr-only" for="login-id">아이디를 입력해주세요</label>
+            <input id="login-id" type="text" placeholder="아이디를 입력해주세요" />
+            <label class="sr-only" for="login-pw">비밀번호를 입력해주세요</label>
+            <input id="login-pw" type="password" placeholder="비밀번호를 입력해주세요" />
+          </div>
+        </fieldset>
+        <section class="login-find">
           <a href="/" class="login-find__link"><span class="login-find__id">아이디 찾기</span></a>
           <span>|</span>
           <a href="/" class="login-find__link"><span class="login-find__pw">비밀번호 찾기</span></a>
-        </div>
-        <div class="login-button">
+        </section>
+        <section class="login-button">
           <button type="submit" class="login-button__login">로그인</button>
-          <button type="button" class="login-button__register" onclick="redirectToSignup()">
-            회원가입
-          </button>
-        </div>
+          <button type="button" class="login-button__register" id="signupButton">회원가입</button>
+        </section>
       </form>
     </main>
 

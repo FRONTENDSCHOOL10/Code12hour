@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>register</title>
+    <title>마켓칼리 회원가입</title>
     <script type="module" src="register.js"></script>
   </head>
 
@@ -18,223 +18,239 @@
       </div>
       <hr class="register__divider" />
       <form class="register-form">
-        <div class="register-form__group">
-          <label class="register-form__label register-form__label--required" for="username"
-            ><span class="register-form__label-text">아이디</span
-            ><span class="register__notice-star" aria-label="필수입력 사항">*</span></label
-          >
-          <input
-            class="register-form__input"
-            type="text"
-            id="username"
-            name="username"
-            placeholder="아이디를 입력해주세요"
-            required
-          />
-          <button class="register-form__button register-form__button--check">
-            <span class="register-form__button-text">중복확인</span>
-          </button>
-        </div>
-        <div class="register-form__group">
-          <label class="register-form__label register-form__label--required" for="password"
-            ><span class="register-form__label-text">비밀번호</span
-            ><span class="register__notice-star" aria-label="필수입력 사항">*</span></label
-          >
-          <input
-            class="register-form__input"
-            type="password"
-            id="password"
-            name="password"
-            placeholder="비밀번호를 입력해주세요"
-            required
-          />
-        </div>
-        <div class="register-form__group">
-          <label class="register-form__label register-form__label--required" for="confirmPassword"
-            ><span class="register-form__label-text">비밀번호 확인</span
-            ><span class="register__notice-star" aria-label="필수입력 사항">*</span></label
-          >
-          <input
-            class="register-form__input"
-            type="password"
-            id="confirmPassword"
-            name="confirmPassword"
-            placeholder="비밀번호를 한번 더 입력해주세요"
-            required
-          />
-        </div>
-        <div class="register-form__group">
-          <label class="register-form__label register-form__label--required" for="name"
-            ><span class="register-form__label-text">이름</span
-            ><span class="register__notice-star" aria-label="필수입력 사항">*</span></label
-          >
-          <input
-            class="register-form__input"
-            type="text"
-            id="name"
-            name="name"
-            placeholder="이름을 한번 더 입력해주세요"
-            required
-          />
-        </div>
-        <div class="register-form__group">
-          <label class="register-form__label register-form__label--required" for="email"
-            ><span class="register-form__label-text">이메일</span
-            ><span class="register__notice-star" aria-label="필수입력 사항">*</span></label
-          >
-          <input
-            class="register-form__input"
-            type="email"
-            id="email"
-            name="email"
-            placeholder="예&#41; marketkarly@karly.com"
-            required
-          />
-          <button class="register-form__button register-form__button--check" type="button">
-            <span class="register-form__button-text">중복확인</span>
-          </button>
-        </div>
-        <div class="register-form__group">
-          <label class="register-form__label register-form__label--required" for="authCode"
-            ><span class="register-form__label-text">인증번호</span
-            ><span class="register__notice-star">*</span></label
-          >
-          <input
-            class="register-form__input"
-            type="text"
-            id="authCode"
-            name="authCode"
-            placeholder="인증번호를 입력해주세요"
-          />
-          <button class="register-form__button register-form__button--verify" type="button">
-            <span class="register-form__button-text">인증번호 확인</span>
-          </button>
-        </div>
-        <div class="register-form__group">
-          <label class="register-form__label register-form__label--required" for="address"
-            ><span class="register-form__label-text">주소</span
-            ><span class="register__notice-star" aria-label="필수입력 사항">*</span></label
-          >
-          <div class="register-form__address">
-            <button
-              class="register-form__button register-form__button-search"
-              type="button"
-              id="address-button"
-              onclick=""
-            >
-              <span class="register-form__button-text" aria-label="주소입력은 필수입력 사항"
-                >주소 검색</span
-              >
+        <fieldset>
+          <legend class="sr-only">회원가입 폼</legend>
+          <div class="register-form__group">
+            <label class="register-form__label register-form__label--required" for="username">
+              <span class="register-form__label-text">아이디</span>
+              <span class="register__notice-star" aria-label="필수입력 사항">*</span>
+            </label>
+            <input
+              class="register-form__input"
+              type="text"
+              id="username"
+              name="username"
+              placeholder="아이디를 입력해주세요"
+              autocomplete="username"
+              required
+            />
+            <button class="register-form__button register-form__button--check" type="button">
+              <span class="register-form__button-text">중복확인</span>
             </button>
-            <span class="register-form__address-notice"
-              >배송지에 따라 상품 정보가 달라질 수 있습니다.</span
+          </div>
+          <div class="register-form__group">
+            <label class="register-form__label register-form__label--required" for="password">
+              <span class="register-form__label-text">비밀번호</span>
+              <span class="register__notice-star" aria-label="필수입력 사항">*</span>
+            </label>
+            <input
+              class="register-form__input"
+              type="password"
+              id="password"
+              name="password"
+              placeholder="비밀번호를 입력해주세요"
+              required
+            />
+          </div>
+          <div class="register-form__group">
+            <label
+              class="register-form__label register-form__label--required"
+              for="confirmPassword"
             >
+              <span class="register-form__label-text">비밀번호 확인</span>
+              <span class="register__notice-star" aria-label="필수입력 사항">*</span>
+            </label>
+            <input
+              class="register-form__input"
+              type="password"
+              id="confirmPassword"
+              name="confirmPassword"
+              placeholder="비밀번호를 한번 더 입력해주세요"
+              required
+            />
           </div>
-        </div>
-        <div class="register-form__group">
-          <label class="register-form__label" for="gender"
-            ><span class="register-form__label-text">성별</span></label
-          >
-          <div class="register-form__gender">
-            <div class="register-form__gender-option">
-              <input
-                class="register-form__radio"
-                type="radio"
-                id="gender-male"
-                name="gender"
-                value="male"
-              />
-              <label class="register-form__radio-label" for="gender-male">남성</label>
-            </div>
-            <div class="register-form__gender-option">
-              <input
-                class="register-form__radio"
-                type="radio"
-                id="gender-female"
-                name="gender"
-                value="female"
-              />
-              <label class="register-form__radio-label" for="gender-female">여성</label>
-            </div>
-            <div class="register-form__gender-option">
-              <input
-                class="register-form__radio"
-                type="radio"
-                id="gender-other"
-                name="gender"
-                value="other"
-                checked
-              />
-              <label class="register-form__radio-label" for="gender-other">선택 안함</label>
-            </div>
+          <div class="register-form__group">
+            <label class="register-form__label register-form__label--required" for="name">
+              <span class="register-form__label-text">이름</span>
+              <span class="register__notice-star" aria-label="필수입력 사항">*</span>
+            </label>
+            <input
+              class="register-form__input"
+              type="text"
+              id="name"
+              name="name"
+              placeholder="이름을 입력해주세요"
+              autocomplete="name"
+              required
+            />
           </div>
-        </div>
-        <div class="register-form__group">
-          <label class="register-form__label" for="birth-date"
-            ><span class="register-form__label-text">생년월일</span></label
-          >
-          <input
-            class="register-form__input"
-            id="birth-date"
-            name="birth-date"
-            aria-label="생년월일을 입력해주세요."
-            placeholder="YYYY / MM / DD"
-          />
-        </div>
-        <div class="register-form__group">
-          <label class="register-form__label" for="addInfo"
-            ><span class="register-form__label-text">추가입력 사항</span></label
-          >
-          <div class="register-form__additional">
-            <div class="register-form__additional-option">
-              <input
-                class="register-form__radio"
-                type="radio"
-                id="addInfoFriend"
-                name="addInfo"
-                value="friend"
-                aria-label="친구초대 추천인 아이디 선택됨. 아래 친구초대 추천인 아이디를 입력해주세요."
-              />
-              <label class="register-form__radio-label" for="addInfoFriend"
-                >친구초대 추천인 아이디</label
+          <div class="register-form__group">
+            <label class="register-form__label register-form__label--required" for="email">
+              <span class="register-form__label-text">이메일</span>
+              <span class="register__notice-star" aria-label="필수입력 사항">*</span>
+            </label>
+            <input
+              class="register-form__input"
+              type="email"
+              id="email"
+              name="email"
+              placeholder="예&#41; marketkarly@karly.com"
+              autocomplete="email"
+              required
+            />
+            <button class="register-form__button register-form__button--check" type="button">
+              <span class="register-form__button-text">중복확인</span>
+            </button>
+          </div>
+          <div class="register-form__group">
+            <label class="register-form__label register-form__label--required" for="authCode">
+              <span class="register-form__label-text">인증번호</span>
+              <span class="register__notice-star" aria-label="필수입력 사항">*</span>
+            </label>
+            <input
+              class="register-form__input"
+              type="text"
+              id="authCode"
+              name="authCode"
+              placeholder="인증번호를 입력해주세요"
+            />
+            <button class="register-form__button register-form__button--verify" type="button">
+              <span class="register-form__button-text">인증번호 확인</span>
+            </button>
+          </div>
+          <div class="register-form__group">
+            <label class="register-form__label register-form__label--required" for="address-button">
+              <span class="register-form__label-text">주소</span>
+              <span class="register__notice-star" aria-label="필수입력 사항">*</span>
+            </label>
+            <div class="register-form__address">
+              <button
+                class="register-form__button register-form__button-search"
+                type="button"
+                id="address-button"
+              >
+                <span
+                  class="register-form__button-text"
+                  aria-label="주소입력은 필수입력 사항. 주소 검색"
+                  >주소 검색</span
+                >
+              </button>
+              <span class="register-form__address-notice"
+                >배송지에 따라 상품 정보가 달라질 수 있습니다.</span
               >
             </div>
-            <div class="register-form__additional-option">
-              <input
-                class="register-form__radio"
-                type="radio"
-                id="addInfoEvent"
-                name="addInfo"
-                value="event"
-                aria-label="참여 이벤트명 선택됨. 아래 참여 이벤트명을 입력해주세요."
-              />
-              <label class="register-form__radio-label" for="addInfoEvent">참여 이벤트명</label>
+          </div>
+          <div class="register-form__group">
+            <span class="register-form__label">
+              <span class="register-form__label-text">성별</span>
+            </span>
+            <div class="register-form__gender">
+              <div class="register-form__gender-option">
+                <input
+                  class="register-form__radio"
+                  type="radio"
+                  id="gender-male"
+                  name="gender"
+                  value="male"
+                />
+                <label class="register-form__radio-label" for="gender-male">남성</label>
+              </div>
+              <div class="register-form__gender-option">
+                <input
+                  class="register-form__radio"
+                  type="radio"
+                  id="gender-female"
+                  name="gender"
+                  value="female"
+                />
+                <label class="register-form__radio-label" for="gender-female">여성</label>
+              </div>
+              <div class="register-form__gender-option">
+                <input
+                  class="register-form__radio"
+                  type="radio"
+                  id="gender-other"
+                  name="gender"
+                  value="other"
+                  checked
+                />
+                <label
+                  class="register-form__radio-label"
+                  for="gender-other"
+                  aria-label="선택 안함 선택됨. 성별을 방향키로 선택해주세요"
+                  >선택 안함</label
+                >
+              </div>
             </div>
           </div>
-        </div>
-        <div class="register-form__group register-form__group-toggle">
-          <label class="register-form__label register-form__label--required" for="invite"></label>
-          <input
-            class="register-form__input"
-            type="text"
-            id="invite"
-            name="invite"
-            placeholder="친구초대 추천인 아이디를 입력해주세요 or 참여 이벤트명을 입력해주세요 라디오 버튼 토글 시 변경되게"
-            required
-          />
-          <button class="register-form__button register-form__button--check" type="button">
-            <span class="register-form__button-text">참여확인</span>
-          </button>
-        </div>
+          <div class="register-form__group">
+            <label class="register-form__label" for="birth-date">
+              <span class="register-form__label-text">생년월일</span>
+            </label>
+            <input
+              type="date"
+              max="9999-12-31"
+              class="register-form__input"
+              id="birth-date"
+              name="birth-date"
+              aria-label="생년월일을 입력해주세요."
+            />
+          </div>
+          <div class="register-form__group">
+            <span class="register-form__label">
+              <span class="register-form__label-text">추가입력 사항</span>
+            </span>
+            <div class="register-form__additional">
+              <div class="register-form__additional-option">
+                <input
+                  class="register-form__radio"
+                  type="radio"
+                  id="addInfoFriend"
+                  name="addInfo"
+                  value="friend"
+                  aria-label="친구초대 추천인 아이디 선택됨. 아래 친구초대 추천인 아이디를 입력해주세요."
+                />
+                <label class="register-form__radio-label" for="addInfoFriend"
+                  >친구초대 추천인 아이디</label
+                >
+              </div>
+              <div class="register-form__additional-option">
+                <input
+                  class="register-form__radio"
+                  type="radio"
+                  id="addInfoEvent"
+                  name="addInfo"
+                  value="event"
+                  aria-label="참여 이벤트명 선택됨. 아래 참여 이벤트명을 입력해주세요."
+                />
+                <label class="register-form__radio-label" for="addInfoEvent">참여 이벤트명</label>
+              </div>
+            </div>
+          </div>
+          <div class="register-form__group register-form__group-toggle">
+            <label class="register-form__label register-form__label--required" for="invite"></label>
+            <input
+              class="register-form__input"
+              type="text"
+              id="invite"
+              name="invite"
+              placeholder="친구초대 추천인 아이디를 입력해주세요 or 참여 이벤트명을 입력해주세요 라디오 버튼 토글 시 변경되게"
+              required
+            />
+            <button class="register-form__button register-form__button--check" type="button">
+              <span class="register-form__button-text">참여확인</span>
+            </button>
+          </div>
+        </fieldset>
       </form>
       <hr class="register__divider" />
       <form class="terms-form">
         <div class="terms-form__container">
           <div class="terms-form__header">
-            <label class="terms-form__label" for="/">
+            <span class="terms-form__label">
               <span class="terms-form__label-text">이용약관동의</span
               ><span class="register__notice-star" aria-label="필수입력 사항">*</span>
-            </label>
+            </span>
           </div>
           <div class="terms-form__content">
             <div class="terms-form__all-agree">
@@ -244,13 +260,13 @@
                   type="checkbox"
                   id="agreeAll"
                   name="agreeAll"
-                  aria-label="이용약관동의 필수선택 사항. 전체 동의합니다."
+                  aria-label="전체 동의합니다. 선택항목에 동의하지 않은 경우도 회원가입 및 일반적인 서비스를 이용할 수 있습니다."
                 />
                 <label class="terms-form__checkbox-all" for="agreeAll">전체 동의합니다.</label>
               </div>
-              <label class="terms-form__notice">
+              <p class="terms-form__notice">
                 선택항목에 동의하지 않은 경우도 회원가입 및 일반적인 서비스를 이용할 수 있습니다.
-              </label>
+              </p>
             </div>
             <div class="terms-form__item">
               <div class="terms-form__checkbox-wrapper">
@@ -266,7 +282,7 @@
                   <div class="terms-form__checkbox-select">이용약관 동의 &#40;필수&#41;</div>
                 </label>
               </div>
-              <a class="terms-form__link" href="/terms">약관보기 &gt;</a>
+              <a class="terms-form__link" href="/terms" aria-label="약관보기">약관보기 &gt;</a>
             </div>
             <div class="terms-form__item">
               <div class="terms-form__checkbox-wrapper">
@@ -284,7 +300,7 @@
                   </div>
                 </label>
               </div>
-              <a class="terms-form__link" href="/privacy">약관보기 &gt;</a>
+              <a class="terms-form__link" href="/privacy" aria-label="약관보기">약관보기 &gt;</a>
             </div>
             <div class="terms-form__item">
               <div class="terms-form__checkbox-wrapper">
@@ -301,7 +317,7 @@
                   </div>
                 </label>
               </div>
-              <a class="terms-form__link" href="/promotion">약관보기 &gt;</a>
+              <a class="terms-form__link" href="/promotion" aria-label="약관보기">약관보기 &gt;</a>
             </div>
             <div class="terms-form__item">
               <div class="terms-form__checkbox-wrapper">
@@ -319,7 +335,7 @@
                   </div>
                 </label>
               </div>
-              <a class="terms-form__link" href="/age-policy">약관보기 &gt;</a>
+              <a class="terms-form__link" href="/age-policy" aria-label="약관보기">약관보기 &gt;</a>
             </div>
           </div>
         </div>
