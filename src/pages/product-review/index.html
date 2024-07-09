@@ -16,7 +16,7 @@
       <h2 id="product-reviews__title" class="product-reviews__title">상품후기</h2>
       <!-- 모달창 연결? -->
       <button type="button" class="product-reviews__write-btn" aria-haspopup="dialog">후기 작성하기</button>
-      <div clas="product-reviews__benefits">
+      <div class="product-reviews__benefits">
         <p class="product-reviews__description">글후기 50원 적립금 혜택이 있어요.</p>
         <ul class="product-reviews__benefit-list">
           <li class="product-reviews__benefit-item">퍼플, 더퍼플은 2배 적립 (100원) / 주간 베스트 후기로 선정 시 5,000원 추가 적립</li>
@@ -28,16 +28,15 @@
 
     <!-- 상품 리뷰 썸네일 이미지 갤러리 -->
     <section class="product-gallery" aria-label="리뷰 썸네일 이미지 갤러리">
-      <button type="button" class="product-gallery__image-btn" aria-label="리뷰 썸네일 이미지 1 크게 보기"><img src="" alt="리뷰 썸네일 이미지 1" /></button>
-      <button type="button" class="product-gallery__image-btn" aria-label="리뷰 썸네일 이미지 2 크게 보기"><img src="" alt="리뷰 썸네일 이미지 2" /></button>
-      <button type="button" class="product-gallery__image-btn" aria-label="리뷰 썸네일 이미지 3 크게 보기"><img src="" alt="리뷰 썸네일 이미지 3" /></button>
-      <button type="button" class="product-gallery__image-btn" aria-label="리뷰 썸네일 이미지 4 크게 보기"><img src="" alt="리뷰 썸네일 이미지 4" /></button>
-      <button type="button" class="product-gallery__image-btn" aria-label="리뷰 썸네일 이미지 5 크게 보기"><img src="" alt="리뷰 썸네일 이미지 5" /></button>
-      <button type="button" class="product-gallery__image-btn" aria-label="리뷰 썸네일 이미지 6 크게 보기"><img src="" alt="리뷰 썸네일 이미지 6" /></button>
-      <button type="button" class="product-gallery__image-btn" aria-label="리뷰 썸네일 이미지 7 크게 보기"><img src="" alt="리뷰 썸네일 이미지 7" /></button>
-      <button type="button" class="product-gallery__image-btn" aria-label="리뷰 썸네일 이미지 8 크게 보기"><img src="" alt="리뷰 썸네일 이미지 8" /></button>
-      <button type="button" class="product-gallery__image-btn product-gallery__more-btn" aria-label="더 많은 이미지 보기"
-        href=""><span>+더보기</span></button>
+      <button type="button" class="product-gallery__image-btn" aria-label="리뷰 썸네일 이미지 1 크게 보기"><img src="" alt="리뷰 썸네일 이미지 1" loading="lazy" /></button>
+      <button type="button" class="product-gallery__image-btn" aria-label="리뷰 썸네일 이미지 2 크게 보기"><img src="" alt="리뷰 썸네일 이미지 2" loading="lazy" /></button>
+      <button type="button" class="product-gallery__image-btn" aria-label="리뷰 썸네일 이미지 3 크게 보기"><img src="" alt="리뷰 썸네일 이미지 3" loading="lazy" /></button>
+      <button type="button" class="product-gallery__image-btn" aria-label="리뷰 썸네일 이미지 4 크게 보기"><img src="" alt="리뷰 썸네일 이미지 4" loading="lazy" /></button>
+      <button type="button" class="product-gallery__image-btn" aria-label="리뷰 썸네일 이미지 5 크게 보기"><img src="" alt="리뷰 썸네일 이미지 5" loading="lazy" /></button>
+      <button type="button" class="product-gallery__image-btn" aria-label="리뷰 썸네일 이미지 6 크게 보기"><img src="" alt="리뷰 썸네일 이미지 6" loading="lazy" /></button>
+      <button type="button" class="product-gallery__image-btn" aria-label="리뷰 썸네일 이미지 7 크게 보기"><img src="" alt="리뷰 썸네일 이미지 7" loading="lazy" /></button>
+      <button type="button" class="product-gallery__image-btn" aria-label="리뷰 썸네일 이미지 8 크게 보기"><img src="" alt="리뷰 썸네일 이미지 8" loading="lazy" /></button>
+      <button type="button" class="product-gallery__image-btn product-gallery__more-btn" aria-label="더 많은 이미지 보기"><span>+더보기</span></button>
     </section>
 
     <!-- 리뷰 써머리 (리뷰 개수 및 분류 버튼) -->
@@ -46,7 +45,7 @@
         <span class="review-content__count" aria-live="polite">총 <span id="review-count">9,999</span>개</span>
 
         <ul class="review-content__sort-list" role="tablist">
-          <li class="review-content__sort-item" role="presentation"><button type="button" button
+          <li class="review-content__sort-item" role="presentation"><button type="button"
               class="review-content__sort-btn review-content__sort-btn--active" role="tab" aria-selected="true"
               aria-controls="recommended-reviews" id="recommended-tab" checked>추천순</button></li>
           <span aria-hidden="true">|</span>
@@ -111,19 +110,19 @@
           <!-- 사용자 리뷰 이미지 -->
           <div class="review__gallery">
             <button type="button" class="review__image-btn" aria-label="리뷰 썸네일 이미지 1 크게 보기">
-              <img src="" alt="리뷰 썸네일 이미지 1" />
+              <img src="" alt="리뷰 썸네일 이미지 1" loading="lazy" />
             </button>
             <button type="button" class="review__image-btn" aria-label="리뷰 썸네일 이미지 2 크게 보기">
-              <img src="" alt="리뷰 썸네일 이미지 2" />
+              <img src="" alt="리뷰 썸네일 이미지 2" loading="lazy" />
             </button>
             <button type="button" class="review__image-btn" aria-label="리뷰 썸네일 이미지 3 크게 보기">
-              <img src="" alt="리뷰 썸네일 이미지 3" />
+              <img src="" alt="리뷰 썸네일 이미지 3" loading="lazy" />
             </button>
             <button type="button" class="review__image-btn" aria-label="리뷰 썸네일 이미지 4 크게 보기">
-              <img src="" alt="리뷰 썸네일 이미지 4" />
+              <img src="" alt="리뷰 썸네일 이미지 4" loading="lazy" />
             </button>
             <button type="button" class="review__image-btn" aria-label="리뷰 썸네일 이미지 5 크게 보기">
-              <img src="" alt="리뷰 썸네일 이미지 5" />
+              <img src="" alt="리뷰 썸네일 이미지 5" loading="lazy" />
             </button>
           </div>
 
@@ -132,19 +131,10 @@
             <time class="review__date" datetime="2024-07-08">2024.07.08</time>
             <button type="button" class="review__helpful-btn" aria-pressed="false"
               aria-label="이 리뷰가 도움이 되었습니다. 현재 10명이 도움이 되었다고 평가했습니다.">
-              <svg class="review__helpful-icon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="15"
-                height="14" viewBox="0 0 15 14" fill="none">
-                <g clip-path="url(#clip0_41_3574)">
-                  <path class="helpful_icon-path"
-                    d="M4.54837 12.9998H2.71935C2.04592 12.9998 1.5 12.4626 1.5 11.7999V7.59992C1.5 6.93718 2.04592 6.39993 2.71935 6.39993H4.54837M4.54837 12.9998V6.39993M4.54837 12.9998L11.4255 12.9999C12.0335 13.0066 12.5537 12.5715 12.6448 11.9799L13.4862 6.57993C13.5399 6.23185 13.4355 5.87812 13.2008 5.61245C12.966 5.34678 12.6246 5.19596 12.2668 5.19995H8.81608V2.79998C8.81608 1.80588 7.9972 1 6.98706 1L4.54837 6.39993"
-                    stroke="#999999" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" />
-                </g>
-                <defs>
-                  <clipPath id="clip0_41_3574">
-                    <rect width="14" height="14" fill="white" transform="translate(0.5)" />
-                  </clipPath>
-                </defs>
+              <svg  class="review__helpful-icon" aria-hidden="true" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path class="review__helpful-icon-path" d="M4.04837 12.9998H2.21935C1.54592 12.9998 1 12.4626 1 11.7999V7.59992C1 6.93718 1.54592 6.39993 2.21935 6.39993H4.04837M8.31608 5.19995V2.79998C8.31608 1.80588 7.4972 1 6.48706 1L4.04837 6.39993V12.9999H10.9255C11.5335 13.0066 12.0537 12.5715 12.1448 11.9799L12.9862 6.57993C13.0399 6.23185 12.9355 5.87812 12.7008 5.61245C12.466 5.34678 12.1246 5.19596 11.7668 5.19995H8.31608Z" stroke="#999999" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
+              
               <span class="review__helpful-text">도움돼요 10</span>
             </button>
           </footer>
@@ -155,13 +145,13 @@
       <nav class="paging" aria-label="리뷰 페이지 네비게이션">
         <button type="button" class="paging__button paging__button--prev" aria-label="이전 페이지">
           <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect class="paging_icon-rect" x="0.5" y="0.5" width="55" height="55" rx="3.5" stroke="#E1E1E1" />
-            <path class="paging_icon-path" d="M32 36L24 28L32 20" stroke="#E1E1E1" stroke-width="1.2" />
+            <rect class="paging__icon-rect" x="0.5" y="0.5" width="55" height="55" rx="3.5" stroke="#E1E1E1" />
+            <path class="paging__icon-path" d="M32 36L24 28L32 20" stroke="#E1E1E1" stroke-width="1.2" />
           </svg>
         </button>
         <button type="button" class="paging__button paging__button--next" aria-label="다음 페이지">
           <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect class="paging_icon-rect" x="0.5" y="0.5" width="55" height="55" rx="3.5" stroke="#E1E1E1" />
+            <rect class="paging__icon-rect" x="0.5" y="0.5" width="55" height="55" rx="3.5" stroke="#E1E1E1" />
             <path d="M32 36L24 28L32 20" stroke="#5f0080" stroke-width="1.2" />
           </svg>
         </button>

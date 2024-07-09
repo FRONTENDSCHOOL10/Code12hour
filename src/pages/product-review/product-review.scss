@@ -287,7 +287,7 @@ $spacing-lg: 1.25rem;
     
     // path, rect에 클래스 -> 특정 이벤트 시 색상 변경 가능
     &:hover, &:active{
-      .helpful_icon-path,
+      .review__helpful-icon-path,
       .review__helpful-text{
         color: $primary-color;
         stroke: $primary-color;
@@ -320,8 +320,8 @@ $spacing-lg: 1.25rem;
     }
 
     &:hover, &:active, &.is-active{
-      .paging_icon-rect,
-      .paging_icon-path{
+      .paging__icon-rect,
+      .paging__icon-path{
         stroke: $primary-color;
       }
     }
