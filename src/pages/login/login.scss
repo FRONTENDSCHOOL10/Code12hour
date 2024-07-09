@@ -79,17 +79,11 @@ button {
 
   &__login {
     background-color: $primary-color;
-    border-color: $primary-color;
-
-    &-text {
-      color: $white-color;
-    }
+    color: $white-color;
   }
 
   &__register {
     border: 1px solid $primary-color;
-    &-text {
-      color: $primary-color;
-    }
+    color: $primary-color;
   }
 }

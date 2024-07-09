@@ -10,13 +10,15 @@
   <body>
     <c-header></c-header>
 
-    <div class="login-container">
+    <main class="login-container">
       <h1 class="title">로그인</h1>
 
       <form class="login-form" action="/">
         <div class="login-form__input-group">
-          <input type="text" placeholder="아이디를 입력해주세요" />
-          <input type="text" placeholder="비밀번호를 입력해주세요" />
+          <label class="sr-only" for="login-id">아이디를 입력해주세요</label>
+          <input id="login-id" type="text" placeholder="아이디를 입력해주세요" />
+          <label class="sr-only" for="login-pw">비밀번호를 입력해주세요</label>
+          <input id="login-pw" type="password" placeholder="비밀번호를 입력해주세요" />
         </div>
         <div class="login-find">
           <a href="/" class="login-find__link"><span class="login-find__id">아이디 찾기</span></a>
@@ -24,15 +26,13 @@
           <a href="/" class="login-find__link"><span class="login-find__pw">비밀번호 찾기</span></a>
         </div>
         <div class="login-button">
-          <button type="submit" class="login-button__login">
-            <span class="login-button__login-text">로그인</span>
-          </button>
-          <button type="submit" class="login-button__register">
-            <span class="login-button__register-text">회원가입</span>
+          <button type="submit" class="login-button__login">로그인</button>
+          <button type="button" class="login-button__register" onclick="redirectToSignup()">
+            회원가입
           </button>
         </div>
       </form>
-    </div>
+    </main>
 
     <c-footer> </c-footer>
   </body>

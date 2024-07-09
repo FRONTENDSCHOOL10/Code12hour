@@ -16,3 +16,9 @@ const init = () => {
 };
 
 init();
+
+const registerButton = document.querySelector('.login-button__register');
+
+registerButton.addEventListener('click', function () {
+  window.location.href = '/pages/register/'; // 회원가입 페이지 경로
+});

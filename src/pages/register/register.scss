@@ -8,10 +8,11 @@ hr {
 }
 
 .register {
+  padding: 5rem 0 2.5rem 0;
+
   &__title {
     font-size: $heading-large;
     text-align: center;
-    padding-top: 5rem;
   }
 
   &__notice {
@@ -42,6 +43,10 @@ hr {
       padding: 1.25rem 0;
       margin: auto;
       gap: 0.625rem;
+
+      &-toggle {
+        padding-top: 0;
+      }
     }
 
     &__label {
@@ -115,11 +120,16 @@ hr {
     }
 
     &__radio {
-      width: 1.5rem;
-      height: 1.5rem;
-
-      // &-label{}
+      &-input {
+        display: flex;
+        width: 1.5rem;
+        height: 1.5rem;
+      }
+      &-label {
+        display: flex;
+      }
     }
+
     &__additional {
       display: flex;
       justify-content: space-between;
@@ -127,6 +137,7 @@ hr {
 
       &-option {
         display: flex;
+        flex-wrap: wrap;
         align-items: center;
         gap: 0.5rem;
       }
@@ -135,8 +146,7 @@ hr {
 
   &__button {
     text-align: center;
-    padding-top: 2.5rem;
-    padding-bottom: 5rem;
+    padding: 2.5rem 0;
   }
 
   &-form__radio {
