@@ -42,3 +42,12 @@ $paragraph-small: 0.75rem;
 $paragraph-medium: 1rem;
 $paragraph-large: 1.33rem;
 $paragraph-xl: 1.78rem;
+
+/* Effect styles */
+$text: inset 1px 1px 0px rgba(0, 0, 0, 1);
+$above-high: 0px -16px 48px rgba(0, 0, 0, 0.3);
+$above-medium: 0px -8px 36px rgba(0, 0, 0, 0.2);
+$above-low: 0px -4px 24px rgba(0, 0, 0, 0.1);
+$below-high: 0px 16px 48px rgba(0, 0, 0, 0.3);
+$below-medium: 0px 8px 36px rgba(0, 0, 0, 0.2);
+$below-low: 0px 4px 24px rgba(0, 0, 0, 0.1);

@@ -1,8 +1,12 @@
-import './footer.scss';
-
-const footerTemplate = document.createElement('template');
-footerTemplate.innerHTML = `
-  <style>@import url('/components/footer/footer.scss');</style>
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script type="module" src="./footer.js"></script>
+  </head>
+  <body>
     <footer class="footer">
       <div class="footer__inner">
         <div class="footer__top">
@@ -172,14 +176,5 @@ footerTemplate.innerHTML = `
         <p class="footer__bottom-text">&copy; KARLY CORP. ALL RIGHTS RESERVED</p>
       </div>
     </footer>
-`;
-
-export class footer extends HTMLElement {
-  constructor() {
-    super();
-    this.attachShadow({ mode: 'open' });
-    this.shadowRoot.appendChild(footerTemplate.content.cloneNode(true));
-  }
-
-  connectedCallback() {}
-}
+  </body>
+</html>
