@@ -1,0 +1,212 @@
+/* 변수 */
+
+$width: 65.625rem;
+$line-height: 150%;
+$banner-button-size: 3.125rem;
+$banner-button-margin: 21.88rem;
+$list-button-size: 3.75rem;
+
+$rem-0-25: 0.25rem;
+$rem-0-5: 0.5rem;
+$rem-2-5: 2.5rem;
+
+/* 공통 적용 */
+
+a {
+  display: inline-block;
+}
+
+img {
+  display: block;
+}
+
+/* 메인 배너 슬라이드 */
+
+.main-banner {
+  .swiper {
+    @include size(118.75rem, 23.125rem);
+
+    &-button-prev,
+    &-button-next {
+      @include size($banner-button-size, $banner-button-size);
+    }
+
+    &-button-prev {
+      margin-left: $banner-button-margin;
+      background: url(/src/assets/icons/arrow/swiper-prev.svg) no-repeat;
+    }
+
+    &-button-next {
+      margin-right: $banner-button-margin;
+      background: url(/src/assets/icons/arrow/swiper-next.svg) no-repeat;
+    }
+
+    &-button-prev::after,
+    &-button-next::after {
+      display: none;
+    }
+  }
+
+  .swiper-slide {
+    @include flex(row nowrap, center, center);
+    overflow: hidden;
+
+    & img {
+      @include size(118.75rem, 23.125rem);
+    }
+  }
+}
+
+/* 상품 목록 슬라이드 */
+
+.product-list {
+  @include flex(column nowrap);
+  position: relative;
+  @include size($width);
+  margin: 0 auto;
+  padding: $rem-2-5 0;
+  line-height: $line-height;
+}
+
+.product-header {
+  padding: $rem-0-25;
+  margin-bottom: 1.75rem;
+  text-align: center;
+
+  &__link {
+    padding: $rem-0-5;
+  }
+
+  &__title {
+    font-size: $label-xl;
+    font-weight: 500;
+  }
+
+  &__sub-title {
+    margin-top: 0.125rem;
+    color: $gray-400-color;
+  }
+}
+
+.product-item-group {
+  .swiper {
+    &-button-hidden {
+      display: none;
+    }
+
+    &-button-prev,
+    &-button-next {
+      @include size($list-button-size, $list-button-size);
+    }
+
+    &-button-prev {
+      left: -2rem;
+      background: url(/src/assets/icons/arrow/list-arrow.svg) no-repeat;
+    }
+
+    &-button-next {
+      right: -2rem;
+      background: url(/src/assets/icons/arrow/list-arrow.svg) no-repeat;
+      transform: rotate(180deg);
+    }
+
+    &-button-prev::after,
+    &-button-next::after {
+      display: none;
+    }
+  }
+}
+
+.product-item {
+  @include flex(column nowrap, space-between);
+  @include size(15.5625rem, 31.25rem); // 상품 목록 크기 조정
+
+  &__img {
+    @include size(100%, 20rem);
+    border-radius: $rem-0-25;
+    background-color: $gray-100-color;
+    background: url(/src/assets/images/banner/1.jpg) no-repeat center;
+    background-size: 100%;
+    transition: background-size 0.3s ease;
+  }
+
+  &__img:hover {
+    background-size: 110%;
+  }
+
+  &__title {
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-top: $paragraph-medium;
+    line-clamp: 2;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+
+  &__price {
+    font-size: 0.875rem;
+    color: #b5b5b5; //rgb 181, 181, 181
+    text-decoration: line-through;
+  }
+
+  &__discount-rate {
+    color: $accent-yellow-color;
+    font-weight: 700;
+    font-size: 1.1875rem;
+    margin-right: 0.4375rem;
+  }
+
+  &__real-price {
+    font-weight: 700;
+    font-size: 1.1875rem;
+  }
+
+  &__reviews {
+    font-size: 0.8125rem;
+    color: #999999; // rgb 153,153,153
+
+    &::before {
+      content: url(/src/assets/icons/product-list/reviews.svg);
+      width: 85px;
+      vertical-align: middle;
+      margin-right: 0.125rem;
+    }
+  }
+
+  &__button {
+    @include size(100%, 2.25rem);
+    border: 1px solid #dddddd;
+    border-radius: $rem-0-25;
+
+    &::before {
+      content: url('/src/assets/icons/product-list/Cart.svg');
+      vertical-align: middle;
+      margin-right: $rem-0-25;
+    }
+  }
+
+  &__view-all {
+    @include flex(column nowrap, center, center);
+    text-align: center;
+    @include size(100%, 20rem);
+
+    img {
+      margin-bottom: 1.125rem;
+    }
+  }
+}
+
+/* 프로모션 배너 */
+
+.promotion-banner {
+  @include size($width);
+  margin: 0 auto;
+  padding: $rem-2-5 0;
+
+  &__img {
+    @include size($width, 8.6875rem);
+    background-color: $gray-100-color;
+    background-image: url(/src/assets/images/banner/line-banner01.png);
+  }
+}
