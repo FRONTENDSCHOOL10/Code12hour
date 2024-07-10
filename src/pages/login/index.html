@@ -3,8 +3,38 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>로그인</title>
     <script type="module" src="login.js"></script>
   </head>
-  <body></body>
+
+  <body>
+    <c-header></c-header>
+
+    <main class="login-container">
+      <h1 class="title">로그인</h1>
+
+      <form class="login-form" action="/">
+        <fieldset>
+          <legend class="sr-only">로그인 폼</legend>
+          <div class="login-form__input-group">
+            <label class="sr-only" for="login-id">아이디를 입력해주세요</label>
+            <input id="login-id" type="text" placeholder="아이디를 입력해주세요" />
+            <label class="sr-only" for="login-pw">비밀번호를 입력해주세요</label>
+            <input id="login-pw" type="password" placeholder="비밀번호를 입력해주세요" />
+          </div>
+        </fieldset>
+        <section class="login-find">
+          <a href="/" class="login-find__link"><span class="login-find__id">아이디 찾기</span></a>
+          <span>|</span>
+          <a href="/" class="login-find__link"><span class="login-find__pw">비밀번호 찾기</span></a>
+        </section>
+        <section class="login-button">
+          <button type="submit" class="login-button__login">로그인</button>
+          <button type="button" class="login-button__register" id="signupButton">회원가입</button>
+        </section>
+      </form>
+    </main>
+
+    <c-footer> </c-footer>
+  </body>
 </html>
