@@ -1,0 +1,447 @@
+.main {
+  padding: 0.25rem 0.25rem 6rem 0.25rem;
+}
+
+.product {
+  @include flex(column, _, center);
+  padding-top: 2.5rem;
+}
+
+.product-detail {
+  @include flex(row, space-between, flex-start);
+  width: 65.625rem;
+  padding-top: 2.5rem;
+
+  &__info {
+    @include flex(column, _, flex-start);
+    width: 35rem;
+
+    &-header {
+      @include flex(column, _, flex-start);
+      gap: 1rem;
+      padding-bottom: 1.25rem;
+    }
+
+    &-mid {
+      @include flex(column, _, flex-start);
+      align-self: stretch;
+    }
+
+    &-footer {
+      @include flex(column, _, flex-start);
+    }
+  }
+
+  &__image {
+    width: 25rem;
+    height: 32.125rem;
+    flex-shrink: 0;
+  }
+
+  &__delivery {
+    font-size: $heading-large;
+    font-weight: 500;
+    line-height: 140%;
+    color: $gray-500-color;
+  }
+
+  &__heading {
+    @include flex(column, _, flex-start);
+    gap: 0.25rem;
+  }
+
+  &__title {
+    font-size: $label-xl;
+    font-weight: 600;
+    line-height: 150%;
+  }
+
+  &__subtitle {
+    font-size: $paragraph-medium;
+    font-weight: 400;
+    line-height: 160%;
+    color: $gray-400-color;
+  }
+
+  &__price {
+    @include flex(column, flex-end, flex-start);
+    gap: 0.25rem;
+  }
+
+  &__discount {
+    font-size: $label-large;
+    font-weight: 600;
+    line-height: 150%;
+    color: $accent-yellow-color;
+  }
+
+  &__current-price {
+    font-size: $label-large;
+    font-weight: 600;
+    line-height: 150%;
+  }
+
+  &__currency {
+    font-size: $label-medium;
+    font-weight: 600;
+    line-height: 150%;
+  }
+
+  &__price-ratio {
+    @include flex(row, flex-end, center);
+    gap: 0.25rem;
+  }
+
+  &__original-price {
+    @include flex(row, _, center);
+    gap: 0.15rem;
+  }
+
+  &__original-amount {
+    font-size: $label-medium;
+    text-decoration: line-through;
+    color: #b5b5b5;
+  }
+
+  &__original-button {
+    @include size(1.25rem, 1.25rem);
+    background-image: url('/src/assets/icons/product-detail/noti.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+
+  &__login-noti {
+    font-size: $label-medium;
+    font-weight: 500;
+    line-height: 150%;
+    color: $primary-color;
+  }
+
+  &__details-list {
+    @include flex(row, _, flex-start);
+    align-self: stretch;
+    padding: 1rem 0;
+
+    &:nth-child(1) {
+      border-top: 1px solid $gray-100-color;
+    }
+
+    border-bottom: 1px solid $gray-100-color;
+  }
+
+  &__details-title {
+    width: 8rem;
+    font-size: $label-small;
+    font-weight: 500;
+    line-height: 150%;
+    color: $gray-500-color;
+  }
+
+  &__details-description {
+    @include flex(column, _, flex-start);
+    gap: 0.25rem;
+  }
+
+  &__delivery-method {
+    font-size: $label-small;
+    font-weight: 500;
+    line-height: 150%;
+    color: $gray-500-color;
+  }
+
+  &__delivery-info {
+    width: 27rem;
+    font-size: $label-small;
+    font-weight: 500;
+    line-height: 150%;
+    color: $gray-400-color;
+  }
+
+  &__select-header {
+    @include flex(row, _, flex-start);
+    width: 35rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid $gray-100-color;
+  }
+
+  &__select-title {
+    width: 8rem;
+    font-size: $label-small;
+    font-weight: 500;
+    line-height: 150%;
+    color: $gray-500-color;
+  }
+
+  &__option {
+    @include size(27.5rem, 5.25rem);
+    border: 1px solid $gray-100-color;
+
+    &-box {
+      @include flex(column, _, flex-start);
+      gap: 0.75rem;
+      position: relative;
+      padding: 0.75rem 1rem;
+    }
+
+    &-name {
+      font-size: $label-small;
+      font-weight: 500;
+      line-height: 150%;
+      color: $gray-500-color;
+    }
+
+    &-button {
+      @include flex(row, _, center);
+      gap: 0.5rem;
+      border: 1px solid $gray-200-color;
+
+      &--minus {
+        @include size(1.875rem, 1.875rem);
+        background-image: url('/src/assets/icons/product-detail/Minus.svg');
+      }
+
+      &--plus {
+        @include size(1.875rem, 1.875rem);
+        background-image: url('/src/assets/icons/product-detail/Plus.svg');
+      }
+    }
+
+    &-count {
+      @include size(0.5rem, 1.5rem);
+      font-size: $label-medium;
+      font-weight: 500;
+      line-height: 150%;
+      border: none;
+      outline: none;
+    }
+
+    &-total {
+      position: absolute;
+      right: 0.75rem;
+      bottom: 0.75rem;
+      font-size: $label-small;
+      font-weight: 500;
+      line-height: 150%;
+    }
+  }
+
+  &__total {
+    @include flex(column, _, flex-end);
+    gap: 0.5rem;
+    width: 35rem;
+    padding: 1.75rem 0;
+
+    &-text {
+      font-size: $label-medium;
+      font-weight: 500;
+      line-height: 150%;
+      margin-right: 1.0625rem;
+    }
+
+    &-amount {
+      font-size: $label-xl;
+      font-weight: 500;
+      line-height: 150%;
+    }
+
+    &-unit {
+      font-size: $heading-medium;
+      font-weight: 600;
+      line-height: 140%;
+    }
+  }
+
+  &__benefits {
+    @include flex(row, _, flex-start);
+    gap: 0.375rem;
+
+    &-badge {
+      padding: 0.25rem 0.5rem;
+      border-radius: 0.75rem;
+      font-size: 0.625rem;
+      font-weight: 500;
+      line-height: 160%;
+      background-color: $accent-yellow-color;
+      color: $white-color;
+    }
+
+    &-noti {
+      font-size: $label-medium;
+      font-weight: 500;
+      line-height: 150%;
+    }
+  }
+
+  &__cart {
+    @include flex(row, _, center);
+    gap: 0.75rem;
+    @include size(35rem);
+
+    &-wishlist {
+      @include size(3.5rem, 3.5rem);
+      padding: 0.25rem;
+      border-radius: 0.25rem;
+      border: 1px solid $gray-100-color;
+      background-image: url('/src/assets/icons/product-detail/Heart.svg');
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+
+    &-bell {
+      @include size(3.5rem, 3.5rem);
+      padding: 0.25rem;
+      border-radius: 0.25rem;
+      border: 1px solid $gray-100-color;
+      background-image: url('/src/assets/icons/product-detail/Bell.svg');
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+
+    &-add {
+      flex: 1 0 0;
+      @include size(auto, 3.375rem);
+      background-color: $primary-color;
+      color: $white-color;
+    }
+  }
+}
+
+.product-navigation {
+  @include flex(row, _, flex-start);
+  @include size(65.625rem);
+  gap: -0.0625rem;
+  padding-top: 3rem;
+
+  &__button {
+    flex: 1 0 0;
+    @include size(auto, 3.375rem);
+    border: 1px solid $gray-300-color;
+    background-color: $gray-50-color;
+    font-size: $label-medium;
+    font-weight: 500;
+    line-height: 150%;
+
+    &:nth-child(3) {
+      border-right: 0;
+      border-left: 0;
+    }
+
+    &-is-active {
+      border-top: 1px solid $gray-100-color;
+      border-right: 1px solid $gray-100-color;
+      border-left: 1px solid $gray-100-color;
+      border-bottom: 0;
+      background-color: $white-color;
+      color: $primary-color;
+    }
+  }
+}
+
+.product-description {
+  @include flex(column, _, center);
+  @include size(65.625rem);
+  gap: 6rem;
+  padding: 2.5rem 0 6rem 0;
+}
+
+.product-intro {
+  @include flex(column, _, center);
+  align-self: stretch;
+  gap: 4.75rem;
+
+  &__text {
+    @include flex(column, _, center);
+    align-self: stretch;
+  }
+
+  &__headline {
+    @include flex(column, _, center);
+    padding-bottom: 2.25rem;
+  }
+
+  &__highlight {
+    font-size: $label-xl;
+    font-weight: 500;
+    line-height: 150%;
+  }
+
+  &__title {
+    font-size: $heading-xxxl;
+    font-weight: 600;
+    line-height: 140%;
+  }
+
+  &__body {
+    padding-top: 1.75rem;
+    border-top: 1px solid $gray-100-color;
+    font-size: $paragraph-medium;
+    line-height: 160%;
+  }
+}
+
+.product-point {
+  @include flex(column, _, center);
+  gap: 4.25rem;
+
+  &__headline {
+    @include flex(row, center, center);
+    width: 65.625rem;
+    gap: 1rem;
+  }
+
+  &__divider {
+    height: 0.0625rem;
+    flex: 1 0 0;
+    background: #d9d9d9;
+  }
+
+  &__title {
+    font-size: $heading-xxxl;
+    font-weight: 700;
+    line-height: 140%;
+  }
+}
+
+.product-information {
+  @include flex(column, _, flex-start);
+  padding-bottom: 3.25rem;
+
+  &__text {
+    @include flex(column, _, center);
+    gap: 2.1875rem;
+    @include size(65.625rem);
+    padding: 4.5rem 0rem 5.25rem 0rem;
+    border-top: 1px solid $gray-100-color;
+  }
+
+  &__card-list {
+    @include flex(row wrap, center, center);
+  }
+
+  &__card-item {
+    @include flex(column, _, center);
+    @include size(19.6875rem);
+    gap: 1.5rem;
+    padding-top: 3.5rem;
+
+    p {
+      width: 15.625rem;
+      height: 6.5rem;
+      font-size: $paragraph-medium;
+      line-height: 160%;
+      text-align: center;
+    }
+  }
+
+  &__card-head {
+    @include flex(column, _, center);
+    gap: 1rem;
+
+    span {
+      font-size: $label-large;
+      font-weight: 500;
+      line-height: 150%;
+      color: $primary-color;
+    }
+  }
+}
