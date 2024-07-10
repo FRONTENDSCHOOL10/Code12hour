@@ -78,86 +78,62 @@
       <div class="review-list" aria-live="polite">
         <!-- 후기가 없을 경우 -->
         <div class="review-list__empty" aria-hidden="true">
-          <svg class="review-list__empty-icon" width="48" height="48" viewBox="0 0 48 48" fill="none"
-            xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <g id="Group">
-              <path id="Vector"
-                d="M24 47C36.7025 47 47 36.7025 47 24C47 11.2975 36.7025 1 24 1C11.2975 1 1 11.2975 1 24C1 36.7025 11.2975 47 24 47Z"
-                stroke="#E2E2E2" stroke-width="2" />
-              <path id="Vector_2" fill-rule="evenodd" clip-rule="evenodd"
-                d="M24 13C25.1046 13 26 13.8954 26 15V26C26 27.1046 25.1046 28 24 28C22.8954 28 22 27.1046 22 26V15C22 13.8954 22.8954 13 24 13ZM24 31C25.1046 31 26 31.8954 26 33C26 34.1046 25.1046 35 24 35C22.8954 35 22 34.1046 22 33C22 31.8954 22.8954 31 24 31Z"
-                fill="#E2E2E2" />
-            </g>
-          </svg>
-          <p class="review-list__empty-message">따끈따끈한 후기를 기다리고 있어요.</p>
+          <span class="review-list__empty-icon" aria-hidden="true"></span>
+          <span class="review-list__empty-message">따끈따끈한 후기를 기다리고 있어요.</sp>
         </div>
       </div>
 
-      <!-- 후기 리스트 -->
-      <ul class="review-list__items">
-        <li class="review-item">
+      <!-- 후기 아티클 -->
+      <article class="review-article__list">
+        <h3 class="visually-hidden">사용자 후기 목록</h3>
+        <div class="review-item">
           <div class="review-item__user">
             <span class="review-item__badge">베스트</span>
             <span class="review-item__author">박소연</span>
           </div>
-        </li>
-
-        <!-- 후기 아티클 -->
+        </div>
+        <!-- 후기 contents -->
         <article class="review">
-          <h3 class="review__product-name">[풀무원] 탱탱쫄면 (4개입)</h3>
-          <p class="review__text">너무 맛있어여 짱맛!!</p>
-
-          <!-- 사용자 리뷰 이미지 -->
-          <div class="review__gallery">
-            <button type="button" class="review__image-btn" aria-label="리뷰 썸네일 이미지 1 크게 보기">
-              <img src="" alt="리뷰 썸네일 이미지 1" loading="lazy" />
-            </button>
-            <button type="button" class="review__image-btn" aria-label="리뷰 썸네일 이미지 2 크게 보기">
-              <img src="" alt="리뷰 썸네일 이미지 2" loading="lazy" />
-            </button>
-            <button type="button" class="review__image-btn" aria-label="리뷰 썸네일 이미지 3 크게 보기">
-              <img src="" alt="리뷰 썸네일 이미지 3" loading="lazy" />
-            </button>
-            <button type="button" class="review__image-btn" aria-label="리뷰 썸네일 이미지 4 크게 보기">
-              <img src="" alt="리뷰 썸네일 이미지 4" loading="lazy" />
-            </button>
-            <button type="button" class="review__image-btn" aria-label="리뷰 썸네일 이미지 5 크게 보기">
-              <img src="" alt="리뷰 썸네일 이미지 5" loading="lazy" />
-            </button>
-          </div>
-
-          <!-- 후기란 푸터 -->
-          <footer class="review__footer">
-            <time class="review__date" datetime="2024-07-08">2024.07.08</time>
-            <button type="button" class="review__helpful-btn" aria-pressed="false"
-              aria-label="이 리뷰가 도움이 되었습니다. 현재 10명이 도움이 되었다고 평가했습니다.">
-              <svg  class="review__helpful-icon" aria-hidden="true" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path class="review__helpful-icon-path" d="M4.04837 12.9998H2.21935C1.54592 12.9998 1 12.4626 1 11.7999V7.59992C1 6.93718 1.54592 6.39993 2.21935 6.39993H4.04837M8.31608 5.19995V2.79998C8.31608 1.80588 7.4972 1 6.48706 1L4.04837 6.39993V12.9999H10.9255C11.5335 13.0066 12.0537 12.5715 12.1448 11.9799L12.9862 6.57993C13.0399 6.23185 12.9355 5.87812 12.7008 5.61245C12.466 5.34678 12.1246 5.19596 11.7668 5.19995H8.31608Z" stroke="#999999" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-              
+            <h4 class="review__product-name" aria-label="리뷰 대상 제품:">[풀무원] 탱탱쫄면 (4개입)</h4>
+            <p class="review__text">너무 맛있어여 짱맛!!</p>
+            <!-- 사용자 리뷰 이미지 -->
+            <div class="review__gallery">
+              <button type="button" class="review__image-btn" aria-label="리뷰 썸네일 이미지 1 크게 보기">
+                <img src="" alt="리뷰 썸네일 이미지 1" loading="lazy" />
+              </button>
+              <button type="button" class="review__image-btn" aria-label="리뷰 썸네일 이미지 2 크게 보기">
+                <img src="" alt="리뷰 썸네일 이미지 2" loading="lazy" />
+              </button>
+              <button type="button" class="review__image-btn" aria-label="리뷰 썸네일 이미지 3 크게 보기">
+                <img src="" alt="리뷰 썸네일 이미지 3" loading="lazy" />
+              </button>
+              <button type="button" class="review__image-btn" aria-label="리뷰 썸네일 이미지 4 크게 보기">
+                <img src="" alt="리뷰 썸네일 이미지 4" loading="lazy" />
+              </button>
+              <button type="button" class="review__image-btn" aria-label="리뷰 썸네일 이미지 5 크게 보기">
+                <img src="" alt="리뷰 썸네일 이미지 5" loading="lazy" />
+              </button>
+            </div>
+            <!-- 후기란 푸터 -->
+            <footer class="review__footer">
+              <time class="review__date" datetime="2024-07-08">2024.07.08</time>
+              <button type="button" class="review__helpful-btn" aria-pressed="false"
+                aria-label="이 리뷰가 도움이 되었습니다. 현재 10명이 도움이 되었다고 평가했습니다.">
+              <span class="review__helpful-icon" aria-hidden="true"></span>
               <span class="review__helpful-text">도움돼요 10</span>
-            </button>
-          </footer>
+              </button>
+            </footer>
         </article>
-      </ul>
+      </article>
 
       <!-- 페이지네이션 좌우 버튼 -->
       <nav class="paging" aria-label="리뷰 페이지 네비게이션">
         <button type="button" class="paging__button paging__button--prev" aria-label="이전 페이지">
-          <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect class="paging__icon-rect" x="0.5" y="0.5" width="55" height="55" rx="3.5" stroke="#E1E1E1" />
-            <path class="paging__icon-path" d="M32 36L24 28L32 20" stroke="#E1E1E1" stroke-width="1.2" />
-          </svg>
         </button>
         <button type="button" class="paging__button paging__button--next" aria-label="다음 페이지">
-          <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect class="paging__icon-rect" x="0.5" y="0.5" width="55" height="55" rx="3.5" stroke="#E1E1E1" />
-            <path d="M32 36L24 28L32 20" stroke="#5f0080" stroke-width="1.2" />
-          </svg>
         </button>
       </nav>
     </section>
-
 
 
 

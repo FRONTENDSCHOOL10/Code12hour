@@ -20,6 +20,16 @@ $spacing-lg: 1.25rem;
   color: $color;
 }
 
+@mixin icon-button($width, $height, $color, $icon-path) {
+  width: $width;
+  height: $height;
+  -webkit-mask: url($icon-path) no-repeat center;
+  mask: url($icon-path) no-repeat center;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  background-color: $color;
+}
+
 // 리뷰 컨테이너
 .product-reviews{
   @include size(1050px);
@@ -29,14 +39,14 @@ $spacing-lg: 1.25rem;
 
   // 후기 혜택 안내
   &__info{
-    margin-top: 1.25rem;
+    margin-top: $spacing-lg;
     align-items: center;
   }
 
   &__title{
     @include font-style($heading-xl, 700, 140%);
     display: inline-block;
-    padding-bottom: 1rem;
+    padding-bottom: $spacing-md;
   }
 
   // 후기 작성 버튼
@@ -57,7 +67,7 @@ $spacing-lg: 1.25rem;
     .product-reviews__benefit-list{
       .product-reviews__benefit-item{
       @include font-style($label-medium, 400,150%, $gray-400-color); // 600 -> 400 / gray 500 -> 400 
-      padding-left: 1rem;
+      padding-left: $spacing-md;
       list-style-position: inside;
       list-style-type: disc;
       }
@@ -113,7 +123,7 @@ $spacing-lg: 1.25rem;
 .review-content__summary{
   @include flex(row, space-between, center);
   @include font-style($label-medium, 500, 150%); // label-small -> medium / 600 -> 500
-  padding-bottom: 1rem;
+  padding-bottom: $spacing-md;
   border-bottom: 1px solid $gray-900-color;;
 }
 
@@ -123,7 +133,7 @@ $spacing-lg: 1.25rem;
   right: 0;
  
   .review-content__sort-btn{
-    @include font-style($label-medium, 500, 150%, $gray-300-color); // 600 -> 500
+    @include font-style($label-small, 400, 150%, $gray-300-color); // medium -> small / 600 -> 400
     position: relative;
 
     &--active{
@@ -134,8 +144,8 @@ $spacing-lg: 1.25rem;
   span{ // 분류 버튼 경계선 // 시안과 다르게 스타일 적용
     @include flex(row, center, center);
     @include font-style($label-small, 500, 150%, $gray-300-color); 
-    margin-left: 0.25rem;
-    margin-right: 0.25rem;
+    margin-left: $spacing-xs;
+    margin-right: $spacing-xs;
   }
 }
 
@@ -160,13 +170,13 @@ $spacing-lg: 1.25rem;
 
   &__toggle{
     @include font-style($label-medium, 500, 150%); // 600 -> 500
-    margin-left: 1.25rem;
+    margin-left: $spacing-lg;
     text-align: center;
   }
   
   &__content{
     @include font-style($paragraph-medium, 400, 160%); // 시안에 없음
-    padding: 1.25rem;
+    padding: $spacing-lg;
     border-bottom: $border-bottom;
     background-color: $gray-50-color;
     white-space: pre-line; // 추가
@@ -176,11 +186,12 @@ $spacing-lg: 1.25rem;
 // 후기가 없을 경우
 .review-list__empty{
   @include flex(column, center, center); 
-  padding: 1.25rem;
+  padding: $spacing-lg;
   border-bottom: $border-bottom;
 
   &-icon{
-    margin-bottom: 1.25rem;
+    @include icon-button(3rem, 3rem, $gray-100-color, '/src/assets/icons/review/review-empty.svg');
+    margin-bottom: $spacing-lg;
   }
 
   &-message{
@@ -189,11 +200,22 @@ $spacing-lg: 1.25rem;
 }
 
 // 후기 리스트
-.review-list__items{
+.review-article__list{
   @include flex(row, left, left);
   padding: 1.25rem 0 1.25rem 1.25rem;
-  margin-bottom: 1rem;
+  margin-bottom: $spacing-md;
   border-bottom: $border-bottom;
+
+  .visually-hidden{
+    @include size(0.0625rem, 0.0625rem); // 각 1px
+    position: absolute;
+    padding: 0;
+    margin: -0.0625rem;
+    overflow: hidden;
+    border: 0;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+  }
 }
 
 // 후기 작성자
@@ -214,7 +236,7 @@ $spacing-lg: 1.25rem;
 
   &__author{
     @include font-style($label-small, 500, 150%); // 600 -> 500
-    margin-left: 0.5rem;
+    margin-left: $spacing-sm;
     text-align: center;
   }
 
@@ -271,7 +293,7 @@ $spacing-lg: 1.25rem;
   // 후기란 푸터
   &__footer{
     @include flex(row, space-between, center);
-    padding-right: 1.25rem; 
+    padding-right: $spacing-lg; 
   }
   
   &__date{
@@ -284,46 +306,45 @@ $spacing-lg: 1.25rem;
     border: 1px solid $gray-200-color;
     border-radius: 1.25rem;
     padding: 0.375rem 0.875rem 0.375rem 0.875rem;
+
+    .review__helpful-icon{
+    @include icon-button(0.875rem, 0.875rem,$gray-400-color,'/src/assets/icons/review/helpful.svg');
+    margin-right: $spacing-xs;
+    }
     
-    // path, rect에 클래스 -> 특정 이벤트 시 색상 변경 가능
     &:hover, &:active{
-      .review__helpful-icon-path,
+      .review__helpful-icon{
+        background-color: $primary-color;
+      }
+
       .review__helpful-text{
         color: $primary-color;
-        stroke: $primary-color;
       }
     }
-    
-    // &[aria-pressed="true"]{
-      //   border-color: $primary-color;
-      // }
-    }
-    
-    &__helpful-icon{
-      margin-right: 0.25rem;
-    }
+  }
     
     &__helpful-text{
     @include font-style($label-small, 400, 150%, $gray-400-color);
-
   }
 }
 
 // 페이지네이션 좌우 버튼
 .paging{
   @include flex(row, center, center);
-  gap: 1rem;
+  gap: $spacing-md;
   
   &__button{
+    &--prev{
+      @include icon-button(3.5rem, 3.5rem, $gray-200-color, '/src/assets/icons/review/paging.svg');
+    }
+    
     &--next{
       transform: scaleX(-1);  
+      @include icon-button(3.5rem, 3.5rem, $gray-400-color, '/src/assets/icons/review/paging.svg');  
     }
 
-    &:hover, &:active, &.is-active{
-      .paging__icon-rect,
-      .paging__icon-path{
-        stroke: $primary-color;
-      }
+    &:hover, &:active{
+      background-color: $primary-color;
     }
   }
 }
