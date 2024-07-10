@@ -1,7 +1,7 @@
 import './register.scss';
 
-import { defineCustomElements } from '/utils/index';
-import { footer, header } from '/components/index';
+import { defineCustomElements } from '@/utils/index';
+import { footer, header } from '@/components/index';
 
 // const app = document.getElementById('app');
 

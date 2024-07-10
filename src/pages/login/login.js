@@ -1,7 +1,7 @@
 import './login.scss';
 
-import { defineCustomElements } from '/utils/index';
-import { footer, header } from '/components/index';
+import { defineCustomElements } from '@/utils/index';
+import { footer, header } from '@/components/index';
 
 // const app = document.getElementById('app');
 
@@ -20,5 +20,5 @@ init();
 const registerButton = document.querySelector('.login-button__register');
 
 registerButton.addEventListener('click', function () {
-  window.location.href = '/pages/register/'; // 회원가입 페이지 경로
+  window.location.href = '/src/pages/register/'; // 회원가입 페이지 경로
 });
