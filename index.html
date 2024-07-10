@@ -3,8 +3,481 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>멋사 컬리 - Main</title>
+    <title>멋사컬리 - Main</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <script type="module" src="/src/main.js"></script>
   </head>
-  <body></body>
+  <body>
+    <main>
+      <h1 class="sr-only">멋사컬리</h1>
+
+      <!-- 메인 배너 슬라이드 / TODO: alt 제어 -->
+      <section class="main-banner">
+        <h2 class="sr-only">메인 배너</h2>
+        <div class="swiper" id="main-banner-swiper">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <a href="/">
+                <img
+                  src="/src/assets/images/banner/banner01.png"
+                  alt="부드러운 달콤함, 컬리 과일 가게"
+                />
+              </a>
+            </div>
+            <div class="swiper-slide">
+              <a href="/"
+                ><img
+                  src="/src/assets/images/banner/banner02.png"
+                  alt="한눈에 보는 이달의 카드 혜택"
+                />
+              </a>
+            </div>
+            <div class="swiper-slide">
+              <a href="/"
+                ><img src="/src/assets/images/banner/banner03.png" alt="컬리 퍼플 위크" />
+              </a>
+            </div>
+            <div class="swiper-slide">
+              <a href="/"
+                ><img src="/src/assets/images/banner/banner04.png" alt="이 주의 특가 한눈에 보기" />
+              </a>
+            </div>
+          </div>
+          <div class="swiper-button-prev" id="banner-prev"></div>
+          <div class="swiper-button-next" id="banner-next"></div>
+        </div>
+      </section>
+
+      <!-- 추천 상품 리스트 / TODO: 추후 aria-label 수정 -->
+      <section class="product-list">
+        <h3 class="sr-only">추천 상품 목록</h3>
+        <div class="product-header">
+          <a class="product-header__link" href="/" aria-label="추천 상품 목록 페이지로 이동">
+            <h2 class="product-header__title">🛒이 상품 어때요?</h2>
+          </a>
+          <p class="product-header__sub-title">멋사 Pick 상품 총집합💜</p>
+        </div>
+
+        <div class="product-item-group" role="group">
+          <div class="swiper" id="recommended-product-list-swiper">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <div class="product-item">
+                  <a
+                    class="product-item__link"
+                    href="/"
+                    tabindex="0"
+                    aria-label="상품 페이지로 이동"
+                  >
+                    <div class="product-item__img" role="img" aria-label="상품 이미지 설명"></div>
+                    <p class="product-item__title">
+                      [하코야] 살살살얼음 동동동 냉메밀 소바소바소바 1인분 제목 2줄 테스트 10인분
+                      주문
+                    </p>
+                    <p class="product-item__price"><span class="sr-only">정가</span>9,900원</p>
+                    <p class="product-item__real-price">
+                      <span class="product-item__discount-rate"
+                        >12%<span class="sr-only">할인</span></span
+                      ><span class="sr-only">구매가</span>8,690원
+                    </p>
+                    <p class="product-item__reviews"><span class="sr-only">리뷰 수</span>999+</p>
+                  </a>
+                  <button class="product-item__button" type="button">담기</button>
+                </div>
+              </div>
+
+              <div class="swiper-slide">
+                <div class="product-item">
+                  <a
+                    class="product-item__link"
+                    href="/"
+                    tabindex="0"
+                    aria-label="상품 페이지로 이동"
+                  >
+                    <div class="product-item__img" role="img" aria-label="상품 이미지 설명"></div>
+                    <p class="product-item__title">[하코야] 살얼음 동동 냉메밀 소바 2인분</p>
+                    <p class="product-item__price"><span class="sr-only">정가</span>9,900원</p>
+                    <p class="product-item__real-price">
+                      <span class="product-item__discount-rate"
+                        >12%<span class="sr-only">할인</span></span
+                      ><span class="sr-only">구매가</span>8,690원
+                    </p>
+                    <p class="product-item__reviews"><span class="sr-only">리뷰 수</span>999+</p>
+                  </a>
+                  <button class="product-item__button" type="button">담기</button>
+                </div>
+              </div>
+
+              <div class="swiper-slide">
+                <div class="product-item">
+                  <a
+                    class="product-item__link"
+                    href="/"
+                    tabindex="0"
+                    aria-label="상품 페이지로 이동"
+                  >
+                    <div class="product-item__img" role="img" aria-label="상품 이미지 설명"></div>
+                    <p class="product-item__title">[하코야] 살얼음 동동 냉메밀 소바 3인분</p>
+                    <p class="product-item__price"><span class="sr-only">정가</span>9,900원</p>
+                    <p class="product-item__real-price">
+                      <span class="product-item__discount-rate"
+                        >12%<span class="sr-only">할인</span></span
+                      ><span class="sr-only">구매가</span>8,690원
+                    </p>
+                    <p class="product-item__reviews"><span class="sr-only">리뷰 수</span>999+</p>
+                  </a>
+                  <button class="product-item__button" type="button">담기</button>
+                </div>
+              </div>
+
+              <div class="swiper-slide">
+                <div class="product-item">
+                  <div>
+                    <a
+                      class="product-item__link"
+                      href="/"
+                      tabindex="0"
+                      aria-label="상품 페이지로 이동"
+                    >
+                      <div class="product-item__img" role="img" aria-label="상품 이미지 설명"></div>
+                      <p class="product-item__title">[하코야] 살얼음 동동 냉메밀 소바 4인분</p>
+                      <p class="product-item__price"><span class="sr-only">정가</span>9,900원</p>
+                      <p class="product-item__real-price">
+                        <span class="product-item__discount-rate"
+                          >12%<span class="sr-only">할인</span></span
+                        ><span class="sr-only">구매가</span>8,690원
+                      </p>
+                      <p class="product-item__reviews"><span class="sr-only">리뷰 수</span>999+</p>
+                    </a>
+                  </div>
+                  <button class="product-item__button" type="button">담기</button>
+                </div>
+              </div>
+
+              <div class="swiper-slide">
+                <div class="product-item">
+                  <a
+                    class="product-item__link"
+                    href="/"
+                    tabindex="0"
+                    aria-label="상품 페이지로 이동"
+                  >
+                    <div class="product-item__img" role="img" aria-label="상품 이미지 설명"></div>
+                    <p class="product-item__title">[하코야] 살얼음 동동 냉메밀 소바 5인분</p>
+                    <p class="product-item__price"><span class="sr-only">정가</span>9,900원</p>
+                    <p class="product-item__real-price">
+                      <span class="product-item__discount-rate"
+                        >12%<span class="sr-only">할인</span></span
+                      ><span class="sr-only">구매가</span>8,690원
+                    </p>
+                    <p class="product-item__reviews"><span class="sr-only">리뷰 수</span>999+</p>
+                  </a>
+                  <button class="product-item__button" type="button">담기</button>
+                </div>
+              </div>
+
+              <div class="swiper-slide">
+                <div class="product-item">
+                  <a
+                    class="product-item__link"
+                    href="/"
+                    tabindex="0"
+                    aria-label="상품 페이지로 이동"
+                  >
+                    <div class="product-item__img" role="img" aria-label="상품 이미지 설명"></div>
+                    <p class="product-item__title">[하코야] 살얼음 동동 냉메밀 소바 6인분</p>
+                    <p class="product-item__price"><span class="sr-only">정가</span>9,900원</p>
+                    <p class="product-item__real-price">
+                      <span class="product-item__discount-rate"
+                        >12%<span class="sr-only">할인</span></span
+                      ><span class="sr-only">구매가</span>8,690원
+                    </p>
+                    <p class="product-item__reviews"><span class="sr-only">리뷰 수</span>999+</p>
+                  </a>
+                  <button class="product-item__button" type="button">담기</button>
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <div class="product-item">
+                  <a
+                    class="product-item__link"
+                    href="/"
+                    tabindex="0"
+                    aria-label="상품 페이지로 이동"
+                  >
+                    <div class="product-item__img" role="img" aria-label="상품 이미지 설명"></div>
+                    <p class="product-item__title">[하코야] 살얼음 동동 냉메밀 소바 7인분</p>
+                    <p class="product-item__price"><span class="sr-only">정가</span>9,900원</p>
+                    <p class="product-item__real-price">
+                      <span class="product-item__discount-rate"
+                        >12%<span class="sr-only">할인</span></span
+                      ><span class="sr-only">구매가</span>8,690원
+                    </p>
+                    <p class="product-item__reviews"><span class="sr-only">리뷰 수</span>999+</p>
+                  </a>
+                  <button class="product-item__button" type="button">담기</button>
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <div class="product-item">
+                  <a
+                    class="product-item__link"
+                    href="/"
+                    tabindex="0"
+                    aria-label="상품 페이지로 이동"
+                  >
+                    <div class="product-item__img" role="img" aria-label="상품 이미지 설명"></div>
+                    <p class="product-item__title">[하코야] 살얼음 동동 냉메밀 소바 8인분</p>
+                    <p class="product-item__price"><span class="sr-only">정가</span>9,900원</p>
+                    <p class="product-item__real-price">
+                      <span class="product-item__discount-rate"
+                        >12%<span class="sr-only">할인</span></span
+                      ><span class="sr-only">구매가</span>8,690원
+                    </p>
+                    <p class="product-item__reviews"><span class="sr-only">리뷰 수</span>999+</p>
+                  </a>
+                  <button class="product-item__button" type="button">담기</button>
+                </div>
+              </div>
+
+              <div class="swiper-slide">
+                <div class="product-item__view-all">
+                  <a
+                    class="product-item__link"
+                    href="/"
+                    tabindex="0"
+                    aria-label="상품 페이지로 이동"
+                  >
+                    <img src="/src/assets/icons/arrow/view-all.svg" alt="전체보기" />
+                    <p class="">전체보기</p>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-button-prev" id="recommended-prev"></div>
+          <div class="swiper-button-next" id="recommended-next"></div>
+        </div>
+      </section>
+
+      <!-- 프로모션 배너 -->
+      <section class="promotion-banner">
+        <h2 class="sr-only">프로모션 배너</h2>
+        <a href="/" aria-label="프로모션 페이지로 이동">
+          <div
+            class="promotion-banner__img"
+            role="img"
+            aria-label="더 풍성해진 10월의 퍼플위크"
+          ></div>
+        </a>
+      </section>
+
+      <!-- 할인 상품 리스트 -->
+      <section class="product-list">
+        <h3 class="sr-only">할인 상품 목록</h3>
+        <div class="product-header">
+          <a class="product-header__link" href="/" aria-label="추천 상품 목록 페이지로 이동">
+            <h2 class="product-header__title">💸놓치면 후회할 가격</h2>
+          </a>
+          <p class="product-header__sub-title">지금 득템하세요💜</p>
+        </div>
+
+        <div class="product-item-group" role="group">
+          <div class="swiper" id="discount-product-list-swiper">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <div class="product-item">
+                  <a
+                    class="product-item__link"
+                    href="/"
+                    tabindex="0"
+                    aria-label="상품 페이지로 이동"
+                  >
+                    <div class="product-item__img" role="img" aria-label="상품 이미지 설명"></div>
+                    <p class="product-item__title">[하코야] 살얼음 동동 냉메밀 소바 1인분</p>
+                    <p class="product-item__price"><span class="sr-only">정가</span>9,900원</p>
+                    <p class="product-item__real-price">
+                      <span class="product-item__discount-rate"
+                        >12%<span class="sr-only">할인</span></span
+                      ><span class="sr-only">구매가</span>8,690원
+                    </p>
+                    <p class="product-item__reviews"><span class="sr-only">리뷰 수</span>999+</p>
+                  </a>
+                  <button class="product-item__button" type="button">담기</button>
+                </div>
+              </div>
+
+              <div class="swiper-slide">
+                <div class="product-item">
+                  <a
+                    class="product-item__link"
+                    href="/"
+                    tabindex="0"
+                    aria-label="상품 페이지로 이동"
+                  >
+                    <div class="product-item__img" role="img" aria-label="상품 이미지 설명"></div>
+                    <p class="product-item__title">[하코야] 살얼음 동동 냉메밀 소바 2인분</p>
+                    <p class="product-item__price"><span class="sr-only">정가</span>9,900원</p>
+                    <p class="product-item__real-price">
+                      <span class="product-item__discount-rate"
+                        >12%<span class="sr-only">할인</span></span
+                      ><span class="sr-only">구매가</span>8,690원
+                    </p>
+                    <p class="product-item__reviews"><span class="sr-only">리뷰 수</span>999+</p>
+                  </a>
+                  <button class="product-item__button" type="button">담기</button>
+                </div>
+              </div>
+
+              <div class="swiper-slide">
+                <div class="product-item">
+                  <a
+                    class="product-item__link"
+                    href="/"
+                    tabindex="0"
+                    aria-label="상품 페이지로 이동"
+                  >
+                    <div class="product-item__img" role="img" aria-label="상품 이미지 설명"></div>
+                    <p class="product-item__title">[하코야] 살얼음 동동 냉메밀 소바 3인분</p>
+                    <p class="product-item__price"><span class="sr-only">정가</span>9,900원</p>
+                    <p class="product-item__real-price">
+                      <span class="product-item__discount-rate"
+                        >12%<span class="sr-only">할인</span></span
+                      ><span class="sr-only">구매가</span>8,690원
+                    </p>
+                    <p class="product-item__reviews"><span class="sr-only">리뷰 수</span>999+</p>
+                  </a>
+                  <button class="product-item__button" type="button">담기</button>
+                </div>
+              </div>
+
+              <div class="swiper-slide">
+                <div class="product-item">
+                  <a
+                    class="product-item__link"
+                    href="/"
+                    tabindex="0"
+                    aria-label="상품 페이지로 이동"
+                  >
+                    <div class="product-item__img" role="img" aria-label="상품 이미지 설명"></div>
+                    <p class="product-item__title">[하코야] 살얼음 동동 냉메밀 소바 4인분</p>
+                    <p class="product-item__price"><span class="sr-only">정가</span>9,900원</p>
+                    <p class="product-item__real-price">
+                      <span class="product-item__discount-rate"
+                        >12%<span class="sr-only">할인</span></span
+                      ><span class="sr-only">구매가</span>8,690원
+                    </p>
+                    <p class="product-item__reviews"><span class="sr-only">리뷰 수</span>999+</p>
+                  </a>
+                  <button class="product-item__button" type="button">담기</button>
+                </div>
+              </div>
+
+              <div class="swiper-slide">
+                <div class="product-item">
+                  <a
+                    class="product-item__link"
+                    href="/"
+                    tabindex="0"
+                    aria-label="상품 페이지로 이동"
+                  >
+                    <div class="product-item__img" role="img" aria-label="상품 이미지 설명"></div>
+                    <p class="product-item__title">[하코야] 살얼음 동동 냉메밀 소바 5인분</p>
+                    <p class="product-item__price"><span class="sr-only">정가</span>9,900원</p>
+                    <p class="product-item__real-price">
+                      <span class="product-item__discount-rate"
+                        >12%<span class="sr-only">할인</span></span
+                      ><span class="sr-only">구매가</span>8,690원
+                    </p>
+                    <p class="product-item__reviews"><span class="sr-only">리뷰 수</span>999+</p>
+                  </a>
+                  <button class="product-item__button" type="button">담기</button>
+                </div>
+              </div>
+
+              <div class="swiper-slide">
+                <div class="product-item">
+                  <a
+                    class="product-item__link"
+                    href="/"
+                    tabindex="0"
+                    aria-label="상품 페이지로 이동"
+                  >
+                    <div class="product-item__img" role="img" aria-label="상품 이미지 설명"></div>
+                    <p class="product-item__title">[하코야] 살얼음 동동 냉메밀 소바 6인분</p>
+                    <p class="product-item__price"><span class="sr-only">정가</span>9,900원</p>
+                    <p class="product-item__real-price">
+                      <span class="product-item__discount-rate"
+                        >12%<span class="sr-only">할인</span></span
+                      ><span class="sr-only">구매가</span>8,690원
+                    </p>
+                    <p class="product-item__reviews"><span class="sr-only">리뷰 수</span>999+</p>
+                  </a>
+                  <button class="product-item__button" type="button">담기</button>
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <div class="product-item">
+                  <a
+                    class="product-item__link"
+                    href="/"
+                    tabindex="0"
+                    aria-label="상품 페이지로 이동"
+                  >
+                    <div class="product-item__img" role="img" aria-label="상품 이미지 설명"></div>
+                    <p class="product-item__title">[하코야] 살얼음 동동 냉메밀 소바 7인분</p>
+                    <p class="product-item__price"><span class="sr-only">정가</span>9,900원</p>
+                    <p class="product-item__real-price">
+                      <span class="product-item__discount-rate"
+                        >12%<span class="sr-only">할인</span></span
+                      ><span class="sr-only">구매가</span>8,690원
+                    </p>
+                    <p class="product-item__reviews"><span class="sr-only">리뷰 수</span>999+</p>
+                  </a>
+                  <button class="product-item__button" type="button">담기</button>
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <div class="product-item">
+                  <a
+                    class="product-item__link"
+                    href="/"
+                    tabindex="0"
+                    aria-label="상품 페이지로 이동"
+                  >
+                    <div class="product-item__img" role="img" aria-label="상품 이미지 설명"></div>
+                    <p class="product-item__title">[하코야] 살얼음 동동 냉메밀 소바 8인분</p>
+                    <p class="product-item__price"><span class="sr-only">정가</span>9,900원</p>
+                    <p class="product-item__real-price">
+                      <span class="product-item__discount-rate"
+                        >12%<span class="sr-only">할인</span></span
+                      ><span class="sr-only">구매가</span>8,690원
+                    </p>
+                    <p class="product-item__reviews"><span class="sr-only">리뷰 수</span>999+</p>
+                  </a>
+                  <button class="product-item__button" type="button">담기</button>
+                </div>
+              </div>
+
+              <div class="swiper-slide">
+                <div class="product-item__view-all">
+                  <a
+                    class="product-item__link"
+                    href="/"
+                    tabindex="0"
+                    aria-label="상품 페이지로 이동"
+                  >
+                    <img src="/src/assets/icons/arrow/view-all.svg" alt="전체보기" />
+                    <p class="">전체보기</p>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-button-prev" id="discount-prev"></div>
+          <div class="swiper-button-next" id="discount-next"></div>
+        </div>
+      </section>
+    </main>
+  </body>
 </html>
