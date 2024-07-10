@@ -1,0 +1,89 @@
+// 믹스인 정의: flex-column
+@mixin flex-column($gap: 0) {
+  display: flex;
+  flex-direction: column;
+
+  @if $gap != 0 {
+    gap: $gap;
+  }
+}
+
+@mixin button-base {
+  height: 3.375rem;
+  width: 21.25rem;
+  border: 0.0625rem solid;
+  border-radius: 0.25rem;
+  font-size: $label-medium;
+  line-height: 150%;
+  font-weight: 600;
+}
+
+%centered-flex {
+  display: flex;
+  justify-content: center;
+}
+
+h1 {
+  text-align: center;
+  font-weight: 600;
+  line-height: 150%;
+}
+
+input {
+  padding: 0.75rem 1.25rem;
+  border-radius: 0.25rem;
+  border: 0.0625rem solid;
+  width: 18.75rem;
+  height: 1.625rem;
+}
+
+button {
+  @include button-base;
+}
+
+.title {
+  font-size: $heading-large;
+}
+
+.login {
+  &-container {
+    @include flex-column(2.75rem);
+    width: 21.25rem;
+    padding: 5rem 0;
+    margin: auto;
+  }
+
+  &-form {
+    @include flex-column($paragraph-small);
+    align-items: end;
+
+    &__input-group {
+      @include flex-column($paragraph-small);
+
+      input {
+        font-size: $label-medium;
+        border-color: $gray-300-color;
+      }
+    }
+  }
+}
+
+.login-find {
+  font-size: $label-small;
+  font-weight: 400;
+  line-height: 160%;
+}
+
+.login-button {
+  @include flex-column($paragraph-small);
+
+  &__login {
+    background-color: $primary-color;
+    color: $white-color;
+  }
+
+  &__register {
+    border: 1px solid $primary-color;
+    color: $primary-color;
+  }
+}

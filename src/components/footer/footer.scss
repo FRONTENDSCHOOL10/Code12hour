@@ -120,7 +120,7 @@
 
     @each $platform in (naver, facebook, instagram, naver-post, youtube) {
       &--#{$platform} {
-        background-image: url('/assets/icons/footer/#{$platform}.png');
+        background-image: url('/src/assets/icons/footer/#{$platform}.png');
       }
     }
   }
