@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>사이드 필터 패널</title>
+    <script type="module" src="./side-filter-panel.js"></script>
+  </head>
+  <body>
+    <main class="main-container">
+      <nav class="side-filter-panel">
+        <div class="filter-header">
+          <div class="filter-title-container">
+            <p class="filter-title" aria-hidden="true">필터</p>
+            <div class="filter-reset">
+              <button class="reset-button" aria-label="필터초기화">초기화</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="side-filter-panel__content">
+          <div class="category-header">
+            <button class="category-toggle">
+              카테고리 <span class="category-item__count">11</span>
+            </button>
+          </div>
+          <div class="category-list">
+            <div class="category-item">
+              <input class="category-item__input" type="checkbox" id="category-1" />
+              <label for="category-1">샐러드 · 간편식</label>
+              <span class="category-item__count">22</span>
+            </div>
+            <div class="category-item">
+              <input class="category-item__input" type="checkbox" id="category-2" />
+              <label for="category-2">국 · 반찬 · 메인요리</label>
+              <span class="category-item__count">22</span>
+            </div>
+            <div class="category-item">
+              <input class="category-item__input" type="checkbox" id="category-3" />
+              <label for="category-3">정육 · 계란</label>
+              <span class="category-item__count">22</span>
+            </div>
+            <div class="category-item">
+              <input class="category-item__input" type="checkbox" id="category-4" />
+              <label for="category-4">과일 · 견과 · 쌀</label>
+              <span class="category-item__count">22</span>
+            </div>
+            <div class="category-item">
+              <input class="category-item__input" type="checkbox" id="category-5" />
+              <label for="category-5">간식 · 과자 · 떡</label>
+              <span class="category-item__count">22</span>
+            </div>
+            <div class="category-item">
+              <input class="category-item__input" type="checkbox" id="category-6" />
+              <label for="category-6">생수 · 음료 · 우유 · 커피</label>
+              <span class="category-item__count">22</span>
+            </div>
+            <div class="category-item">
+              <input class="category-item__input" type="checkbox" id="category-7" />
+              <label for="category-7">수산 · 해산 · 건어물</label>
+              <span class="category-item__count">22</span>
+            </div>
+            <div class="category-item">
+              <input class="category-item__input" type="checkbox" id="category-8" />
+              <label for="category-8">베이커리 · 치즈 · 델리</label>
+              <span class="category-item__count">22</span>
+            </div>
+            <div class="category-item">
+              <input class="category-item__input" type="checkbox" id="category-9" />
+              <label for="category-9">건강식품</label>
+              <span class="category-item__count">22</span>
+            </div>
+            <div class="category-item">
+              <input class="category-item__input" type="checkbox" id="category-10" />
+              <label for="category-10">생활용품 · 리빙 · 캠핑</label>
+              <span class="category-item__count">22</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="side-filter-panel__content">
+          <div class="category-header">
+            <button class="category-toggle">
+              배송 <span class="category-item__count">11</span>
+            </button>
+          </div>
+          <div class="category-list">
+            <div class="category-item">
+              <input class="category-item__input" type="checkbox" id="delivery-1" />
+              <label for="delivery-1">샛별배송</label>
+              <span class="category-item__count">22</span>
+            </div>
+            <div class="category-item">
+              <input class="category-item__input" type="checkbox" id="delivery-2" />
+              <label for="delivery-2">판매자배송</label>
+              <span class="category-item__count">22</span>
+            </div>
+            <div class="category-item">
+              <input class="category-item__input" type="checkbox" id="delivery-3" />
+              <label for="delivery-3">설치배송</label>
+              <span class="category-item__count">22</span>
+            </div>
+            <div class="category-item">
+              <input class="category-item__input" type="checkbox" id="delivery-4" />
+              <label for="delivery-4">해외직배송</label>
+              <span class="category-item__count">22</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="side-filter-panel__content">
+          <div class="category-header">
+            <button class="category-toggle">
+              가격 <span class="category-item__count">11</span>
+            </button>
+          </div>
+          <div class="category-list">
+            <div class="category-item">
+              <input class="category-item__input-radio" type="radio" id="price-1" name="price" />
+              <label for="price-1">7225원 미만</label>
+              <span class="category-item__count">22</span>
+            </div>
+            <div class="category-item">
+              <input class="category-item__input-radio" type="radio" id="price-2" name="price" />
+              <label for="price-2">7225원~12900원</label>
+              <span class="category-item__count">22</span>
+            </div>
+            <div class="category-item">
+              <input class="category-item__input-radio" type="radio" id="price-3" name="price" />
+              <label for="price-3">12900원~26500원</label>
+              <span class="category-item__count">22</span>
+            </div>
+            <div class="category-item">
+              <input class="category-item__input-radio" type="radio" id="price-4" name="price" />
+              <label for="price-4">26500원 이상</label>
+              <span class="category-item__count">22</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="side-filter-panel__content">
+          <div class="category-header">
+            <button class="category-toggle">
+              브랜드 <span class="category-item__count">11</span>
+            </button>
+          </div>
+          <div class="category-list">
+            <div class="category-item">
+              <input class="category-item__input" type="checkbox" id="brand-1" />
+              <label for="brand-1">슬비쌤</label>
+              <span class="category-item__count">22</span>
+            </div>
+            <div class="category-item">
+              <input class="category-item__input" type="checkbox" id="brand-2" />
+              <label for="brand-2">범쌤</label>
+              <span class="category-item__count">22</span>
+            </div>
+            <div class="category-item">
+              <input class="category-item__input" type="checkbox" id="brand-3" />
+              <label for="brand-3">야무쌤</label>
+              <span class="category-item__count">22</span>
+            </div>
+            <div class="category-item">
+              <input class="category-item__input" type="checkbox" id="brand-4" />
+              <label for="brand-4">김미리매니저님</label>
+              <span class="category-item__count">22</span>
+            </div>
+            <div class="category-item">
+              <input class="category-item__input" type="checkbox" id="brand-5" />
+              <label for="brand-5">금윤호매니저님</label>
+              <span class="category-item__count">22</span>
+            </div>
+            <div class="category-item">
+              <input class="category-item__input" type="checkbox" id="brand-6" />
+              <label for="brand-6">유진혁매니저님</label>
+              <span class="category-item__count">22</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="side-filter-panel__content">
+          <div class="category-header">
+            <button class="category-toggle">
+              혜택 <span class="category-item__count">11</span>
+            </button>
+          </div>
+          <div class="category-list">
+            <div class="category-item">
+              <input class="category-item__input" type="checkbox" id="Benefits-1" />
+              <label for="Benefits-1">할인상품</label>
+              <span class="category-item__count">22</span>
+            </div>
+            <div class="category-item">
+              <input class="category-item__input" type="checkbox" id="Benefits-2" />
+              <label for="Benefits-2">한정수량</label>
+              <span class="category-item__count">22</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="side-filter-panel__content">
+          <div class="category-header">
+            <button class="category-toggle">
+              유형 <span class="category-item__count">11</span>
+            </button>
+          </div>
+          <div class="category-list">
+            <div class="category-item">
+              <input class="category-item__input" type="checkbox" id="category-type-1" />
+              <label for="category-type-1">Kurly Only</label>
+              <span class="category-item__count">22</span>
+            </div>
+            <div class="category-item">
+              <input class="category-item__input" type="checkbox" id="category-type-2" />
+              <label for="category-type-2">희소가치 프로젝트</label>
+              <span class="category-item__count">22</span>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </main>
+  </body>
+</html>
