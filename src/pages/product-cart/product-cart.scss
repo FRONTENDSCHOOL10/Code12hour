@@ -51,7 +51,7 @@
       height: 1.5rem;
       position: absolute;
       left: 0rem;
-      background-image: url('/src/assets/icons/input/isChecked=false.svg');
+      background-image: url('/assets/icons/input/isChecked=false.svg');
       background-size: cover;
       background-repeat: no-repeat;
       background-position: center;
@@ -59,7 +59,7 @@
   }
 
   &-select-all:checked + &-select-label::before {
-    background-image: url('/src/assets/icons/input/isChecked=true.svg');
+    background-image: url('/assets/icons/input/isChecked=true.svg');
   }
 
   &-divider {
@@ -97,7 +97,7 @@
     &__arrow-icon {
       @include size(1.875rem, 1.875rem);
       padding: 0.25rem;
-      background-image: url('/src/assets/icons/product-cart/Arrow.svg');
+      background-image: url('/assets/icons/product-cart/Arrow.svg');
       background-repeat: no-repeat;
       background-position: center;
     }

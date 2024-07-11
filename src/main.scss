@@ -3,7 +3,7 @@
 $width: 65.625rem;
 $line-height: 150%;
 $banner-button-size: 3.125rem;
-$banner-button-margin: 21.88rem;
+$banner-button-margin: 15rem;
 $list-button-size: 3.75rem;
 
 $rem-0-25: 0.25rem;
@@ -24,7 +24,8 @@ img {
 
 .main-banner {
   .swiper {
-    @include size(118.75rem, 23.125rem);
+    @include size(auto, 23.125rem);
+    max-width: 118.5rem;
 
     &-button-prev,
     &-button-next {
@@ -33,12 +34,12 @@ img {
 
     &-button-prev {
       margin-left: $banner-button-margin;
-      background: url(/src/assets/icons/arrow/swiper-prev.svg) no-repeat;
+      background: url('/assets/icons/arrow/swiper-prev.svg') no-repeat;
     }
 
     &-button-next {
       margin-right: $banner-button-margin;
-      background: url(/src/assets/icons/arrow/swiper-next.svg) no-repeat;
+      background: url('/assets/icons/arrow/swiper-next.svg') no-repeat;
     }
 
     &-button-prev::after,
@@ -101,12 +102,12 @@ img {
 
     &-button-prev {
       left: -2rem;
-      background: url(/src/assets/icons/arrow/list-arrow.svg) no-repeat;
+      background: url('/assets/icons/arrow/list-arrow.svg') no-repeat;
     }
 
     &-button-next {
       right: -2rem;
-      background: url(/src/assets/icons/arrow/list-arrow.svg) no-repeat;
+      background: url('/assets/icons/arrow/list-arrow.svg') no-repeat;
       transform: rotate(180deg);
     }
 
@@ -125,7 +126,7 @@ img {
     @include size(100%, 20rem);
     border-radius: $rem-0-25;
     background-color: $gray-100-color;
-    background: url(/src/assets/images/banner/1.jpg) no-repeat center;
+    background: url('/src/assets/images/banner/1.jpg') no-repeat center;
     background-size: 100%;
     transition: background-size 0.3s ease;
   }
@@ -167,7 +168,7 @@ img {
     color: #999999; // rgb 153,153,153
 
     &::before {
-      content: url(/src/assets/icons/product-list/reviews.svg);
+      content: url('/assets/icons/product-list/reviews.svg');
       width: 85px;
       vertical-align: middle;
       margin-right: 0.125rem;
@@ -180,7 +181,7 @@ img {
     border-radius: $rem-0-25;
 
     &::before {
-      content: url('/src/assets/icons/product-list/Cart.svg');
+      content: url('/assets/icons/product-list/Cart.svg');
       vertical-align: middle;
       margin-right: $rem-0-25;
     }
@@ -207,6 +208,6 @@ img {
   &__img {
     @include size($width, 8.6875rem);
     background-color: $gray-100-color;
-    background-image: url(/src/assets/images/banner/line-banner01.png);
+    background-image: url('/assets/images/banner/line-banner01.png');
   }
 }

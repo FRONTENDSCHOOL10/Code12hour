@@ -13,7 +13,7 @@ $spacing-md: 1rem;
 $spacing-lg: 1.25rem;
 
 // 믹스인 정의
-@mixin font-style($size, $weight, $line-height, $color:null) { 
+@mixin font-style($size, $weight, $line-height, $color: null) {
   font-size: $size;
   font-weight: $weight;
   line-height: $line-height;
@@ -31,60 +31,64 @@ $spacing-lg: 1.25rem;
 }
 
 // 리뷰 컨테이너
-.product-reviews{
+.product-reviews {
   @include size(1050px);
   position: relative;
   margin: 0 auto;
   padding-bottom: 6.25rem;
 
   // 후기 혜택 안내
-  &__info{
+  &__info {
     margin-top: $spacing-lg;
     align-items: center;
   }
 
-  &__title{
+  &__title {
     @include font-style($heading-xl, 700, 140%);
     display: inline-block;
     padding-bottom: $spacing-md;
   }
 
   // 후기 작성 버튼
-  &__write-btn{
+  &__write-btn {
     @include size(9.6875rem, 2.75rem);
-    @include font-style($label-medium, 500, 150%,$white-color); // 600 -> 500
+    @include font-style($label-medium, 500, 150%, $white-color); // 600 -> 500
     display: inline-block;
     position: absolute;
     right: 0;
     border-radius: $border-radius-small;
     background-color: $primary-color;
   }
-  
-  .product-reviews__description{
+
+  .product-reviews__description {
     @include font-style($label-medium, 600, 150%);
   }
-  
-    .product-reviews__benefit-list{
-      .product-reviews__benefit-item{
-      @include font-style($label-medium, 400,150%, $gray-400-color); // 600 -> 400 / gray 500 -> 400 
+
+  .product-reviews__benefit-list {
+    .product-reviews__benefit-item {
+      @include font-style(
+        $label-medium,
+        400,
+        150%,
+        $gray-400-color
+      ); // 600 -> 400 / gray 500 -> 400
       padding-left: $spacing-md;
       list-style-position: inside;
       list-style-type: disc;
-      }
     }
   }
+}
 
 // 상품 리뷰 썸네일 이미지 갤러리 => 추가 기능
-.product-gallery{
+.product-gallery {
   @include flex(row, space-between, center);
   width: 100%;
   padding: $gallery-padding;
 
-
-  &__image-btn{
+  &__image-btn {
     overflow: hidden;
-    
-    img{
+
+    img {
       @include size(8rem, 8rem);
       display: block;
       object-fit: cover;
@@ -92,18 +96,18 @@ $spacing-lg: 1.25rem;
     }
   }
 
-  &__image-btn:first-child{
+  &__image-btn:first-child {
     border-top-left-radius: $border-radius-medium;
     border-bottom-left-radius: $border-radius-medium;
   }
 
-  &__image-btn:nth-child(8){
+  &__image-btn:nth-child(8) {
     position: relative;
     border-top-right-radius: $border-radius-medium;
     border-bottom-right-radius: $border-radius-medium;
   }
-    
-  &__more-btn{
+
+  &__more-btn {
     @include size(8rem, 8rem);
     display: block;
     position: absolute;
@@ -111,70 +115,71 @@ $spacing-lg: 1.25rem;
     z-index: 1;
     border-top-right-radius: $border-radius-medium;
     border-bottom-right-radius: $border-radius-medium;
-    background: rgba(0,0,0,0.25);
-      
-    span{ // +더보기 버튼 텍스트
+    background: rgba(0, 0, 0, 0.25);
+
+    span {
+      // +더보기 버튼 텍스트
       @include font-style($label-medium, 500, 150%, $white-color);
     }
   }
 }
 
 // 리뷰 써머리 (리뷰 개수 및 분류 버튼)
-.review-content__summary{
+.review-content__summary {
   @include flex(row, space-between, center);
   @include font-style($label-medium, 500, 150%); // label-small -> medium / 600 -> 500
   padding-bottom: $spacing-md;
-  border-bottom: 1px solid $gray-900-color;;
+  border-bottom: 1px solid $gray-900-color;
 }
 
-.review-content__sort-list{
+.review-content__sort-list {
   display: flex;
   position: absolute;
   right: 0;
- 
-  .review-content__sort-btn{
+
+  .review-content__sort-btn {
     @include font-style($label-small, 400, 150%, $gray-300-color); // medium -> small / 600 -> 400
     position: relative;
 
-    &--active{
+    &--active {
       color: $content-color;
     }
   }
-  
-  span{ // 분류 버튼 경계선 // 시안과 다르게 스타일 적용
+
+  span {
+    // 분류 버튼 경계선 // 시안과 다르게 스타일 적용
     @include flex(row, center, center);
-    @include font-style($label-small, 500, 150%, $gray-300-color); 
+    @include font-style($label-small, 500, 150%, $gray-300-color);
     margin-left: $spacing-xs;
     margin-right: $spacing-xs;
   }
 }
 
 // 후기 관련 공지사항
-.review-notice{
+.review-notice {
   border-bottom: $border-bottom;
-  
-  
-  &__item{
+
+  &__item {
     @include flex(row, left, center);
     padding: 1.3125rem 1.25rem;
     border-bottom: $border-bottom;
   }
-    &__icon{
-      @include flex(row, center, center);
-      @include font-style($label-small, 500, 150%); // 600 -> 500
-      padding: $icon-padding;
-      border-radius: $border-radius-small;
-      background-color: $gray-100-color;
-      text-align: center;
-    }
+  &__icon {
+    @include flex(row, center, center);
+    @include font-style($label-small, 500, 150%); // 600 -> 500
+    padding: $icon-padding;
+    border-radius: $border-radius-small;
+    background-color: $gray-100-color;
+    text-align: center;
+  }
 
-  &__toggle{
+  &__toggle {
     @include font-style($label-medium, 500, 150%); // 600 -> 500
     margin-left: $spacing-lg;
     text-align: center;
   }
-  
-  &__content{
+
+  &__content {
     @include font-style($paragraph-medium, 400, 160%); // 시안에 없음
     padding: $spacing-lg;
     border-bottom: $border-bottom;
@@ -184,29 +189,34 @@ $spacing-lg: 1.25rem;
 }
 
 // 후기가 없을 경우
-.review-list__empty{
-  @include flex(column, center, center); 
+.review-list__empty {
+  @include flex(column, center, center);
   padding: $spacing-lg;
   border-bottom: $border-bottom;
 
-  &-icon{
-    @include icon-button(3rem, 3rem, $gray-100-color, '/src/assets/icons/review/review-empty.svg');
+  &-icon {
+    @include icon-button(
+      3rem,
+      3rem,
+      $gray-100-color,
+      '/assets/icons/product-review/review-empty.svg'
+    );
     margin-bottom: $spacing-lg;
   }
 
-  &-message{
+  &-message {
     @include font-style($label-medium, 500, 150%, $gray-300-color); // 600 -> 500
   }
 }
 
 // 후기 리스트
-.review-article__list{
+.review-article__list {
   @include flex(row, left, left);
   padding: 1.25rem 0 1.25rem 1.25rem;
   margin-bottom: $spacing-md;
   border-bottom: $border-bottom;
 
-  .visually-hidden{
+  .visually-hidden {
     @include size(0.0625rem, 0.0625rem); // 각 1px
     position: absolute;
     padding: 0;
@@ -219,14 +229,14 @@ $spacing-lg: 1.25rem;
 }
 
 // 후기 작성자
-.review-item{
+.review-item {
   flex: 0 0 16.6rem;
 
-  &__user{
+  &__user {
     @include flex(row, left, center);
   }
 
-  &__badge{
+  &__badge {
     @include flex(row, center, center);
     @include font-style($label-small, 500, 150%, $white-color); // 600 -> 500
     padding: $icon-padding;
@@ -234,116 +244,133 @@ $spacing-lg: 1.25rem;
     background-color: $secondary-color;
   }
 
-  &__author{
+  &__author {
     @include font-style($label-small, 500, 150%); // 600 -> 500
     margin-left: $spacing-sm;
     text-align: center;
   }
-
 }
 
 // 후기 아티클
-.review{
+.review {
   flex: 1 1 0;
 
-  &__product-name{
-    @include font-style($label-small, 400, 150%,$gray-400-color); // 600 -> 400
+  &__product-name {
+    @include font-style($label-small, 400, 150%, $gray-400-color); // 600 -> 400
     display: inline-block;
   }
 
-  &__text{
+  &__text {
     @include font-style($paragraph-small, 400, 160%); // black -> content-color
     padding: 0.75rem 1.25rem 0 0;
     white-space: pre-line; // 추가
   }
 
   // 사용자 후기 이미지 // 추가 기능
-  &__gallery{
+  &__gallery {
     @include flex(row, left, center);
     width: 100%;
     padding: $gallery-padding;
   }
 
-  &__image-btn{
+  &__image-btn {
     @include size(5.8125rem, 5.8125rem);
     overflow: hidden;
     margin-left: 0.19rem;
-    
-    img{
+
+    img {
       @include size(inherit, inherit);
       display: block;
       box-sizing: inherit;
-      background: $gray-100-color no-repeat center / contain; 
+      background: $gray-100-color no-repeat center / contain;
       object-fit: cover;
     }
   }
-  
-  &__image-btn:first-child{
+
+  &__image-btn:first-child {
     border-top-left-radius: $border-radius-medium;
     border-bottom-left-radius: $border-radius-medium;
     margin-left: 0;
   }
-  
-  &__image-btn:nth-child(5){
+
+  &__image-btn:nth-child(5) {
     position: relative;
     border-top-right-radius: $border-radius-medium;
     border-bottom-right-radius: $border-radius-medium;
   }
 
   // 후기란 푸터
-  &__footer{
+  &__footer {
     @include flex(row, space-between, center);
-    padding-right: $spacing-lg; 
+    padding-right: $spacing-lg;
   }
-  
-  &__date{
+
+  &__date {
     @include font-style($label-small, 400, 150%, $gray-400-color); // 600 -> 400
   }
-  
-  &__helpful-btn{ // 추가 기능
+
+  &__helpful-btn {
+    // 추가 기능
     @include flex(row, left, center);
     height: 2rem;
     border: 1px solid $gray-200-color;
     border-radius: 1.25rem;
     padding: 0.375rem 0.875rem 0.375rem 0.875rem;
 
-    .review__helpful-icon{
-    @include icon-button(0.875rem, 0.875rem,$gray-400-color,'/src/assets/icons/review/helpful.svg');
-    margin-right: $spacing-xs;
+    .review__helpful-icon {
+      @include icon-button(
+        0.875rem,
+        0.875rem,
+        $gray-400-color,
+        '/assets/icons/product-review/helpful.svg'
+      );
+      margin-right: $spacing-xs;
     }
-    
-    &:hover, &:active{
-      .review__helpful-icon{
+
+    &:hover,
+    &:active {
+      .review__helpful-icon {
         background-color: $primary-color;
       }
 
-      .review__helpful-text{
+      .review__helpful-text {
         color: $primary-color;
       }
     }
   }
-    
-    &__helpful-text{
+
+  &__helpful-text {
     @include font-style($label-small, 400, 150%, $gray-400-color);
   }
 }
 
 // 페이지네이션 좌우 버튼
-.paging{
+.paging {
   @include flex(row, center, center);
   gap: $spacing-md;
-  
-  &__button{
-    &--prev{
-      @include icon-button(3.5rem, 3.5rem, $gray-200-color, '/src/assets/icons/review/paging.svg');
-    }
-    
-    &--next{
-      transform: scaleX(-1);  
-      @include icon-button(3.5rem, 3.5rem, $gray-400-color, '/src/assets/icons/review/paging.svg');  
+
+  &__button {
+    &--prev {
+      @include icon-button(
+        3.5rem,
+        3.5rem,
+        $gray-200-color,
+        '/assets/icons/product-review/paging.svg'
+      );
     }
 
-    &:hover, &:active{
+    &--next {
+      transform: scaleX(-1);
+      @include icon-button(
+        3.5rem,
+        3.5rem,
+        $gray-400-color,
+        '/assets/icons/product-review/paging.svg'
+      );
+    }
+
+    &:hover,
+    &:active {
       background-color: $primary-color;
     }
   }

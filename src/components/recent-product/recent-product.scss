@@ -20,7 +20,7 @@
   }
 
   &__img {
-    background: url(/src/assets/images/banner/1.jpg) no-repeat;
+    background: url('/src/assets/images/banner/1.jpg') no-repeat;
     background-color: $gray-100-color;
     background-size: cover;
     @include size(100%, 5rem);
