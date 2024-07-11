@@ -9,8 +9,9 @@
   <body>
     <c-header></c-header>
     <main class="main">
-      <h2 class="main__title">장바구니</h2>
+      <h1 class="main__title">장바구니</h1>
       <section class="cart">
+        <h2 class="sr-only">장바구니 목록 및 장바구니 수정, 주문</h2>
         <section class="cart-list" aria-label="장바구니 목록">
           <h3 class="sr-only">장바구니 목록</h3>
           <div class="cart-selection" role="group" aria-label="장바구니 상품 선택">
@@ -21,60 +22,61 @@
               class="cart-select-all"
             />
             <label for="cart-select-top" class="cart-select-label">
-              전체선택<span aria-label="선택된 항목 수">(3/3)</span>
+              전체선택
+              <span role="status" aria-live="polite" aria-label="선택된 항목 수">(3/3)</span>
             </label>
             <div class="cart-divider" aria-hidden="true"></div>
             <button type="button" class="cart-delete-selected">선택삭제</button>
           </div>
           <ul class="cart-categories" aria-label="상품 카테고리 목록">
-            <li class="cart-category" role="listitem" aria-posinset="1" aria-setsize="3">
+            <li class="cart-category" aria-posinset="1" aria-setsize="3">
               <details>
                 <summary>
-                  <div class="cart-category__content">
+                  <span class="cart-category__content">
                     <img
                       src="/src/assets/icons/product-cart/Cold.svg"
                       alt="냉장 식품"
                       class="cart-category__icon"
                     />
                     <span class="cart-category__name">냉장 식품</span>
-                  </div>
-                  <div class="cart-category__arrow-icon" aria-hidden="true"></div>
+                  </span>
+                  <span class="cart-category__arrow-icon" aria-hidden="true"></span>
                 </summary>
                 <div>
                   <!-- 냉장 식품 관련 내용 -->
                 </div>
               </details>
             </li>
-            <li class="cart-category" role="listitem" aria-posinset="2" aria-setsize="3">
+            <li class="cart-category" aria-posinset="2" aria-setsize="3">
               <details>
                 <summary>
-                  <div class="cart-category__content">
+                  <span class="cart-category__content">
                     <img
                       src="/src/assets/icons/product-cart/Frozen.svg"
                       alt="냉동 식품"
                       class="cart-category__icon"
                     />
                     <span class="cart-category__name">냉동 식품</span>
-                  </div>
-                  <div class="cart-category__arrow-icon" aria-hidden="true"></div>
+                  </span>
+                  <span class="cart-category__arrow-icon" aria-hidden="true"></span>
                 </summary>
                 <div>
                   <!-- 냉동 식품 관련 내용 -->
                 </div>
               </details>
             </li>
-            <li class="cart-category" role="listitem" aria-posinset="3" aria-setsize="3">
+            <li class="cart-category" aria-posinset="3" aria-setsize="3">
               <details>
                 <summary>
-                  <div class="cart-category__content">
+                  <span class="cart-category__content">
                     <img
                       src="/src/assets/icons/product-cart/Temperature.svg"
                       alt="상온 식품"
                       class="cart-category__icon"
                     />
                     <span class="cart-category__name">상온 식품</span>
-                  </div>
-                  <div class="cart-category__arrow-icon" aria-hidden="true"></div>
+                  </span>
+                  <span class="cart-category__arrow-icon" aria-hidden="true"></span>
                 </summary>
                 <div>
                   <!-- 상온 식품 관련 내용 -->
@@ -90,7 +92,8 @@
               class="cart-select-all"
             />
             <label for="cart-select-bottom" class="cart-select-label">
-              전체선택<span aria-label="선택된 항목 수">(3/3)</span>
+              전체선택
+              <span role="status" aria-live="polite" aria-label="선택된 항목 수">(3/3)</span>
             </label>
             <div class="cart-divider" aria-hidden="true"></div>
             <button type="button" class="cart-delete-selected">선택삭제</button>
