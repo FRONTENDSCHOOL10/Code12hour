@@ -1,8 +1,9 @@
 import './footer.scss';
+import css from './footer.scss?inline'; // css 파일 inline 가져오기 이렇게 하지 않으면 동적으로 css를 못넣음 빌드하면 파일 위치, 명이 다 바뀌기 때문
 
 const footerTemplate = document.createElement('template');
 footerTemplate.innerHTML = `
-  <style>@import url('/src/components/footer/footer.scss');</style>
+  <style>${css}</style>
         <footer class="footer">
       <div class="footer__inner">
         <div class="footer__top">
@@ -117,7 +118,7 @@ footerTemplate.innerHTML = `
           <ul class="footer__certificates-list">
             <li class="footer__certificates-item">
               <img
-                src="/src/assets/icons/footer/Isms.svg"
+                src="${new URL('/src/assets/icons/footer/Isms.svg', import.meta.url).href}"
                 alt="Isms 인증 뱃지"
                 class="footer__certificate-img"
               />
@@ -128,7 +129,7 @@ footerTemplate.innerHTML = `
             </li>
             <li class="footer__certificates-item">
               <img
-                src="/src/assets/icons/footer/Privacy.svg"
+                src="${new URL('/src/assets/icons/footer/Privacy.svg', import.meta.url).href}"
                 alt="개인정보보호 우수 인증 뱃지"
                 class="footer__certificate-img"
               />
@@ -139,7 +140,7 @@ footerTemplate.innerHTML = `
             </li>
             <li class="footer__certificates-item">
               <img
-                src="/src/assets/icons/footer/Tosspayments.svg"
+                src="${new URL('/src/assets/icons/footer/Tosspayments.svg', import.meta.url).href}"
                 alt="토스페이먼츠 로고"
                 class="footer__certificate-img"
               />
@@ -150,7 +151,7 @@ footerTemplate.innerHTML = `
             </li>
             <li class="footer__certificates-item">
               <img
-                src="/src/assets/icons/footer/Ourbank.svg"
+                src="${new URL('/src/assets/icons/footer/Ourbank.svg', import.meta.url).href}"
                 alt="우리은행 로고"
                 class="footer__certificate-img"
               />
