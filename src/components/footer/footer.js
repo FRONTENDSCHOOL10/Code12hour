@@ -118,7 +118,7 @@ footerTemplate.innerHTML = `
           <ul class="footer__certificates-list">
             <li class="footer__certificates-item">
               <img
-                src="${new URL('/src/assets/icons/footer/Isms.svg', import.meta.url).href}"
+                src="/assets/icons/footer/Isms.svg"
                 alt="Isms 인증 뱃지"
                 class="footer__certificate-img"
               />
@@ -129,7 +129,7 @@ footerTemplate.innerHTML = `
             </li>
             <li class="footer__certificates-item">
               <img
-                src="${new URL('/src/assets/icons/footer/Privacy.svg', import.meta.url).href}"
+                src="/assets/icons/footer/Privacy.svg"
                 alt="개인정보보호 우수 인증 뱃지"
                 class="footer__certificate-img"
               />
@@ -140,7 +140,7 @@ footerTemplate.innerHTML = `
             </li>
             <li class="footer__certificates-item">
               <img
-                src="${new URL('/src/assets/icons/footer/Tosspayments.svg', import.meta.url).href}"
+                src="/assets/icons/footer/Tosspayments.svg"
                 alt="토스페이먼츠 로고"
                 class="footer__certificate-img"
               />
@@ -151,7 +151,7 @@ footerTemplate.innerHTML = `
             </li>
             <li class="footer__certificates-item">
               <img
-                src="${new URL('/src/assets/icons/footer/Ourbank.svg', import.meta.url).href}"
+                src="/assets/icons/footer/Ourbank.svg"
                 alt="우리은행 로고"
                 class="footer__certificate-img"
               />

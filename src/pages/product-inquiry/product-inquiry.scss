@@ -124,12 +124,12 @@ $spacing-lg: 1.25rem;
 
   &__button {
     &--prev {
-      @include icon-button(3.5rem, 3.5rem, $gray-200-color, '/src/assets/icons/review/paging.svg');
+      @include icon-button(3.5rem, 3.5rem, $gray-200-color, '/assets/icons/review/paging.svg');
     }
 
     &--next {
       transform: scaleX(-1);
-      @include icon-button(3.5rem, 3.5rem, $gray-400-color, '/src/assets/icons/review/paging.svg');
+      @include icon-button(3.5rem, 3.5rem, $gray-400-color, '/assets/icons/review/paging.svg');
     }
 
     &:hover,

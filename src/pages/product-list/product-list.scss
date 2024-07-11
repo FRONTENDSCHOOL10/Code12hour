@@ -64,7 +64,6 @@ img {
   }
 
   &__tooltip {
-    
     visibility: hidden;
   }
 
@@ -84,7 +83,7 @@ img {
 
     // 추천순 info 아이콘
     &:nth-child(1)::after {
-      content: url(/src/assets/icons/product-list/info.svg);
+      content: url('/assets/icons/product-list/info.svg');
       vertical-align: middle;
       margin-left: $rem-0-25;
     }
@@ -112,7 +111,7 @@ img {
     @include size(100%, 20rem);
     border-radius: $rem-0-25;
     background-color: $gray-100-color;
-    background: url(/src/assets/images/banner/1.jpg) no-repeat center;
+    background: url('/src/assets/images/banner/1.jpg') no-repeat center;
     background-size: 100%;
     transition: background-size 0.3s ease;
   }
@@ -165,7 +164,7 @@ img {
     padding-bottom: 5px;
 
     &::before {
-      content: url(/src/assets/icons/product-list/reviews.svg);
+      content: url('/assets/icons/product-list/reviews.svg');
       width: 85px;
       vertical-align: middle;
       margin-right: 0.125rem;
@@ -191,7 +190,7 @@ img {
     border-radius: $rem-0-25;
 
     &::before {
-      content: url('/src/assets/icons/product-list/Cart.svg');
+      content: url('/assets/icons/product-list/Cart.svg');
       vertical-align: middle;
       margin-right: $rem-0-25;
     }
@@ -203,7 +202,7 @@ img {
 .pagination {
   @include flex(row nowrap, center);
   margin-top: 3.75rem;
-  margin-bottom: 5rem;;
+  margin-bottom: 5rem;
 
   .prev-button {
     transform: rotate(180deg);
