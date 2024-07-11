@@ -186,7 +186,6 @@
   justify-content: space-between;
   align-items: center;
   width: 65.625rem;
-  padding: 1rem 0;
 }
 
 .category-menu {
@@ -194,6 +193,7 @@
   align-items: center;
   gap: 0.75rem;
   cursor: pointer;
+  padding: 1rem 1rem;
 
   &__icon {
     width: 1rem;
@@ -237,7 +237,7 @@
 
   a {
     width: 100%;
-    padding: 0.5rem 0;
+    padding: 1.5rem 0;
     text-align: center;
   }
 
@@ -271,7 +271,7 @@
 .menu-container {
   display: none;
   position: absolute;
-  top: 220px;
+  top: 15.0625rem;
   background-color: white;
   border: 1px solid #ccc;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
