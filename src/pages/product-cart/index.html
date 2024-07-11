@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>멋사칼리 - 장바구니</title>
+    <script type="module" src="./product-cart.js"></script>
+  </head>
+  <body>
+    <c-header></c-header>
+    <main class="main">
+      <h1 class="main__title">장바구니</h1>
+      <section class="cart">
+        <h2 class="sr-only">장바구니 목록 및 장바구니 수정, 주문</h2>
+        <section class="cart-list" aria-label="장바구니 목록">
+          <h3 class="sr-only">장바구니 목록</h3>
+          <div class="cart-selection" role="group" aria-label="장바구니 상품 선택">
+            <input
+              type="checkbox"
+              name="cart-selection"
+              id="cart-select-top"
+              class="cart-select-all"
+            />
+            <label for="cart-select-top" class="cart-select-label">
+              전체선택
+              <span role="status" aria-live="polite" aria-label="선택된 항목 수">(3/3)</span>
+            </label>
+            <div class="cart-divider" aria-hidden="true"></div>
+            <button type="button" class="cart-delete-selected">선택삭제</button>
+          </div>
+          <ul class="cart-categories" aria-label="상품 카테고리 목록">
+            <li class="cart-category" aria-posinset="1" aria-setsize="3">
+              <details>
+                <summary>
+                  <span class="cart-category__content">
+                    <img
+                      src="/src/assets/icons/product-cart/Cold.svg"
+                      alt="냉장 식품"
+                      class="cart-category__icon"
+                    />
+                    <span class="cart-category__name">냉장 식품</span>
+                  </span>
+                  <span class="cart-category__arrow-icon" aria-hidden="true"></span>
+                </summary>
+                <div>
+                  <!-- 냉장 식품 관련 내용 -->
+                </div>
+              </details>
+            </li>
+            <li class="cart-category" aria-posinset="2" aria-setsize="3">
+              <details>
+                <summary>
+                  <span class="cart-category__content">
+                    <img
+                      src="/src/assets/icons/product-cart/Frozen.svg"
+                      alt="냉동 식품"
+                      class="cart-category__icon"
+                    />
+                    <span class="cart-category__name">냉동 식품</span>
+                  </span>
+                  <span class="cart-category__arrow-icon" aria-hidden="true"></span>
+                </summary>
+                <div>
+                  <!-- 냉동 식품 관련 내용 -->
+                </div>
+              </details>
+            </li>
+            <li class="cart-category" aria-posinset="3" aria-setsize="3">
+              <details>
+                <summary>
+                  <span class="cart-category__content">
+                    <img
+                      src="/src/assets/icons/product-cart/Temperature.svg"
+                      alt="상온 식품"
+                      class="cart-category__icon"
+                    />
+                    <span class="cart-category__name">상온 식품</span>
+                  </span>
+                  <span class="cart-category__arrow-icon" aria-hidden="true"></span>
+                </summary>
+                <div>
+                  <!-- 상온 식품 관련 내용 -->
+                </div>
+              </details>
+            </li>
+          </ul>
+          <div class="cart-selection" role="group" aria-label="장바구니 상품 선택">
+            <input
+              type="checkbox"
+              name="cart-selection"
+              id="cart-select-bottom"
+              class="cart-select-all"
+            />
+            <label for="cart-select-bottom" class="cart-select-label">
+              전체선택
+              <span role="status" aria-live="polite" aria-label="선택된 항목 수">(3/3)</span>
+            </label>
+            <div class="cart-divider" aria-hidden="true"></div>
+            <button type="button" class="cart-delete-selected">선택삭제</button>
+          </div>
+        </section>
+        <section class="cart-edit" aria-label="장바구니 수정 및 주문하기">
+          <h3 class="sr-only">장바구니 수정 및 주문하기</h3>
+          <div class="cart-edit__location">
+            <div class="cart-edit__location-area">
+              <div class="cart-edit__location-icon">
+                <img src="/src/assets/icons/product-cart/Location.svg" alt="" aria-hidden="true" />
+                <span class="cart-edit__location-text">배송지</span>
+              </div>
+              <p class="cart-edit__location-address">서울 중랑구 면목로 42길 11 (행운빌딩) 603호</p>
+              <span class="cart-edit__location-method">샛별배송</span>
+              <button class="cart-edit__location-change" type="button">배송지 변경</button>
+            </div>
+            <div class="cart-edit__price">
+              <dl class="cart-edit__price-detail">
+                <div class="cart-edit__price-item">
+                  <dt class="cart-edit__price-label">상품금액</dt>
+                  <dd class="cart-edit__price-value">
+                    40,680<span class="cart-edit__price-currency">원</span>
+                  </dd>
+                </div>
+                <div class="cart-edit__price-item">
+                  <dt class="cart-edit__price-label">상품할인금액</dt>
+                  <dd class="cart-edit__price-discount">
+                    -4,651<span class="cart-edit__price-currency">원</span>
+                  </dd>
+                </div>
+                <div class="cart-edit__price-item">
+                  <dt class="cart-edit__price-label">배송비</dt>
+                  <dd class="cart-edit__price-shipping">
+                    +3,000<span class="cart-edit__price-currency">원</span>
+                  </dd>
+                </div>
+              </dl>
+              <div class="cart-edit__price-total">
+                <dl class="cart-edit__total">
+                  <dt class="cart-edit__total-label">결제예정금액</dt>
+                  <dd class="cart-edit__total-value">
+                    40,680<span class="cart-edit__price-currency">원</span>
+                  </dd>
+                </dl>
+                <div class="cart-edit__earn">
+                  <span class="cart-edit__earn-reward">적립</span>
+                  <span class="cart-edit__earn-points">최대 36원 적립 일반 0.1%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button class="cart-edit__order" type="button">주문하기</button>
+          <ul class="cart-edit__notice">
+            <li class="cart-edit__notice-item">쿠폰/적립금은 주문서에서 사용 가능합니다</li>
+            <li class="cart-edit__notice-item">[주문완료] 상태일 경우에만 주문 취소 가능합니다.</li>
+            <li class="cart-edit__notice-item">
+              [마이컬리 > 주문내역 상세페이지] 에서 직접 취소하실 수 있습니다.
+            </li>
+            <li class="cart-edit__notice-item">
+              쿠폰, 적립금 사용 금액을 제외한 실 결제 금액 기준으로 최종 산정됩니다.
+            </li>
+            <li class="cart-edit__notice-item">
+              상품별로 적립금 지급 기준이 다를 수 있습니다. (상품 상세 페이지에서 확인 가능합니다)
+            </li>
+          </ul>
+        </section>
+      </section>
+    </main>
+    <c-footer></c-footer>
+  </body>
+</html>

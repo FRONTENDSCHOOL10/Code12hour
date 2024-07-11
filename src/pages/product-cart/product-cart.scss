@@ -1,0 +1,264 @@
+.main {
+  @include flex(column, _, center);
+  width: 100%;
+  gap: 2.75rem;
+  padding: 5rem 0rem;
+
+  &__title {
+    font-size: $label-large;
+    font-weight: 600;
+    line-height: 150%;
+  }
+}
+
+.cart {
+  @include flex(row, space-between, flex-start);
+  width: 65.625rem;
+
+  &-list {
+    @include flex(column, _, flex-start);
+  }
+
+  &-selection {
+    @include flex(row, _, center);
+    gap: 0.5rem;
+    width: 46.375rem;
+    padding: 1rem 0rem;
+
+    &:nth-child(1) {
+      border-bottom: 1px solid $content-color;
+    }
+  }
+
+  &-select-all {
+    display: none;
+  }
+
+  &-select-label {
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding-left: 2rem;
+    font-size: $label-medium;
+    font-weight: 500;
+    line-height: 150%;
+    cursor: pointer;
+
+    &::before {
+      content: '';
+      display: inline-block;
+      width: 1.5rem;
+      height: 1.5rem;
+      position: absolute;
+      left: 0rem;
+      background-image: url('/src/assets/icons/input/isChecked=false.svg');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+  }
+
+  &-select-all:checked + &-select-label::before {
+    background-image: url('/src/assets/icons/input/isChecked=true.svg');
+  }
+
+  &-divider {
+    width: 0.0625rem;
+    height: 1rem;
+    background-color: #ccc;
+  }
+
+  &-delete-selected {
+    font-size: $label-medium;
+    font-weight: 500;
+    line-height: 150%;
+  }
+
+  &-categories {
+    @include flex(column, _, flex-start);
+  }
+
+  &-category {
+    width: 46.735rem;
+    padding: 1rem 0rem;
+    border-bottom: 1px solid $content-color;
+
+    &__content {
+      @include flex(row, _, center);
+      gap: 0.75rem;
+    }
+
+    &__name {
+      font-size: $label-medium;
+      font-weight: 500;
+      line-height: 150%;
+    }
+
+    &__arrow-icon {
+      @include size(1.875rem, 1.875rem);
+      padding: 0.25rem;
+      background-image: url('/src/assets/icons/product-cart/Arrow.svg');
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+
+    details[open] &__arrow-icon {
+      transform: rotate(180deg);
+    }
+
+    summary {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      list-style: none;
+
+      &::-webkit-details-marker {
+        display: none;
+      }
+    }
+  }
+
+  &-edit {
+    @include flex(column, _, flex-start);
+    gap: 1rem;
+    width: 18rem;
+
+    &__location {
+      @include flex(column, _, flex-start);
+      align-self: stretch;
+      border: 1px solid $gray-100-color;
+
+      &-area {
+        @include flex(column, _, flex-start);
+        align-self: stretch;
+        gap: 0.75rem;
+        padding: 1.25rem;
+        border-bottom: 1px solid $gray-100-color;
+      }
+
+      &-icon {
+        @include flex(row, _, center);
+      }
+
+      &-text {
+        font-size: $label-medium;
+        font-weight: 500;
+        line-height: 150%;
+      }
+
+      &-address {
+        font-size: $label-medium;
+        font-weight: 500;
+        line-height: 150%;
+      }
+
+      &-method {
+        font-size: $label-small;
+        font-weight: 500;
+        line-height: 150%;
+        color: $primary-color;
+      }
+
+      &-change {
+        width: 100%;
+        height: 2.75rem;
+        border-radius: 0.25rem;
+        border: 1px solid $primary-color;
+        color: $primary-color;
+      }
+    }
+
+    &__price {
+      @include flex(column, _, flex-start);
+      align-self: stretch;
+      padding: 1.25rem;
+      background-color: $gray-50-color;
+
+      &-detail {
+        @include flex(column, _, flex-start);
+        gap: 1rem;
+        width: 15.25rem;
+        padding-bottom: 1.5rem;
+        border-bottom: 1px dashed $gray-100-color;
+      }
+
+      &-item {
+        @include flex(row, space-between, center);
+        align-self: stretch;
+        font-size: $paragraph-medium;
+        line-height: 160%;
+      }
+
+      &-currency {
+        font-size: $label-medium;
+        font-weight: 600;
+        line-height: 150%;
+        margin-left: 0.125em;
+      }
+
+      &-total {
+        @include flex(column, _, flex-end);
+        gap: 0.6875rem;
+        width: 15.25rem;
+        padding-top: 1.5rem;
+      }
+    }
+
+    &__total {
+      @include flex(row, space-between, center);
+      align-self: stretch;
+
+      &-label {
+        font-size: $paragraph-medium;
+        line-height: 160%;
+      }
+
+      &-value {
+        font-size: $heading-xl;
+        font-weight: 600;
+        line-height: 140%;
+      }
+    }
+
+    &__earn {
+      @include flex(row, _, flex-end);
+      gap: 0.5rem;
+
+      &-reward {
+        padding: 0rem 0.5rem;
+        border-radius: 0.0625rem;
+        background-color: $accent-yellow-color;
+        font-size: $label-small;
+        font-weight: 500;
+        line-height: 150%;
+        color: $white-color;
+      }
+
+      &-points {
+        font-size: $label-small;
+        font-weight: 500;
+        line-height: 150%;
+      }
+    }
+
+    &__order {
+      width: 100%;
+      height: 2.75rem;
+      border-radius: 0.25rem;
+      background-color: $primary-color;
+      color: $white-color;
+    }
+
+    &__notice {
+      @include flex(column, _, flex-start);
+
+      &-item {
+        font-size: $label-small;
+        font-weight: 500;
+        line-height: 150%;
+        color: $gray-400-color;
+      }
+    }
+  }
+}

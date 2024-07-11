@@ -3,7 +3,7 @@ import './header.scss';
 const headerTemplate = document.createElement('template');
 headerTemplate.innerHTML = `
   <style>@import url('/src/components/header/header.scss');</style>
-        <header class="karly-header">
+    <header class="karly-header">
       <div class="top-banner" role="banner">
         <nav class="top-banner__nav" aria-label="프로모션 배너">
           <a href="/" class="top-banner__link">
