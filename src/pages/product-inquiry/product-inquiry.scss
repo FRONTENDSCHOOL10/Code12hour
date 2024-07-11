@@ -117,34 +117,6 @@ $spacing-lg: 1.25rem;
   }
 }
 
-.inquiry-board__list {
-  display: flex;
-  flex-flow: column;
-  align-items: flex-start;
-
-  &-btn {
-    display: flex;
-    flex-flow: column;
-    align-items: flex-start;
-
-    .inquiry-item__title {
-      display: flex;
-      height: 3.25rem;
-      padding: 0.25rem 1.25rem;
-      align-items: center;
-      gap: 0.25rem;
-    }
-
-    .inquiry-item__author,
-    .inquiry-item__date,
-    .inquiry-item__status {
-      display: flex;
-      width: 65.625rem;
-      align-items: flex-start;
-    }
-  }
-}
-
 // 페이지네이션 좌우 버튼
 .paging {
   @include flex(row, center, center);

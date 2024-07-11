@@ -40,14 +40,31 @@
         </div>
       </div>
 
+      <!-- 문의 관련 공지 사항 -->
+      <div class="inquiry-board inquiry-board__notice">
+        <div class="inquiry-board__header">
+          <span class="inquiry-board__header-item">
+            <span class="inquiry-board__notice-icon">공지아이콘</span>
+            공지
+          </span>
+          <span class="inquiry-board__header-item">작성자</span>
+          <span class="inquiry-board__header-item">작성일</span>
+          <span class="inquiry-board__header-item">-</span>
+        </div>
+      </div>
+
       <div class="inquiry-board__list">
-        <button id="accordion-button" class="inquiry-board__list-btn" aria-expanded="false">
-          <h3 class="inquiry-item__title">팩이 터져서 왔어요</h3>
-          <span class="inquiry-item__author">신난당</span>
-          <span class="inquiry-item__date">20240711</span>
-          <span class="inquiry-item__status">답변대기</span>
-        </button>
-        <div id="accordion-pannel" class="inquiry-boadrd__contents"></div>
+        <details id="accordion-button" class="inquiry-board__list-btn" aria-expanded="false">
+          <summary class="inquiry-item__title">
+            <h3>팩이 터져서 왔어요</h3>
+            <span class="inquiry-item__author">신난당</span>
+            <span class="inquiry-item__date">20240711</span>
+            <span class="inquiry-item__status">답변대기</span>
+          </summary>
+          <div id="accordion-pannel" class="inquiry-boadrd__contents">
+            <p>내용내용내용</p>
+          </div>
+        </details>
       </div>
       <!-- 페이지네이션 좌우 버튼 -->
       <nav class="paging" aria-label="리뷰 페이지 네비게이션">
