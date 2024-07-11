@@ -1,0 +1,32 @@
+.recent-products {
+  position: absolute;
+  top: 1rem; //TODO: 수정
+  right: 1rem; //TODO: 수정
+
+  @include flex(column nowrap, start, center);
+  @include size(3.63rem, 17.4375rem);
+  gap: 0.5rem;
+  border: 1px solid $gray-200-color;
+  padding: 0.5rem;
+
+  .swiper {
+    @include size(100%, 100%);
+    overflow: hidden;
+  }
+
+  &__title {
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+
+  &__img {
+    background: url(/src/assets/images/banner/1.jpg) no-repeat;
+    background-color: $gray-100-color;
+    background-size: cover;
+    @include size(100%, 5rem);
+  }
+
+  button {
+    @include size(100%);
+  }
+}
