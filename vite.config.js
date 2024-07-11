@@ -13,6 +13,11 @@ export default defineConfig({
       input: {
         // 기본 입력 파일을 설정 (index.html이 최상위 폴더 내에 위치한다고 가정)
         main: resolve(__dirname, 'index.html'),
+        login: resolve(__dirname, 'src/pages/login/index.html'),
+        register: resolve(__dirname, 'src/pages/register/index.html'),
+        product_list: resolve(__dirname, 'src/pages/product-list/index.html'),
+        product_detail: resolve(__dirname, 'src/pages/product-detail/index.html'),
+        product_cart: resolve(__dirname, 'src/pages/product-cart/index.html'),
       },
     },
   },

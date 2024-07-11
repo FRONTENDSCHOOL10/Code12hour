@@ -1,5 +1,19 @@
 import Swiper from 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.mjs';
 import './main.scss';
+import { defineCustomElements } from '@/utils/index';
+import { footer, header } from '@/components/index';
+
+// const app = document.getElementById('app');
+
+const init = () => {
+  defineCustomElements([
+    ['c-header', header],
+    ['c-footer', footer],
+  ]);
+
+  // appendCustomElement(app, 'c-header');
+  // appendCustomElement(app, 'c-footer');
+};
 
 const mainBannerSwiper = new Swiper('#main-banner-swiper', {
   autoplay: {
@@ -41,3 +55,4 @@ const productListSwiper = (node, next, prev) => {
 
 productListSwiper('#recommended-product-list-swiper', '#recommended-next', '#recommended-prev');
 productListSwiper('#discount-product-list-swiper', '#discount-next', '#discount-prev');
+init();

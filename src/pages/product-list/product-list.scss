@@ -1,0 +1,237 @@
+/* 변수 */
+
+$line-height: 150%;
+$banner-button-size: 3.125rem;
+$banner-button-margin: 21.88rem;
+$list-button-size: 3.75rem;
+
+$rem-0-25: 0.25rem;
+$rem-0-5: 0.5rem;
+$rem-2-5: 2.5rem;
+
+/* 공통 적용 */
+
+a {
+  display: inline-block;
+}
+
+img {
+  display: block;
+}
+
+/* 상품 리스트 & 추천 상품 리스트 */
+
+.product-list-page {
+  @include size(65.625rem);
+  line-height: $line-height;
+  // background-color: rgb(255, 72, 0); //TODO: 삭제
+  margin: 0 auto;
+}
+
+.product-header {
+  text-align: center;
+  line-height: $line-height;
+  font-size: $label-xl;
+  font-weight: 500;
+  padding: 3rem 0;
+}
+
+.product-list-group {
+  @include flex(row nowrap);
+}
+
+.product-contents-group {
+  @include size(48.9375rem);
+  @include flex(column nowrap);
+  margin: 0 auto;
+  // background-color: rgb(255, 255, 189); //TODO: 삭제
+}
+
+.product-filter {
+  @include flex(row nowrap, space-between);
+  padding-bottom: 1.25rem;
+
+  &__count {
+    font-weight: 500;
+  }
+
+  &__button {
+    color: #999999; //rgb 153, 153, 153
+
+    &--is-active {
+      color: $content-color;
+    }
+  }
+
+  &__tooltip {
+    visibility: hidden;
+  }
+
+  ul {
+    @include flex(row nowrap);
+  }
+
+  li {
+    &:nth-child(n + 2):nth-child(-n + 6)::before {
+      content: '';
+      @include size(0.0625rem, 0.625rem);
+      display: inline-block;
+      font-size: 0.625rem;
+      margin: 0 $rem-0-5;
+      background-color: $gray-100-color;
+    }
+
+    // 추천순 info 아이콘
+    &:nth-child(1)::after {
+      content: url('/assets/icons/product-list/info.svg');
+      vertical-align: middle;
+      margin-left: $rem-0-25;
+    }
+    &:nth-child(1)::after:hover {
+      visibility: visible;
+    }
+  }
+}
+
+.product-item-group {
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: repeat(3, 15.5625rem);
+  // grid-template-rows: repeat(5, 1fr); //TODO: 수정
+  justify-content: space-between;
+  row-gap: 1.5rem;
+}
+
+.product-item {
+  @include flex(column nowrap, space-between);
+  // background-color: rgb(244, 255, 228); //TODO: 삭제
+  @include size(15.5625rem, 36.5rem); //TODO: 세로크기 피그마 시안이랑 다르게 함
+
+  &__img {
+    @include size(100%, 20rem);
+    border-radius: $rem-0-25;
+    background-color: $gray-100-color;
+    background: url('/src/assets/images/banner/1.jpg') no-repeat center;
+    background-size: 100%;
+    transition: background-size 0.3s ease;
+  }
+
+  &__img:hover {
+    background-size: 110%;
+  }
+
+  &__delivery {
+    padding-top: $paragraph-medium;
+    font-size: 0.875rem;
+    color: #999999;
+  }
+
+  &__title {
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-clamp: 2;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+
+  &__price {
+    font-size: 0.875rem;
+    color: #b5b5b5; //rgb 181, 181, 181
+    text-decoration: line-through;
+  }
+
+  &__description {
+    font-size: $paragraph-small;
+    color: #999999;
+  }
+
+  &__discount-rate {
+    color: $accent-yellow-color;
+    font-weight: 700;
+    font-size: 1.1875rem;
+    margin-right: 0.4375rem;
+  }
+
+  &__real-price {
+    font-weight: 700;
+    font-size: 1.1875rem;
+  }
+
+  &__reviews {
+    font-size: 0.8125rem;
+    color: #999999; // rgb 153,153,153
+    padding-bottom: 5px;
+
+    &::before {
+      content: url('/assets/icons/product-list/reviews.svg');
+      width: 85px;
+      vertical-align: middle;
+      margin-right: 0.125rem;
+    }
+  }
+
+  &__kurly-only,
+  &__limited {
+    padding: $rem-0-25;
+    font-weight: 500;
+    font-size: $label-small;
+    background-color: #f4f4f4;
+    border-radius: $rem-0-25;
+  }
+
+  &__kurly-only {
+    color: $primary-color;
+  }
+
+  &__button {
+    @include size(100%, 2.25rem);
+    border: 1px solid #dddddd;
+    border-radius: $rem-0-25;
+
+    &::before {
+      content: url('/assets/icons/product-list/Cart.svg');
+      vertical-align: middle;
+      margin-right: $rem-0-25;
+    }
+  }
+}
+
+/* 페이지네이션 */
+
+.pagination {
+  @include flex(row nowrap, center);
+  margin-top: 3.75rem;
+  margin-bottom: 5rem;
+
+  .prev-button {
+    transform: rotate(180deg);
+  }
+
+  ol {
+    @include flex(row nowrap);
+  }
+
+  &__link--is-selected {
+    background-color: #f7f7f7;
+  }
+
+  &__button,
+  a {
+    @include flex(row nowrap, center, center);
+    box-sizing: border-box;
+    @include size(2.125rem, 2.125rem);
+    border: 1px solid $gray-100-color;
+    padding: $rem-0-25;
+    margin-right: -0.0625rem;
+  }
+
+  a {
+    font-size: 0.875rem;
+  }
+
+  &__button:hover,
+  a:hover {
+    background-color: #f7f7f7;
+  }
+}

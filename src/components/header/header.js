@@ -1,16 +1,17 @@
 import './header.scss';
+import css from './header.scss?inline';
 
 const headerTemplate = document.createElement('template');
 headerTemplate.innerHTML = `
-  <style>@import url('/src/components/header/header.scss');</style>
-        <header class="karly-header">
+  <style>${css}</style>
+    <header class="karly-header">
       <div class="top-banner" role="banner">
         <nav class="top-banner__nav" aria-label="프로모션 배너">
           <a href="/" class="top-banner__link">
             지금 가입하고 인기상품 <span>100원</span>에 받아가세요!
           </a>
           <button class="top-banner__close" aria-label="프로모션 배너 닫기">
-            <img src="/src/assets/icons/header/Close.png" alt="" />
+          <img src="/assets/icons/header/Close.png" alt="" />
           </button>
         </nav>
       </div>
@@ -27,7 +28,7 @@ headerTemplate.innerHTML = `
         <div class="search-area">
           <div class="logo-section">
             <a href="/" aria-label="마켓칼리 홈">
-              <img src="/src/assets/images/header/logo.svg" alt="마켓칼리 로고" />
+              <img src="/assets/images/header/logo.svg" alt="마켓칼리 로고" />
             </a>
             <button class="is-active" type="button" aria-pressed="true">마켓칼리</button>
             <div class="divider" aria-hidden="true"></div>
@@ -67,91 +68,91 @@ headerTemplate.innerHTML = `
             <div class="menu-box">
               <ul class="menu-list">
                 <li class="menu-list__item">
-                  <img src="/src/assets/icons/Menu/Gift.png" alt="선물하기" />
+                  <img src="/assets/icons/Menu/Gift.png" alt="선물하기" />
                   <span>선물하기</span>
                 </li>
                 <li class="menu-list__item">
-                  <img src="/src/assets/icons/Menu/Vegetable.png" alt="채소" />
+                  <img src="/assets/icons/Menu/Vegetable.png" alt="채소" />
                   <span>채소</span>
                 </li>
                 <li class="menu-list__item">
-                  <img src="/src/assets/icons/Menu/Fruit.png" alt="과일·견과·쌀" />
+                  <img src="/assets/icons/Menu/Fruit.png" alt="과일·견과·쌀" />
                   <span>과일·견과·쌀</span>
                 </li>
                 <li class="menu-list__item">
-                  <img src="/src/assets/icons/Menu/SeaFood.png" alt="수산·해산·건어물" />
+                  <img src="/assets/icons/Menu/SeaFood.png" alt="수산·해산·건어물" />
                   <span>수산·해산·건어물</span>
                 </li>
                 <li class="menu-list__item">
-                  <img src="/src/assets/icons/Menu/Meet.png" alt="정육·계란" />
+                  <img src="/assets/icons/Menu/Meet.png" alt="정육·계란" />
                   <span>정육·계란</span>
                 </li>
                 <li class="menu-list__item">
-                  <img src="/src/assets/icons/Menu/Cook.png" alt="국·반찬·메인요리" />
+                  <img src="/assets/icons/Menu/Cook.png" alt="국·반찬·메인요리" />
                   <span>국·반찬·메인요리</span>
                 </li>
                 <li class="menu-list__item">
-                  <img src="/src/assets/icons/Menu/Salad.png" alt="샐러드·간편식" />
+                  <img src="/assets/icons/Menu/Salad.png" alt="샐러드·간편식" />
                   <span>샐러드·간편식</span>
                 </li>
                 <li class="menu-list__item">
-                  <img src="/src/assets/icons/Menu/Oil.png" alt="면·양념·오일" />
+                  <img src="/assets/icons/Menu/Oil.png" alt="면·양념·오일" />
                   <span>면·양념·오일</span>
                 </li>
                 <li class="menu-list__item">
-                  <img src="/src/assets/icons/Menu/Coffee.png" alt="생수·음료·우유·커피" />
+                  <img src="/assets/icons/Menu/Coffee.png" alt="생수·음료·우유·커피" />
                   <span>생수·음료·우유·커피</span>
                 </li>
                 <li class="menu-list__item">
-                  <img src="/src/assets/icons/Menu/Snack.png" alt="간식·과자·떡" />
+                  <img src="/assets/icons/Menu/Snack.png" alt="간식·과자·떡" />
                   <span>간식·과자·떡</span>
                 </li>
                 <li class="menu-list__item">
-                  <img src="/src/assets/icons/Menu/Bread.png" alt="베이커리·치즈·델리" />
+                  <img src="/assets/icons/Menu/Bread.png" alt="베이커리·치즈·델리" />
                   <span>배이커리·치즈·델리</span>
                 </li>
                 <li class="menu-list__item">
-                  <img src="/src/assets/icons/Menu/Health.png" alt="건강식품" />
+                  <img src="/assets/icons/Menu/Health.png" alt="건강식품" />
                   <span>건강식품</span>
                 </li>
                 <li class="menu-list__item">
-                  <img src="/src/assets/icons/Menu/Wine.png" alt="와인" />
+                  <img src="/assets/icons/Menu/Wine.png" alt="와인" />
                   <span>와인</span>
                 </li>
                 <li class="menu-list__item">
-                  <img src="/src/assets/icons/Menu/Traditional-Liquor.png" alt="전통주" />
+                  <img src="/assets/icons/Menu/Traditional-Liquor.png" alt="전통주" />
                   <span>전통주</span>
                 </li>
                 <li class="menu-list__item">
-                  <img src="/src/assets/icons/Menu/Detergent.png" alt="생활용품·리빙·캠핑" />
+                  <img src="/assets/icons/Menu/Detergent.png" alt="생활용품·리빙·캠핑" />
                   <span>생활용품·리빙·캠핑</span>
                 </li>
                 <li class="menu-list__item">
-                  <img src="/src/assets/icons/Menu/Cosmetics.png" alt="스킨케어·메이크업" />
+                  <img src="/assets/icons/Menu/Cosmetics.png" alt="스킨케어·메이크업" />
                   <span>스킨케어·메이크업</span>
                 </li>
                 <li class="menu-list__item">
-                  <img src="/src/assets/icons/Menu/Shampoo.png" alt="헤어·바디·구강" />
+                  <img src="/assets/icons/Menu/Shampoo.png" alt="헤어·바디·구강" />
                   <span>헤어·바디·구강</span>
                 </li>
                 <li class="menu-list__item">
-                  <img src="/src/assets/icons/Menu/Food.png" alt="주방용품" />
+                  <img src="/assets/icons/Menu/Food.png" alt="주방용품" />
                   <span>주방용품</span>
                 </li>
                 <li class="menu-list__item">
-                  <img src="/src/assets/icons/Menu/HomeAppliances.png" alt="가전제품" />
+                  <img src="/assets/icons/Menu/HomeAppliances.png" alt="가전제품" />
                   <span>가전제품</span>
                 </li>
                 <li class="menu-list__item">
-                  <img src="/src/assets/icons/Menu/Dog.png" alt="반려동물" />
+                  <img src="/assets/icons/Menu/Dog.png" alt="반려동물" />
                   <span>반려동물</span>
                 </li>
                 <li class="menu-list__item">
-                  <img src="/src/assets/icons/Menu/Baby.png" alt="베이비·키즈·완구" />
+                  <img src="/assets/icons/Menu/Baby.png" alt="베이비·키즈·완구" />
                   <span>베이비·키즈·완구</span>
                 </li>
                 <li class="menu-list__item">
-                  <img src="/src/assets/icons/Menu/Travel.png" alt="여행·티켓" />
+                  <img src="/assets/icons/Menu/Travel.png" alt="여행·티켓" />
                   <span>여행·티켓</span>
                 </li>
               </ul>

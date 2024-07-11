@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Product Detail Inquiry</title>
+    <script type="module" src="./product-inquiry.js"></script>
+  </head>
+  <body>
+    <section class="product-inquiry">
+      <!-- 문의 작성 버튼 및 안내 사항 -->
+      <div class="product-inquiry__info" aria-labelledby="benefits-title">
+        <h2 id="product-inquiry__title" class="product-inquiry__title">상품문의</h2>
+        <!-- 모달창 연결? -->
+        <button type="button" class="product-inquiry__write-btn" aria-haspopup="dialog">
+          문의하기
+        </button>
+        <div class="product-inquiry__benefits">
+          <ul class="product-inquiry__benefit-list">
+            <li class="product-inquiry__benefit-item">
+              상품에 대한 문의를 남기는 공간입니다. 해당 게시판의 성격과 다른 글은 사전동의 없이
+              담당 게시판으로 이동될 수 있습니다.
+            </li>
+            <li class="product-inquiry__benefit-item">
+              배송관련, 주문(취소/교환/환불)관련 문의 및 요청사항은 마이컬리 내 1:1 문의에
+              남겨주세요.로부터 30일 이내 가능합니다.
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 문의 -->
+      <!-- 고정된 헤더 -->
+      <div class="inquiry-board">
+        <div class="inquiry-board__header">
+          <span class="inquiry-board__header-item">제목</span>
+          <span class="inquiry-board__header-item">작성자</span>
+          <span class="inquiry-board__header-item">작성일</span>
+          <span class="inquiry-board__header-item">답변상태</span>
+        </div>
+      </div>
+
+      <!-- 문의 관련 공지 사항 -->
+      <div class="inquiry-board inquiry-board__notice">
+        <div class="inquiry-board__header">
+          <span class="inquiry-board__header-item">
+            <span class="inquiry-board__notice-icon">공지아이콘</span>
+            공지
+          </span>
+          <span class="inquiry-board__header-item">작성자</span>
+          <span class="inquiry-board__header-item">작성일</span>
+          <span class="inquiry-board__header-item">-</span>
+        </div>
+      </div>
+
+      <div class="inquiry-board__list">
+        <details id="accordion-button" class="inquiry-board__list-btn" aria-expanded="false">
+          <summary class="inquiry-item__title">
+            <h3>팩이 터져서 왔어요</h3>
+            <span class="inquiry-item__author">신난당</span>
+            <span class="inquiry-item__date">20240711</span>
+            <span class="inquiry-item__status">답변대기</span>
+          </summary>
+          <div id="accordion-pannel" class="inquiry-boadrd__contents">
+            <p>내용내용내용</p>
+          </div>
+        </details>
+      </div>
+      <!-- 페이지네이션 좌우 버튼 -->
+      <nav class="paging" aria-label="리뷰 페이지 네비게이션">
+        <button
+          type="button"
+          class="paging__button paging__button--prev"
+          aria-label="이전 페이지"
+        ></button>
+        <button
+          type="button"
+          class="paging__button paging__button--next"
+          aria-label="다음 페이지"
+        ></button>
+      </nav>
+    </section>
+  </body>
+</html>

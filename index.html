@@ -3,13 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>멋사컬리 - Main</title>
+    <title>마켓칼리 - Main</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <script type="module" src="/src/main.js"></script>
   </head>
   <body>
+    <c-header></c-header>
     <main>
-      <h1 class="sr-only">멋사컬리</h1>
+      <h1 class="sr-only">마켓칼리</h1>
 
       <!-- 메인 배너 슬라이드 / TODO: alt 제어 -->
       <section class="main-banner">
@@ -19,27 +20,22 @@
             <div class="swiper-slide">
               <a href="/">
                 <img
-                  src="/src/assets/images/banner/banner01.png"
+                  src="/assets/images/banner/banner01.png"
                   alt="부드러운 달콤함, 컬리 과일 가게"
                 />
               </a>
             </div>
             <div class="swiper-slide">
               <a href="/"
-                ><img
-                  src="/src/assets/images/banner/banner02.png"
-                  alt="한눈에 보는 이달의 카드 혜택"
-                />
+                ><img src="/assets/images/banner/banner02.png" alt="한눈에 보는 이달의 카드 혜택" />
               </a>
             </div>
             <div class="swiper-slide">
-              <a href="/"
-                ><img src="/src/assets/images/banner/banner03.png" alt="컬리 퍼플 위크" />
-              </a>
+              <a href="/"><img src="/assets/images/banner/banner03.png" alt="컬리 퍼플 위크" /> </a>
             </div>
             <div class="swiper-slide">
               <a href="/"
-                ><img src="/src/assets/images/banner/banner04.png" alt="이 주의 특가 한눈에 보기" />
+                ><img src="/assets/images/banner/banner04.png" alt="이 주의 특가 한눈에 보기" />
               </a>
             </div>
           </div>
@@ -50,10 +46,10 @@
 
       <!-- 추천 상품 리스트 / TODO: 추후 aria-label 수정 -->
       <section class="product-list">
-        <h3 class="sr-only">추천 상품 목록</h3>
+        <h2 class="sr-only">추천 상품 목록</h2>
         <div class="product-header">
           <a class="product-header__link" href="/" aria-label="추천 상품 목록 페이지로 이동">
-            <h2 class="product-header__title">🛒이 상품 어때요?</h2>
+            <h3 class="product-header__title">🛒이 상품 어때요?</h3>
           </a>
           <p class="product-header__sub-title">멋사 Pick 상품 총집합💜</p>
         </div>
@@ -65,7 +61,7 @@
                 <div class="product-item">
                   <a
                     class="product-item__link"
-                    href="/"
+                    href="/src/pages/product-detail/"
                     tabindex="0"
                     aria-label="상품 페이지로 이동"
                   >
@@ -90,7 +86,7 @@
                 <div class="product-item">
                   <a
                     class="product-item__link"
-                    href="/"
+                    href="/src/pages/product-detail/"
                     tabindex="0"
                     aria-label="상품 페이지로 이동"
                   >
@@ -112,7 +108,7 @@
                 <div class="product-item">
                   <a
                     class="product-item__link"
-                    href="/"
+                    href="/src/pages/product-detail/"
                     tabindex="0"
                     aria-label="상품 페이지로 이동"
                   >
@@ -135,7 +131,7 @@
                   <div>
                     <a
                       class="product-item__link"
-                      href="/"
+                      href="/src/pages/product-detail/"
                       tabindex="0"
                       aria-label="상품 페이지로 이동"
                     >
@@ -158,7 +154,7 @@
                 <div class="product-item">
                   <a
                     class="product-item__link"
-                    href="/"
+                    href="/src/pages/product-detail/"
                     tabindex="0"
                     aria-label="상품 페이지로 이동"
                   >
@@ -180,7 +176,7 @@
                 <div class="product-item">
                   <a
                     class="product-item__link"
-                    href="/"
+                    href="/src/pages/product-detail/"
                     tabindex="0"
                     aria-label="상품 페이지로 이동"
                   >
@@ -201,7 +197,7 @@
                 <div class="product-item">
                   <a
                     class="product-item__link"
-                    href="/"
+                    href="/src/pages/product-detail/"
                     tabindex="0"
                     aria-label="상품 페이지로 이동"
                   >
@@ -222,7 +218,7 @@
                 <div class="product-item">
                   <a
                     class="product-item__link"
-                    href="/"
+                    href="/src/pages/product-detail/"
                     tabindex="0"
                     aria-label="상품 페이지로 이동"
                   >
@@ -244,12 +240,12 @@
                 <div class="product-item__view-all">
                   <a
                     class="product-item__link"
-                    href="/"
+                    href="/src/pages/product-detail/"
                     tabindex="0"
                     aria-label="상품 페이지로 이동"
                   >
-                    <img src="/src/assets/icons/arrow/view-all.svg" alt="전체보기" />
-                    <p class="">전체보기</p>
+                    <img src="/assets/icons/arrow/view-all.svg" alt="전체보기" />
+                    <p>전체보기</p>
                   </a>
                 </div>
               </div>
@@ -274,10 +270,10 @@
 
       <!-- 할인 상품 리스트 -->
       <section class="product-list">
-        <h3 class="sr-only">할인 상품 목록</h3>
+        <h2 class="sr-only">할인 상품 목록</h2>
         <div class="product-header">
           <a class="product-header__link" href="/" aria-label="추천 상품 목록 페이지로 이동">
-            <h2 class="product-header__title">💸놓치면 후회할 가격</h2>
+            <h3 class="product-header__title">💸놓치면 후회할 가격</h3>
           </a>
           <p class="product-header__sub-title">지금 득템하세요💜</p>
         </div>
@@ -289,7 +285,7 @@
                 <div class="product-item">
                   <a
                     class="product-item__link"
-                    href="/"
+                    href="/src/pages/product-detail/"
                     tabindex="0"
                     aria-label="상품 페이지로 이동"
                   >
@@ -311,7 +307,7 @@
                 <div class="product-item">
                   <a
                     class="product-item__link"
-                    href="/"
+                    href="/src/pages/product-detail/"
                     tabindex="0"
                     aria-label="상품 페이지로 이동"
                   >
@@ -333,7 +329,7 @@
                 <div class="product-item">
                   <a
                     class="product-item__link"
-                    href="/"
+                    href="/src/pages/product-detail/"
                     tabindex="0"
                     aria-label="상품 페이지로 이동"
                   >
@@ -355,7 +351,7 @@
                 <div class="product-item">
                   <a
                     class="product-item__link"
-                    href="/"
+                    href="/src/pages/product-detail/"
                     tabindex="0"
                     aria-label="상품 페이지로 이동"
                   >
@@ -377,7 +373,7 @@
                 <div class="product-item">
                   <a
                     class="product-item__link"
-                    href="/"
+                    href="/src/pages/product-detail/"
                     tabindex="0"
                     aria-label="상품 페이지로 이동"
                   >
@@ -399,7 +395,7 @@
                 <div class="product-item">
                   <a
                     class="product-item__link"
-                    href="/"
+                    href="/src/pages/product-detail/"
                     tabindex="0"
                     aria-label="상품 페이지로 이동"
                   >
@@ -420,7 +416,7 @@
                 <div class="product-item">
                   <a
                     class="product-item__link"
-                    href="/"
+                    href="/src/pages/product-detail/"
                     tabindex="0"
                     aria-label="상품 페이지로 이동"
                   >
@@ -441,7 +437,7 @@
                 <div class="product-item">
                   <a
                     class="product-item__link"
-                    href="/"
+                    href="/src/pages/product-detail/"
                     tabindex="0"
                     aria-label="상품 페이지로 이동"
                   >
@@ -463,12 +459,12 @@
                 <div class="product-item__view-all">
                   <a
                     class="product-item__link"
-                    href="/"
+                    href="/src/pages/product-detail/"
                     tabindex="0"
                     aria-label="상품 페이지로 이동"
                   >
-                    <img src="/src/assets/icons/arrow/view-all.svg" alt="전체보기" />
-                    <p class="">전체보기</p>
+                    <img src="/assets/icons/arrow/view-all.svg" alt="전체보기" />
+                    <p>전체보기</p>
                   </a>
                 </div>
               </div>
@@ -479,5 +475,6 @@
         </div>
       </section>
     </main>
+    <c-footer></c-footer>
   </body>
 </html>
