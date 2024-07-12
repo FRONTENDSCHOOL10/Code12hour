@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>광고 팝업창</title>
+    <script type="module" src="./ad-popup.js"></script>
+  </head>
+  <body>
+    <div class="ad-popup" role="dialog" aria-modal="true" aria-labelledby="ad-popup__title">
+      <a href="#" tabindex="0">
+        <img
+          class="ad-popup__img"
+          src="/src/assets/images/ad-popup/ad-popup.webp"
+          alt="처음 만나는 뷰티 플랫폼, 뷰티컬리"
+        />
+      </a>
+      <h1 class="sr-only" id="ad-popup__title">처음 만나는 뷰티 플랫폼, 뷰티컬리</h1>
+
+      <div class="ad-popup-button-group">
+        <button class="ad-popup__today-close" type="button">오늘 하루 안 보기</button>
+        <button class="ad-popup__close" type="button">닫기</button>
+      </div>
+    </div>
+  </body>
+</html>

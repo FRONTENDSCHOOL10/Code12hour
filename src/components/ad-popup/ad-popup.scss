@@ -1,0 +1,29 @@
+.ad-popup {
+  overflow: hidden;
+  position: absolute;
+  top: 10rem;
+  left: 10rem;
+  z-index: 2;
+  @include size(27.5rem, 42rem);
+  border-radius: 1rem;
+  background-color: white;
+  box-shadow: $below-medium;
+
+  &__img {
+    display: block;
+    @include size(100%, 36.625rem);
+  }
+}
+
+.ad-popup-button-group {
+  @include flex(row nowrap, center, center);
+
+  button {
+    @include size(13.8rem, 5.38rem);
+    font-weight: 500; // 400 → 500으로 변경
+  }
+
+  button:nth-child(1) {
+    border-right: 1px solid $gray-100-color;
+  }
+}
