@@ -23,21 +23,33 @@ document.addEventListener('DOMContentLoaded', function () {
       updateCount(parentDetails);
     });
   });
-});
+  // 라디오 버튼 카운트
+  document.querySelectorAll('.filter-panel__category-list').forEach(function (categoryList) {
+    const inputs = categoryList.querySelectorAll(
+      '.filter-panel__category-input, .filter-panel__category-radio'
+    );
+    const headerCountSpan = categoryList.querySelector('.header-count');
 
-// 라디오 버튼 카운트
-document.querySelectorAll('.filter-panel__category-list').forEach(function (categoryList) {
-  const inputs = categoryList.querySelectorAll(
-    '.filter-panel__category-input, .filter-panel__category-radio'
-  );
-  const headerCountSpan = categoryList.querySelector('.header-count');
+    inputs.forEach(function (input) {
+      input.addEventListener('change', function () {
+        const checkedCount = categoryList.querySelectorAll(
+          '.filter-panel__category-input:checked, .filter-panel__category-radio:checked'
+        ).length;
+        headerCountSpan.textContent = checkedCount;
+      });
+    });
+  });
+  // 초기화 버튼 기능
+  document.querySelector('.filter-panel__reset').addEventListener('click', function () {
+    document
+      .querySelectorAll('.filter-panel__category-input, .filter-panel__category-radio')
+      .forEach((input) => {
+        input.checked = false;
+      });
 
-  inputs.forEach(function (input) {
-    input.addEventListener('change', function () {
-      const checkedCount = categoryList.querySelectorAll(
-        '.filter-panel__category-input:checked, .filter-panel__category-radio:checked'
-      ).length;
-      headerCountSpan.textContent = checkedCount;
+    document.querySelectorAll('.filter-panel__category-list').forEach((details) => {
+      const countSpan = details.querySelector('.header-count');
+      countSpan.textContent = '0';
     });
   });
 });

@@ -2,7 +2,7 @@
   @include size(16.6875rem, 100%);
 
   &__header {
-    @include flex(flow, space-between, center);
+    @include flex(row, space-between, center);
     @include size(13.75rem, 3.25rem);
     border-bottom: 1px solid $gray-100-color;
     @include font($label-medium, 600, 150%);
@@ -30,16 +30,16 @@
       }
     }
     &-input {
-      background: url('/public/assets/icons/input/isChecked=false.svg') no-repeat;
+      background: url('/assets/icons/input/isChecked=false.svg') no-repeat;
       &:checked {
-        background: url('/public/assets/icons/input/isChecked=true.svg') no-repeat;
+        background: url('/assets/icons/input/isChecked=true.svg') no-repeat;
       }
     }
 
     &-radio {
-      background: url('/public/assets/icons/input/isSelected=false.svg') no-repeat;
+      background: url('/assets/icons/input/isSelected=false.svg') no-repeat;
       &:checked {
-        background: url('/public/assets/icons/input/isSelected=true.svg') no-repeat;
+        background: url('/assets/icons/input/isSelected=true.svg') no-repeat;
       }
     }
 
