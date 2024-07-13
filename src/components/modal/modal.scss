@@ -57,6 +57,7 @@ $textarea-height: 12.375rem;
 
     &-image {
       @include size(4.5rem, 4.5rem);
+      border-radius: 0.1875rem; // 추가
     }
 
     &-name {
@@ -217,7 +218,7 @@ $textarea-height: 12.375rem;
 
   &__input {
     &:checked + .checkbox__icon {
-      background: url('/public/assets/icons/input/isChecked=true.svg') no-repeat center / contain;
+      background: url('/assets/icons/input/isChecked=true.svg') no-repeat center / contain;
     }
   }
 
@@ -231,7 +232,7 @@ $textarea-height: 12.375rem;
   &__icon {
     @include size(1.5rem, 1.5rem);
     display: inline-block;
-    background: url('/public/assets/icons/input/isChecked=false.svg') no-repeat center / contain;
+    background: url('/assets/icons/input/isChecked=false.svg') no-repeat center / contain;
   }
 
   &__text {
@@ -243,6 +244,7 @@ $textarea-height: 12.375rem;
 %button-element {
   @include size(11.625rem, 3.375rem);
   @include flex(row, center, center);
+  @include font-style($label-medium, 500, 150%); // 600 -> 500
   border-radius: 0.25rem;
 }
 
@@ -265,7 +267,7 @@ $textarea-height: 12.375rem;
 
 .modal__button--submit {
   background: $gray-100-color;
-  color: $white-color;
+  @include font-style($label-medium, 500, 150%, $white-color); // 600 -> 500
 
   &:active {
     background: $primary-color;

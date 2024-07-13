@@ -9,9 +9,14 @@
   <body>
     <div id="modal-template">
       <!-- modal__overlay  -->
-      <div class="modal__overlay" aria-hidden="ture">
+      <div class="modal__overlay">
         <!-- modal__wrapper -->
-        <section class="modal__content" id="modal__content">
+        <section
+          id="modal-content"
+          class="modal__content"
+          role="dialog"
+          aria-labelledby="modal-title"
+        >
           <div class="modal__header">
             <h2 class="modal__title">후기 작성</h2>
             <button class="modal__close-btn" type="button" aria-label="후기 작성창 닫기"></button>
@@ -24,7 +29,7 @@
               alt="탱탱쫄면 상품 이미지"
               loading="lazy"
             />
-            <h3 class="modal__product-name">[풀무원] 탱탱쫄면 (4개입)</h3>
+            <span class="modal__product-name">[풀무원] 탱탱쫄면 (4개입)</span>
           </div>
 
           <!-- 제목 입력 -->
@@ -32,24 +37,25 @@
             <fieldset>
               <legend class="visually-hidden">후기작성</legend>
               <div class="modal__form-group">
-                <label for="review-title" class="modal__form-label">제목</label>
+                <label for="modalTitle" class="modal__form-label">제목</label>
                 <div class="modal__input-wrapper">
                   <input
                     class="modal__input"
                     type="text"
-                    name="reviewTitle"
+                    name="modal-title"
                     maxlength="30"
-                    id="review-title"
+                    id="modalTitle"
                     placeholder="제목을 입력해 주세요."
+                    aria-required="ture"
                     required
                   />
                 </div>
               </div>
               <!-- 내용 입력 -->
               <div class="modal__form-group">
-                <label for="review-content" class="modal__form-label">내용</label>
+                <label for="modalContent" class="modal__form-label">내용</label>
                 <!-- <div class="modal__textarea-count"> -->
-                <span class="modal__form-char-count">
+                <span class="modal__form-char-count" aria-live="polite">
                   <span>0&nbsp;</span>
                   <span>/ 5000</span>
                 </span>
@@ -58,8 +64,9 @@
                     class="modal__textarea"
                     name="reviewContent"
                     maxlength="5000"
-                    id="review-content"
+                    id="modalContent"
                     placeholder=""
+                    aria-required="ture"
                     required
                   ></textarea>
                   <!-- textarea-placeholder -->
@@ -138,6 +145,7 @@
               form="review-form"
               class="modal__button--submit modal__button--disabled"
               aria-label="리뷰 등록"
+              aria-disabled="ture"
               disabled
             >
               등록
