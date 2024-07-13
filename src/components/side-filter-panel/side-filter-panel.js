@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     });
   });
-  // 초기화 버튼 기능
+  // 초기화 버튼
   document.querySelector('.filter-panel__reset').addEventListener('click', function () {
     document
       .querySelectorAll('.filter-panel__category-input, .filter-panel__category-radio')
