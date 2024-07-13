@@ -15,21 +15,56 @@ $textarea-height: 12.375rem;
   color: $color;
 }
 
+// 폼 엘리먼트
+%form-element-wrapper {
+  @include flex(column, _, _);
+  @include size(100%);
+  flex-grow: 1;
+}
+
+// 플레이스홀더 선택자
+%form-element {
+  @include font-style(($paragraph-small), 400, 160%);
+  @include size(100%);
+  border: 1px solid $gray-300-color;
+  border-radius: 0.25rem;
+  box-sizing: border-box;
+
+  &::placeholder {
+    @include font-style($paragraph-medium, 400, 160%, $gray-400-color);
+  }
+
+  &:focus {
+    outline: 2px solid currentColor;
+  }
+}
+
+// 버튼 엘리먼트
+%button-element {
+  @include size(11.625rem, 3.375rem);
+  @include flex(row, center, center);
+  @include font-style($label-medium, 500, 150%); // 600 -> 500
+  border-radius: 0.25rem;
+}
+
 .modal {
   &__overlay {
     @include size(100%, 100%);
     @include flex(row, center, center);
     position: fixed;
-    left: 0;
     top: 0;
+    left: 0;
     background-color: rgba(0, 0, 0, 0.5);
+    transition:
+      opacity 0.3s ease,
+      visibility 0.3s ease;
   }
 
   &__content {
     @include size($modal-width, $modal-height);
     padding: $modal-padding;
-    background-color: $white-color;
     border-radius: $modal-border-radius;
+    background-color: $white-color;
   }
 
   &__header {
@@ -44,15 +79,15 @@ $textarea-height: 12.375rem;
 
   &__close-btn {
     @include size(1.875rem, 1.875rem);
-    background-color: $gray-100-color;
     -webkit-mask: url('/assets/icons/modal/close-btn.svg') no-repeat center / contain;
     mask: url('/assets/icons/modal/close-btn.svg') no-repeat center / contain;
+    background-color: $gray-100-color;
   }
 
   &__product {
     @include flex(row, flex-start, center);
-    gap: 1.5rem;
     padding: 1rem 0;
+    gap: 1.5rem;
     border-bottom: 1px solid $gray-100-color;
 
     &-image {
@@ -67,147 +102,112 @@ $textarea-height: 12.375rem;
 
   &__form {
     padding: 1rem 0;
-    // border-bottom: 1px solid $gray-100-color;
 
     fieldset,
     legend {
       @include flex(column, flex-start, flex-start);
-      width: 100%;
+      @include size(100%);
       gap: 0.75rem;
     }
 
     &-group {
       @include flex(row, flex-start, flex-start);
-      width: 100%;
+      @include size(100%);
       position: relative;
     }
 
     &-label {
+      @include size($label-width);
       @include font-style($label-medium, 600, 150%);
-      width: $label-width;
-      padding-top: 0.5rem;
       flex-shrink: 0;
+      padding-top: 0.5rem;
     }
 
     &-char-count {
-      position: absolute;
       display: flex;
-      box-sizing: border-box;
-      padding: 0 1rem 1rem;
+      position: absolute;
       right: 0;
       bottom: 0;
+      padding: 0 1rem 1rem;
       z-index: 1;
+      box-sizing: border-box;
 
       span {
         @include font-style($paragraph-small, 400, 160%, $gray-300-color);
       }
     }
-
-    .visually-hidden {
-      @include size(0.0625rem, 0.0625rem); // 각 1px
-      position: absolute;
-      padding: 0;
-      margin: -0.0625rem;
-      overflow: hidden;
-      border: 0;
-      clip: rect(0, 0, 0, 0);
-      white-space: nowrap;
-    }
-  }
-}
-
-// 폼 엘리먼트
-%form-element-wrapper {
-  @include flex(column, _, _);
-  width: 100%;
-  flex-grow: 1;
-}
-
-%form-element {
-  @include font-style(($paragraph-small), 400, 160%);
-  width: 100%;
-  border: 1px solid $gray-300-color;
-  border-radius: 0.25rem;
-  box-sizing: border-box;
-
-  &::placeholder {
-    @include font-style($paragraph-medium, 400, 160%, $gray-400-color);
   }
 
-  &:focus {
-    outline: 1px solid currentColor;
+  &__input-wrapper,
+  &__textarea-count,
+  &__textarea-wrapper {
+    @extend %form-element-wrapper;
   }
-}
 
-.modal__input-wrapper,
-.modal__textarea-count,
-.modal__textarea-wrapper {
-  @extend %form-element-wrapper;
-}
-
-.modal__input,
-.modal__textarea {
-  @extend %form-element;
-}
-
-.modal__input {
-  height: $input-height;
-  padding: 0 1.25rem;
-}
-
-.modal__textarea-wrapper {
-  position: relative;
-
-  &:focus-within .modal__textarea-placeholder {
-    display: none;
+  &__input,
+  &__textarea {
+    @extend %form-element;
   }
-}
 
-.modal__textarea {
-  height: $textarea-height;
-  padding: 1rem;
-  resize: none;
-  overflow: auto;
-}
+  &__input {
+    height: $input-height;
+    padding: 0 1.25rem;
+  }
 
-.modal__textarea-placeholder {
-  top: 0;
-  left: 0;
-  padding: 1rem;
-  position: absolute;
-  width: 100%;
-  overflow-y: scroll;
-  height: $textarea-height;
-  box-sizing: border-box;
-  z-index: 1;
+  &__textarea-wrapper {
+    position: relative;
 
-  .placeholder__text {
-    p {
-      @include font-style($paragraph-small, 400, 160%, $gray-400-color);
-      padding-top: 0.25rem;
+    &:focus-within .modal__textarea-placeholder {
+      display: none;
     }
+  }
 
-    strong {
-      @include font-style($paragraph-medium, 600, 150%, $gray-400-color);
-      display: block;
-      padding-top: 0.75rem;
-      padding-bottom: 0.25rem;
-    }
-    ul {
-      list-style: disc;
-      padding-left: 1.25rem; // 추가
-    }
+  &__textarea {
+    overflow: auto;
+    height: $textarea-height;
+    padding: 1rem;
+    resize: none;
+  }
 
-    li {
-      @include font-style($paragraph-small, 400, 160%, $gray-400-color);
-      padding-top: 0.25rem;
+  &__textarea-placeholder {
+    overflow-y: scroll;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    padding: 1rem;
+    width: 100%;
+    height: $textarea-height;
+    box-sizing: border-box;
 
-      &:nth-child(1) {
-        padding-top: 0;
+    .placeholder__text {
+      p {
+        @include font-style($paragraph-small, 400, 160%, $gray-400-color);
+        padding-top: 0.25rem;
       }
-    }
-    .caution__text {
-      @include font-style($paragraph-small, 400, 160%, $info--error-color);
+
+      strong {
+        @include font-style($paragraph-medium, 600, 150%, $gray-400-color);
+        display: block;
+        padding-top: 0.75rem;
+        padding-bottom: 0.25rem;
+      }
+      ul {
+        list-style: disc;
+        padding-left: 1.25rem; // 추가
+      }
+
+      li {
+        @include font-style($paragraph-small, 400, 160%, $gray-400-color);
+        padding-top: 0.25rem;
+
+        &:first-child {
+          padding-top: 0;
+        }
+      }
+      .caution__text {
+        @include font-style($paragraph-small, 400, 160%, $info--error-color);
+      }
     }
   }
 }
@@ -223,9 +223,7 @@ $textarea-height: 12.375rem;
   }
 
   &__label {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
+    @include flex(row, flex-start, center);
     gap: 0.5rem;
   }
 
@@ -238,14 +236,6 @@ $textarea-height: 12.375rem;
   &__text {
     @include font-style($paragraph-small, 400, 160%, currentColor); // black -> currentColor
   }
-}
-
-// 버튼 엘리먼트
-%button-element {
-  @include size(11.625rem, 3.375rem);
-  @include flex(row, center, center);
-  @include font-style($label-medium, 500, 150%); // 600 -> 500
-  border-radius: 0.25rem;
 }
 
 .modal__actions {
@@ -266,10 +256,21 @@ $textarea-height: 12.375rem;
 }
 
 .modal__button--submit {
-  background: $gray-100-color;
   @include font-style($label-medium, 500, 150%, $white-color); // 600 -> 500
+  background: $gray-100-color;
 
   &:active {
     background: $primary-color;
   }
+}
+
+.visually-hidden {
+  @include size(0.0625rem, 0.0625rem); // 각 1px
+  overflow: hidden;
+  position: absolute;
+  margin: -0.0625rem;
+  padding: 0;
+  border: 0;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
 }

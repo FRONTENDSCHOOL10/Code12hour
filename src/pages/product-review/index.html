@@ -19,13 +19,13 @@
         <div class="product-reviews__benefits">
           <p class="product-reviews__description">글후기 50원 적립금 혜택이 있어요.</p>
           <ul class="product-reviews__benefit-list">
-            <li class="product-reviews__benefit-item">
+            <li class="product-reviews__benefit-list-item">
               퍼플, 더퍼플은 2배 적립 (100원) / 주간 베스트 후기로 선정 시 5,000원 추가 적립
             </li>
-            <li class="product-reviews__benefit-item">
+            <li class="product-reviews__benefit-list-item">
               후기 작성은 배송완료일로부터 30일 이내 가능합니다.
             </li>
-            <li class="product-reviews__benefit-item">
+            <li class="product-reviews__benefit-list-item">
               작성하신 후기는 확인 후 적립금이 지급됩니다. (영업일 기준 평균 1~2일 소요)
             </li>
           </ul>
@@ -33,7 +33,7 @@
       </div>
 
       <!-- 상품 리뷰 썸네일 이미지 갤러리 -->
-      <div class="product-gallery" aria-label="리뷰 썸네일 이미지 갤러리">
+      <div class="product-gallery" aria-label="리뷰 이미지 갤러리">
         <button
           type="button"
           class="product-gallery__image-btn"
@@ -94,6 +94,7 @@
           type="button"
           class="product-gallery__image-btn product-gallery__more-btn"
           aria-label="더 많은 이미지 보기"
+          tabindex="-1"
         >
           <span>+더보기</span>
         </button>
@@ -106,32 +107,30 @@
             >총 <span id="review-count">9,999</span>개</span
           >
 
-          <ul class="review-content__sort-list" role="tablist">
-            <li class="review-content__sort-item" role="presentation">
-              <button
-                type="button"
-                class="review-content__sort-btn review-content__sort-btn--active"
-                aria-pressed="ture"
-                aria-controls="recommended-reviews"
-                id="recommended-tab"
-                checked
-              >
-                추천순
-              </button>
-            </li>
-            <span aria-hidden="true">|</span>
-            <li class="review-content__sort-item" role="presentation">
-              <button
-                type="button"
-                class="review-content__sort-btn"
-                aria-pressed="false"
-                aria-controls="recent-reviews"
-                id="recent-tab"
-              >
-                최근등록순
-              </button>
-            </li>
-          </ul>
+          <div class="review-content__sort-list" role="tablist">
+            <button
+              type="button"
+              class="review-content__sort-btn review-content__sort-btn--active"
+              role="tab"
+              aria-selected="true"
+              aria-controls="recommended-panel"
+              id="recommended-tab"
+            >
+              추천순
+            </button>
+
+            <span class="review-content__sort-divider" aria-hidden="true">|</span>
+            <button
+              type="button"
+              class="review-content__sort-btn"
+              role="tab"
+              aria-selected="false"
+              aria-controls="recent-panel"
+              id="recent-tab"
+            >
+              최근등록순
+            </button>
+          </div>
         </div>
 
         <!-- 후기 관련 공지사항 -->
@@ -155,109 +154,160 @@
         </details>
 
         <!-- 상품 후기 리스트-->
-        <div class="review-list" aria-live="polite">
-          <!-- 후기가 없을 경우 -->
-          <div class="review-list__empty" aria-hidden="true">
-            <span class="review-list__empty-icon" aria-hidden="true"></span>
-            <span class="review-list__empty-message">따끈따끈한 후기를 기다리고 있어요.</span>
+        <!-- 추천순 패널 -->
+        <div id="recommended-panel" role="tabpanel" aria-labelledby="recommended-tab">
+          <div class="review-list" aria-live="polite">
+            <!-- 후기가 없을 경우 -->
+            <div class="review-list__empty" aria-hidden="true">
+              <span class="review-list__empty-icon" aria-hidden="true"></span>
+              <span class="review-list__empty-message">따끈따끈한 후기를 기다리고 있어요.</span>
+            </div>
           </div>
+          <!-- 후기 아티클 -->
+          <article class="review-article__list" aria-labelledby="고객 후기">
+            <div class="review-item">
+              <div class="review-item__user">
+                <span class="review-item__badge">베스트</span>
+                <span class="review-item__author">사용자</span>
+              </div>
+            </div>
+            <!-- 후기 contents -->
+            <article class="review">
+              <span class="review__product-name" aria-label="리뷰 대상 제품:">
+                [풀무원] 탱탱쫄면 (4개입)
+              </span>
+              <p class="review__text">너무 맛있어여 짱맛!!</p>
+              <!-- 사용자 리뷰 이미지 -->
+              <div class="review__gallery">
+                <button
+                  type="button"
+                  class="review__image-btn"
+                  aria-label="리뷰 썸네일 이미지 1 크게 보기"
+                >
+                  <img src="" alt="리뷰 썸네일 이미지 1" loading="lazy" />
+                </button>
+                <button
+                  type="button"
+                  class="review__image-btn"
+                  aria-label="리뷰 썸네일 이미지 2 크게 보기"
+                >
+                  <img src="" alt="리뷰 썸네일 이미지 2" loading="lazy" />
+                </button>
+                <button
+                  type="button"
+                  class="review__image-btn"
+                  aria-label="리뷰 썸네일 이미지 3 크게 보기"
+                >
+                  <img src="" alt="리뷰 썸네일 이미지 3" loading="lazy" />
+                </button>
+                <button
+                  type="button"
+                  class="review__image-btn"
+                  aria-label="리뷰 썸네일 이미지 4 크게 보기"
+                >
+                  <img src="" alt="리뷰 썸네일 이미지 4" loading="lazy" />
+                </button>
+                <button
+                  type="button"
+                  class="review__image-btn"
+                  aria-label="리뷰 썸네일 이미지 5 크게 보기"
+                >
+                  <img src="" alt="리뷰 썸네일 이미지 5" loading="lazy" />
+                </button>
+              </div>
+              <!-- 후기란 푸터 -->
+              <footer class="review__footer">
+                <time class="review__date" datetime="2024-07-08">2024.07.08</time>
+                <button
+                  type="button"
+                  class="review__helpful-btn"
+                  aria-pressed="false"
+                  aria-label="이 리뷰가 도움이 되었습니다. 현재 10명이 도움이 되었다고 평가했습니다."
+                >
+                  <span class="review__helpful-btn-icon" aria-hidden="true"></span>
+                  <span class="review__helpful-btn-text">도움돼요 10</span>
+                </button>
+              </footer>
+            </article>
+          </article>
         </div>
-
-        <!-- 후기 아티클 -->
-        <article class="review-article__list" aria-labelledby="고객 후기">
-          <div class="review-item">
-            <div class="review-item__user">
-              <span class="review-item__badge">베스트</span>
-              <span class="review-item__author">사용자</span>
+        <!-- 최신 등록순 패널 -->
+        <div id="recent-panel" role="tabpanel" aria-labelledby="recent-tab">
+          <div class="review-list" aria-live="polite">
+            <!-- 후기가 없을 경우 -->
+            <div class="review-list__empty" aria-hidden="true">
+              <span class="review-list__empty-icon" aria-hidden="true"></span>
+              <span class="review-list__empty-message">따끈따끈한 후기를 기다리고 있어요.</span>
             </div>
           </div>
-          <!-- 후기 contents -->
-          <article class="review">
-            <span class="review__product-name" aria-label="리뷰 대상 제품:">
-              [풀무원] 탱탱쫄면 (4개입)
-            </span>
-            <p class="review__text">너무 맛있어여 짱맛!!</p>
-            <!-- 사용자 리뷰 이미지 -->
-            <div class="review__gallery">
-              <button
-                type="button"
-                class="review__image-btn"
-                aria-label="리뷰 썸네일 이미지 1 크게 보기"
-              >
-                <img src="" alt="리뷰 썸네일 이미지 1" loading="lazy" />
-              </button>
-              <button
-                type="button"
-                class="review__image-btn"
-                aria-label="리뷰 썸네일 이미지 2 크게 보기"
-              >
-                <img src="" alt="리뷰 썸네일 이미지 2" loading="lazy" />
-              </button>
-              <button
-                type="button"
-                class="review__image-btn"
-                aria-label="리뷰 썸네일 이미지 3 크게 보기"
-              >
-                <img src="" alt="리뷰 썸네일 이미지 3" loading="lazy" />
-              </button>
-              <button
-                type="button"
-                class="review__image-btn"
-                aria-label="리뷰 썸네일 이미지 4 크게 보기"
-              >
-                <img src="" alt="리뷰 썸네일 이미지 4" loading="lazy" />
-              </button>
-              <button
-                type="button"
-                class="review__image-btn"
-                aria-label="리뷰 썸네일 이미지 5 크게 보기"
-              >
-                <img src="" alt="리뷰 썸네일 이미지 5" loading="lazy" />
-              </button>
+          <!-- 후기 아티클 -->
+          <article class="review-article__list" aria-labelledby="고객 후기">
+            <div class="review-item">
+              <div class="review-item__user">
+                <span class="review-item__badge">베스트</span>
+                <span class="review-item__author">사용자</span>
+              </div>
             </div>
-            <!-- 후기란 푸터 -->
-            <footer class="review__footer">
-              <time class="review__date" datetime="2024-07-08">2024.07.08</time>
-              <button
-                type="button"
-                class="review__helpful-btn"
-                aria-pressed="false"
-                aria-label="이 리뷰가 도움이 되었습니다. 현재 10명이 도움이 되었다고 평가했습니다."
-              >
-                <span class="review__helpful-icon" aria-hidden="true"></span>
-                <span class="review__helpful-text">도움돼요 10</span>
-              </button>
-            </footer>
+            <!-- 후기 contents -->
+            <article class="review">
+              <span class="review__product-name" aria-label="리뷰 대상 제품:">
+                [풀무원] 탱탱쫄면 (4개입)
+              </span>
+              <p class="review__text">너무 맛있어여 짱맛!!</p>
+              <!-- 사용자 리뷰 이미지 -->
+              <div class="review__gallery">
+                <button
+                  type="button"
+                  class="review__image-btn"
+                  aria-label="리뷰 썸네일 이미지 1 크게 보기"
+                >
+                  <img src="" alt="리뷰 썸네일 이미지 1" loading="lazy" />
+                </button>
+                <button
+                  type="button"
+                  class="review__image-btn"
+                  aria-label="리뷰 썸네일 이미지 2 크게 보기"
+                >
+                  <img src="" alt="리뷰 썸네일 이미지 2" loading="lazy" />
+                </button>
+                <button
+                  type="button"
+                  class="review__image-btn"
+                  aria-label="리뷰 썸네일 이미지 3 크게 보기"
+                >
+                  <img src="" alt="리뷰 썸네일 이미지 3" loading="lazy" />
+                </button>
+                <button
+                  type="button"
+                  class="review__image-btn"
+                  aria-label="리뷰 썸네일 이미지 4 크게 보기"
+                >
+                  <img src="" alt="리뷰 썸네일 이미지 4" loading="lazy" />
+                </button>
+                <button
+                  type="button"
+                  class="review__image-btn"
+                  aria-label="리뷰 썸네일 이미지 5 크게 보기"
+                >
+                  <img src="" alt="리뷰 썸네일 이미지 5" loading="lazy" />
+                </button>
+              </div>
+              <!-- 후기란 푸터 -->
+              <footer class="review__footer">
+                <time class="review__date" datetime="2024-07-08">2024.07.08</time>
+                <button
+                  type="button"
+                  class="review__helpful-btn"
+                  aria-pressed="false"
+                  aria-label="이 리뷰가 도움이 되었습니다. 현재 10명이 도움이 되었다고 평가했습니다."
+                >
+                  <span class="review__helpful-btn-icon" aria-hidden="true"></span>
+                  <span class="review__helpful-btn-text">도움돼요 10</span>
+                </button>
+              </footer>
+            </article>
           </article>
-        </article>
-
-        <article class="review-article__list" aria-labelledby="고객 후기">
-          <div class="review-item">
-            <div class="review-item__user">
-              <span class="review-item__author">사용자</span>
-            </div>
-          </div>
-          <!-- 후기 contents -->
-          <article class="review">
-            <span class="review__product-name" aria-label="리뷰 대상 제품:">
-              [풀무원] 탱탱쫄면 (4개입)
-            </span>
-            <p class="review__text">너무 맛있어여 짱맛!!</p>
-            <!-- 후기란 푸터 -->
-            <footer class="review__footer">
-              <time class="review__date" datetime="2024-07-08">2024.07.08</time>
-              <button
-                type="button"
-                class="review__helpful-btn"
-                aria-pressed="false"
-                aria-label="이 리뷰가 도움이 되었습니다. 현재 10명이 도움이 되었다고 평가했습니다."
-              >
-                <span class="review__helpful-icon" aria-hidden="true"></span>
-                <span class="review__helpful-text">도움돼요 10</span>
-              </button>
-            </footer>
-          </article>
-        </article>
+        </div>
 
         <!-- 페이지네이션 좌우 버튼 -->
         <nav class="paging" aria-label="후기 페이지 버튼">
