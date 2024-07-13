@@ -37,7 +37,6 @@ $spacing-lg: 1.25rem;
 
   // 문의 안내 사항
   &__info {
-    margin-top: $spacing-lg;
     align-items: center;
     padding-bottom: 3.5rem;
   }
@@ -79,57 +78,298 @@ $spacing-lg: 1.25rem;
 }
 
 // 전체 아코디언 컨테이너
-.inquiry-board {
+.inquiry-board__header {
   display: flex;
-  flex-flow: column;
-  background: aquamarine;
   width: 100%;
+  border-top: 2px solid currentColor; // black -> currentColor
+  border-bottom: 1px solid currentColor; // black -> currentColor
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.25rem;
+  height: 3.625rem;
 
-  // 고정 헤더 스타일
-  &__header {
-    align-items: flex-start;
-    border-top: 2px solid currentColor; // black -> currentColor
-    border-bottom: 1px solid currentColor; // black -> currentColor
+  &-item {
+    @include font-style($label-medium, 600, 150%);
     display: flex;
-    justify-content: space-between;
+    text-align: center;
     align-items: center;
-    gap: 0.25rem;
+    justify-content: center;
     padding: 0.25rem;
-    height: 3.625rem;
 
-    &-item {
-      @include font-style($paragraph-medium, 600, 150%);
-      display: flex;
-      text-align: center;
-      align-items: center;
-      justify-content: center;
-      padding: 0.25rem;
+    &:nth-child(1) {
+      flex: 1 0 0;
+    }
 
-      &:nth-child(1) {
-        flex: 1 0 0;
-      }
-
-      &:nth-child(n + 2) {
-        @include size(6.25rem, 3.625rem);
-        flex-shrink: 0;
-      }
+    &:nth-child(n + 2) {
+      @include size(6.25rem, 3.625rem);
+      flex-shrink: 0;
     }
   }
 }
+
+.inquiry-notice {
+  display: flex;
+  flex-flow: column;
+  align-items: flex-start;
+  border-bottom: 1px solid $gray-100-color;
+
+  &__summary {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.25rem;
+    padding: 0.25rem;
+    border-bottom: 1px solid $gray-100-color;
+    height: 3.625rem;
+
+    .inquiry-notice__item {
+      @include font-style($label-medium, 500, 150%, $gray-400-color); // 600 -> 500
+      display: flex;
+      padding: 0.25rem;
+      align-items: center;
+      text-align: center;
+
+      &:nth-child(1) {
+        padding: 0.25rem 1.25rem;
+        flex: 1 0 0;
+        cursor: pointer; // 추가
+      }
+
+      &:nth-child(n + 2) {
+        justify-content: center;
+        @include size(6.25rem, 3.625rem);
+        flex-shrink: 0;
+      }
+      .inquiry-notice__badge {
+        @include flex(row, center, center);
+        @include font-style($label-small, 500, 150%); // 600 -> 500
+        padding: $icon-padding;
+        border-radius: $border-radius-small;
+        background-color: $gray-100-color;
+        margin-right: 1.25rem;
+        text-align: center;
+      }
+
+      .inquiry-notice__title {
+        @include font-style($label-medium, 500, 150%); // 600 -> 500
+        text-align: center;
+      }
+    }
+  }
+
+  &__content-message {
+    // background-color: rebeccapurple;
+    display: flex;
+    flex-flow: column;
+    align-items: flex-start;
+    gap: 2.5rem;
+    padding: 1.25rem;
+    border-bottom: 1px solid $gray-100-color;
+    background: $gray-50-color;
+
+    &--answer {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+    }
+  }
+}
+
+.inquiry-list {
+  display: flex;
+  flex-flow: column;
+  align-items: flex-start;
+  border-bottom: 1px solid $gray-100-color;
+
+  &__summary {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.25rem;
+    padding: 0.25rem;
+    height: 3.625rem;
+    border-bottom: 1px solid $gray-100-color;
+
+    .inquiry-list__item {
+      @include font-style($label-medium, 500, 150%, $gray-400-color); // 600 -> 500
+      display: flex;
+      padding: 0.25rem;
+      align-items: center;
+      text-align: center;
+
+      &:nth-child(1) {
+        padding: 0.25rem 1.25rem;
+        flex: 1 0 0;
+        cursor: pointer; // 추가
+      }
+
+      &:nth-child(n + 2) {
+        justify-content: center;
+        @include size(6.25rem, 3.625rem);
+        flex-shrink: 0;
+      }
+
+      .inquiry-list__title {
+        @include font-style($label-medium, 500, 150%); // 600 -> 500
+        text-align: center;
+      }
+
+      // & .item-status__ture { // 답변완료
+      //   @include font-style($label-medium, 500, 150%, $primary-color); // 600 -> 500
+      // }
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-flow: column;
+    align-items: flex-start;
+    gap: 2.5rem;
+    padding: 1.25rem;
+    border-bottom: 1px solid $gray-100-color;
+    background: $gray-50-color;
+
+    &-message {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+
+      &--question,
+      &--answer {
+        @include font-style($label-small, 500, 150%); // 600 -> 500
+      }
+      &--wrapper {
+        gap: 0.75rem;
+        display: flex;
+        flex-flow: column;
+      }
+
+      &--date {
+        @include font-style($label-small, 500, 150%, $gray-400-color); // 600 -> 500
+      }
+    }
+
+    &-icon--q {
+      @include size(1.5rem, 1.5rem);
+      background: url('/assets/icons/product-inquiry/Question.svg') no-repeat center / contain;
+    }
+
+    &-icon--a {
+      @include size(1.5rem, 1.5rem);
+      background: url('/assets/icons/product-inquiry/Answer.svg') no-repeat center / contain;
+    }
+  }
+}
+
+// 비밀글
+.inquiry-private {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.25rem;
+  padding: 0.25rem;
+  height: 3.625rem;
+  border-bottom: 1px solid $gray-100-color;
+
+  &__item {
+    @include font-style($label-medium, 500, 150%, $gray-400-color); // 600 -> 500
+    display: flex;
+    padding: 0.25rem;
+    align-items: center;
+    text-align: center;
+
+    &:nth-child(1) {
+      padding: 0.25rem 1.25rem;
+      gap: 1.25rem;
+      flex: 1 0 0;
+      cursor: pointer; // 추가
+    }
+
+    &:nth-child(n + 2) {
+      justify-content: center;
+      @include size(6.25rem, 3.625rem);
+      flex-shrink: 0;
+    }
+
+    .inquiry-private__message {
+      @include font-style($label-medium, 500, 150%, $gray-400-color); // 600 -> 500
+      text-align: center;
+    }
+
+    .inquiry-private__icon {
+      @include size(0.75rem, 0.875rem);
+      background: url('/assets/icons/product-inquiry/Private.svg') no-repeat center / contain;
+    }
+
+    // & .item-status__ture { // 답변완료
+    //   @include font-style($label-medium, 500, 150%, $primary-color); // 600 -> 500
+    // }
+  }
+}
+
+// 비밀글 팝업창
+// .private-popup {
+//   @include size(100%, 100%);
+//   @include flex(row, center, center);
+//   position: fixed;
+//   left: 0;
+//   top: 0;
+//   background-color: rgba(0, 0, 0, 0.5);
+
+//   &__content {
+//     @include size(23.39rem, 10.2rem);
+//     background-color: $white-color;
+//     border-radius: 0.75rem;
+
+//     box-sizing: border-box;
+//     display: flex;
+//     flex-flow: column;
+//   }
+
+//   &__message {
+//     padding: 2.6rem 1.95rem;
+//     text-align: center;
+//     @include font-style($label-medium, 500, 150%); // 600 -> 500
+//   }
+
+//   &__button {
+//     width: 100%;
+
+//     height: 3.5rem;
+//     width: 100%;
+//     @include font-style($label-medium, 500, 150%, $primary-color); // 600 -> 500
+//   }
+// }
 
 // 페이지네이션 좌우 버튼
 .paging {
   @include flex(row, center, center);
   gap: $spacing-md;
+  margin-top: 1rem;
 
   &__button {
     &--prev {
-      @include icon-button(3.5rem, 3.5rem, $gray-200-color, '/assets/icons/review/paging.svg');
+      @include icon-button(
+        3.5rem,
+        3.5rem,
+        $gray-200-color,
+        '/assets/icons/product-review/paging.svg'
+      );
     }
 
     &--next {
       transform: scaleX(-1);
-      @include icon-button(3.5rem, 3.5rem, $gray-400-color, '/assets/icons/review/paging.svg');
+      @include icon-button(
+        3.5rem,
+        3.5rem,
+        $gray-400-color,
+        '/assets/icons/product-review/paging.svg'
+      );
     }
 
     &:hover,

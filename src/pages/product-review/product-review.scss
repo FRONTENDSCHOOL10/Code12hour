@@ -7,10 +7,6 @@ $border-bottom: 1px solid $gray-100-color;
 $font-weight-sm: 400;
 $font-weight-md: 600;
 $line-height: 150%;
-$spacing-xs: 0.25rem;
-$spacing-sm: 0.5rem;
-$spacing-md: 1rem;
-$spacing-lg: 1.25rem;
 
 // 믹스인 정의
 @mixin font-style($size, $weight, $line-height, $color: null) {
@@ -23,10 +19,8 @@ $spacing-lg: 1.25rem;
 @mixin icon-button($width, $height, $color, $icon-path) {
   width: $width;
   height: $height;
-  -webkit-mask: url($icon-path) no-repeat center;
-  mask: url($icon-path) no-repeat center;
-  -webkit-mask-size: contain;
-  mask-size: contain;
+  -webkit-mask: url($icon-path) no-repeat center / contain;
+  mask: url($icon-path) no-repeat center / contain;
   background-color: $color;
 }
 
@@ -34,19 +28,18 @@ $spacing-lg: 1.25rem;
 .product-reviews {
   @include size(1050px);
   position: relative;
-  margin: 0 auto;
+  margin: 0 auto 4.5rem;
   padding-bottom: 6.25rem;
 
   // 후기 혜택 안내
   &__info {
-    margin-top: $spacing-lg;
     align-items: center;
   }
 
   &__title {
     @include font-style($heading-xl, 700, 140%);
     display: inline-block;
-    padding-bottom: $spacing-md;
+    padding-bottom: 1rem;
   }
 
   // 후기 작성 버튼
@@ -72,7 +65,7 @@ $spacing-lg: 1.25rem;
         150%,
         $gray-400-color
       ); // 600 -> 400 / gray 500 -> 400
-      padding-left: $spacing-md;
+      padding-left: 1rem;
       list-style-position: inside;
       list-style-type: disc;
     }
@@ -128,7 +121,7 @@ $spacing-lg: 1.25rem;
 .review-content__summary {
   @include flex(row, space-between, center);
   @include font-style($label-medium, 500, 150%); // label-small -> medium / 600 -> 500
-  padding-bottom: $spacing-md;
+  padding-bottom: 1rem;
   border-bottom: 1px solid $gray-900-color;
 }
 
@@ -150,8 +143,8 @@ $spacing-lg: 1.25rem;
     // 분류 버튼 경계선 // 시안과 다르게 스타일 적용
     @include flex(row, center, center);
     @include font-style($label-small, 500, 150%, $gray-300-color);
-    margin-left: $spacing-xs;
-    margin-right: $spacing-xs;
+    margin-left: 0.25rem;
+    margin-right: 0.25rem;
   }
 }
 
@@ -170,18 +163,19 @@ $spacing-lg: 1.25rem;
     padding: $icon-padding;
     border-radius: $border-radius-small;
     background-color: $gray-100-color;
+    margin-right: 1.25rem;
     text-align: center;
   }
 
-  &__toggle {
-    @include font-style($label-medium, 500, 150%); // 600 -> 500
-    margin-left: $spacing-lg;
+  &__title {
     text-align: center;
+
+    @include font-style($label-medium, 500, 150%); // 600 -> 500
   }
 
   &__content {
     @include font-style($paragraph-medium, 400, 160%); // 시안에 없음
-    padding: $spacing-lg;
+    padding: 1.25rem;
     border-bottom: $border-bottom;
     background-color: $gray-50-color;
     white-space: pre-line; // 추가
@@ -191,7 +185,7 @@ $spacing-lg: 1.25rem;
 // 후기가 없을 경우
 .review-list__empty {
   @include flex(column, center, center);
-  padding: $spacing-lg;
+  padding: 1.25rem;
   border-bottom: $border-bottom;
 
   &-icon {
@@ -201,7 +195,7 @@ $spacing-lg: 1.25rem;
       $gray-100-color,
       '/assets/icons/product-review/review-empty.svg'
     );
-    margin-bottom: $spacing-lg;
+    margin-bottom: 1.25rem;
   }
 
   &-message {
@@ -213,7 +207,7 @@ $spacing-lg: 1.25rem;
 .review-article__list {
   @include flex(row, left, left);
   padding: 1.25rem 0 1.25rem 1.25rem;
-  margin-bottom: $spacing-md;
+
   border-bottom: $border-bottom;
 
   .visually-hidden {
@@ -246,7 +240,7 @@ $spacing-lg: 1.25rem;
 
   &__author {
     @include font-style($label-small, 500, 150%); // 600 -> 500
-    margin-left: $spacing-sm;
+    margin-left: 0.5rem;
     text-align: center;
   }
 }
@@ -270,7 +264,7 @@ $spacing-lg: 1.25rem;
   &__gallery {
     @include flex(row, left, center);
     width: 100%;
-    padding: $gallery-padding;
+    padding-top: 1rem; // 수정
   }
 
   &__image-btn {
@@ -302,7 +296,7 @@ $spacing-lg: 1.25rem;
   // 후기란 푸터
   &__footer {
     @include flex(row, space-between, center);
-    padding-right: $spacing-lg;
+    padding: 1.1875rem 1.25rem 0 0; // 수정
   }
 
   &__date {
@@ -324,7 +318,7 @@ $spacing-lg: 1.25rem;
         $gray-400-color,
         '/assets/icons/product-review/helpful.svg'
       );
-      margin-right: $spacing-xs;
+      margin-right: 0.25rem;
     }
 
     &:hover,
@@ -347,7 +341,8 @@ $spacing-lg: 1.25rem;
 // 페이지네이션 좌우 버튼
 .paging {
   @include flex(row, center, center);
-  gap: $spacing-md;
+  gap: 1rem;
+  margin-top: 1rem;
 
   &__button {
     &--prev {

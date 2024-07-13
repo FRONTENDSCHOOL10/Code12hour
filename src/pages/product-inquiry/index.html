@@ -29,45 +29,113 @@
         </div>
       </div>
 
-      <!-- 문의 -->
-      <!-- 고정된 헤더 -->
-      <div class="inquiry-board">
-        <div class="inquiry-board__header">
-          <span class="inquiry-board__header-item">제목</span>
-          <span class="inquiry-board__header-item">작성자</span>
-          <span class="inquiry-board__header-item">작성일</span>
-          <span class="inquiry-board__header-item">답변상태</span>
-        </div>
+      <!-- 문의 영역 고정된 헤더 -->
+      <div class="inquiry-board__header">
+        <span class="inquiry-board__header-item">제목</span>
+        <span class="inquiry-board__header-item">작성자</span>
+        <span class="inquiry-board__header-item">작성일</span>
+        <span class="inquiry-board__header-item">답변상태</span>
       </div>
 
       <!-- 문의 관련 공지 사항 -->
-      <div class="inquiry-board inquiry-board__notice">
-        <div class="inquiry-board__header">
-          <span class="inquiry-board__header-item">
-            <span class="inquiry-board__notice-icon">공지아이콘</span>
-            공지
+      <details id="inquiry-notice-1" class="inquiry-notice" aria-expanded="false">
+        <summary class="inquiry-notice__summary">
+          <span class="inquiry-notice__item">
+            <span class="inquiry-notice__badge">공지</span>
+            <h3 class="inquiry-notice__title">판매(일시)중단 제품 안내</h3>
           </span>
-          <span class="inquiry-board__header-item">작성자</span>
-          <span class="inquiry-board__header-item">작성일</span>
-          <span class="inquiry-board__header-item">-</span>
+          <span class="inquiry-notice__item">칼리</span>
+          <span class="inquiry-notice__item">2024.07.11</span>
+          <span class="inquiry-notice__item">-</span>
+        </summary>
+        <div class="inquiry-notice__content-message">
+          <p class="inquiry-notice__content-message--answer">답변답변답변</p>
         </div>
+      </details>
+
+      <!-- 문의 리스트 -->
+      <details id="inqiry-list-1" class="inquiry-list" aria-expanded="false">
+        <summary class="inquiry-list__summary">
+          <span class="inquiry-list__item">
+            <h3 class="inquiry-list__title">팩이 터져서 왔어요!!!</h3>
+          </span>
+          <span class="inquiry-list__item">야호</span>
+          <span class="inquiry-list__item">2024.07.11</span>
+          <span class="inquiry-list__item">
+            <span class="inquiry-list__item">답변대기</span>
+            <!-- <span class="inquiry-list__item item-status__ture">답변완료</span> -->
+          </span>
+        </summary>
+        <div class="inquiry-list__content">
+          <div class="inquiry-list__content-message">
+            <span class="inquiry-list__content-icon--q"></span>
+            <p class="inquiry-list__content-message--question">질문질문질문</p>
+          </div>
+          <div class="inquiry-list__content-message">
+            <span class="inquiry-list__content-icon--a"></span>
+            <div class="inquiry-list__content-message--wrapper">
+              <p class="inquiry-list__content-message--answer">답변답변답변</p>
+              <span
+                class="inquiry-list__content-message--answer inquiry-list__content-message--date"
+                >2024.07.12</span
+              >
+            </div>
+          </div>
+        </div>
+      </details>
+
+      <!-- 비밀글입니다. -->
+      <div id="" class="inquiry-private">
+        <span class="inquiry-private__item">
+          <span class="inquiry-private__message">비밀글입니다.</span>
+          <span class="inquiry-private__icon"></span>
+        </span>
+        <span class="inquiry-private__item">이름</span>
+        <span class="inquiry-private__item">2024.07.13</span>
+        <span class="inquiry-private__item">
+          <span class="inquiry-private__item">답변대기</span>
+          <!-- <span class="inquiry-private__item item-status__ture">답변완료</span> -->
+        </span>
+      </div>
+      <div id="" class="inquiry-private">
+        <span class="inquiry-private__item">
+          <span class="inquiry-private__message">비밀글입니다.</span>
+          <span class="inquiry-private__icon"></span>
+        </span>
+        <span class="inquiry-private__item">이름</span>
+        <span class="inquiry-private__item">2024.07.13</span>
+        <span class="inquiry-private__item">
+          <span class="inquiry-private__item">답변대기</span>
+          <!-- <span class="inquiry-private__item item-status__ture">답변완료</span> -->
+        </span>
+      </div>
+      <div id="" class="inquiry-private">
+        <span class="inquiry-private__item">
+          <span class="inquiry-private__message">비밀글입니다.</span>
+          <span class="inquiry-private__icon"></span>
+        </span>
+        <span class="inquiry-private__item">이름</span>
+        <span class="inquiry-private__item">2024.07.13</span>
+        <span class="inquiry-private__item">
+          <span class="inquiry-private__item">답변대기</span>
+          <!-- <span class="inquiry-private__item item-status__ture">답변완료</span> -->
+        </span>
+      </div>
+      <div id="" class="inquiry-private">
+        <span class="inquiry-private__item">
+          <span class="inquiry-private__message">비밀글입니다.</span>
+          <span class="inquiry-private__icon"></span>
+        </span>
+        <span class="inquiry-private__item">이름</span>
+        <span class="inquiry-private__item">2024.07.13</span>
+        <span class="inquiry-private__item">
+          <span class="inquiry-private__item">답변대기</span>
+          <!-- <span class="inquiry-private__item item-status__ture">답변완료</span> -->
+        </span>
       </div>
 
-      <div class="inquiry-board__list">
-        <details id="accordion-button" class="inquiry-board__list-btn" aria-expanded="false">
-          <summary class="inquiry-item__title">
-            <h3>팩이 터져서 왔어요</h3>
-            <span class="inquiry-item__author">신난당</span>
-            <span class="inquiry-item__date">20240711</span>
-            <span class="inquiry-item__status">답변대기</span>
-          </summary>
-          <div id="accordion-pannel" class="inquiry-boadrd__contents">
-            <p>내용내용내용</p>
-          </div>
-        </details>
-      </div>
       <!-- 페이지네이션 좌우 버튼 -->
-      <nav class="paging" aria-label="리뷰 페이지 네비게이션">
+      <nav class="paging" aria-label="문의 페이지 버튼">
         <button
           type="button"
           class="paging__button paging__button--prev"
@@ -82,3 +150,11 @@
     </section>
   </body>
 </html>
+
+<!-- 비밀글 팝업창 -->
+<!-- <div id="privatePostPopup" class="private-popup__overlay" aria-hidden="true">
+  <div class="private-popup__content" role="dialog">
+    <p class="private-popup__message">비밀글입니다.</p>
+    <button class="private-popup__button">확인</button>
+  </div>
+</div> -->
