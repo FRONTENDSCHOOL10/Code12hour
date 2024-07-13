@@ -1,0 +1,77 @@
+.filter-panel {
+  @include size(16.6875rem, 100%);
+
+  &__header {
+    @include flex(row, space-between, center);
+    @include size(13.75rem, 3.25rem);
+    border-bottom: 1px solid $gray-100-color;
+    @include font($label-medium, 600, 150%);
+  }
+
+  &__reset {
+    @include font(0.625rem, 600, 160%, $gray-300-color);
+  }
+
+  &__category {
+    &-input,
+    &-radio {
+      position: relative;
+      padding: 0.03125rem;
+      margin: 0;
+      @include size(1.5rem, 1.5rem);
+      background-repeat: no-repeat;
+      background-size: contain;
+      appearance: none;
+    }
+    &-list {
+      p {
+        margin-right: auto;
+        @include font($label-small, 600, 160%, $gray-300-color);
+      }
+    }
+    &-input {
+      background: url('/assets/icons/input/isChecked=false.svg') no-repeat;
+      &:checked {
+        background: url('/assets/icons/input/isChecked=true.svg') no-repeat;
+      }
+    }
+
+    &-radio {
+      background: url('/assets/icons/input/isSelected=false.svg') no-repeat;
+      &:checked {
+        background: url('/assets/icons/input/isSelected=true.svg') no-repeat;
+      }
+    }
+
+    &-title {
+      @include flex(row nowrap, space-between, center);
+      @include size(13.75rem, 3.25rem);
+      @include font($label-medium, 600, 150%);
+      gap: 0.5rem;
+      border-bottom: 0.0625rem solid $gray-100-color;
+    }
+
+    &-name {
+      @include flex(row nowrap, null, center);
+      @include size(80%, 100%);
+      gap: 0.5rem;
+      @include font($label-medium, 400, 160%);
+    }
+
+    &-box {
+      @include flex(row nowrap, null, center);
+      @include size(13.75rem, 3.25rem);
+      gap: 0.5rem;
+    }
+
+    &-title,
+    &-name {
+      cursor: pointer;
+    }
+  }
+}
+.category {
+  &-count {
+    @include font($label-small, 400, 160%, $gray-300-color);
+  }
+}

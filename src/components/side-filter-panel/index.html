@@ -1,0 +1,415 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>사이드 필터 패널</title>
+    <script type="module" src="./side-filter-panel.js"></script>
+  </head>
+  <body>
+    <nav class="filter-panel">
+      <div class="filter-panel__header">
+        <p>필터</p>
+        <button class="filter-panel__reset">초기화</button>
+      </div>
+      <details class="filter-panel__category-list" id="category">
+        <summary class="filter-panel__category-title">
+          카테고리
+          <p class="header-count" aria-hidden="true">0</p>
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 18 18"
+            fill="none"
+            style="transform: rotate(180deg)"
+          >
+            <path d="M5 11L9 7L13 11" stroke="#999" stroke-width="1.2"></path>
+          </svg>
+        </summary>
+        <div class="filter-panel__category-box">
+          <input
+            class="filter-panel__category-input"
+            type="checkbox"
+            id="category-1"
+            name="category"
+          /><label class="filter-panel__category-name" for="category-1"
+            >샐러드 · 간편식
+            <p class="category-count">22</p></label
+          >
+        </div>
+        <div class="filter-panel__category-box">
+          <input
+            class="filter-panel__category-input"
+            type="checkbox"
+            id="category-2"
+            name="category"
+          /><label class="filter-panel__category-name" for="category-2"
+            >국 · 반찬 · 메인요리
+            <p class="category-count">22</p></label
+          >
+        </div>
+        <div class="filter-panel__category-box">
+          <input
+            class="filter-panel__category-input"
+            type="checkbox"
+            id="category-3"
+            name="category"
+          /><label class="filter-panel__category-name" for="category-3"
+            >정육 · 계란
+            <p class="category-count">22</p></label
+          >
+        </div>
+        <div class="filter-panel__category-box">
+          <input
+            class="filter-panel__category-input"
+            type="checkbox"
+            id="category-4"
+            name="category"
+          /><label class="filter-panel__category-name" for="category-4"
+            >과일 · 견과 · 쌀
+            <p class="category-count">22</p></label
+          >
+        </div>
+        <div class="filter-panel__category-box">
+          <input
+            class="filter-panel__category-input"
+            type="checkbox"
+            id="category-5"
+            name="category"
+          /><label class="filter-panel__category-name" for="category-5"
+            >간식 · 과자 · 떡
+            <p class="category-count">22</p></label
+          >
+        </div>
+        <div class="filter-panel__category-box">
+          <input
+            class="filter-panel__category-input"
+            type="checkbox"
+            id="category-6"
+            name="category"
+          /><label class="filter-panel__category-name" for="category-6"
+            >생수 · 음료 · 우유 · 커피
+            <p class="category-count">22</p></label
+          >
+        </div>
+        <div class="filter-panel__category-box">
+          <input
+            class="filter-panel__category-input"
+            type="checkbox"
+            id="category-7"
+            name="category"
+          /><label class="filter-panel__category-name" for="category-7"
+            >수산 · 해산 · 건어물
+            <p class="category-count">22</p></label
+          >
+        </div>
+        <div class="filter-panel__category-box">
+          <input
+            class="filter-panel__category-input"
+            type="checkbox"
+            id="category-8"
+            name="category"
+          /><label class="filter-panel__category-name" for="category-8"
+            >베이커리 · 치즈 · 델리
+            <p class="category-count">22</p></label
+          >
+        </div>
+        <div class="filter-panel__category-box">
+          <input
+            class="filter-panel__category-input"
+            type="checkbox"
+            id="category-9"
+            name="category"
+          /><label class="filter-panel__category-name" for="category-9"
+            >건강식품
+            <p class="category-count">22</p></label
+          >
+        </div>
+        <div class="filter-panel__category-box">
+          <input
+            class="filter-panel__category-input"
+            type="checkbox"
+            id="category-10"
+            name="category"
+          /><label class="filter-panel__category-name" for="category-10"
+            >생활용품 · 리빙 · 캠핑
+            <p class="category-count">22</p></label
+          >
+        </div>
+      </details>
+      <details class="filter-panel__category-list" id="brand">
+        <summary class="filter-panel__category-title">
+          브랜드
+          <p class="header-count" aria-hidden="true">0</p>
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 18 18"
+            fill="none"
+            style="transform: rotate(180deg)"
+          >
+            <path d="M5 11L9 7L13 11" stroke="#999" stroke-width="1.2"></path>
+          </svg>
+        </summary>
+        <div class="filter-panel__category-box">
+          <input
+            class="filter-panel__category-input"
+            type="checkbox"
+            id="brand-1"
+            name="brand"
+          /><label class="filter-panel__category-name" for="brand-1"
+            >슬비쌤
+            <p class="category-count">22</p></label
+          >
+        </div>
+        <div class="filter-panel__category-box">
+          <input
+            class="filter-panel__category-input"
+            type="checkbox"
+            id="brand-2"
+            name="brand"
+          /><label class="filter-panel__category-name" for="brand-2"
+            >범쌤
+            <p class="category-count">22</p></label
+          >
+        </div>
+        <div class="filter-panel__category-box">
+          <input
+            class="filter-panel__category-input"
+            type="checkbox"
+            id="brand-3"
+            name="brand"
+          /><label class="filter-panel__category-name" for="brand-3"
+            >야무쌤
+            <p class="category-count">22</p></label
+          >
+        </div>
+        <div class="filter-panel__category-box">
+          <input
+            class="filter-panel__category-input"
+            type="checkbox"
+            id="brand-4"
+            name="brand"
+          /><label class="filter-panel__category-name" for="brand-4"
+            >김미리매니저님
+            <p class="category-count">22</p></label
+          >
+        </div>
+        <div class="filter-panel__category-box">
+          <input
+            class="filter-panel__category-input"
+            type="checkbox"
+            id="brand-5"
+            name="brand"
+          /><label class="filter-panel__category-name" for="brand-5"
+            >금윤호매니저님
+            <p class="category-count">22</p></label
+          >
+        </div>
+        <div class="filter-panel__category-box">
+          <input
+            class="filter-panel__category-input"
+            type="checkbox"
+            id="brand-6"
+            name="brand"
+          /><label class="filter-panel__category-name" for="brand-6"
+            >유진혁매니저님
+            <p class="category-count">22</p></label
+          >
+        </div>
+      </details>
+      <details class="filter-panel__category-list" id="delivery">
+        <summary class="filter-panel__category-title">
+          배송
+          <p class="header-count" aria-hidden="true">0</p>
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 18 18"
+            fill="none"
+            style="transform: rotate(180deg)"
+          >
+            <path d="M5 11L9 7L13 11" stroke="#999" stroke-width="1.2"></path>
+          </svg>
+        </summary>
+        <div class="filter-panel__category-box">
+          <input
+            class="filter-panel__category-input"
+            type="checkbox"
+            id="delivery-1"
+            name="delivery"
+          /><label class="filter-panel__category-name" for="delivery-1"
+            >샛별배송
+            <p class="category-count">22</p></label
+          >
+        </div>
+        <div class="filter-panel__category-box">
+          <input
+            class="filter-panel__category-input"
+            type="checkbox"
+            id="delivery-2"
+            name="delivery"
+          /><label class="filter-panel__category-name" for="delivery-2"
+            >판매자배송
+            <p class="category-count">22</p></label
+          >
+        </div>
+        <div class="filter-panel__category-box">
+          <input
+            class="filter-panel__category-input"
+            type="checkbox"
+            id="delivery-3"
+            name="delivery"
+          /><label class="filter-panel__category-name" for="delivery-3"
+            >설치배송
+            <p class="category-count">22</p></label
+          >
+        </div>
+        <div class="filter-panel__category-box">
+          <input
+            class="filter-panel__category-input"
+            type="checkbox"
+            id="delivery-4"
+            name="delivery"
+          /><label class="filter-panel__category-name" for="delivery-4"
+            >해외직배송
+            <p class="category-count">22</p></label
+          >
+        </div>
+      </details>
+      <details class="filter-panel__category-list" id="price">
+        <summary class="filter-panel__category-title">
+          가격
+          <p class="header-count" aria-hidden="true">0</p>
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 18 18"
+            fill="none"
+            style="transform: rotate(180deg)"
+          >
+            <path d="M5 11L9 7L13 11" stroke="#999" stroke-width="1.2"></path>
+          </svg>
+        </summary>
+        <div class="filter-panel__category-box">
+          <input
+            class="filter-panel__category-radio"
+            name="price"
+            type="radio"
+            id="price-1"
+          /><label class="filter-panel__category-name" for="price-1"
+            >7225원 미만
+            <p class="category-count">22</p></label
+          >
+        </div>
+        <div class="filter-panel__category-box">
+          <input
+            class="filter-panel__category-radio"
+            name="price"
+            type="radio"
+            id="price-2"
+          /><label class="filter-panel__category-name" for="price-2"
+            >7225원~12900원
+            <p class="category-count">22</p></label
+          >
+        </div>
+        <div class="filter-panel__category-box">
+          <input
+            class="filter-panel__category-radio"
+            name="price"
+            type="radio"
+            id="price-3"
+          /><label class="filter-panel__category-name" i for="price-3"
+            >12900원~26500원
+            <p class="category-count">22</p></label
+          >
+        </div>
+        <div class="filter-panel__category-box">
+          <input
+            class="filter-panel__category-radio"
+            name="price"
+            type="radio"
+            id="price-4"
+          /><label class="filter-panel__category-name" for="price-4"
+            >26500원 이상
+            <p class="category-count">22</p></label
+          >
+        </div>
+      </details>
+      <details class="filter-panel__category-list" id="benefits">
+        <summary class="filter-panel__category-title">
+          혜택
+          <p class="header-count" aria-hidden="true">0</p>
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 18 18"
+            fill="none"
+            style="transform: rotate(180deg)"
+          >
+            <path d="M5 11L9 7L13 11" stroke="#999" stroke-width="1.2"></path>
+          </svg>
+        </summary>
+        <div class="filter-panel__category-box">
+          <input
+            class="filter-panel__category-input"
+            type="checkbox"
+            id="benefits-1"
+            name="benefits"
+          /><label class="filter-panel__category-name" for="benefits-1"
+            >할인상품
+            <p class="category-count">22</p></label
+          >
+        </div>
+        <div class="filter-panel__category-box">
+          <input
+            class="filter-panel__category-input"
+            type="checkbox"
+            id="benefits-2"
+            name="benefits"
+          /><label class="filter-panel__category-name" for="benefits-2"
+            >한정수량
+            <p class="category-count">22</p></label
+          >
+        </div>
+      </details>
+      <details class="filter-panel__category-list" id="type">
+        <summary class="filter-panel__category-title">
+          유형
+          <p class="header-count" aria-hidden="true">0</p>
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 18 18"
+            fill="none"
+            style="transform: rotate(180deg)"
+          >
+            <path d="M5 11L9 7L13 11" stroke="#999" stroke-width="1.2"></path>
+          </svg>
+        </summary>
+        <div class="filter-panel__category-box">
+          <input
+            class="filter-panel__category-input"
+            type="checkbox"
+            id="type-1"
+            name="type"
+          /><label class="filter-panel__category-name" for="type-1"
+            >Karly Only
+            <p class="category-count">22</p></label
+          >
+        </div>
+        <div class="filter-panel__category-box">
+          <input
+            class="filter-panel__category-input"
+            type="checkbox"
+            id="type-2"
+            name="type"
+          /><label class="filter-panel__category-name" for="type-2"
+            >희소가치 프로젝트
+            <p class="category-count">22</p></label
+          >
+        </div>
+      </details>
+    </nav>
+  </body>
+</html>
