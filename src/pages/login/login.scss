@@ -1,67 +1,42 @@
-// 믹스인 정의: flex-column
-@mixin flex-column($gap: 0) {
-  display: flex;
-  flex-direction: column;
-
-  @if $gap != 0 {
-    gap: $gap;
-  }
-}
-
-@mixin button-base {
-  height: 3.375rem;
-  width: 21.25rem;
-  border: 0.0625rem solid;
-  border-radius: 0.25rem;
-  font-size: $label-medium;
-  line-height: 150%;
-  font-weight: 600;
-}
-
-%centered-flex {
-  display: flex;
-  justify-content: center;
-}
-
-h1 {
-  text-align: center;
-  font-weight: 600;
-  line-height: 150%;
-}
-
 input {
+  @include size(18.75rem, 1.625rem);
   padding: 0.75rem 1.25rem;
   border-radius: 0.25rem;
   border: 0.0625rem solid;
-  width: 18.75rem;
-  height: 1.625rem;
 }
 
 button {
-  @include button-base;
+  @include size(21.25rem, 3.375rem);
+  border: 0.0625rem solid;
+  border-radius: 0.25rem;
+  @include font($label-medium, 600, 150%);
 }
 
 .title {
-  font-size: $heading-large;
+  @include font($heading-large, 600, 150%);
+  text-align: center;
 }
 
 .login {
   &-container {
-    @include flex-column(2.75rem);
-    width: 21.25rem;
+    @include flex(column, null, null);
+    @include size(21.25rem);
+    gap: 2.75rem;
     padding: 5rem 0;
     margin: auto;
   }
 
   &-form {
-    @include flex-column($paragraph-small);
-    align-items: end;
+    @include flex(column, null, end);
+
+    gap: $paragraph-small;
 
     &__input-group {
-      @include flex-column($paragraph-small);
+      @include flex(column, null, null);
+      gap: $paragraph-small;
 
       input {
-        font-size: $label-medium;
+        @include font($label-medium, 400, 160%);
         border-color: $gray-300-color;
       }
     }
@@ -69,13 +44,12 @@ button {
 }
 
 .login-find {
-  font-size: $label-small;
-  font-weight: 400;
-  line-height: 160%;
+  @include font($label-small, 400, 160%);
 }
 
 .login-button {
-  @include flex-column($paragraph-small);
+  @include flex(column, null, null);
+  gap: $paragraph-small;
 
   &__login {
     background-color: $primary-color;
