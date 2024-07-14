@@ -1,7 +1,7 @@
 import Swiper from 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.mjs';
 import './main.scss';
 import { defineCustomElements } from '@/utils/index';
-import { footer, header } from '@/components/index';
+import { footer, header, AdPopup } from '@/components/index';
 
 // const app = document.getElementById('app');
 
@@ -9,6 +9,7 @@ const init = () => {
   defineCustomElements([
     ['c-header', header],
     ['c-footer', footer],
+    ['c-popup', AdPopup],
   ]);
 
   // appendCustomElement(app, 'c-header');
