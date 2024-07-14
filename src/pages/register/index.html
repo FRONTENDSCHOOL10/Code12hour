@@ -24,15 +24,20 @@
               <span class="register-form__label-text">아이디</span>
               <span class="register__notice-star" aria-label="필수입력 사항">*</span>
             </label>
-            <input
-              class="register-form__input"
-              type="text"
-              id="username"
-              name="username"
-              placeholder="아이디를 입력해주세요"
-              autocomplete="username"
-              required
-            />
+            <div>
+              <input
+                class="register-form__input"
+                type="text"
+                id="username"
+                name="username"
+                placeholder="아이디를 입력해주세요"
+                autocomplete="username"
+                required
+              />
+              <span class="register-form__notice" id="idNotice" style="display: none"
+                >5자 이상 16자 이하의 영문 혹은 영문과 숫자를 조합해 주세요.</span
+              >
+            </div>
             <button class="register-form__button register-form__button--check" type="button">
               <span class="register-form__button-text">중복확인</span>
             </button>
@@ -42,14 +47,20 @@
               <span class="register-form__label-text">비밀번호</span>
               <span class="register__notice-star" aria-label="필수입력 사항">*</span>
             </label>
-            <input
-              class="register-form__input"
-              type="password"
-              id="password"
-              name="password"
-              placeholder="비밀번호를 입력해주세요"
-              required
-            />
+            <div>
+              <input
+                class="register-form__input"
+                type="password"
+                id="password"
+                name="password"
+                placeholder="비밀번호를 입력해주세요"
+                required
+              /><span class="register-form__notice" id="pwdNotice-1" style="display: none"
+                >최소 8자 이상 입력해 주세요.</span
+              ><span class="register-form__notice" id="pwdNotice-2" style="display: none"
+                >영문&#47;숫자&#47;특수문자&#40;공백제외&#41;만 허용하며, 2개 이상 조합</span
+              >
+            </div>
           </div>
           <div class="register-form__group">
             <label
@@ -59,14 +70,18 @@
               <span class="register-form__label-text">비밀번호 확인</span>
               <span class="register__notice-star" aria-label="필수입력 사항">*</span>
             </label>
-            <input
-              class="register-form__input"
-              type="password"
-              id="confirmPassword"
-              name="confirmPassword"
-              placeholder="비밀번호를 한번 더 입력해주세요"
-              required
-            />
+            <div>
+              <input
+                class="register-form__input"
+                type="password"
+                id="confirmPassword"
+                name="confirmPassword"
+                placeholder="비밀번호를 한번 더 입력해주세요"
+                required
+              /><span class="register-form__notice" id="pwdConfirm" style="display: none"
+                >동일한 비밀번호를 입력해 주세요.</span
+              >
+            </div>
           </div>
           <div class="register-form__group">
             <label class="register-form__label register-form__label--required" for="name">
@@ -88,15 +103,19 @@
               <span class="register-form__label-text">이메일</span>
               <span class="register__notice-star" aria-label="필수입력 사항">*</span>
             </label>
-            <input
-              class="register-form__input"
-              type="email"
-              id="email"
-              name="email"
-              placeholder="예&#41; marketkarly@karly.com"
-              autocomplete="email"
-              required
-            />
+            <div>
+              <input
+                class="register-form__input"
+                type="email"
+                id="email"
+                name="email"
+                placeholder="예&#41; marketkarly@karly.com"
+                autocomplete="email"
+                required
+              /><span class="register-form__notice" id="emailConfirm" style="display: none"
+                >이메잃 형식으로 입력해 주세요.</span
+              >
+            </div>
             <button class="register-form__button register-form__button--check" type="button">
               <span class="register-form__button-text">중복확인</span>
             </button>

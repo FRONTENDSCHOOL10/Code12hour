@@ -33,6 +33,7 @@ body {
 
     &__group {
       @include flex(row, null, center);
+      position: relative;
       padding: 1.25rem 0;
       margin: auto;
       gap: 0.625rem;
@@ -65,6 +66,13 @@ body {
       &::placeholder {
         color: $gray-400-color;
       }
+    }
+
+    &__notice {
+      @include flex(column);
+      position: absolute;
+      padding-top: 0.25px;
+      @include font(0.8125rem, 400, 160%, $info--error-color);
     }
 
     &__button {
