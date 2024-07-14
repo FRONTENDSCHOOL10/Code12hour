@@ -1,48 +1,42 @@
 body {
-  flex-direction: column;
+  @include flex(column);
   margin: 0 auto;
-}
-
-hr {
-  width: 40rem;
 }
 
 .register {
   padding: 5rem 0 2.5rem 0;
 
   &__title {
-    font-size: $heading-large;
+    @include font($heading-large, 600, 150%);
     text-align: center;
   }
 
+  &-fieldset {
+    border-top: 0.125rem solid $content-color;
+    border-bottom: 0.0625rem solid $content-color;
+  }
   &__notice {
-    display: flex;
-    justify-content: flex-end;
-    height: 2.75rem;
-    align-items: end;
-    width: 40rem;
+    @include flex(row, end, end);
+    @include size(40rem, 2.75rem);
     margin: auto;
 
     &-star {
       color: $info--error-color;
     }
     &-info {
-      font-size: $label-small;
-      font-weight: 600;
-      line-height: 150%;
+      @include font($label-small, 600, 150%);
     }
   }
 
   &-form {
-    display: flex;
-    flex-direction: column;
+    @include flex(column, null, center);
 
     &__group {
-      display: flex;
-      width: 40rem;
+      @include flex(row, null, center);
       padding: 1.25rem 0;
       margin: auto;
       gap: 0.625rem;
+      @include size(40rem);
 
       &-toggle {
         padding-top: 0;
@@ -50,28 +44,22 @@ hr {
     }
 
     &__label {
-      display: flex;
-      width: 8.1875rem;
-      align-items: center;
+      @include flex(row, null, center);
       padding: 0.25rem;
+      @include size(8.1875rem);
 
       &-text {
         padding: 0.25rem;
-        font-size: $label-medium;
-        font-weight: 600;
-        line-height: 150%;
+        @include font($label-medium, 600, 150%);
       }
     }
 
     &__input {
-      width: 18.3125rem;
-      height: 2.75rem;
       padding: 0 1.25rem;
+      @include size(18.3125rem, 2.75rem);
       border: 0.0625rem solid $gray-300-color;
       border-radius: 0.25rem;
-      font-size: $paragraph-medium;
-      font-weight: 400;
-      line-height: 160%;
+      @include font($paragraph-medium, 400, 160%);
       text-align: center;
 
       &::placeholder {
@@ -80,73 +68,64 @@ hr {
     }
 
     &__button {
-      width: 8.9375rem;
-      height: 2.75rem;
+      @include size(8.9375rem, 2.75rem);
       border: 0.0625rem solid $primary-color;
       border-radius: 0.25rem;
 
       &-text {
-        font-size: $paragraph-medium;
-        font-weight: 600;
-        line-height: 150%;
+        @include font($paragraph-medium, 600, 150%);
         color: $primary-color;
       }
 
       &-search {
-        width: 20.9375rem;
+        @include size(20.9375rem);
       }
     }
 
     &__address {
-      display: flex;
-      flex-direction: column;
+      @include flex(column);
       gap: 0.25rem;
+
       &-notice {
-        font-size: $label-small;
         padding-top: 0.25rem;
+        @include font($label-small, 400, 160%);
       }
     }
 
     &__gender {
-      display: flex;
-      justify-content: space-between;
-      width: 20.8125rem;
+      @include flex(row, space-between, center);
+      @include size(20.8125rem);
     }
 
     &__gender-option {
-      display: flex;
-      align-items: center;
+      @include flex(row, null, center);
       gap: 0.5rem;
     }
 
     &__radio {
       &-input {
-        display: flex;
-        width: 1.5rem;
-        height: 1.5rem;
+        @include flex(row, null, center);
+        @include size(1.5rem, 1.5rem);
       }
       &-label {
-        display: flex;
+        @include flex(row, null, center);
       }
     }
 
     &__additional {
-      display: flex;
-      justify-content: space-between;
-      width: 20.8125rem;
+      @include flex(row, space-between, center);
+      @include size(20.8125rem);
 
       &-option {
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
+        @include flex(row, null, center);
         gap: 0.5rem;
       }
     }
   }
 
   &__button {
-    text-align: center;
     padding: 2.5rem 0;
+    text-align: center;
   }
 
   &-form__radio {
@@ -154,8 +133,7 @@ hr {
     appearance: none;
     margin: 0;
     padding: 0.03125rem;
-    width: 1.5rem;
-    height: 1.5rem;
+    @include size(1.5rem, 1.5rem);
     background-repeat: no-repeat;
     background-size: contain;
     background: url('/assets/icons/input/isSelected=false.svg') no-repeat;
@@ -165,98 +143,77 @@ hr {
     }
 
     &-label {
-      font-size: $label-medium;
-      font-weight: 600;
-      line-height: 150%;
+      @include font($label-medium, 600, 150%);
     }
   }
 
   &__submit {
-    width: 21.25rem;
-    height: 2.75rem;
-    font-weight: 600;
-    line-height: 150%;
+    @include size(21.25rem, 2.75rem);
     background-color: $primary-color;
     color: $white-color;
+    @include font($label-medium, 600, 150%);
   }
 }
 
 .terms-form {
   padding: 1.25rem 0;
-  width: 40rem;
   margin: auto;
+  @include size(40rem);
+  border-bottom: 1px solid $content-color;
 
   &__container {
-    display: flex;
+    @include flex(row);
   }
 
   &__label {
-    display: flex;
-    width: 8.6875rem;
-    height: 2.75rem;
+    @include flex(row);
     padding: 0.25rem;
     gap: 0.25rem;
+    @include size(8.6875rem, 2.75rem);
+
     &-text {
       padding: 0.25rem;
-      font-size: $label-medium;
-      font-weight: 600;
-      line-height: 150%;
+      @include font($label-medium, 600, 150%);
     }
   }
 
   &__checkbox {
     &-wrapper {
-      display: flex;
-
-      align-items: center;
+      @include flex(row, null, center);
       gap: 0.5rem;
     }
+
     &-all {
-      font-size: 1.3125rem;
-      font-weight: 600;
-      line-height: 150%;
+      @include font($label-large, 600, 150%);
     }
     &-select {
-      font-size: $label-medium;
-      font-weight: 400;
-      line-height: 160%;
+      @include font($label-medium, 400, 160%);
     }
   }
 
   &__all-agree {
-    display: flex;
-    width: 429px;
-    flex-direction: column;
+    @include flex(column);
+    @include size(26.8125rem);
   }
 
   &__notice {
-    display: flex;
+    @include flex(row, null, center);
     margin-left: 2rem;
-    align-items: center;
-    height: 1.25rem;
-    font-size: $paragraph-small;
-    white-space: nowrap;
-
-    color: $gray-400-color;
+    @include size(auto, 1.25rem);
+    @include font($paragraph-small, 400, 160%, $gray-400-color);
   }
+
   &__item {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    @include flex(row, space-between, center);
     padding: 0.625rem 0;
-    font-weight: 400;
-    line-height: 160%;
+    @include font($label-medium, 400, 160%);
   }
 
   &__link {
     display: inline-block;
-    width: auto;
-    height: 1.1875rem;
-    font-size: $paragraph-small;
-    font-weight: 400;
-    line-height: 160%;
+    @include size(auto, 1.1875rem);
+    @include font($paragraph-small, 400, 160%, $primary-color);
     text-align: right;
-    color: $primary-color;
   }
   // 체크박스 이미지 false
   &__checkbox {
@@ -264,8 +221,8 @@ hr {
     appearance: none;
     margin: 0;
     padding: 0.03125rem;
-    width: 1.4375rem;
-    height: 1.4375rem;
+    @include size(1.4375rem, 1.4375rem);
+
     background-repeat: no-repeat;
     background-size: contain;
     background-image: url('/assets/icons/input/isChecked=false.svg');
