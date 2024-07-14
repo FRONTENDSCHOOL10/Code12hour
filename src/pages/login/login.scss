@@ -19,7 +19,7 @@ button {
 
 .login {
   &-container {
-    @include flex(column, null, null);
+    @include flex(column);
     @include size(21.25rem);
     gap: 2.75rem;
     padding: 5rem 0;
@@ -32,7 +32,7 @@ button {
     gap: $paragraph-small;
 
     &__input-group {
-      @include flex(column, null, null);
+      @include flex(column);
       gap: $paragraph-small;
 
       input {
@@ -48,7 +48,7 @@ button {
 }
 
 .login-button {
-  @include flex(column, null, null);
+  @include flex(column);
   gap: $paragraph-small;
 
   &__login {
