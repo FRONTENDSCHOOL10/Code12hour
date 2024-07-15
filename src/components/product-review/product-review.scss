@@ -233,10 +233,11 @@ $line-height-md: 150%;
 
 // 후기 리스트
 .review-article__list {
-  @include flex(row, left, left);
-  padding: 1.25rem 0 1.25rem 1.25rem;
-  border-bottom: $border-bottom;
-
+  &-area {
+    @include flex(row, left, left);
+    padding: 1.25rem 0 1.25rem 1.25rem;
+    border-bottom: $border-bottom;
+  }
   // 후기 작성자
   .review-item {
     flex: 0 0 16.6rem;

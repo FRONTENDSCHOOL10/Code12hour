@@ -1,1 +1,0 @@
-import './product-inquiry.scss';

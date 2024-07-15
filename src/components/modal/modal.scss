@@ -6,6 +6,7 @@ $modal-border-radius: 1rem;
 $label-width: 6.25rem;
 $input-height: 2.75rem;
 $textarea-height: 12.375rem;
+$review-textarea-height: 16.25rem;
 
 // 믹스인 정의
 @mixin font-style($size, $weight, $line-height, $color: null) {
@@ -61,10 +62,19 @@ $textarea-height: 12.375rem;
   }
 
   &__content {
-    @include size($modal-width, $modal-height);
-    padding: $modal-padding;
+    @include size($modal-width);
+    @include flex(column, _, _);
+    min-height: $modal-height;
+    // overflow: hidden;
     border-radius: $modal-border-radius;
     background-color: $white-color;
+    padding: $modal-padding;
+  }
+
+  &__inner {
+    height: 100%;
+    // flex: 1;
+    // overflow-y: auto;
   }
 
   &__header {
@@ -124,7 +134,7 @@ $textarea-height: 12.375rem;
     }
 
     &-char-count {
-      display: flex;
+      display: block;
       position: absolute;
       right: 0;
       bottom: 0;
@@ -169,6 +179,10 @@ $textarea-height: 12.375rem;
     resize: none;
   }
 
+  &__textarea.review__textarea {
+    height: $review-textarea-height;
+  }
+
   &__textarea-placeholder {
     overflow-y: scroll;
     position: absolute;
@@ -210,34 +224,39 @@ $textarea-height: 12.375rem;
       }
     }
   }
+  &__textarea-placeholder.review__textarea-placeholder {
+    height: $review-textarea-height;
+  }
 }
 
-.checkbox {
-  margin-left: 6.25rem;
-  padding-bottom: 1.37rem;
+.modal__bottom {
+  height: 3.62rem;
 
-  &__input {
-    &:checked + .checkbox__icon {
-      background: url('/assets/icons/input/isChecked=true.svg') no-repeat center / contain;
+  .checkbox {
+    margin-left: 6.25rem;
+
+    &__input {
+      &:checked + .checkbox__icon {
+        background: url('/assets/icons/input/isChecked=true.svg') no-repeat center / contain;
+      }
+    }
+
+    &__label {
+      @include flex(row, flex-start, center);
+      gap: 0.5rem;
+    }
+
+    &__icon {
+      @include size(1.5rem, 1.5rem);
+      display: inline-block;
+      background: url('/assets/icons/input/isChecked=false.svg') no-repeat center / contain;
+    }
+
+    &__text {
+      @include font-style($paragraph-small, 400, 160%, currentColor); // black -> currentColor
     }
   }
-
-  &__label {
-    @include flex(row, flex-start, center);
-    gap: 0.5rem;
-  }
-
-  &__icon {
-    @include size(1.5rem, 1.5rem);
-    display: inline-block;
-    background: url('/assets/icons/input/isChecked=false.svg') no-repeat center / contain;
-  }
-
-  &__text {
-    @include font-style($paragraph-small, 400, 160%, currentColor); // black -> currentColor
-  }
 }
-
 .modal__actions {
   @include flex(row, center, center);
   padding-top: 1.25rem;
@@ -258,10 +277,11 @@ $textarea-height: 12.375rem;
 .modal__button--submit {
   @include font-style($label-medium, 500, 150%, $white-color); // 600 -> 500
   background: $gray-100-color;
+}
 
-  &:active {
-    background: $primary-color;
-  }
+.modal__button--submit.active {
+  @include font-style($label-medium, 500, 150%, $white-color); // 600 -> 500
+  background: $primary-color;
 }
 
 .visually-hidden {

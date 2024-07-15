@@ -1,0 +1,91 @@
+.cart-dialog-wrapper {
+  @include flex(column nowrap, space-between);
+  gap: 1.75rem;
+  // border-radius: 1rem;
+  // border: 0;
+  // box-shadow: $below-medium;
+  // padding: 1.5rem 1.25rem;
+}
+.cart-dialog {
+  border: 0;
+  border-radius: 1rem;
+  box-shadow: $below-medium;
+  padding: 1.5rem 1.25rem;
+
+  &__title,
+  &__price--sale,
+  &__quantity-group,
+  &__total-group {
+    font-weight: 600;
+  }
+
+  &__content-group {
+    @include flex(row nowrap, space-between, center);
+    padding: 12px 0;
+    border-top: 1px solid rgb(244, 244, 244); //TODO: 컬리 오리지널 참고
+    border-bottom: 1px solid rgb(244, 244, 244); //TODO: 컬리 오리지널 참고
+  }
+
+  &__price--original {
+    font-size: 0.75rem;
+    color: rgb(181, 181, 181);
+    text-decoration: line-through;
+  }
+
+  &__quantity-group {
+    @include flex(row nowrap, center, center);
+    gap: 0.5rem;
+
+    border: 1px solid rgb(221, 223, 225); //TODO: 컬리 오리지널 참고
+    border-radius: 3px; //TODO: 컬리 오리지널 참고
+
+    button {
+      width: 1.875rem;
+      height: 1.875rem;
+    }
+  }
+
+  &__form-group {
+    height: 3.375rem;
+    @include flex(row nowrap, space-between);
+    gap: 0.5rem;
+  }
+
+  &__form-button--cancel,
+  &__form-button--submit {
+    width: 10.9rem;
+    border-radius: 3px;
+    font-weight: 600;
+  }
+
+  &__form-button--cancel {
+    border: 1px solid rgb(221, 221, 221);
+  }
+
+  &__form-button--submit {
+    color: $white-color;
+    background-color: $primary-color;
+  }
+
+  &__total-group {
+    @include flex(row nowrap, space-between, center);
+  }
+
+  &__total {
+    font-size: 1.5rem;
+  }
+}
+
+.product-item {
+  &__button {
+    @include size(100%, 2.25rem);
+    border: 1px solid #dddddd;
+    border-radius: 0.25rem;
+
+    &::before {
+      content: url('/assets/icons/product-list/Cart.svg');
+      vertical-align: middle;
+      margin-right: 0.25rem;
+    }
+  }
+}

@@ -8,25 +8,20 @@
 @mixin icon-button($icon-path) {
   width: 2.25rem;
   height: 2.25rem;
-  background-color: $black-color;
-  -webkit-mask: url($icon-path) no-repeat center;
-  mask: url($icon-path) no-repeat center;
-  -webkit-mask-size: contain;
-  mask-size: contain;
+  background-image: url($icon-path);
 
-  &:hover {
-    background-color: $primary-color;
+  &:hover,
+  &:focus {
+    transform: scale(1.1);
   }
 }
 
-// Placeholders
 %link-style {
   font-size: $paragraph-small;
   font-weight: 400;
   line-height: 160%;
 }
 
-// Styles
 .karly-header {
   display: flex;
   flex-direction: column;
@@ -61,6 +56,7 @@
       font-size: $label-medium;
       font-weight: 600;
       line-height: 150%;
+      text-decoration: underline;
     }
   }
 
@@ -107,21 +103,21 @@
   @include flex-center;
   gap: 0.75rem;
 
-  button {
-    font-size: $label-large;
-    font-weight: 400;
-    line-height: 150%;
-    color: $gray-400-color;
-
-    &.is-active,
-    &:hover {
-      color: $primary-color;
-      font-weight: 600;
-    }
-  }
-
   .divider {
     height: 0.875rem;
+  }
+}
+
+.logo-link {
+  font-size: $label-large;
+  font-weight: 400;
+  line-height: 150%;
+  color: $gray-400-color;
+
+  &-is-active,
+  &:hover {
+    color: $primary-color;
+    font-weight: 600;
   }
 }
 
@@ -173,10 +169,12 @@
   }
 
   &__wishlist {
+    display: block;
     @include icon-button('/assets/icons/header/Heart.svg');
   }
 
   &__cart {
+    display: block;
     @include icon-button('/assets/icons/header/Cart.svg');
   }
 }
@@ -186,14 +184,16 @@
   justify-content: space-between;
   align-items: center;
   width: 65.625rem;
+  margin-bottom: 0.1rem;
 }
 
 .category-menu {
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  cursor: pointer;
+  position: relative;
   padding: 1rem 1rem;
+  cursor: pointer;
 
   &__icon {
     width: 1rem;
@@ -207,9 +207,15 @@
   }
 
   &__text {
+    outline: none;
     font-size: $label-medium;
     font-weight: 600;
     line-height: 150%;
+  }
+
+  &.focused {
+    border-radius: 2px;
+    outline: 2px solid #015ecc;
   }
 
   &:hover {
@@ -271,15 +277,11 @@
 .menu-container {
   display: none;
   position: absolute;
-  top: 15.0625rem;
+  top: 3.82rem;
   background-color: white;
   border: 1px solid #ccc;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   z-index: 1000;
-}
-
-.category-menu:hover .menu-container {
-  display: block;
 }
 
 .menu-list__item {
@@ -289,13 +291,67 @@
   align-items: flex-start;
   gap: 0.5rem;
 
+  &.focused {
+    border-radius: 2px;
+    outline: 2px solid #015ecc;
+  }
+
   img {
     width: 1.5rem;
     height: 1.5rem;
   }
 
-  span {
+  a {
+    outline: none;
     font-size: $label-medium;
     line-height: 150%;
+  }
+}
+
+.location-tooltip {
+  display: none;
+  position: absolute;
+  right: -3.5rem;
+  top: 2.9rem;
+  width: 16.6875rem;
+  padding: 1.125rem 1.0625rem 1.0625rem;
+  border: 1px solid $gray-100-color;
+  background-color: #fff;
+  z-index: 1200;
+
+  p {
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 150%;
+    letter-spacing: 0.02rem;
+  }
+
+  strong {
+    color: $primary-color;
+  }
+
+  &-button {
+    @include flex(row, space-between, flex-start);
+    padding-top: 1rem;
+
+    &__login {
+      display: inline-block;
+      padding: 0.7rem 1.5rem;
+      border: 1px solid $primary-color;
+      border-radius: 0.1875rem;
+      font-size: 1rem;
+      font-weight: 500;
+      color: $primary-color;
+    }
+
+    &__location {
+      padding: 0.6rem 3.4rem;
+      border: 1px solid $primary-color;
+      border-radius: 0.1875rem;
+      font-size: 1rem;
+      font-weight: 500;
+      color: $white-color;
+      background-color: $primary-color;
+    }
   }
 }
