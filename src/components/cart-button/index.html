@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>장바구니 버튼</title>
+    <script type="module" src="./cart-button.js"></script>
+  </head>
+  <body>
+    <dialog class="cart-dialog" aria-labelledby="item-title">
+      <div class="cart-dialog-wrapper">
+        <p class="cart-dialog__title" id="item-title">[하코야] 살얼음 동동 냉메밀 소바</p>
+        <div class="cart-dialog__content-group">
+          <div class="cart-dialog__price-group">
+            <span class="cart-dialog__price--sale"><span class="sr-only">할인가</span>4,980원</span>
+            <span class="cart-dialog__price--original"
+              ><span class="sr-only">정가</span>5,000원</span
+            >
+          </div>
+          <div class="cart-dialog__quantity-group">
+            <button class="cart-dialog__button--decrease" type="button">-</button>
+            <span class="cart-dialog__quantity-value"><span class="sr-only">개수</span>1</span>
+            <button class="cart-dialog__button--increase" type="button">+</button>
+          </div>
+        </div>
+        <div class="cart-dialog__total-group">
+          <span>합계</span>
+          <span class="cart-dialog__total">4,950원</span>
+        </div>
+        <form class="cart-dialog__form-group" method="dialog">
+          <button class="cart-dialog__form-button--cancel" type="button">취소</button>
+          <button class="cart-dialog__form-button--submit" type="button">장바구니 담기</button>
+        </form>
+      </div>
+    </dialog>
+    <button class="product-item__button" type="button">담기</button>
+  </body>
+</html>

@@ -1,7 +1,7 @@
 import Swiper from 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.mjs';
 import './main.scss';
 import { defineCustomElements } from '@/utils/index';
-import { footer, header, AdPopup, Sidebar } from '@/components/index';
+import { footer, header, AdPopup, Sidebar, CartButton } from '@/components/index';
 
 // const app = document.getElementById('app');
 
@@ -11,6 +11,7 @@ const init = () => {
     ['c-footer', footer],
     ['c-popup', AdPopup],
     ['c-sidebar', Sidebar],
+    ['c-cart', CartButton],
   ]);
 
   // appendCustomElement(app, 'c-header');
