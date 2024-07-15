@@ -97,15 +97,21 @@
               <span class="register-form__label-text">이름</span>
               <span class="register__notice-star" aria-label="필수입력 사항">*</span>
             </label>
-            <input
-              class="register-form__input"
-              type="text"
-              id="name"
-              name="name"
-              placeholder="이름을 입력해주세요"
-              autocomplete="name"
-              required
-            />
+            <div>
+              <input
+                class="register-form__input"
+                type="text"
+                id="name"
+                name="name"
+                placeholder="이름을 입력해주세요"
+                autocomplete="name"
+                required
+              /><span class="register-form__notice" id="nameNotice-1" style="display: none"
+                >이름을 입력해 주세요.</span
+              ><span class="register-form__notice" id="nameNotice-2" style="display: none"
+                >사용 할 수 없는 이름 입니다.</span
+              >
+            </div>
           </div>
           <!-- 이메일 -->
           <div class="register-form__group">

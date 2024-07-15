@@ -14,6 +14,7 @@ export const setupSubmitButton = () => {
     const name = document.getElementById('name').value;
     const email = document.getElementById('email').value;
     const address = document.getElementById('address-input').value;
+    const nameInput = document.getElementById('name').value;
 
     // 유효성 검사
     if (!validateUsername(userId)) {
@@ -53,8 +54,7 @@ export const setupSubmitButton = () => {
     }
 
     // 모든 검증이 통과되면 가입 성공
-    alert('회원가입에 성공하였습니다!');
+    alert(`환영합니다! ${nameInput}님 가입을 축하드립니다!`);
     // 여기에 회원가입 성공 후의 로직을 추가할 수 있습니다.
-    // 예: 서버에 데이터 전송, 로그인 페이지로 리다이렉트 등
   });
 };

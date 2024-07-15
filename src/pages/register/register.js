@@ -8,6 +8,7 @@ import { setupEmailValidation } from './email-validation';
 import { setupAgreementCheckboxes } from './agreement-checkboxes';
 import { setupSubmitButton } from './submit-button';
 import { setupAddressSearch } from './address-search';
+import { setupNameValidation } from './name-validation';
 
 // const app = document.getElementById('app');
 
@@ -21,10 +22,9 @@ const init = () => {
   // appendCustomElement(app, 'c-footer');
 };
 
-init();
-
 document.addEventListener('DOMContentLoaded', () => {
   init();
+  setupNameValidation();
   setupUsernameValidation();
   setupPasswordValidation();
   setupPasswordConfirmation();
