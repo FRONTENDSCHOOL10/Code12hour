@@ -1,6 +1,6 @@
 import './product-detail.scss';
 import { defineCustomElements } from '@/utils/index';
-import { footer, header, review } from '@/components/index';
+import { footer, header, review, inquiry } from '@/components/index';
 
 // const app = document.getElementById('app');
 
@@ -9,6 +9,7 @@ const init = () => {
     ['c-header', header],
     ['c-footer', footer],
     ['c-review', review],
+    ['c-inquiry', inquiry],
   ]);
 
   // appendCustomElement(app, 'c-header');
