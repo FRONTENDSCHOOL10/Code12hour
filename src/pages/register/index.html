@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>마켓칼리 회원가입</title>
     <script type="module" src="./register.js"></script>
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
   </head>
 
   <body>
@@ -19,8 +20,9 @@
       <form class="register-form">
         <fieldset class="register-fieldset">
           <legend class="sr-only">회원가입 폼</legend>
+          <!-- 아이디 -->
           <div class="register-form__group">
-            <label class="register-form__label register-form__label--required" for="username">
+            <label class="register-form__label register-form__label--required" for="userid">
               <span class="register-form__label-text">아이디</span>
               <span class="register__notice-star" aria-label="필수입력 사항">*</span>
             </label>
@@ -28,20 +30,25 @@
               <input
                 class="register-form__input"
                 type="text"
-                id="username"
-                name="username"
+                id="userId"
+                name="userid"
                 placeholder="아이디를 입력해주세요"
-                autocomplete="username"
+                autocomplete="on"
                 required
               />
               <span class="register-form__notice" id="idNotice" style="display: none"
                 >5자 이상 16자 이하의 영문 혹은 영문과 숫자를 조합해 주세요.</span
               >
             </div>
-            <button class="register-form__button register-form__button--check" type="button">
-              <span class="register-form__button-text">중복확인</span>
+            <button
+              class="register-form__button register-form__button--check"
+              id="userIdButton"
+              type="button"
+            >
+              <span class="register-form__button-text" id="usernameButtonText">중복확인</span>
             </button>
           </div>
+          <!-- 비밀번호 -->
           <div class="register-form__group">
             <label class="register-form__label register-form__label--required" for="password">
               <span class="register-form__label-text">비밀번호</span>
@@ -62,6 +69,7 @@
               >
             </div>
           </div>
+          <!-- 비밀번호 확인 -->
           <div class="register-form__group">
             <label
               class="register-form__label register-form__label--required"
@@ -83,6 +91,7 @@
               >
             </div>
           </div>
+          <!-- 이름 -->
           <div class="register-form__group">
             <label class="register-form__label register-form__label--required" for="name">
               <span class="register-form__label-text">이름</span>
@@ -98,6 +107,7 @@
               required
             />
           </div>
+          <!-- 이메일 -->
           <div class="register-form__group">
             <label class="register-form__label register-form__label--required" for="email">
               <span class="register-form__label-text">이메일</span>
@@ -112,14 +122,22 @@
                 placeholder="예&#41; marketkarly@karly.com"
                 autocomplete="email"
                 required
-              /><span class="register-form__notice" id="emailConfirm" style="display: none"
-                >이메잃 형식으로 입력해 주세요.</span
+              /><span class="register-form__notice" id="emailConfirm-1" style="display: none"
+                >이메일을 입력해 주세요.</span
+              >
+              <span class="register-form__notice" id="emailConfirm-2" style="display: none"
+                >이메일 형식으로 입력해 주세요.</span
               >
             </div>
-            <button class="register-form__button register-form__button--check" type="button">
-              <span class="register-form__button-text">중복확인</span>
+            <button
+              class="register-form__button register-form__button--check"
+              id="emailButton"
+              type="button"
+            >
+              <span class="register-form__button-text" id="emailButtonText">중복확인</span>
             </button>
           </div>
+          <!-- 인증번호 -->
           <div class="register-form__group">
             <label class="register-form__label register-form__label--required" for="authCode">
               <span class="register-form__label-text">인증번호</span>
@@ -136,12 +154,36 @@
               <span class="register-form__button-text">인증번호 확인</span>
             </button>
           </div>
-          <div class="register-form__group">
-            <label class="register-form__label register-form__label--required" for="address-button">
+          <!-- 주소 -->
+          <div class="register-form__group register-form__address-search">
+            <label
+              class="register-form__label register-form__label--required register-form__label-address"
+              for="address-button"
+            >
               <span class="register-form__label-text">주소</span>
               <span class="register__notice-star" aria-label="필수입력 사항">*</span>
             </label>
             <div class="register-form__address">
+              <div class="register-form__search-input">
+                <input
+                  type="text"
+                  class="register-form__input register-form__address-input"
+                  id="address-input"
+                  placeholder="주소를 검색해 주세요"
+                />
+                <input
+                  type="text"
+                  class="register-form__input register-form__address-input"
+                  id="address-to-input"
+                  placeholder="나머지 주소를 입력해 주세요"
+                />
+              </div>
+              <span class="register-form__address-notice"
+                >배송지에 따라 상품 정보가 달라질 수 있습니다.</span
+              >
+              <div class="register-form__search-button"></div>
+            </div>
+            <div class="register-form__search">
               <button
                 class="register-form__button register-form__button-search"
                 type="button"
@@ -153,11 +195,9 @@
                   >주소 검색</span
                 >
               </button>
-              <span class="register-form__address-notice"
-                >배송지에 따라 상품 정보가 달라질 수 있습니다.</span
-              >
             </div>
           </div>
+          <!-- 성별 -->
           <div class="register-form__group">
             <span class="register-form__label">
               <span class="register-form__label-text">성별</span>
@@ -201,6 +241,7 @@
               </div>
             </div>
           </div>
+          <!-- 생년월일 -->
           <div class="register-form__group">
             <label class="register-form__label" for="birth-date">
               <span class="register-form__label-text">생년월일</span>
@@ -214,6 +255,7 @@
               aria-label="생년월일을 입력해주세요."
             />
           </div>
+          <!-- 추가입력 사항 -->
           <div class="register-form__group">
             <span class="register-form__label">
               <span class="register-form__label-text">추가입력 사항</span>
@@ -245,6 +287,7 @@
               </div>
             </div>
           </div>
+          <!-- 추천인 이벤트 입력창 -->
           <div class="register-form__group register-form__group-toggle">
             <label class="register-form__label register-form__label--required" for="invite"></label>
             <input

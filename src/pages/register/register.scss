@@ -33,7 +33,6 @@ body {
 
     &__group {
       @include flex(row, null, center);
-      position: relative;
       padding: 1.25rem 0;
       margin: auto;
       gap: 0.625rem;
@@ -49,6 +48,9 @@ body {
       padding: 0.25rem;
       @include size(8.1875rem);
 
+      &-address {
+        padding-bottom: 5.625rem;
+      }
       &-text {
         padding: 0.25rem;
         @include font($label-medium, 600, 150%);
@@ -84,15 +86,33 @@ body {
         @include font($paragraph-medium, 600, 150%);
         color: $primary-color;
       }
+      &-research {
+        position: absolute;
+      }
+    }
 
-      &-search {
-        @include size(20.9375rem);
+    &__search {
+      position: relative;
+
+      &-button {
+        align-items: normal;
+        @include size(8.9375rem);
+      }
+
+      &-input {
+        display: flex;
+        flex-direction: column;
+        gap: 0.625rem;
       }
     }
 
     &__address {
       @include flex(column);
       gap: 0.25rem;
+
+      &-search {
+        align-items: normal;
+      }
 
       &-notice {
         padding-top: 0.25rem;
