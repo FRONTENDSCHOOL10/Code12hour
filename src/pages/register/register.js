@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
   setupPasswordConfirmation(pb);
   setupEmailValidation(pb);
   setupAgreementCheckboxes();
-  const inviteValidation = setupInviteValidation(pb);
-  setupSubmitButton(pb, inviteValidation);
+  setupInviteValidation(pb);
+  setupSubmitButton(pb);
   setupAddressSearch(pb);
 });
