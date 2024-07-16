@@ -31,7 +31,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
-  // 초기 상태 설정
   toggleVisibility();
 
   addInfoFriend.addEventListener('change', toggleVisibility);

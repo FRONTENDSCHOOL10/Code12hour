@@ -36,7 +36,6 @@ export const setupUsernameValidation = (pb) => {
         alert('사용 가능한 아이디 입니다.');
         checkButton.style.borderColor = '#a6a6a6';
         checkButtonText.style.color = '#a6a6a6';
-        // 버튼은 비활성화 상태로 유지
       }
     } catch (error) {
       console.error('Username check error:', error);

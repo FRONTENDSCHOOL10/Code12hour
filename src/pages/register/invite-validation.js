@@ -47,8 +47,6 @@ export const setupInviteValidation = (pb) => {
       return;
     }
 
-    // 이벤트명 유효성 검사 로직 (서버에서 확인하는 것이 좋습니다)
-    // 이 예제에서는 단순히 입력된 이벤트명을 유효한 것으로 간주합니다.
     alert('이벤트 참여가 확인되었습니다.');
     validEventName = eventName;
     disableInput(eventnameInput, eventnameButton);

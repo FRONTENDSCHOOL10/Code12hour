@@ -52,7 +52,6 @@ export const setupEmailValidation = (pb) => {
         alert('사용 가능한 이메일 입니다.');
         emailButton.style.borderColor = '#a6a6a6';
         emailButtonText.style.color = '#a6a6a6';
-        // 버튼은 비활성화 상태로 유지
       }
     } catch (error) {
       console.error('이메일 확인 중 오류 발생:', error);

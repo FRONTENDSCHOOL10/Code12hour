@@ -1,8 +1,14 @@
-let searchedAddress = '';
+let addressInput;
+let addressToInput;
 
 export const setupAddressSearch = () => {
   const addressSearchButton = document.getElementById('address-button');
-  const addressInput = document.getElementById('address-input');
+  addressInput = document.getElementById('address-input');
+  addressToInput = document.getElementById('address-to-input');
+
+  // 페이지 로드 시 저장된 주소 정보 복원 (검색 결과만)
+  const savedAddress = sessionStorage.getItem('searchedAddress');
+  if (savedAddress) addressInput.value = savedAddress;
 
   addressSearchButton.addEventListener('click', () => {
     if (window.daum && window.daum.Postcode) {
@@ -23,19 +29,18 @@ export const setupAddressSearch = () => {
             }
           }
 
-          searchedAddress = `(${data.zonecode}) ${addr} ${extraAddr}`;
+          let searchedAddress = `(${data.zonecode}) ${addr} ${extraAddr}`;
 
           if (data.userSelectedType === 'R') {
             searchedAddress += data.buildingName !== '' ? `, ${data.buildingName}` : '';
           }
 
-          addressInput.value = searchedAddress;
+          if (data.autoJibunAddress) {
+            searchedAddress += ` (지번: ${data.autoJibunAddress})`;
+          }
 
-          // 주소 업데이트 이벤트 발생
-          const addressEvent = new CustomEvent('addressUpdated', {
-            detail: { searchedAddress: searchedAddress },
-          });
-          document.dispatchEvent(addressEvent);
+          addressInput.value = searchedAddress;
+          sessionStorage.setItem('searchedAddress', searchedAddress);
         },
       }).open();
     } else {
@@ -44,4 +49,10 @@ export const setupAddressSearch = () => {
   });
 };
 
-export const getSearchedAddress = () => searchedAddress;
+export const getSearchedAddress = () => {
+  if (!addressInput || !addressToInput) {
+    console.error('Address inputs are not initialized');
+    return '';
+  }
+  return `${addressInput.value} ${addressToInput.value}`.trim();
+};
