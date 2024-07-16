@@ -1,3 +1,5 @@
+let searchedAddress = '';
+
 export const setupAddressSearch = () => {
   const addressSearchButton = document.getElementById('address-button');
   const addressInput = document.getElementById('address-input');
@@ -21,20 +23,19 @@ export const setupAddressSearch = () => {
             }
           }
 
-          // 우편번호와 주소 정보를 해당 필드에 넣는다.
-          let fullAddress = `(${data.zonecode}) ${addr} ${extraAddr}`;
+          searchedAddress = `(${data.zonecode}) ${addr} ${extraAddr}`;
 
-          // 상세주소 정보가 있으면 추가한다.
           if (data.userSelectedType === 'R') {
-            fullAddress += data.buildingName !== '' ? `, ${data.buildingName}` : '';
+            searchedAddress += data.buildingName !== '' ? `, ${data.buildingName}` : '';
           }
 
-          // 상세주소 정보를 추가한다.
-          if (data.autoJibunAddress) {
-            fullAddress += ` (지번: ${data.autoJibunAddress})`;
-          }
+          addressInput.value = searchedAddress;
 
-          addressInput.value = fullAddress;
+          // 주소 업데이트 이벤트 발생
+          const addressEvent = new CustomEvent('addressUpdated', {
+            detail: { searchedAddress: searchedAddress },
+          });
+          document.dispatchEvent(addressEvent);
         },
       }).open();
     } else {
@@ -42,3 +43,5 @@ export const setupAddressSearch = () => {
     }
   });
 };
+
+export const getSearchedAddress = () => searchedAddress;

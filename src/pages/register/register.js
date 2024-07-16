@@ -1,5 +1,6 @@
 import './register.scss';
-
+import './add-options';
+import pb from '@/api/pocketbase';
 import { defineCustomElements } from '@/utils/index';
 import { footer, header } from '@/components/index';
 import { setupUsernameValidation } from './username-validation';
@@ -9,27 +10,24 @@ import { setupAgreementCheckboxes } from './agreement-checkboxes';
 import { setupSubmitButton } from './submit-button';
 import { setupAddressSearch } from './address-search';
 import { setupNameValidation } from './name-validation';
-
-// const app = document.getElementById('app');
+import { setupInviteValidation } from './invite-validation';
 
 const init = () => {
   defineCustomElements([
     ['c-header', header],
     ['c-footer', footer],
   ]);
-
-  // appendCustomElement(app, 'c-header');
-  // appendCustomElement(app, 'c-footer');
 };
 
 document.addEventListener('DOMContentLoaded', () => {
   init();
   setupNameValidation();
-  setupUsernameValidation();
-  setupPasswordValidation();
-  setupPasswordConfirmation();
-  setupEmailValidation();
+  setupUsernameValidation(pb);
+  setupPasswordValidation(pb);
+  setupPasswordConfirmation(pb);
+  setupEmailValidation(pb);
   setupAgreementCheckboxes();
-  setupSubmitButton();
-  setupAddressSearch();
+  const inviteValidation = setupInviteValidation(pb);
+  setupSubmitButton(pb, inviteValidation);
+  setupAddressSearch(pb);
 });

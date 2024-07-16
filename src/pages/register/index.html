@@ -176,6 +176,7 @@
                   class="register-form__input register-form__address-input"
                   id="address-input"
                   placeholder="주소를 검색해 주세요"
+                  readonly
                 />
                 <input
                   type="text"
@@ -215,7 +216,7 @@
                   type="radio"
                   id="gender-male"
                   name="gender"
-                  value="male"
+                  value="남자"
                 />
                 <label class="register-form__radio-label" for="gender-male">남성</label>
               </div>
@@ -225,7 +226,7 @@
                   type="radio"
                   id="gender-female"
                   name="gender"
-                  value="female"
+                  value="여자"
                 />
                 <label class="register-form__radio-label" for="gender-female">여성</label>
               </div>
@@ -235,7 +236,7 @@
                   type="radio"
                   id="gender-other"
                   name="gender"
-                  value="other"
+                  value="선택 안함"
                   checked
                 />
                 <label
@@ -274,7 +275,7 @@
                   id="addInfoFriend"
                   name="addInfo"
                   value="friend"
-                  aria-label="친구초대 추천인 아이디 선택됨. 아래 친구초대 추천인 아이디를 입력해주세요."
+                  aria-label="친구초대 추천인 아이디 선택됨. 추천인 아이디를 입력해주세요."
                 />
                 <label class="register-form__radio-label" for="addInfoFriend"
                   >친구초대 추천인 아이디</label
@@ -287,25 +288,43 @@
                   id="addInfoEvent"
                   name="addInfo"
                   value="event"
-                  aria-label="참여 이벤트명 선택됨. 아래 참여 이벤트명을 입력해주세요."
+                  aria-label="참여 이벤트명 선택됨. 이벤트명을 입력해주세요."
                 />
                 <label class="register-form__radio-label" for="addInfoEvent">참여 이벤트명</label>
               </div>
             </div>
           </div>
           <!-- 추천인 이벤트 입력창 -->
-          <div class="register-form__group register-form__group-toggle">
+          <div
+            class="register-form__group register-form__group-toggle"
+            id="invite-recommender-group"
+          >
             <label class="register-form__label register-form__label--required" for="invite"></label>
             <input
               class="register-form__input"
               type="text"
-              id="invite"
+              id="invite-recommender"
               name="invite"
-              placeholder="친구초대 추천인 아이디를 입력해주세요 or 참여 이벤트명을 입력해주세요 라디오 버튼 토글 시 변경되게"
+              placeholder="친구초대 추천인 아이디를 입력해주세요"
               required
             />
             <button class="register-form__button register-form__button--check" type="button">
-              <span class="register-form__button-text">참여확인</span>
+              <span class="register-form__button-text">추천인 확인</span>
+            </button>
+          </div>
+          <!--  -->
+          <div class="register-form__group register-form__group-toggle" id="invite-eventname-group">
+            <label class="register-form__label register-form__label--required" for="invite"></label>
+            <input
+              class="register-form__input"
+              type="text"
+              id="invite-eventname"
+              name="invite"
+              placeholder="참여 이벤트명을 입력해주세요"
+              required
+            />
+            <button class="register-form__button register-form__button--check" type="button">
+              <span class="register-form__button-text">참여 확인</span>
             </button>
           </div>
         </fieldset>
