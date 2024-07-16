@@ -148,6 +148,9 @@ img {
   &__price {
     font-size: 0.875rem;
     color: #b5b5b5; //rgb 181, 181, 181
+  }
+
+  &__price--discounted {
     text-decoration: line-through;
   }
 
@@ -190,7 +193,7 @@ img {
   &__view-all {
     @include flex(column nowrap, center, center);
     text-align: center;
-    @include size(100%, 20rem);
+    @include size(100%, 31.25rem);
 
     img {
       margin-bottom: 1.125rem;
