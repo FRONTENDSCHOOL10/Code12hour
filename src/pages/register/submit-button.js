@@ -11,7 +11,6 @@ export const setupSubmitButton = (pb) => {
   submitButton.addEventListener('click', async (event) => {
     event.preventDefault();
 
-    // 필수 입력 항목 확인
     const userId = document.getElementById('userId')?.value;
     const password = document.getElementById('password')?.value;
     const confirmPassword = document.getElementById('confirmPassword')?.value;
@@ -23,14 +22,12 @@ export const setupSubmitButton = (pb) => {
 
     const fullAddress = getSearchedAddress();
 
-    // 필수 필드 확인
     if (!userId || !password || !confirmPassword || !name || !email || !fullAddress) {
       alert('모든 필수 항목을 입력해주세요.');
       return;
     }
 
     try {
-      // PocketBase에 사용자 생성
       const user = await pb.collection('users').create({
         username: userId,
         email: email,
@@ -42,13 +39,11 @@ export const setupSubmitButton = (pb) => {
         gender: gender || 'not_specified',
         birthdate: birthdate || null,
         promotionAgreed: promotion || false,
-        // 기타 필요한 필드들...
       });
 
       console.log('User created:', user);
       alert(`환영합니다! ${name}님 가입을 축하드립니다!`);
 
-      // 로그인 페이지로 리다이렉트
       window.location.href = 'https://code12hour.netlify.app/src/pages/login/';
     } catch (error) {
       console.error('Registration error:', error);

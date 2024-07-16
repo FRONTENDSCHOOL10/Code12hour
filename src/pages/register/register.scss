@@ -243,7 +243,6 @@ body {
     @include font($paragraph-small, 400, 160%, $primary-color);
     text-align: right;
   }
-  // 체크박스 이미지 false
   &__checkbox {
     position: relative;
     appearance: none;
@@ -254,7 +253,6 @@ body {
     background-repeat: no-repeat;
     background-size: contain;
     background-image: url('/assets/icons/input/isChecked=false.svg');
-    // 체크박스 이미지 true
     &:checked {
       position: relative;
       background-image: url('/assets/icons/input/isChecked=true.svg');
