@@ -121,7 +121,9 @@
 
   &-image {
     width: 15.625rem;
-    height: 18.75rem;
+    border-radius: 0.125rem;
+    object-fit: cover;
+    object-position: center;
   }
 
   &__close {
@@ -130,7 +132,7 @@
     background-color: $white-color;
     color: $primary-color;
     margin-top: 0.5rem;
-    padding: 0.5rem 1.8rem;
+    padding: 0.3rem 1rem;
     font-size: $label-medium;
     font-weight: 500;
     line-height: 150%;

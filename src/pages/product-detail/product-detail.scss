@@ -207,12 +207,15 @@
     }
 
     &-count {
-      @include size(0.5rem, 1.5rem);
+      @include size(1.75rem, 1.5rem);
+      max-width: 1.75rem;
+      min-width: 1.75rem;
       font-size: $label-medium;
       font-weight: 500;
       line-height: 150%;
       border: none;
       outline: none;
+      text-align: center;
     }
 
     &-total {
@@ -314,6 +317,7 @@
 
   &__button {
     flex: 1 0 0;
+    @include flex(row, center, center);
     @include size(auto, 3.375rem);
     border: 1px solid $gray-300-color;
     background-color: $gray-50-color;

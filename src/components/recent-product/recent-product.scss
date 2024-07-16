@@ -11,7 +11,8 @@
   top: 50%;
   transform: translateY(-50%);
   @include flex(column nowrap);
-  @include size(3.63rem, 17.4375rem);
+  @include size(3.63rem, auto);
+  max-height: 17.4375rem;
   border: 1px solid $gray-200-color;
   background-color: $white-color;
   padding: 0.5rem;
@@ -31,7 +32,8 @@
 
   .swiper {
     overflow: hidden;
-    @include size(100%, 80%);
+    @include size(100%, auto);
+    max-height: 80%;
     // background-color: green;
   }
 

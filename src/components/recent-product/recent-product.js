@@ -38,13 +38,14 @@ export class Sidebar extends HTMLElement {
 
   renderRecentProducts() {
     const viewedProducts = this.getViewedProducts();
-    const sidebarWrapper = this.shadowRoot.querySelector('.sidebar-wrapper');
     const swiperWrapper = this.shadowRoot.querySelector('.swiper-wrapper');
 
     // 최근 본 상품이 없을 경우 최상위 부모 none 처리
-    if (viewedProducts.length === 0 && sidebarWrapper) {
-      sidebarWrapper.style.display = 'none';
-      return;
+    if (viewedProducts.length === 0) {
+      swiperWrapper.innerHTML = `
+        <div class="swiper-slide">
+        </div>
+      `;
     }
 
     // 최근 본 상품들을 HTML로 변환
@@ -85,3 +86,11 @@ export class Sidebar extends HTMLElement {
     this.initSidebarSwiper();
   }
 }
+
+// 전역 이벤트 리스너 추가 'productViewed' 이벤트가 발생했을 때 사이드바를 업데이트
+window.addEventListener('productViewed', () => {
+  const sidebar = document.querySelector('c-sidebar');
+  if (sidebar) {
+    sidebar.updateSidebar();
+  }
+});

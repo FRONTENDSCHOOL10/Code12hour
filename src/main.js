@@ -64,6 +64,9 @@ const createProductCard = (product) => {
       ? `<span class="product-item__discount-rate">${product.discount_rate}%<span class="sr-only">할인</span></span>`
       : '';
 
+  const productPriceHtml =
+    product.discount_rate > 0 ? `${product.product_price.toLocaleString()}원` : '&nbsp';
+
   const priceClass =
     product.discount_rate > 0
       ? 'product-item__price product-item__price--discounted'
@@ -80,7 +83,7 @@ const createProductCard = (product) => {
         >
           <div class="product-item__img" role="img" aria-label="${product.product_name}" style="background-image: url(${imageUrl})"></div>
           <p class="product-item__title">${product.product_name}</p>
-          <p class="${priceClass}"><span class="sr-only">정가</span>${product.product_price.toLocaleString()}원</p>
+          <p class="${priceClass}"><span class="sr-only">정가</span>${productPriceHtml}</p>
           <p class="product-item__real-price">
             ${discountRateHtml}
             <span class="sr-only">구매가</span>${discountedPrice.toLocaleString()}원
@@ -183,6 +186,7 @@ const addViewedProduct = (productId, productImage) => {
   updatedProducts.unshift({ id: productId, image: productImage, expirationTime });
 
   saveViewedProducts(updatedProducts);
+  window.dispatchEvent(new CustomEvent('productViewed'));
 };
 
 // 제품 링크에 이벤트 리스너 추가

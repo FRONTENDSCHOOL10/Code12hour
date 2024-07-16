@@ -1,4 +1,5 @@
 import './cart-button.scss';
+import { cart, addToCart } from '@/utils/index';
 import css from './cart-button.scss?inline'; // css 파일 inline 가져오기 이렇게 하지 않으면 동적으로 css를 못넣음 빌드하면 파일 위치, 명이 다 바뀌기 때문
 
 const cartButtonTemplate = document.createElement('template');
@@ -31,7 +32,7 @@ cartButtonTemplate.innerHTML = `
       </div>
     </dialog>
     <button class="product-item__button" type="button">담기</button>
-    <c-modal width="250px" height="420px">
+    <c-modal width="250px" height="440px">
       <h2 slot="header" class="modal-header">장바구니 담기 완료</h2>
       <div slot="body" class="modal-body">
 
@@ -48,6 +49,7 @@ export class CartButton extends HTMLElement {
 
     this.quantity = 1;
     this.price = 0;
+    this.closeTimer = null;
     this.initElements();
   }
 
@@ -125,14 +127,30 @@ export class CartButton extends HTMLElement {
     `;
     this.toggleBackgroundScroll(true);
 
+    // 기존 타이머가 있다면 제거
+    if (this.closeTimer) {
+      clearTimeout(this.closeTimer);
+    }
+
     // 1.2초 뒤 모달이 자동으로 닫힘
-    setTimeout(() => this.modalClose(), 1200);
+    this.closeTimer = setTimeout(() => this.modalClose(), 1200);
+
+    // 모달이 닫힐 때 타이머를 취소하는 이벤트 리스너 추가
+    modal.addEventListener('close', this.cancelCloseTimer.bind(this), { once: true });
   }
 
   // 장바구니 담기후 완료 문구의 모달을 닫는 함수
   modalClose() {
     this.elements.modal.close();
     this.toggleBackgroundScroll(false);
+    this.cancelCloseTimer();
+  }
+
+  cancelCloseTimer() {
+    if (this.closeTimer) {
+      clearTimeout(this.closeTimer);
+      this.closeTimer = null;
+    }
   }
 
   // 수량을 변경하고 화면에 업데이트
@@ -144,16 +162,18 @@ export class CartButton extends HTMLElement {
   // 장바구니에 제품을 추가, 로컬스토리지에 저장
   addToCart() {
     const productId = this.getAttribute('data-product-id');
-    const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-    const existingItem = cartItems.find((item) => item.productId === productId);
+    const existingItemIndex = cart.findIndex((item) => item.productId === productId);
 
-    if (existingItem) {
-      existingItem.quantity += this.quantity;
+    if (existingItemIndex !== -1) {
+      // 기존 아이템 업데이트
+      const updatedItem = { ...cart[existingItemIndex] };
+      updatedItem.quantity += this.quantity;
+      cart[existingItemIndex] = updatedItem;
     } else {
-      cartItems.push({ productId, quantity: this.quantity });
+      // 새 아이템 추가
+      addToCart({ productId, quantity: this.quantity });
     }
 
-    localStorage.setItem('cartItems', JSON.stringify(cartItems));
     this.close();
     this.modalOpen();
   }

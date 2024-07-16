@@ -1,4 +1,5 @@
 import './header.scss';
+import { cart } from '@/utils/cart';
 import css from './header.scss?inline';
 
 const headerTemplate = document.createElement('template');
@@ -299,6 +300,7 @@ export class header extends HTMLElement {
       topBannerCloseButton: '.top-banner__close',
       modal: 'c-modal',
       modalCloseButton: '#close-btn',
+      cartIcon: '.user-actions__cart',
     };
 
     this.elements = Object.entries(selectors).reduce((acc, [key, selector]) => {
@@ -315,6 +317,7 @@ export class header extends HTMLElement {
   connectedCallback() {
     this.checkBanner();
     this.setupEventListeners();
+    this.updateCartBadge();
   }
 
   // 이벤트 위임 및 이벤트 리스너를 사용하여 사용자 상호작용 처리
@@ -348,6 +351,7 @@ export class header extends HTMLElement {
     this.elements.modalCloseButton.addEventListener('click', () => {
       this.elements.modal.close();
     });
+    document.addEventListener('cartUpdated', this.updateCartBadge.bind(this));
   }
 
   // 재사용 가능한 이벤트 리스너 추가 함수
@@ -422,6 +426,16 @@ export class header extends HTMLElement {
       this.hideElement(this.elements.topBanner);
     } else {
       localStorage.removeItem('topBanner');
+    }
+  }
+
+  // 장바구니 뱃지 업데이트 메서드
+  updateCartBadge(event) {
+    const cartItemCount = event ? event.detail : cart.length;
+    if (cartItemCount > 0) {
+      this.elements.cartIcon.innerHTML = `
+        <span class="user-actions__badge">${cartItemCount}</span>
+      `;
     }
   }
 
