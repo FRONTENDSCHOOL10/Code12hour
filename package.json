@@ -20,6 +20,8 @@
     "vite-plugin-style-import": "^2.0.0"
   },
   "dependencies": {
-    "pocketbase": "^0.21.3"
+    "gsap": "^3.12.5",
+    "pocketbase": "^0.21.3",
+    "swiper": "^11.1.5"
   }
 }

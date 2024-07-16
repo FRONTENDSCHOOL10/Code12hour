@@ -26,77 +26,28 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  transform: translateY(-100%);
+  transition: transform 0.3s ease-in-out;
   width: 100%;
   box-shadow: $below-low;
-}
+  background-color: $white-color;
+  z-index: 10000;
 
-.top-banner {
-  @include flex-center;
-  flex-direction: column;
-  width: 100%;
-  height: 3.125rem;
-  background-color: $primary-color;
-
-  &__nav {
-    @include flex-center;
-    position: relative;
-    flex: 1 0 0;
-    width: 65.625rem;
-    gap: 4.5rem;
-  }
-
-  &__link {
-    font-size: $paragraph-medium;
-    font-weight: 400;
-    line-height: 160%;
-    color: $white-color;
-
-    span {
-      color: $white-color;
-      font-size: $label-medium;
-      font-weight: 600;
-      line-height: 150%;
-      text-decoration: underline;
-    }
-  }
-
-  &__close {
-    position: absolute;
-    top: 0.25rem;
-    right: 0rem;
+  &.visible {
+    transform: translateY(0);
   }
 }
 
-.header-top {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 2rem;
-  width: 65.625rem;
-  padding-bottom: 1.25rem;
-}
-
-.auth-links {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  padding-top: 0.75rem;
-
-  a {
-    @extend %link-style;
-  }
-
-  &__signup {
-    color: $primary-color;
-  }
-}
-
-.search-area {
+.header-nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: relative;
-  width: 100%;
+  width: 65.625rem;
+  margin-bottom: 0.1rem;
 }
 
 .logo-section {
@@ -125,22 +76,19 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: absolute;
-  right: 20rem;
-  top: -0.255rem;
-  width: 22.5rem;
-  padding: 0.5rem 1.25rem;
-  border-radius: 0.25rem;
-  border: 1px solid $primary-color;
+  width: 13.5rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 0.375rem;
+  box-shadow: 0 0 0 1px $gray-300-color;
 
   &:focus-within {
-    box-shadow: 0 0 0 1px $primary-color;
+    box-shadow: 0 0 0 1.5px $gray-500-color;
   }
 
   button {
-    width: 2.25rem;
-    height: 2.25rem;
-    background-image: url('/assets/icons/header/Search.svg');
+    width: 1.875rem;
+    height: 1.875rem;
+    background-image: url('/assets/icons/header/Search-black.svg');
     background-repeat: no-repeat;
     background-position: center left;
     background-size: contain;
@@ -154,8 +102,10 @@
     font-size: $paragraph-medium;
     font-weight: 400;
     line-height: 160%;
+    font-size: 0.8125rem;
 
     &::placeholder {
+      font-size: 0.75rem;
       color: $gray-400-color;
     }
   }
@@ -180,16 +130,9 @@
   }
 }
 
-.header-nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 65.625rem;
-  margin-bottom: 0.1rem;
-}
-
 .category-menu {
   display: flex;
+  flex-wrap: nowrap;
   align-items: center;
   gap: 0.75rem;
   position: relative;
@@ -212,6 +155,7 @@
     font-size: $label-medium;
     font-weight: 600;
     line-height: 150%;
+    white-space: nowrap;
   }
 
   &.focused {
@@ -233,19 +177,20 @@
 .shopping-categories {
   display: flex;
   align-items: center;
+  gap: 1rem;
 }
 
 .category-item {
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  gap: 0.25rem;
-  width: 9.375rem;
+  width: 6.375rem;
 
   a {
     width: 100%;
-    padding: 1.5rem 0;
+    padding: 1rem 0;
     text-align: center;
+    font-weight: 500;
   }
 
   &:hover {
@@ -278,7 +223,7 @@
 .menu-container {
   display: none;
   position: absolute;
-  top: 3.82rem;
+  top: 3.55rem;
   background-color: white;
   border: 1px solid #ccc;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -286,7 +231,7 @@
 }
 
 .menu-box {
-  max-height: 40rem;
+  max-height: 50rem;
   overflow-y: scroll;
 }
 
@@ -317,8 +262,8 @@
 .location-tooltip {
   display: none;
   position: absolute;
-  right: -3.5rem;
-  top: 2.9rem;
+  right: 15.5rem;
+  top: 3.6rem;
   width: 16.6875rem;
   padding: 1.125rem 1.0625rem 1.0625rem;
   border: 1px solid $gray-100-color;
