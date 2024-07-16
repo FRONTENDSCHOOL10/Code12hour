@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
   setupPasswordConfirmation(pb);
   setupEmailValidation(pb);
   setupAgreementCheckboxes();
-  setupInviteValidation(pb);
-  setupSubmitButton(pb);
+  const inviteValidation = setupInviteValidation(pb);
+  setupSubmitButton(pb, inviteValidation); // inviteValidation 객체를 전달
   setupAddressSearch(pb);
 });
