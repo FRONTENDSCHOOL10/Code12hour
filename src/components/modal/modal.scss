@@ -1,22 +1,82 @@
 .modal-dialog {
-  display: block;
   border: none;
   border-radius: 0.3125rem;
   padding: 1.25rem;
   box-shadow: 0 0.125rem 0.625rem rgba(0, 0, 0, 0.1);
   opacity: 0;
-  transform: translateY(-20px);
+  transform: translateY(-50px);
   transition:
-    opacity 0.3s ease-in-out,
-    transform 0.3s ease-in-out;
+    opacity 0.3s ease,
+    transform 0.3s ease;
+
+  &[open] {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  &::backdrop {
+    background-color: rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  &[open]::backdrop {
+    opacity: 1;
+  }
+
+  &.show {
+    animation: show 0.3s ease forwards;
+
+    &::backdrop {
+      animation: show-backdrop 0.3s ease forwards;
+    }
+  }
+
+  &.hide {
+    animation: hide 0.3s ease forwards;
+
+    &::backdrop {
+      animation: hide-backdrop 0.3s ease forwards;
+    }
+  }
 }
 
-.modal-dialog.show {
-  opacity: 1;
-  transform: translateY(0);
+@keyframes show {
+  from {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-.modal-dialog.hide {
-  opacity: 0;
-  transform: translateY(-20px);
+@keyframes hide {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+}
+
+@keyframes show-backdrop {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes hide-backdrop {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
 }
