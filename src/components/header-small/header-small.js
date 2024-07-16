@@ -1,4 +1,5 @@
 import './header-small.scss';
+import { cart } from '@/utils/cart';
 import css from './header-small.scss?inline';
 
 const headerSmallTemplate = document.createElement('template');
@@ -249,6 +250,7 @@ export class headerSmall extends HTMLElement {
       addressRegisterButton: this.shadowRoot.querySelector('.location-tooltip-button__location'),
       modal: this.shadowRoot.querySelector('c-modal'),
       modalCloseButton: this.shadowRoot.querySelector('#close-btn'),
+      cartIcon: this.shadowRoot.querySelector('.user-actions__cart'),
     };
   }
 
@@ -256,6 +258,7 @@ export class headerSmall extends HTMLElement {
     this.setupEventListeners();
     this.setupScrollListener();
     this.updateHeaderVisibility();
+    this.updateCartBadge();
   }
 
   setupEventListeners() {
@@ -287,6 +290,7 @@ export class headerSmall extends HTMLElement {
     this.elements.modalCloseButton.addEventListener('click', () => {
       this.elements.modal.close();
     });
+    document.addEventListener('cartUpdated', this.updateCartBadge.bind(this));
   }
 
   setupScrollListener() {
@@ -354,6 +358,16 @@ export class headerSmall extends HTMLElement {
         }
       }
     }, 0);
+  }
+
+  // 장바구니 뱃지 업데이트 메서드
+  updateCartBadge(event) {
+    const cartItemCount = event ? event.detail : cart.length;
+    if (cartItemCount > 0) {
+      this.elements.cartIcon.innerHTML = `
+      <span class="user-actions__badge">${cartItemCount}</span>
+    `;
+    }
   }
 
   showElement(element) {

@@ -126,7 +126,22 @@
 
   &__cart {
     display: block;
+    position: relative;
     @include icon-button('/assets/icons/header/Cart.svg');
+  }
+
+  &__badge {
+    @include flex(row, center, center);
+    @include size(0.3125rem, 0.3125rem);
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 5px;
+    border-radius: 50%;
+    font-size: 0.625rem;
+    font-weight: 500;
+    color: $white-color;
+    background-color: $primary-color;
   }
 }
 
