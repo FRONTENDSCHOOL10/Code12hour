@@ -68,21 +68,17 @@ class Modal extends HTMLElement {
 
   showModal() {
     this.dialog.classList.add('show');
-    this.dialog.classList.remove('hide');
-
-    requestAnimationFrame(() => {
-      this.dialog.showModal();
-      this.toggleBackgroundScroll(true);
-    });
+    this.dialog.showModal();
+    this.toggleBackgroundScroll(true);
   }
 
   close() {
     this.dialog.classList.add('hide');
-    this.dialog.classList.remove('show');
     this.dialog.addEventListener(
-      'transitionend',
+      'animationend',
       () => {
         this.dialog.close();
+        this.dialog.classList.remove('hide');
         this.toggleBackgroundScroll(false);
       },
       { once: true }
