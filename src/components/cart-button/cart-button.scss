@@ -126,9 +126,23 @@
     object-position: center;
   }
 
+  &__cart {
+    width: 100%;
+    background-color: $white-color;
+    color: $white-color;
+    margin-top: 0.5rem;
+    padding: 0.3rem 1rem;
+    font-size: $label-medium;
+    font-weight: 500;
+    line-height: 150%;
+    border-radius: 0.3125rem;
+    border: 1px solid $primary-color;
+    background-color: $primary-color;
+    text-align: center;
+  }
+
   &__close {
-    width: 50%;
-    margin: 0 4rem;
+    width: 100%;
     background-color: $white-color;
     color: $primary-color;
     margin-top: 0.5rem;
@@ -138,5 +152,10 @@
     line-height: 150%;
     border-radius: 0.3125rem;
     border: 1px solid $primary-color;
+  }
+
+  &-button-group {
+    @include flex(row, space-between, center);
+    gap: 0.5rem;
   }
 }

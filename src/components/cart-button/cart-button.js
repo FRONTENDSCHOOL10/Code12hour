@@ -37,7 +37,17 @@ cartButtonTemplate.innerHTML = `
       <div slot="body" class="modal-body">
 
       </div>
-      <button slot="footer" type="button" id="modal__close" class="modal__close">닫기</button>
+      <div slot="footer" class="modal-button-group">
+        <button slot="footer" type="button" id="modal__close" class="modal__close">닫기</button>
+        <a
+          slot="footer"
+          href="/src/pages/product-cart/"
+          role="button"
+          id="modal__cart"
+          class="modal__cart"
+          >장바구니 이동</a
+        >
+      </div>
     </c-modal>
 `;
 
@@ -133,7 +143,7 @@ export class CartButton extends HTMLElement {
     }
 
     // 1.2초 뒤 모달이 자동으로 닫힘
-    this.closeTimer = setTimeout(() => this.modalClose(), 1200);
+    // this.closeTimer = setTimeout(() => this.modalClose(), 1200);
 
     // 모달이 닫힐 때 타이머를 취소하는 이벤트 리스너 추가
     modal.addEventListener('close', this.cancelCloseTimer.bind(this), { once: true });
