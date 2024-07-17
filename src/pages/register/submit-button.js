@@ -12,7 +12,6 @@ export const setupSubmitButton = (pb, inviteValidation) => {
 
   submitButton.addEventListener('click', async (event) => {
     event.preventDefault();
-
     // 필수 입력 항목 확인
     const userId = document.getElementById('userId')?.value;
     const password = document.getElementById('password')?.value;
@@ -60,14 +59,14 @@ export const setupSubmitButton = (pb, inviteValidation) => {
     }
 
     // 아침 배송 가능 도시 확인
-    const morningDeliveryCities = ['거제', '영주', '서울', '안성'];
+    const morningDeliveryCities = ['거제시', '영주시', '서울특별시', '안성시'];
     const isMorningDeliveryAvailable = morningDeliveryCities.some((city) =>
       searchedAddress.includes(city)
     );
 
-    // 추천인과 이벤트명 가져오기 (선택적)
-    const recommender = inviteValidation ? inviteValidation.getRecommender() : null;
-    const eventName = inviteValidation ? inviteValidation.getEventName() : null;
+    // 추천인과 이벤트명 가져오기
+    const recommender = inviteValidation ? inviteValidation.getValidRecommender() : null;
+    const eventName = inviteValidation ? inviteValidation.getValidEventName() : null;
 
     try {
       const userData = {
@@ -80,19 +79,30 @@ export const setupSubmitButton = (pb, inviteValidation) => {
         address: fullAddress,
         gender: gender || 'not_specified',
         birthdate: birthdate || null,
+        promotionAgreed: promotion || false,
         morning_delivery: isMorningDeliveryAvailable,
+        recommender: recommender,
+        event_name: eventName,
         ad_consent: promotion,
       };
 
-      // 추천인과 이벤트명이 있는 경우에만 추가
-      if (recommender) userData.recommender = recommender;
-      if (eventName) userData.event_name = eventName;
+      console.log('Sending user data:', userData);
 
       const user = await pb.collection('users').create(userData);
 
-      alert(`환영합니다! ${user.name}님 가입을 축하드립니다!`);
+      // 이메일 인증 요청 추가
+      try {
+        await pb.collection('users').requestVerification(email);
+        console.log('인증 이메일이 전송되었습니다.');
+      } catch (verificationError) {
+        console.error('이메일 인증 요청 중 오류 발생:', verificationError);
+      }
 
-      window.location.href = '/src/pages/login/';
+      alert(
+        `환영합니다! ${user.name}님 가입을 진심으로 축하드립니다! 이메일로 전송된 인증 링크를 확인해 주세요.`
+      );
+
+      window.location.href = 'https://code12hour.netlify.app/src/pages/login/';
     } catch (error) {
       console.error('Registration error:', error);
       if (error.data) {
