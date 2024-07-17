@@ -112,7 +112,7 @@ $line-height-md: 150%;
 
 .inquiry-notice {
   @include flex(column, flex-start);
-  border-bottom: 1px solid $gray-100-color;
+  // border-bottom: 1px solid $gray-100-color;
 
   &__summary {
     @include flex(row, space-between, center);
@@ -178,7 +178,7 @@ $line-height-md: 150%;
 // 문의 리스트
 .inquiry-list {
   @include flex(column, _, flex-start);
-  border-bottom: 1px solid $gray-100-color;
+  // border-bottom: 1px solid $gray-100-color;
 
   &__summary {
     @include flex(row, space-between, center);
@@ -210,9 +210,15 @@ $line-height-md: 150%;
         justify-content: center;
       }
 
-      // & .item-status__ture { // 답변완료
-      //   @include font-style($label-medium, $font-weight-md, $line-height-md, $primary-color); // 600 -> 500
-      // }
+      & .item-status__ture {
+        // 답변완료
+        @include font-style(
+          $label-medium,
+          $font-weight-md,
+          $line-height-md,
+          $primary-color
+        ); // 600 -> 500
+      }
     }
   }
 
@@ -229,12 +235,13 @@ $line-height-md: 150%;
     background: $gray-50-color;
 
     &-message {
-      @include flex(column, _, flex-start);
+      @include flex(row, _, flex-start);
       gap: 0.75rem;
 
       &--question,
       &--answer {
         @include font-style($label-small, $font-weight-md, $line-height-md); // 600 -> 500
+        // white-space: pre-wrap;
       }
 
       &--wrapper {
@@ -265,55 +272,57 @@ $line-height-md: 150%;
 }
 
 // 비밀글
-.inquiry-private {
-  @include flex(row, space-between, center);
-  @include size(100%, 3.625rem);
-  padding: 0.25rem;
-  gap: 0.25rem;
-  border-bottom: 1px solid $gray-100-color;
-
-  &__item {
-    @include flex(row, _, center);
-    @include font-style(
-      $label-medium,
-      $font-weight-md,
-      $line-height-md,
-      $gray-400-color
-    ); // 600 -> 500
+.inquiry-private__wrapper {
+  .inquiry-private {
+    @include flex(row, space-between, center);
+    @include size(100%, 3.625rem);
     padding: 0.25rem;
-    text-align: center;
+    gap: 0.25rem;
+    border-bottom: 1px solid $gray-100-color;
 
-    &:first-child {
-      flex: 1 0 0;
-      padding: 0.25rem 1.25rem;
-      gap: 1.25rem;
-      cursor: pointer; // 추가
+    &__item {
+      @include flex(row, _, center);
+      @include font-style(
+        $label-medium,
+        $font-weight-md,
+        $line-height-md,
+        $gray-400-color
+      ); // 600 -> 500
+      padding: 0.25rem;
+      text-align: center;
+
+      &:first-child {
+        flex: 1 0 0;
+        padding: 0.25rem 1.25rem;
+        gap: 1.25rem;
+        cursor: pointer; // 추가
+      }
+
+      &:not(:first-child) {
+        @include size(6.25rem, 3.625rem);
+        flex-shrink: 0;
+        justify-content: center;
+      }
+
+      // & .item-status__ture { // 답변완료
+      //   @include font-style($label-medium, $font-weight-md, $line-height-md, $primary-color); // 600 -> 500
+      // }
     }
 
-    &:not(:first-child) {
-      @include size(6.25rem, 3.625rem);
-      flex-shrink: 0;
-      justify-content: center;
+    &__message {
+      @include font-style(
+        $label-medium,
+        $font-weight-md,
+        $line-height-md,
+        $gray-400-color
+      ); // 600 -> 500
+      text-align: center;
     }
 
-    // & .item-status__ture { // 답변완료
-    //   @include font-style($label-medium, $font-weight-md, $line-height-md, $primary-color); // 600 -> 500
-    // }
-  }
-
-  &__message {
-    @include font-style(
-      $label-medium,
-      $font-weight-md,
-      $line-height-md,
-      $gray-400-color
-    ); // 600 -> 500
-    text-align: center;
-  }
-
-  &__icon {
-    @include size(0.75rem, 0.875rem);
-    background: url('/assets/icons/product-inquiry/Private.svg') no-repeat center / contain;
+    &__icon {
+      @include size(0.75rem, 0.875rem);
+      background: url('/assets/icons/product-inquiry/Private.svg') no-repeat center / contain;
+    }
   }
 }
 
@@ -378,7 +387,7 @@ $line-height-md: 150%;
       @include icon-button(
         3.5rem,
         3.5rem,
-        $gray-400-color,
+        $gray-200-color,
         '/assets/icons/product-review/paging.svg'
       );
     }

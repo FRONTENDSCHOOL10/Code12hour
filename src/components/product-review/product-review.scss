@@ -68,6 +68,7 @@ $line-height-md: 150%;
   }
 
   &__benefit-list {
+    padding-bottom: 1.875rem;
     &-item {
       @include font-style(
         $label-medium,
@@ -148,10 +149,10 @@ $line-height-md: 150%;
   &__sort-btn {
     @include font-style(
       $label-small,
-      $font-weight-sm,
+      $font-weight-md,
       $line-height-md,
       $gray-300-color
-    ); // medium -> small / 600 -> 400
+    ); // medium -> small / 600 -> 500
     position: relative;
 
     &--active {
@@ -170,7 +171,7 @@ $line-height-md: 150%;
 
 // 후기 관련 공지사항
 .review-notice {
-  border-bottom: $border-bottom;
+  // border-bottom: $border-bottom;
 
   &__item {
     @include flex(row, left, center);
@@ -391,7 +392,7 @@ $line-height-md: 150%;
       @include icon-button(
         3.5rem,
         3.5rem,
-        $gray-400-color,
+        $gray-200-color,
         '/assets/icons/product-review/paging.svg'
       );
     }
