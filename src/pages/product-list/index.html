@@ -7,28 +7,23 @@
     <script type="module" src="./product-list.js"></script>
   </head>
   <body>
+    <c-header></c-header>
+    <c-header-small></c-header-small>
     <main class="product-list-page">
       <h1 class="product-header">신상품</h1>
 
       <div class="product-list-group">
         <!-- ▼▼▼▼▼▼▼ 필터 카테고리 자리 -->
-        필터 자리
+        <!-- <c-sidebar></c-sidebar> -->
+         필터자리(임시)
         <!-- ▲▲▲▲▲▲▲ 필터 카테고리 자리 -->
         <div class="product-contents-group">
           <div class="product-filter" role="group">
-            <p class="product-filter__count">총 100건</p>
+
+            <p class="product-filter__count"></p>
+
             <ul>
-              <li>
-                <button
-                  class="product-filter__button product-filter__button--is-active"
-                  type="button"
-                >
-                  추천순
-                </button>
-                <!-- TODO: 마우스호버 tooltip 추가 예정 -->
-                <!-- <p class="product-filter__tooltip">소비자 인기도(판매량, 판매금액, 조회수 등), 상품 출시일, 수요 적합성, 상품 운영상 필요 등을 종합적으로 고려한 순서입니다.</p> -->
-              </li>
-              <li><button class="product-filter__button" type="button">신상품순</button></li>
+              <li><button class="product-filter__button product-filter__button--is-active" type="button">신상품순</button></li>
               <li><button class="product-filter__button" type="button">판매량순</button></li>
               <li><button class="product-filter__button" type="button">혜택순</button></li>
               <li><button class="product-filter__button" type="button">낮은 가격순</button></li>
@@ -37,135 +32,12 @@
           </div>
 
           <div class="product-item-group" role="group">
-            <div class="product-item">
-              <a class="product-item__link" href="/" tabindex="0" aria-label="상품 페이지로 이동">
-                <div class="product-item__img" role="img" aria-label="상품 이미지 설명"></div>
-                <p class="product-item__delivery">샛별배송</p>
-                <p class="product-item__title">
-                  [하코야] 살얼음 동동 냉메밀 소바 2인분 아니 10인분 아니 50인분
-                </p>
-                <p class="product-item__description">가쓰오부시의 진한 감칠맛</p>
-                <p class="product-item__price"><span class="sr-only">정가</span>9,900원</p>
-                <p class="product-item__real-price">
-                  <span class="product-item__discount-rate"
-                    >12%<span class="sr-only">할인</span></span
-                  ><span class="sr-only">구매가</span>8,690원
-                </p>
-                <p class="product-item__reviews"><span class="sr-only">리뷰 수</span>999+</p>
-                <span class="product-item__kurly-only">Kurly Only</span>
-                <span class="product-item__limited">한정수량</span>
-              </a>
-              <button class="product-item__button" type="button">담기</button>
-            </div>
-
-            <div class="product-item">
-              <a class="product-item__link" href="/" tabindex="0" aria-label="상품 페이지로 이동">
-                <div class="product-item__img" role="img" aria-label="상품 이미지 설명"></div>
-                <p class="product-item__delivery">샛별배송</p>
-                <p class="product-item__title">
-                  [하코야] 살얼음 동동 냉메밀 소바 2인분 아니 10인분 아니 50인분
-                </p>
-                <p class="product-item__description">가쓰오부시의 진한 감칠맛</p>
-                <p class="product-item__price"><span class="sr-only">정가</span>9,900원</p>
-                <p class="product-item__real-price">
-                  <span class="product-item__discount-rate"
-                    >12%<span class="sr-only">할인</span></span
-                  ><span class="sr-only">구매가</span>8,690원
-                </p>
-                <p class="product-item__reviews"><span class="sr-only">리뷰 수</span>999+</p>
-                <span class="product-item__kurly-only">Kurly Only</span>
-                <span class="product-item__limited">한정수량</span>
-              </a>
-              <button class="product-item__button" type="button">담기</button>
-            </div>
-
-            <div class="product-item">
-              <a class="product-item__link" href="/" tabindex="0" aria-label="상품 페이지로 이동">
-                <div class="product-item__img" role="img" aria-label="상품 이미지 설명"></div>
-                <p class="product-item__delivery">샛별배송</p>
-                <p class="product-item__title">[하코야] 살얼음 동동 냉메밀 소바</p>
-                <p class="product-item__description">가쓰오부시의 진한 감칠맛</p>
-                <p class="product-item__price"><span class="sr-only">정가</span>9,900원</p>
-                <p class="product-item__real-price">
-                  <span class="product-item__discount-rate"
-                    >12%<span class="sr-only">할인</span></span
-                  ><span class="sr-only">구매가</span>8,690원
-                </p>
-                <p class="product-item__reviews"><span class="sr-only">리뷰 수</span>999+</p>
-                <span class="product-item__kurly-only">Kurly Only</span>
-                <span class="product-item__limited">한정수량</span>
-              </a>
-              <button class="product-item__button" type="button">담기</button>
-            </div>
-
-            <div class="product-item">
-              <a class="product-item__link" href="/" tabindex="0" aria-label="상품 페이지로 이동">
-                <div class="product-item__img" role="img" aria-label="상품 이미지 설명"></div>
-                <p class="product-item__delivery">샛별배송</p>
-                <p class="product-item__title">
-                  [하코야] 살얼음 동동 냉메밀 소바 2인분 아니 10인분 아니 50인분
-                </p>
-                <p class="product-item__description">가쓰오부시의 진한 감칠맛</p>
-                <p class="product-item__price"><span class="sr-only">정가</span>9,900원</p>
-                <p class="product-item__real-price">
-                  <span class="product-item__discount-rate"
-                    >12%<span class="sr-only">할인</span></span
-                  ><span class="sr-only">구매가</span>8,690원
-                </p>
-                <p class="product-item__reviews"><span class="sr-only">리뷰 수</span>999+</p>
-                <span class="product-item__kurly-only">Kurly Only</span>
-                <span class="product-item__limited">한정수량</span>
-              </a>
-              <button class="product-item__button" type="button">담기</button>
-            </div>
-
-            <div class="product-item">
-              <a class="product-item__link" href="/" tabindex="0" aria-label="상품 페이지로 이동">
-                <div class="product-item__img" role="img" aria-label="상품 이미지 설명"></div>
-                <p class="product-item__delivery">샛별배송</p>
-                <p class="product-item__title">
-                  [하코야] 살얼음 동동 냉메밀 소바 2인분 아니 10인분 아니 50인분
-                </p>
-                <p class="product-item__description">가쓰오부시의 진한 감칠맛</p>
-                <p class="product-item__price"><span class="sr-only">정가</span>9,900원</p>
-                <p class="product-item__real-price">
-                  <span class="product-item__discount-rate"
-                    >12%<span class="sr-only">할인</span></span
-                  ><span class="sr-only">구매가</span>8,690원
-                </p>
-                <p class="product-item__reviews"><span class="sr-only">리뷰 수</span>999+</p>
-                <span class="product-item__kurly-only">Kurly Only</span>
-                <span class="product-item__limited">한정수량</span>
-              </a>
-              <button class="product-item__button" type="button">담기</button>
-            </div>
-
-            <div class="product-item">
-              <a class="product-item__link" href="/" tabindex="0" aria-label="상품 페이지로 이동">
-                <div class="product-item__img" role="img" aria-label="상품 이미지 설명"></div>
-                <p class="product-item__delivery">샛별배송</p>
-                <p class="product-item__title">
-                  [하코야] 살얼음 동동 냉메밀 소바 2인분 아니 10인분 아니 50인분
-                </p>
-                <p class="product-item__description">가쓰오부시의 진한 감칠맛</p>
-                <p class="product-item__price"><span class="sr-only">정가</span>9,900원</p>
-                <p class="product-item__real-price">
-                  <span class="product-item__discount-rate"
-                    >12%<span class="sr-only">할인</span></span
-                  ><span class="sr-only">구매가</span>8,690원
-                </p>
-                <p class="product-item__reviews"><span class="sr-only">리뷰 수</span>999+</p>
-                <span class="product-item__kurly-only">Kurly Only</span>
-                <span class="product-item__limited">한정수량</span>
-              </a>
-              <button class="product-item__button" type="button">담기</button>
-            </div>
           </div>
 
-          <!-- 접근성: aria-current 속성으로 방문 링크 확인 -->
+          <!-- 페이지네이션 -->
           <nav class="pagination" aria-label="페이지네이션">
             <button
-              class="pagination__button prev-button"
+              class="pagination__button prev-button first-prev-button"
               type="button"
               aria-label="맨 앞 페이지로 이동"
             >
@@ -176,7 +48,7 @@
               />
             </button>
             <button
-              class="pagination__button prev-button"
+              class="pagination__button prev-button second-prev-button"
               type="button"
               aria-label="이전 페이지로 이동"
             >
@@ -186,26 +58,16 @@
                 aria-hidden="true"
               />
             </button>
-            <ol role="none">
-              <li><a class="pagination__link--is-selected" href="#" aria-current="page">1</a></li>
-              <li><a class="pagination__link" href="#">2</a></li>
-              <li><a class="pagination__link" href="#">3</a></li>
-              <li><a class="pagination__link" href="#">4</a></li>
-              <li><a class="pagination__link" href="#">5</a></li>
-              <li><a class="pagination__link" href="#">6</a></li>
-              <li><a class="pagination__link" href="#">7</a></li>
-              <li><a class="pagination__link" href="#">8</a></li>
-              <li><a class="pagination__link" href="#">9</a></li>
-              <li><a class="pagination__link" href="#">10</a></li>
+            <ol class="numbers" role="none">
             </ol>
-            <button class="pagination__button" type="button" aria-label="다음 페이지">
+            <button class="pagination__button next-button" type="button" aria-label="다음 페이지">
               <img
                 src="/assets/icons/arrow/pagination-1.png"
                 alt="다음 페이지"
                 aria-hidden="true"
               />
             </button>
-            <button class="pagination__button" type="button" aria-label="맨 끝 페이지">
+            <button class="pagination__button last-next-button" type="button" aria-label="맨 끝 페이지">
               <img
                 src="/assets/icons/arrow/pagination-2.png"
                 alt="맨 끝 페이지"
@@ -216,5 +78,6 @@
         </div>
       </div>
     </main>
+    <c-footer></c-footer>
   </body>
 </html>
