@@ -39,10 +39,10 @@ const handleAuth = async () => {
       })
     );
 
-    showModal('로그인 성공', '로그인 완료! 메인페이지로 이동합니다.');
+    showModal('로그인 성공', '메인페이지로 이동합니다.');
     setTimeout(() => {
       location.href = '/';
-    }, 1000);
+    }, 500);
   } catch (error) {
     console.error('Error handling authentication:', error);
     showModal('로그인 오류', '인증 정보 처리 중 오류가 발생했습니다.');
