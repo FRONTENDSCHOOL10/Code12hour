@@ -18,7 +18,6 @@ export const setupEmailValidation = (pb) => {
   elements.emailInput.addEventListener('input', () => handleEmailInput(elements));
   elements.emailButton.addEventListener('click', () => handleEmailCheck(elements, pb));
 };
-
 /**
  * 필요한 모든 요소가 존재하는지 확인합니다.
  * @param {Object} elements - DOM 요소 객체
@@ -49,10 +48,24 @@ const handleEmailInput = (elements) => {
     hideElement(emailConfirm2);
   } else {
     hideElement(emailConfirm1);
-    validateEmail(emailValue) ? hideElement(emailConfirm2) : showElement(emailConfirm2);
+    if (!validateEmail(emailValue) || hasInvalidSpecialChars(emailValue)) {
+      showElement(emailConfirm2);
+    } else {
+      hideElement(emailConfirm2);
+    }
   }
 
   resetEmailButton(emailButton, emailButtonText);
+};
+
+/**
+ * 이메일에 허용되지 않은 특수 문자가 포함되어 있는지 확인합니다.
+ * @param {string} email - 확인할 이메일 주소
+ * @returns {boolean} 허용되지 않은 특수 문자가 포함되어 있으면 true, 그렇지 않으면 false
+ */
+const hasInvalidSpecialChars = (email) => {
+  const invalidCharsRegex = /[^a-zA-Z0-9@._-]/;
+  return invalidCharsRegex.test(email);
 };
 
 /**
@@ -61,8 +74,8 @@ const handleEmailInput = (elements) => {
  * @param {Object} pb - PocketBase 인스턴스
  */
 const handleEmailCheck = async (elements, pb) => {
-  const { emailInput, emailButton, emailButtonText } = elements;
-  const emailValue = emailInput.value.trim().toLowerCase(); // 소문자로 변환
+  const { emailInput, emailButton, emailButtonText, emailConfirm2 } = elements;
+  const emailValue = emailInput.value.trim().toLowerCase();
 
   if (emailValue === '') {
     alert('이메일을 입력해 주세요.');
@@ -70,6 +83,11 @@ const handleEmailCheck = async (elements, pb) => {
   }
   if (!validateEmail(emailValue)) {
     alert('이메일 형식으로 입력해주세요.');
+    return;
+  }
+  if (hasInvalidSpecialChars(emailValue)) {
+    showElement(emailConfirm2);
+    alert('허용되지 않는 특수 문자가 포함되어 있습니다.');
     return;
   }
 
@@ -95,7 +113,6 @@ const handleEmailCheck = async (elements, pb) => {
     emailButton.disabled = false;
   }
 };
-
 /**
  * 이메일 확인 버튼을 초기 상태로 되돌립니다.
  * @param {HTMLElement} button - 이메일 확인 버튼

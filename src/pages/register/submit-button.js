@@ -84,14 +84,11 @@ export const setupSubmitButton = (pb) => {
         ad_consent: promotion,
       };
 
-      console.log('Sending user data:', userData);
-
       const user = await pb.collection('users').create(userData);
 
       // 이메일 인증 요청 추가
       try {
         await pb.collection('users').requestVerification(email);
-        console.log('인증 이메일이 전송되었습니다.');
       } catch (verificationError) {
         console.error('이메일 인증 요청 중 오류 발생:', verificationError);
       }
