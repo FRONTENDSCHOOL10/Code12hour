@@ -2,7 +2,7 @@ import './product-inquiry.scss';
 import '@/components/modal/modal.scss';
 import css from './product-inquiry.scss?inline';
 import css2 from '@/components/review-modal/modal.scss?inline';
-import pb from '@/api/pocketBase';
+import pb from '@/api/pocketbase';
 
 /* document.addEventListener('DOMContentLoaded', () => {
   // 후기 작성하기 버튼 클릭 => 모달창 열림
