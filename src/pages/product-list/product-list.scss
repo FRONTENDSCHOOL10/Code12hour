@@ -51,8 +51,9 @@ img {
   @include flex(row nowrap, space-between);
   padding-bottom: 1.25rem;
 
-  &__count {
-    font-weight: 500;
+  &__count,
+  &__button--is-active {
+    font-weight: 600;
   }
 
   &__button {
@@ -80,24 +81,14 @@ img {
       margin: 0 $rem-0-5;
       background-color: $gray-100-color;
     }
-
-    // 추천순 info 아이콘
-    &:nth-child(1)::after {
-      content: url('/assets/icons/product-list/info.svg');
-      vertical-align: middle;
-      margin-left: $rem-0-25;
-    }
-    &:nth-child(1)::after:hover {
-      visibility: visible;
-    }
   }
+
 }
 
 .product-item-group {
   box-sizing: border-box;
   display: grid;
   grid-template-columns: repeat(3, 15.5625rem);
-  // grid-template-rows: repeat(5, 1fr); //TODO: 수정
   justify-content: space-between;
   row-gap: 1.5rem;
 }
@@ -111,8 +102,9 @@ img {
     @include size(100%, 20rem);
     border-radius: $rem-0-25;
     background-color: $gray-100-color;
-    background: url('/src/assets/images/banner/1.jpg') no-repeat center;
+    // background: url('/src/assets/images/banner/1.jpg') no-repeat center;
     background-size: 100%;
+    background-position: center center;
     transition: background-size 0.3s ease;
   }
 

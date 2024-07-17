@@ -7,3 +7,4 @@ export * from './product-review/product-review.js';
 export * from './product-inquiry/product-inquiry.js';
 export * from './cart-button/cart-button.js';
 export * from './modal/modal.js';
+export * from './side-filter-panel/side-filter-panel.js';
