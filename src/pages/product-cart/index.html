@@ -8,6 +8,7 @@
   </head>
   <body>
     <c-header></c-header>
+    <c-header-small></c-header-small>
     <main class="main">
       <h1 class="main__title">장바구니</h1>
       <section class="cart">
@@ -23,15 +24,21 @@
             />
             <label for="cart-select-top" class="cart-select-label">
               전체선택
-              <span role="status" aria-live="polite" aria-label="선택된 항목 수">(3/3)</span>
+              <span
+                class="cart-select-text"
+                role="status"
+                aria-live="polite"
+                aria-label="선택된 항목 수"
+                >(0/0)</span
+              >
             </label>
             <div class="cart-divider" aria-hidden="true"></div>
             <button type="button" class="cart-delete-selected">선택삭제</button>
           </div>
           <ul class="cart-categories" aria-label="상품 카테고리 목록">
             <li class="cart-category" aria-posinset="1" aria-setsize="3">
-              <details>
-                <summary>
+              <details class="cart-category__details" data-category="refrigerated">
+                <summary class="cart-category__summary">
                   <span class="cart-category__content">
                     <img
                       src="/assets/icons/product-cart/Cold.svg"
@@ -42,14 +49,12 @@
                   </span>
                   <span class="cart-category__arrow-icon" aria-hidden="true"></span>
                 </summary>
-                <div>
-                  <!-- 냉장 식품 관련 내용 -->
-                </div>
+                <ul class="cart-category__product-list"></ul>
               </details>
             </li>
             <li class="cart-category" aria-posinset="2" aria-setsize="3">
-              <details>
-                <summary>
+              <details class="cart-category__details" data-category="frozen">
+                <summary class="cart-category__summary">
                   <span class="cart-category__content">
                     <img
                       src="/assets/icons/product-cart/Frozen.svg"
@@ -60,14 +65,12 @@
                   </span>
                   <span class="cart-category__arrow-icon" aria-hidden="true"></span>
                 </summary>
-                <div>
-                  <!-- 냉동 식품 관련 내용 -->
-                </div>
+                <ul class="cart-category__product-list"></ul>
               </details>
             </li>
             <li class="cart-category" aria-posinset="3" aria-setsize="3">
-              <details>
-                <summary>
+              <details class="cart-category__details" data-category="room-temperature">
+                <summary class="cart-category__summary">
                   <span class="cart-category__content">
                     <img
                       src="/assets/icons/product-cart/Temperature.svg"
@@ -78,9 +81,7 @@
                   </span>
                   <span class="cart-category__arrow-icon" aria-hidden="true"></span>
                 </summary>
-                <div>
-                  <!-- 상온 식품 관련 내용 -->
-                </div>
+                <ul class="cart-category__product-list"></ul>
               </details>
             </li>
           </ul>
@@ -93,7 +94,13 @@
             />
             <label for="cart-select-bottom" class="cart-select-label">
               전체선택
-              <span role="status" aria-live="polite" aria-label="선택된 항목 수">(3/3)</span>
+              <span
+                class="cart-select-text"
+                role="status"
+                aria-live="polite"
+                aria-label="선택된 항목 수"
+                >(0/0)</span
+              >
             </label>
             <div class="cart-divider" aria-hidden="true"></div>
             <button type="button" class="cart-delete-selected">선택삭제</button>
@@ -116,19 +123,19 @@
                 <div class="cart-edit__price-item">
                   <dt class="cart-edit__price-label">상품금액</dt>
                   <dd class="cart-edit__price-value">
-                    40,680<span class="cart-edit__price-currency">원</span>
+                    0<span class="cart-edit__price-currency">원</span>
                   </dd>
                 </div>
                 <div class="cart-edit__price-item">
                   <dt class="cart-edit__price-label">상품할인금액</dt>
                   <dd class="cart-edit__price-discount">
-                    -4,651<span class="cart-edit__price-currency">원</span>
+                    - 0<span class="cart-edit__price-currency">원</span>
                   </dd>
                 </div>
                 <div class="cart-edit__price-item">
                   <dt class="cart-edit__price-label">배송비</dt>
                   <dd class="cart-edit__price-shipping">
-                    +3,000<span class="cart-edit__price-currency">원</span>
+                    + 3,000<span class="cart-edit__price-currency">원</span>
                   </dd>
                 </div>
               </dl>
@@ -136,7 +143,7 @@
                 <dl class="cart-edit__total">
                   <dt class="cart-edit__total-label">결제예정금액</dt>
                   <dd class="cart-edit__total-value">
-                    40,680<span class="cart-edit__price-currency">원</span>
+                    0<span class="cart-edit__price-currency">원</span>
                   </dd>
                 </dl>
                 <div class="cart-edit__earn">

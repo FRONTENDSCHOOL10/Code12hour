@@ -37,7 +37,17 @@ cartButtonTemplate.innerHTML = `
       <div slot="body" class="modal-body">
 
       </div>
-      <button slot="footer" type="button" id="modal__close" class="modal__close">닫기</button>
+      <div slot="footer" class="modal-button-group">
+        <button slot="footer" type="button" id="modal__close" class="modal__close">닫기</button>
+        <a
+          slot="footer"
+          href="/src/pages/product-cart/"
+          role="button"
+          id="modal__cart"
+          class="modal__cart"
+          >장바구니 이동</a
+        >
+      </div>
     </c-modal>
 `;
 
