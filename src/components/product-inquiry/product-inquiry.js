@@ -1,7 +1,8 @@
 import './product-inquiry.scss';
 import '@/components/modal/modal.scss';
 import css from './product-inquiry.scss?inline';
-import css2 from '@/components/modal/modal.scss?inline';
+import css2 from '@/components/review-modal/modal.scss?inline';
+import pb from '@/api/pocketBase';
 
 /* document.addEventListener('DOMContentLoaded', () => {
   // 후기 작성하기 버튼 클릭 => 모달창 열림
@@ -337,13 +338,28 @@ inquiryTemplate.innerHTML = `
           <span class="inquiry-notice__item">-</span>
         </summary>
         <div class="inquiry-notice__content-message">
-          <p class="inquiry-notice__content-message--answer">답변답변답변</p>
+          <p class="inquiry-notice__content-message--answer">공지사항 안내</p>
         </div>
       </details>
 
       <!-- 문의 리스트 -->
       <div class="inquiry-wrapper">
-        <div class="inquiry-area">
+      <!-- 비밀글입니다. -->
+      <div class="inquiry-private__wrapper">
+        <div class="inquiry-private">
+          <span class="inquiry-private__item">
+            <span class="inquiry-private__message">비밀글입니다.</span>
+            <span class="inquiry-private__icon"></span>
+          </span>
+          <span class="inquiry-private__item">이름</span>
+          <span class="inquiry-private__item">2024.07.13</span>
+          <span class="inquiry-private__item">
+            <span class="inquiry-private__item">답변대기</span>
+            <!-- <span class="inquiry-private__item item-status__ture">답변완료</span> -->
+          </span>
+        </div>
+      </div>
+        <div class="inquiry-area-fix">
           <details id="inqiry-list-1" class="inquiry-list" aria-expanded="false">
             <summary class="inquiry-list__summary">
               <span class="inquiry-list__item">
@@ -352,86 +368,51 @@ inquiryTemplate.innerHTML = `
               <span class="inquiry-list__item">야호</span>
               <span class="inquiry-list__item">2024.07.11</span>
               <span class="inquiry-list__item">
-                <span class="inquiry-list__item">답변대기</span>
-                <!-- <span class="inquiry-list__item item-status__ture">답변완료</span> -->
+                <!-- <span class="inquiry-list__item">답변대기</span> -->
+                <span class="inquiry-list__item item-status__ture">답변완료</span>
               </span>
             </summary>
             <div class="inquiry-list__content">
               <div class="inquiry-list__content-message">
                 <span class="inquiry-list__content-icon--q"></span>
-                <p class="inquiry-list__content-message--question">질문질문질문</p>
+                <p class="inquiry-list__content-message--question">
+                  스티로폼 박스도 손상되어 있어 포장이 터져 엉망이네요.<br />환불 요청합니다.
+                </p>
               </div>
               <div class="inquiry-list__content-message">
                 <span class="inquiry-list__content-icon--a"></span>
                 <div class="inquiry-list__content-message--wrapper">
-                  <p class="inquiry-list__content-message--answer">답변답변답변</p>
+                  <p class="inquiry-list__content-message--answer">
+                    안녕하세요. 칼리입니다.<br />
+                    믿고 찾아주신 상품에 불편을 드려 정말 죄송합니다.<br /><br />
+                    더불어, 해당 게시판은 실시간으로 상담이 어려워 순차적으로 답변드리고<br />
+                    있는 관계로 신속하게 답변 드리지 못하여 대단히 죄송합니다.<br /><br />
+                    다행히도 고객님의 불편하셨던 사항은 고객행복센터를 통해 안내 받으신 점
+                    확인하였습니다.<br /><br />불편을 드려 정말 죄송할 따름이며, 고객님께 늘
+                    신선하고 최상의 상품을 불편 없이 전달드리기 위해<br />
+                    최선을 다하는 칼리가 되겠습니다. <br /><br />칼리 드림.
+                  </p>
                   <span
                     class="inquiry-list__content-message--answer inquiry-list__content-message--date"
-                    >2024.07.12</span
+                    >2024.07.11</span
                   >
                 </div>
               </div>
             </div>
           </details>
         </div>
+        <div class="inquiry-area"></div>
       </div>
 
-      <!-- 비밀글입니다. -->
-      <div id="" class="inquiry-private">
-        <span class="inquiry-private__item">
-          <span class="inquiry-private__message">비밀글입니다.</span>
-          <span class="inquiry-private__icon"></span>
-        </span>
-        <span class="inquiry-private__item">이름</span>
-        <span class="inquiry-private__item">2024.07.13</span>
-        <span class="inquiry-private__item">
-          <span class="inquiry-private__item">답변대기</span>
-          <!-- <span class="inquiry-private__item item-status__ture">답변완료</span> -->
-        </span>
-      </div>
-      <div id="" class="inquiry-private">
-        <span class="inquiry-private__item">
-          <span class="inquiry-private__message">비밀글입니다.</span>
-          <span class="inquiry-private__icon"></span>
-        </span>
-        <span class="inquiry-private__item">이름</span>
-        <span class="inquiry-private__item">2024.07.13</span>
-        <span class="inquiry-private__item">
-          <span class="inquiry-private__item">답변대기</span>
-          <!-- <span class="inquiry-private__item item-status__ture">답변완료</span> -->
-        </span>
-      </div>
-      <div id="" class="inquiry-private">
-        <span class="inquiry-private__item">
-          <span class="inquiry-private__message">비밀글입니다.</span>
-          <span class="inquiry-private__icon"></span>
-        </span>
-        <span class="inquiry-private__item">이름</span>
-        <span class="inquiry-private__item">2024.07.13</span>
-        <span class="inquiry-private__item">
-          <span class="inquiry-private__item">답변대기</span>
-          <!-- <span class="inquiry-private__item item-status__ture">답변완료</span> -->
-        </span>
-      </div>
-      <div id="" class="inquiry-private">
-        <span class="inquiry-private__item">
-          <span class="inquiry-private__message">비밀글입니다.</span>
-          <span class="inquiry-private__icon"></span>
-        </span>
-        <span class="inquiry-private__item">이름</span>
-        <span class="inquiry-private__item">2024.07.13</span>
-        <span class="inquiry-private__item">
-          <span class="inquiry-private__item">답변대기</span>
-          <!-- <span class="inquiry-private__item item-status__ture">답변완료</span> -->
-        </span>
-      </div>
       <!-- 비밀글 팝업창 -->
-      <!-- <div id="privatePostPopup" class="private-popup__overlay">
-        <div class="private-popup__content" role="dialog" aria-labelledby="popupMessage">
-          <p id="popupMessage" class="private-popup__message">비밀글입니다.</p>
-          <button class="private-popup__button">확인</button>
+      <template id="privatePostPopup" class="private-popup__wrapper">
+        <div class="private-popup__overlay">
+          <div class="private-popup__content" role="dialog" aria-labelledby="popupMessage">
+            <p id="popupMessage" class="private-popup__message">비밀글입니다.</p>
+            <button class="private-popup__button">확인</button>
+          </div>
         </div>
-      </div> -->
+      </template>
 
       <!-- 페이지네이션 좌우 버튼 -->
       <nav class="paging" aria-label="문의 페이지 버튼">
@@ -454,34 +435,218 @@ export class inquiry extends HTMLElement {
     super();
     this.attachShadow({ mode: 'open' });
     this.shadowRoot.appendChild(inquiryTemplate.content.cloneNode(true));
+    this.currentPage = 1;
+    this.perPage = 3;
   }
 
   connectedCallback() {
     this.writeInquiryButton = this.shadowRoot.querySelector('.product-inquiry__write-btn');
-    this.inquiryWrapper = this.shadowRoot.querySelector('.inquiry-wrapper');
     this.modalTemplate = this.shadowRoot.getElementById('modal-template');
+    this.inquiryList = this.shadowRoot.querySelector('.inquiry-area');
+    this.popupTemplate = this.shadowRoot.getElementById('privatePostPopup');
+
+    this.privateMessage = this.shadowRoot.querySelector('.inquiry-private__message');
+    this.privateWrapper = this.shadowRoot.querySelector('.inquiry-private__wrapper');
+
+    this.prevButton = this.shadowRoot.querySelector('.paging__button--prev');
+    this.nextButton = this.shadowRoot.querySelector('.paging__button--next');
+    this.prevButton.addEventListener('click', () => this.prevPage());
+    this.nextButton.addEventListener('click', () => this.nextPage());
 
     this.writeInquiryButton.addEventListener('click', () => this.openModal());
+    this.privateWrapper.addEventListener('click', () => this.openPopup());
+
+    this.renderInquiry();
+  }
+
+  // 데이터 가져오기
+  async renderInquiry() {
+    try {
+      let queryOptions = {
+        sort: '-created',
+        page: this.currentPage,
+        perPage: this.perPage,
+        expand: 'user, product',
+      };
+      const inquiryData = await pb.collection('product_inquiry').getList(1, 5, queryOptions);
+      console.log(inquiryData);
+      this.updateInquiryList(inquiryData);
+      this.updatePaginationButton(inquiryData.totalItems);
+    } catch (error) {
+      console.error('못가져왔다', error);
+    }
+  }
+
+  updatePaginationButton(totalItems) {
+    const totalPage = Math.ceil(totalItems / this.perPage);
+    if (this.currentPage <= 1) {
+      this.prevButton.disabled = true;
+      this.prevButton.setAttribute('aria-disabled', 'true');
+    } else {
+      this.prevButton.disabled = false;
+      this.prevButton.setAttribute('aria-disabled', 'false');
+    }
+
+    if (this.currentPage >= totalPage) {
+      this.nextButton.disabled = true;
+      this.nextButton.setAttribute('aria-disabled', 'true');
+    } else {
+      this.nextButton.disabled = false;
+      this.nextButton.setAttribute('aria-disabled', 'false');
+    }
+  }
+
+  prevPage() {
+    if (this.currentPage > 1) {
+      this.currentPage--;
+      this.renderInquiry();
+    }
+  }
+
+  nextPage() {
+    this.currentPage++;
+    this.renderInquiry();
+  }
+
+  updateInquiryList(inquiryData) {
+    if (this.inquiryList) {
+      this.inquiryList.innerHTML = '';
+      if (inquiryData.items.length > 0) {
+        inquiryData.items.forEach((inquiry) => {
+          const inquiryElement = this.createInquiryElement(inquiry);
+          this.inquiryList.appendChild(inquiryElement);
+        });
+      }
+    }
+  }
+
+  // 문의글
+  createInquiryElement(inquiry) {
+    const inquiryDetails = document.createElement('div');
+    inquiryDetails.className = 'inquiry-wrapper';
+
+    const userName = inquiry.expand.user.name;
+
+    const date = new Date(inquiry.created);
+    const writtenDate = `${date.getFullYear()}.${String(date.getMonth() + 1).padStart(2, '0')}.${String(date.getDate()).padStart(2, '0')}`;
+
+    if (inquiry.secret) {
+      inquiryDetails.innerHTML = `
+        <div class="inquiry-private__wrapper">
+          <div class="inquiry-private">
+            <span class="inquiry-private__item">
+              <span class="inquiry-private__message">비밀글입니다.</span>
+              <span class="inquiry-private__icon"></span>
+            </span>
+            <span class="inquiry-private__item">${userName}</span>
+            <span class="inquiry-private__item">${writtenDate}</span>
+            <span class="inquiry-private__item">
+              <span class="inquiry-private__item">답변대기</span>
+            </span>
+          </div>
+        </div>
+      `;
+    } else {
+      inquiryDetails.innerHTML = `
+    <details id="inquiry-list-${inquiry.id}" class="inquiry-list" aria-expanded="false">
+      <summary class="inquiry-list__summary">
+        <span class="inquiry-list__item">
+          <h3 class="inquiry-list__title">${inquiry.inquiry_title}</h3>
+        </span>
+        <span class="inquiry-list__item">${userName}</span>
+        <span class="inquiry-list__item">${writtenDate}</span>
+        <span class="inquiry-list__item">
+          <span class="inquiry-list__item">답변대기</span>
+        </span>
+      </summary>
+      <div class="inquiry-list__content">
+        <div class="inquiry-list__content-message">
+          <span class="inquiry-list__content-icon--q"></span>
+          <p class="inquiry-list__content-message--question">${inquiry.inquiry_content}</p>
+        </div>
+        <div class="inquiry-list__content-message">
+          <span class="inquiry-list__content-icon--a"></span>
+          <div class="inquiry-list__content-message--wrapper">
+            <p class="inquiry-list__content-message--answer"></p>
+            <span class="inquiry-list__content-message--answer inquiry-list__content-message--date"></span>
+          </div>
+        </div>
+      </div>
+    </details>
+  `;
+    }
+    return inquiryDetails;
+  }
+
+  // 비밀글입니다.
+  openPopup() {
+    const privatePopup = this.popupTemplate.content.cloneNode(true);
+    this.shadowRoot.appendChild(privatePopup);
+    const popup = this.shadowRoot.lastElementChild;
+
+    popup.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+
+    const confirmButton = popup.querySelector('.private-popup__button');
+    confirmButton.addEventListener('click', () => this.closePopup(popup));
+  }
+
+  closePopup(popup) {
+    popup.style.display = 'none';
+    popup.remove();
+    document.body.style.overflow = 'auto';
   }
 
   openModal() {
-    const inquiryModal = this.modalTemplate.content.cloneNode(true);
-    this.shadowRoot.appendChild(inquiryModal);
+    const modalContent = this.modalTemplate.content.cloneNode(true);
+    const modalOverlay = modalContent.querySelector('.modal__overlay');
+    this.shadowRoot.appendChild(modalOverlay);
 
-    const modal = this.shadowRoot.lastElementChild;
-    modal.style.display = 'flex';
+    modalOverlay.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
 
-    const closeButton = modal.querySelector('.modal__close-btn');
-    const cancelButton = modal.querySelector('.modal__button--cancel');
-    const contentTextarea = modal.querySelector('#modalContent');
-    const placeholder = modal.querySelector('.modal__textarea-placeholder');
-    const charCountCurrent = modal.querySelector('.modal__char-count-current');
-    const titleInput = modal.querySelector('#modalTitle');
-    const submitButton = modal.querySelector('.modal__button--submit');
+    const closeButton = modalOverlay.querySelector('.modal__close-btn');
+    const cancelButton = modalOverlay.querySelector('.modal__button--cancel');
+    closeButton.addEventListener('click', () => this.closeModal(modalOverlay));
+    cancelButton.addEventListener('click', () => this.closeModal(modalOverlay));
 
-    closeButton.addEventListener('click', () => this.closeModal(modal));
-    cancelButton.addEventListener('click', () => this.closeModal(modal));
+    const contentTextarea = modalOverlay.querySelector('#modalContent');
+    const placeholder = modalOverlay.querySelector('.modal__textarea-placeholder');
+    this.setupTextareaPlaceholder(contentTextarea, placeholder);
 
+    // 글자수
+    const charCountCurrent = modalOverlay.querySelector('.modal__char-count-current');
+    contentTextarea.addEventListener('input', () =>
+      this.updateCharCount(contentTextarea, charCountCurrent)
+    );
+
+    // 폼 유효성 체크
+    const titleInput = modalOverlay.querySelector('#modalTitle');
+    const submitButton = modalOverlay.querySelector('.modal__button--submit');
+    contentTextarea.addEventListener('input', () =>
+      this.checkInputs(titleInput, contentTextarea, submitButton)
+    );
+    titleInput.addEventListener('input', () =>
+      this.checkInputs(titleInput, contentTextarea, submitButton)
+    );
+
+    submitButton.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (contentTextarea.value.trim() !== '' && titleInput.value.trim() !== '') {
+        const isPrivate = modalOverlay.querySelector('#privateInquiry').checked;
+        this.addInquiry(titleInput.value, contentTextarea.value, isPrivate);
+        this.closeModal(modalOverlay);
+      }
+    });
+  }
+
+  closeModal(modal) {
+    modal.style.display = 'none';
+    modal.remove();
+    document.body.style.overflow = 'auto';
+  }
+
+  setupTextareaPlaceholder(contentTextarea, placeholder) {
     placeholder.addEventListener('click', () => {
       placeholder.style.display = 'none';
       contentTextarea.focus();
@@ -496,31 +661,9 @@ export class inquiry extends HTMLElement {
         placeholder.style.display = 'block';
       }
     });
-
-    contentTextarea.addEventListener('input', () => {
-      this.charCountState(contentTextarea, charCountCurrent);
-      this.checkInputs(titleInput, contentTextarea, submitButton);
-    });
-
-    titleInput.addEventListener('input', () => {
-      this.checkInputs(titleInput, contentTextarea, submitButton);
-    });
-
-    submitButton.addEventListener('click', (e) => {
-      e.preventDefault();
-      if (contentTextarea.value.trim() !== '') {
-        this.addInquiry(titleInput.value, contentTextarea.value);
-        this.closeModal(modal);
-      }
-    });
   }
 
-  closeModal(modal) {
-    modal.style.display = 'none';
-    modal.remove();
-  }
-
-  charCountState(textarea, countElement) {
+  updateCharCount(textarea, countElement) {
     const currentLength = textarea.value.length;
     countElement.textContent = currentLength.toLocaleString();
   }
@@ -537,41 +680,57 @@ export class inquiry extends HTMLElement {
     }
   }
 
-  addInquiry(title, content) {
-    const newInquiry = document.createElement('div');
-    newInquiry.className = 'inquiry-area';
+  // 비밀글 체크 시 비밀글로 작성 -> 이후 다시 비밀글 팝업창 뜨게끔
+  addPrivateInquiry(writtenDate) {
+    const privatePost = document.createElement('div');
+    privatePost.className = 'inquiry-private';
 
-    const currentDate = new Date();
-    const writtenDate = `${currentDate.getFullYear()}.${String(currentDate.getMonth() + 1).padStart(2, '0')}.${String(currentDate.getDate()).padStart(2, '0')}`;
-
-    newInquiry.innerHTML = `
-      <details id="inquiry-list-1" class="inquiry-list" aria-expanded="false">
-        <summary class="inquiry-list__summary">
-          <span class="inquiry-list__item">
-            <h3 class="inquiry-list__title">${title}</h3>
+    privatePost.innerHTML = `
+    <div class="inquiry-private">
+          <span class="inquiry-private__item">
+            <span class="inquiry-private__message">비밀글입니다.</span>
+            <span class="inquiry-private__icon"></span>
           </span>
-          <span class="inquiry-list__item">야호</span>
-          <span class="inquiry-list__item">${writtenDate}</span>
-          <span class="inquiry-list__item">
-            <span class="inquiry-list__item">답변대기</span>
+          <span class="inquiry-private__item">이름</span>
+          <span class="inquiry-private__item">${writtenDate}</span>
+          <span class="inquiry-private__item">
+            <span class="inquiry-private__item">답변대기</span>
           </span>
-        </summary>
-        <div class="inquiry-list__content">
-          <div class="inquiry-list__content-message">
-            <span class="inquiry-list__content-icon--q"></span>
-            <p class="inquiry-list__content-message--question">${content}</p>
           </div>
-          <div class="inquiry-list__content-message">
-            <span class="inquiry-list__content-icon--a"></span>
-            <div class="inquiry-list__content-message--wrapper">
-              <p class="inquiry-list__content-message--answer">답변답변답변</p>
-              <span class="inquiry-list__content-message--answer inquiry-list__content-message--date">${writtenDate}</span>
-            </div>
-          </div>
-        </div>
-      </details>
-    `;
+      `;
 
-    this.inquiryWrapper.insertBefore(newInquiry, this.inquiryWrapper.firstChild);
+    this.privateWrapper.insertBefore(privatePost, this.privateWrapper.firstChild);
+    const privateMessage = privatePost.querySelector('.inquiry-private__message');
+    privateMessage.addEventListener('click', () => this.openPopup());
+  }
+
+  // 보내기
+  async addInquiry(title, content, isPrivate) {
+    try {
+      const productId = this.currentProductId();
+      const user = 'e8uvm6jynn06pnp'; // user01
+
+      const data = {
+        user: user,
+        product: productId,
+        inquiry_title: title,
+        inquiry_content: content,
+        secret: isPrivate,
+      };
+
+      await pb.collection('product_inquiry').create(data);
+      await this.renderInquiry();
+    } catch (error) {
+      console.error('에러', error);
+      this.handleError(error);
+    }
+  }
+
+  currentProductId() {
+    const params = new URLSearchParams(location.search);
+    console.log(params);
+    const productId = params.get('id');
+    console.log(productId);
+    return productId;
   }
 }

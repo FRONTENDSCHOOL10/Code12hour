@@ -1,7 +1,8 @@
 import './product-review.scss';
 import '@/components/modal/modal.scss';
 import css from './product-review.scss?inline';
-import css2 from '@/components/modal/modal.scss?inline';
+import css2 from '@/components/review-modal/modal.scss?inline';
+import pb from '@/api/pocketBase';
 
 /* document.addEventListener('DOMContentLoaded', () => {
   // 후기 작성하기 버튼 클릭 => 모달창 열림
@@ -357,7 +358,7 @@ reviewTemplate.innerHTML = `
       </div>
 
       <!-- 상품 리뷰 썸네일 이미지 갤러리 -->
-      <div class="product-gallery" aria-label="리뷰 이미지 갤러리">
+     <!--  <div class="product-gallery" aria-label="리뷰 이미지 갤러리">
         <button
           type="button"
           class="product-gallery__image-btn"
@@ -422,7 +423,7 @@ reviewTemplate.innerHTML = `
         >
           <span>+더보기</span>
         </button>
-      </div>
+      </div>-->
 
       <!-- 리뷰 써머리 (리뷰 개수 및 분류 버튼) -->
       <div class="review-content" aria-labelledby="review-list-title">
@@ -486,7 +487,6 @@ reviewTemplate.innerHTML = `
 
         <div class="review-list" aria-live="polite">
           <!-- 후기 아티클 -->
-          <!-- 후기 아티클 -->
           <article class="review-article__list" aria-labelledby="고객 후기"></article>
         </div>
 
@@ -512,18 +512,195 @@ export class review extends HTMLElement {
     super();
     this.attachShadow({ mode: 'open' });
     this.shadowRoot.appendChild(reviewTemplate.content.cloneNode(true));
+    this.currentPage = 1;
+    this.perPage = 10;
   }
 
   connectedCallback() {
     this.writeReviewButton = this.shadowRoot.querySelector('.product-reviews__write-btn');
     this.modalTemplate = this.shadowRoot.getElementById('modal-template');
     this.reviewList = this.shadowRoot.querySelector('.review-list');
+
     this.emptyReviewMessage = this.shadowRoot.querySelector('.review-list__empty');
+
     this.reviewCountElement = this.shadowRoot.getElementById('review-count');
 
-    this.writeReviewButton.addEventListener('click', () => {
-      this.openModal();
+    this.recommendedTab = this.shadowRoot.getElementById('recommended-tab');
+    this.recentTab = this.shadowRoot.getElementById('recent-tab');
+    this.recommendedTab.addEventListener('click', () => {
+      this.updateTabs('recommended');
+      this.currentPage = 1;
+      this.renderReview('recommended');
     });
+    this.recentTab.addEventListener('click', () => {
+      this.updateTabs('recent');
+      this.currentPage = 1;
+      this.perPage = 10;
+      this.renderReview('recent');
+    });
+
+    this.prevButton = this.shadowRoot.querySelector('.paging__button--prev');
+    this.nextButton = this.shadowRoot.querySelector('.paging__button--next');
+    this.prevButton.addEventListener('click', () => this.prevPage());
+    this.nextButton.addEventListener('click', () => this.nextPage());
+
+    this.writeReviewButton.addEventListener('click', () => this.openModal());
+
+    this.sortOption = 'recommended';
+    this.renderReview(this.sortOption);
+  }
+
+  // 데이터 가져오기 정렬, 리뷰 내용?
+  async renderReview(sortType) {
+    try {
+      const sortOption = sortType === 'recommended' ? '-recommendCount, -created' : '-created';
+      // console.log('sort:', sortOption);
+      let queryOptions = {
+        sort: sortOption,
+        page: this.currentPage,
+        perPage: this.perPage,
+        expand: 'user, product',
+      };
+
+      const reviewData = await pb.collection('product_review').getList(1, 10, queryOptions);
+      this.updateReviewList(reviewData);
+      this.updateTabs(sortType);
+      this.updatePaginationButton(reviewData.totalItems);
+      this.sortOption = sortType;
+    } catch (error) {
+      console.error('못가져옴:', error);
+      console.error('에러에러', error.data);
+      this.handleError();
+    }
+  }
+
+  updatePaginationButton(totalItems) {
+    const totalPage = Math.ceil(totalItems / this.perPage);
+    // console.log('현재', this.currentPage, '토탈', totalPage);
+    if (this.currentPage <= 1) {
+      this.prevButton.disabled = true;
+      this.prevButton.setAttribute('aria-disabled', 'true');
+    } else {
+      this.prevButton.disabled = false;
+      this.prevButton.setAttribute('aria-disabled', 'false');
+    }
+
+    if (this.currentPage >= totalPage) {
+      this.nextButton.disabled = true;
+      this.nextButton.setAttribute('aria-disabled', 'true');
+    } else {
+      this.nextButton.disabled = false;
+      this.nextButton.setAttribute('aria-disabled', 'false');
+    }
+  }
+
+  prevPage() {
+    if (this.currentPage > 1) {
+      this.currentPage--;
+      // console.log(this.currentPage);
+      this.renderReview(this.sortOption);
+    }
+  }
+
+  nextPage() {
+    this.currentPage++;
+    // console.log(this.currentPage);
+    this.renderReview(this.sortOption);
+  }
+
+  // 리뷰 데이터 -> 업데이트
+  updateReviewList(reviewData) {
+    if (this.reviewList) {
+      if (reviewData.items.length === 0) {
+        this.emptyReviewMessage.style.display = 'block';
+        this.reviewList.innerHTML = '';
+      } else {
+        this.emptyReviewMessage.style.display = 'none';
+        this.reviewList.innerHTML = '';
+        reviewData.items.forEach((review) => {
+          const reviewElement = this.createReviewElement(review);
+          this.reviewList.appendChild(reviewElement);
+        });
+      }
+
+      // console.log(reviewData.totalItems);
+      this.updateReviewCount(reviewData.totalItems);
+    }
+  }
+
+  // 추천순, 등록순 탭 활성화
+  updateTabs(activeTab) {
+    if (activeTab === 'recommended') {
+      this.recommendedTab.classList.add('review-content__sort-btn--active');
+      this.recentTab.classList.remove('review-content__sort-btn--active');
+      this.sortOption = 'recommended';
+    } else {
+      this.recentTab.classList.add('review-content__sort-btn--active');
+      this.recommendedTab.classList.remove('review-content__sort-btn--active');
+      this.sortOption = 'recent';
+    }
+  }
+
+  // 리뷰 총 개수
+  updateReviewCount(count) {
+    this.reviewCountElement.textContent = count.toLocaleString();
+  }
+
+  // 리뷰
+  createReviewElement(review) {
+    const reviewArticle = document.createElement('article');
+    reviewArticle.className = 'review-article__list';
+
+    let bestIcon = '';
+    if (review.recommendCount >= 10) {
+      bestIcon = '<span class="review-item__badge">베스트</span>';
+    }
+
+    const userName = review.expand.user.name;
+    const productName = review.expand.product.product_name;
+    // console.log(productName);
+
+    const date = new Date(review.created);
+    const writtenDate = `${date.getFullYear()}.${String(date.getMonth() + 1).padStart(2, '0')}.${String(date.getDate()).padStart(2, '0')}`;
+
+    reviewArticle.innerHTML = `
+    <article class="review-article__list" aria-labelledby="고객 후기">
+    <div class="review-article__list-area">
+      <div class="review-item">
+        <div class="review-item__user">
+          <span class="review-item__badge">${bestIcon}</span>
+          <span class="review-item__author">${userName}</span>
+        </div>
+      </div>
+      <article class="review">
+        <span class="review__product-name" aria-label="리뷰 대상 제품:">
+          ${productName}
+        </span>
+        <p class="review__text">${review.review_content}</p>
+        <div class="review__gallery">
+        </div>
+        <footer class="review__footer">
+          <time class="review__date" datetime="2024-07-08">${writtenDate}</time>
+          <button type="button" class="review__helpful-btn" aria-pressed="false" aria-label="이 리뷰가 도움이 되었습니다. 현재 10명이 도움이 되었다고 평가했습니다.">
+            <span class="review__helpful-btn-icon" aria-hidden="true"></span>
+            <span class="review__helpful-btn-text">도움돼요 ${review.recommendCount}</span>
+          </button>
+        </footer>
+      </article>
+    </div>
+  </article>
+    `;
+
+    const helpfulButton = reviewArticle.querySelector('.review__helpful-btn');
+    const helpfulConutNum = helpfulButton.querySelector('.review__helpful-btn-text');
+    let helpfulCount = review.recommendCount;
+
+    helpfulButton.addEventListener('click', () => {
+      helpfulCount++;
+      helpfulConutNum.textContent = `도움돼요 ${helpfulCount}`;
+    });
+
+    return reviewArticle;
   }
 
   openModal() {
@@ -532,6 +709,7 @@ export class review extends HTMLElement {
     this.shadowRoot.appendChild(modalOverlay);
 
     modalOverlay.style.display = 'flex';
+    document.body.style.overflow = 'hidden'; // 모달창 되면 활성화시키기
 
     const closeButton = modalOverlay.querySelector('.modal__close-btn');
     const cancelButton = modalOverlay.querySelector('.modal__button--cancel');
@@ -542,11 +720,13 @@ export class review extends HTMLElement {
     const placeholder = modalOverlay.querySelector('.modal__textarea-placeholder');
     this.setupTextareaPlaceholder(contentTextarea, placeholder);
 
+    // 글자수
     const charCountCurrent = modalOverlay.querySelector('.modal__char-count-current');
     contentTextarea.addEventListener('input', () =>
       this.updateCharCount(contentTextarea, charCountCurrent)
     );
 
+    // 제출 버튼 활성화
     const submitButton = modalOverlay.querySelector('.modal__button--submit');
     contentTextarea.addEventListener('input', () =>
       this.checkInputs(contentTextarea, submitButton)
@@ -564,6 +744,7 @@ export class review extends HTMLElement {
   closeModal(modalOverlay) {
     modalOverlay.style.display = 'none';
     modalOverlay.remove();
+    document.body.style.overflow = 'auto';
   }
 
   setupTextareaPlaceholder(contentTextarea, placeholder) {
@@ -600,67 +781,38 @@ export class review extends HTMLElement {
     }
   }
 
-  addReview(content) {
-    const newReview = document.createElement('article');
-    newReview.className = 'review-article__list';
+  // data 이전에 선언해야 한다느 오류 뜸 -> 아이디값 그냥 고정???
+  async addReview(content) {
+    try {
+      const productId = this.currentProductId();
+      const user = 'e8uvm6jynn06pnp'; // user01
 
-    const currentDate = new Date();
-    const writtenDate = `${currentDate.getFullYear()}.${String(currentDate.getMonth() + 1).padStart(2, '0')}.${String(currentDate.getDate()).padStart(2, '0')}`;
+      const data = {
+        user: user,
+        product: productId,
+        review_content: content,
+        recommendCount: 0,
+      };
 
-    newReview.innerHTML = `
-      <article class="review-article__list" aria-labelledby="고객 후기">
-        <div class="review-article__list-area">
-          <div class="review-item">
-            <div class="review-item__user">
-              <span class="review-item__badge">베스트</span>
-              <span class="review-item__author">사용자</span>
-            </div>
-          </div>
-          <article class="review">
-            <span class="review__product-name" aria-label="리뷰 대상 제품:">
-              [풀무원] 탱탱쫄면 (4개입)
-            </span>
-            <p class="review__text">${content}</p>
-            <div class="review__gallery">
-              <!-- Image buttons here -->
-            </div>
-            <footer class="review__footer">
-              <time class="review__date" datetime="2024-07-08">${writtenDate}</time>
-              <button type="button" class="review__helpful-btn" aria-pressed="false" aria-label="이 리뷰가 도움이 되었습니다. 현재 10명이 도움이 되었다고 평가했습니다.">
-                <span class="review__helpful-btn-icon" aria-hidden="true"></span>
-                <span class="review__helpful-btn-text">도움돼요 0</span>
-              </button>
-            </footer>
-          </article>
-        </div>
-      </article>
-    `;
+      // console.log('데이터', data);
 
-    this.reviewList.insertBefore(newReview, this.reviewList.firstChild);
+      await pb.collection('product_review').create(data);
+      await this.renderReview();
+      // await this.renderReview(this.sortOption);
+    } catch (error) {
+      console.error('전송 실패:', error);
 
-    if (this.emptyReviewMessage) {
-      this.emptyReviewMessage.style.display = 'none';
+      if (error.message) {
+        console.error('뭐땜시', error.message);
+      }
     }
-
-    this.updateReviewCount();
   }
 
-  updateReviewCount() {
-    const currentCount = parseInt(this.reviewCountElement.textContent);
-    const countUp = currentCount + 1;
-    this.reviewCountElement.textContent = countUp.toLocaleString();
+  currentProductId() {
+    const params = new URLSearchParams(location.search);
+    console.log(params);
+    const productId = params.get('id');
+    console.log(productId);
+    return productId;
   }
 }
-
-// 필수적으로 구현해야 할 기능 *****
-// 추천순, 최근 등록순 필터링 버튼 구현 -> 서버에서 정렬순으로 호출?
-// 후기 이미지, 내용, 사용자 이름, 날짜, 상품명 데이터 받아올 수 있게끔 변수 처리
-// 모달창 -> 상품 인포 내용(이미지, 상품명) 데이터 받아올 수 있게끔 변수 처리
-
-// 부가 기능
-// 300자 이상 후기 -> 베스트 아이콘 보이게
-// 상품 후기의 도움돼요 버튼 클릭시 액티브 스타일링 고정 + 카운트 수 업데이트
-// 상품 이미지 갤러리 클릭 시 크게 보기? -> 선택 사항 (마크업 추가해야 함)
-
-// 문제점
-// 모달창 -> 현재 텍스트 카운트 수 부분 텍스트 많아지면 시각적으로 잘 안 보이는 문제점 있음
