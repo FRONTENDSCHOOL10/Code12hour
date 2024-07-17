@@ -550,7 +550,7 @@ export class review extends HTMLElement {
     this.renderReview(this.sortOption);
   }
 
-  // 데이터 가져오기 정렬, 리뷰 내용?
+  // 데이터 가져오기 (추천순-default, 등록순)
   async renderReview(sortType) {
     try {
       const sortOption = sortType === 'recommended' ? '-recommendCount, -created' : '-created';
@@ -570,10 +570,10 @@ export class review extends HTMLElement {
     } catch (error) {
       console.error('못가져옴:', error);
       console.error('에러에러', error.data);
-      this.handleError();
     }
   }
 
+  // 총 페이지 수
   updatePaginationButton(totalItems) {
     const totalPage = Math.ceil(totalItems / this.perPage);
     // console.log('현재', this.currentPage, '토탈', totalPage);
@@ -608,7 +608,7 @@ export class review extends HTMLElement {
     this.renderReview(this.sortOption);
   }
 
-  // 리뷰 데이터 -> 업데이트
+  // 리뷰 리스트 업데이트
   updateReviewList(reviewData) {
     if (this.reviewList) {
       if (reviewData.items.length === 0) {
@@ -646,7 +646,7 @@ export class review extends HTMLElement {
     this.reviewCountElement.textContent = count.toLocaleString();
   }
 
-  // 리뷰
+  // 리뷰 생성
   createReviewElement(review) {
     const reviewArticle = document.createElement('article');
     reviewArticle.className = 'review-article__list';
@@ -720,7 +720,6 @@ export class review extends HTMLElement {
     const placeholder = modalOverlay.querySelector('.modal__textarea-placeholder');
     this.setupTextareaPlaceholder(contentTextarea, placeholder);
 
-    // 글자수
     const charCountCurrent = modalOverlay.querySelector('.modal__char-count-current');
     contentTextarea.addEventListener('input', () =>
       this.updateCharCount(contentTextarea, charCountCurrent)
@@ -747,6 +746,7 @@ export class review extends HTMLElement {
     document.body.style.overflow = 'auto';
   }
 
+  // textarea 영역 안내 사항 (placeholder 역할의 div) 디스플레이 설정
   setupTextareaPlaceholder(contentTextarea, placeholder) {
     placeholder.addEventListener('click', () => {
       placeholder.style.display = 'none';
@@ -764,6 +764,7 @@ export class review extends HTMLElement {
     });
   }
 
+  // textarea 입력 시 글자 수 카운트
   updateCharCount(textarea, charCountElement) {
     const currentLength = textarea.value.length;
     charCountElement.textContent = currentLength.toLocaleString();
@@ -781,7 +782,7 @@ export class review extends HTMLElement {
     }
   }
 
-  // data 이전에 선언해야 한다느 오류 뜸 -> 아이디값 그냥 고정???
+  // data 이전에 선언해야 한다는 오류 뜸 -> 아이디값 고정시켜둠
   async addReview(content) {
     try {
       const productId = this.currentProductId();

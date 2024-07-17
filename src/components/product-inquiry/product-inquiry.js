@@ -345,22 +345,10 @@ inquiryTemplate.innerHTML = `
       <!-- 문의 리스트 -->
       <div class="inquiry-wrapper">
       <!-- 비밀글입니다. -->
-      <div class="inquiry-private__wrapper">
-        <div class="inquiry-private">
-          <span class="inquiry-private__item">
-            <span class="inquiry-private__message">비밀글입니다.</span>
-            <span class="inquiry-private__icon"></span>
-          </span>
-          <span class="inquiry-private__item">이름</span>
-          <span class="inquiry-private__item">2024.07.13</span>
-          <span class="inquiry-private__item">
-            <span class="inquiry-private__item">답변대기</span>
-            <!-- <span class="inquiry-private__item item-status__ture">답변완료</span> -->
-          </span>
-        </div>
-      </div>
+      <div class="inquiry-private__wrapper"></div>
         <div class="inquiry-area-fix">
-          <details id="inqiry-list-1" class="inquiry-list" aria-expanded="false">
+
+          <details id="inqiry-list" class="inquiry-list" aria-expanded="false">
             <summary class="inquiry-list__summary">
               <span class="inquiry-list__item">
                 <h3 class="inquiry-list__title">팩이 터져서 왔어요!!!</h3>
@@ -436,7 +424,8 @@ export class inquiry extends HTMLElement {
     this.attachShadow({ mode: 'open' });
     this.shadowRoot.appendChild(inquiryTemplate.content.cloneNode(true));
     this.currentPage = 1;
-    this.perPage = 3;
+    // 고정된 게시글(답변 있는 게시글)이 존재 -> 총 10개 표시
+    this.perPage = 9;
   }
 
   connectedCallback() {
@@ -477,6 +466,7 @@ export class inquiry extends HTMLElement {
     }
   }
 
+  // 총 페이지 수
   updatePaginationButton(totalItems) {
     const totalPage = Math.ceil(totalItems / this.perPage);
     if (this.currentPage <= 1) {
@@ -508,6 +498,7 @@ export class inquiry extends HTMLElement {
     this.renderInquiry();
   }
 
+  // 문의 리스트 업데이트
   updateInquiryList(inquiryData) {
     if (this.inquiryList) {
       this.inquiryList.innerHTML = '';
@@ -520,7 +511,7 @@ export class inquiry extends HTMLElement {
     }
   }
 
-  // 문의글
+  // 문의 생성
   createInquiryElement(inquiry) {
     const inquiryDetails = document.createElement('div');
     inquiryDetails.className = 'inquiry-wrapper';
@@ -548,7 +539,7 @@ export class inquiry extends HTMLElement {
       `;
     } else {
       inquiryDetails.innerHTML = `
-    <details id="inquiry-list-${inquiry.id}" class="inquiry-list" aria-expanded="false">
+    <details id="inquiry-list" class="inquiry-list" aria-expanded="false">
       <summary class="inquiry-list__summary">
         <span class="inquiry-list__item">
           <h3 class="inquiry-list__title">${inquiry.inquiry_title}</h3>
@@ -575,10 +566,11 @@ export class inquiry extends HTMLElement {
     </details>
   `;
     }
+
     return inquiryDetails;
   }
 
-  // 비밀글입니다.
+  // 비밀글입니다. 팝업창
   openPopup() {
     const privatePopup = this.popupTemplate.content.cloneNode(true);
     this.shadowRoot.appendChild(privatePopup);
@@ -614,13 +606,11 @@ export class inquiry extends HTMLElement {
     const placeholder = modalOverlay.querySelector('.modal__textarea-placeholder');
     this.setupTextareaPlaceholder(contentTextarea, placeholder);
 
-    // 글자수
     const charCountCurrent = modalOverlay.querySelector('.modal__char-count-current');
     contentTextarea.addEventListener('input', () =>
       this.updateCharCount(contentTextarea, charCountCurrent)
     );
 
-    // 폼 유효성 체크
     const titleInput = modalOverlay.querySelector('#modalTitle');
     const submitButton = modalOverlay.querySelector('.modal__button--submit');
     contentTextarea.addEventListener('input', () =>
@@ -646,6 +636,7 @@ export class inquiry extends HTMLElement {
     document.body.style.overflow = 'auto';
   }
 
+  // textarea 영역 안내 사항 (placeholder 역할의 div) 디스플레이 설정
   setupTextareaPlaceholder(contentTextarea, placeholder) {
     placeholder.addEventListener('click', () => {
       placeholder.style.display = 'none';
@@ -663,6 +654,7 @@ export class inquiry extends HTMLElement {
     });
   }
 
+  // textarea 입력 시 글자 수 카운트
   updateCharCount(textarea, countElement) {
     const currentLength = textarea.value.length;
     countElement.textContent = currentLength.toLocaleString();
@@ -722,7 +714,6 @@ export class inquiry extends HTMLElement {
       await this.renderInquiry();
     } catch (error) {
       console.error('에러', error);
-      this.handleError(error);
     }
   }
 
