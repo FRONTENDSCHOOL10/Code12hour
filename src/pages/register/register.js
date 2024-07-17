@@ -19,15 +19,13 @@ const init = () => {
   ]);
 };
 
-document.addEventListener('DOMContentLoaded', () => {
-  init();
-  setupNameValidation();
-  setupUsernameValidation(pb);
-  setupPasswordValidation(pb);
-  setupPasswordConfirmation(pb);
-  setupEmailValidation(pb);
-  setupAgreementCheckboxes();
-  const inviteValidation = setupInviteValidation(pb);
-  setupSubmitButton(pb, inviteValidation); // inviteValidation 객체를 전달
-  setupAddressSearch(pb);
-});
+init();
+setupNameValidation();
+setupUsernameValidation(pb);
+setupPasswordValidation(pb);
+setupPasswordConfirmation(pb);
+setupEmailValidation(pb);
+setupAgreementCheckboxes();
+const inviteValidation = setupInviteValidation(pb);
+setupSubmitButton(pb, inviteValidation); // inviteValidation 객체를 전달
+setupAddressSearch(pb);
