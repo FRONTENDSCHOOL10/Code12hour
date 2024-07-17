@@ -19,13 +19,17 @@ const init = () => {
   ]);
 };
 
-init();
-setupNameValidation();
-setupUsernameValidation(pb);
-setupPasswordValidation(pb);
-setupPasswordConfirmation(pb);
-setupEmailValidation(pb);
-setupAgreementCheckboxes();
-const inviteValidation = setupInviteValidation(pb);
-setupSubmitButton(pb, inviteValidation); // inviteValidation 객체를 전달
-setupAddressSearch(pb);
+const initializeApp = () => {
+  init();
+  setupNameValidation();
+  setupUsernameValidation(pb);
+  setupPasswordValidation(pb);
+  setupPasswordConfirmation(pb);
+  setupEmailValidation(pb);
+  setupAgreementCheckboxes();
+  const inviteValidation = setupInviteValidation(pb);
+  setupSubmitButton(pb, inviteValidation);
+  setupAddressSearch(pb);
+};
+
+initializeApp();

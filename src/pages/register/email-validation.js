@@ -42,7 +42,7 @@ export const setupEmailValidation = (pb) => {
     emailButton.disabled = true;
     try {
       const result = await pb.collection('users').getFullList({
-        filter: `email = '${emailValue}'`,
+        filter: `email ~ '${emailValue}'`,
       });
 
       if (result.length > 0) {
