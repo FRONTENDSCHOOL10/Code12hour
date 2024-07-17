@@ -12,6 +12,7 @@ export const setupSubmitButton = (pb, inviteValidation) => {
 
   submitButton.addEventListener('click', async (event) => {
     event.preventDefault();
+
     // 필수 입력 항목 확인
     const userId = document.getElementById('userId')?.value;
     const password = document.getElementById('password')?.value;
@@ -64,9 +65,9 @@ export const setupSubmitButton = (pb, inviteValidation) => {
       searchedAddress.includes(city)
     );
 
-    // 추천인과 이벤트명 가져오기
-    const recommender = inviteValidation ? inviteValidation.getValidRecommender() : null;
-    const eventName = inviteValidation ? inviteValidation.getValidEventName() : null;
+    // 추천인과 이벤트명 가져오기 (선택적)
+    const recommender = inviteValidation ? inviteValidation.getRecommender() : null;
+    const eventName = inviteValidation ? inviteValidation.getEventName() : null;
 
     try {
       const userData = {
@@ -80,10 +81,12 @@ export const setupSubmitButton = (pb, inviteValidation) => {
         gender: gender || 'not_specified',
         birthdate: birthdate || null,
         morning_delivery: isMorningDeliveryAvailable,
-        recommender: recommender,
-        event_name: eventName,
         ad_consent: promotion,
       };
+
+      // 추천인과 이벤트명이 있는 경우에만 추가
+      if (recommender) userData.recommender = recommender;
+      if (eventName) userData.event_name = eventName;
 
       const user = await pb.collection('users').create(userData);
 

@@ -1,6 +1,3 @@
-/**
- * 추천인과 이벤트명 유효성 검사 기능을 설정합니다.
- */
 export const setupInviteValidation = (pb) => {
   const elements = {
     recommenderInput: document.getElementById('invite-recommender'),
@@ -9,12 +6,9 @@ export const setupInviteValidation = (pb) => {
     eventnameButton: document.getElementById('invite-eventname').nextElementSibling,
   };
 
-  let validRecommender = null;
-  let validEventName = null;
+  let recommender = null;
+  let eventName = null;
 
-  /**
-   * 입력 필드와 버튼을 비활성화합니다.
-   */
   const disableInput = (input, button) => {
     input.disabled = true;
     button.disabled = true;
@@ -23,24 +17,24 @@ export const setupInviteValidation = (pb) => {
   };
 
   elements.recommenderButton.addEventListener('click', async () => {
-    const recommender = elements.recommenderInput.value.trim();
-    if (!recommender) {
+    const inputRecommender = elements.recommenderInput.value.trim();
+    if (!inputRecommender) {
       alert('추천인 아이디를 입력해주세요.');
       return;
     }
 
     try {
       const result = await pb.collection('users').getList(1, 1, {
-        filter: `username = "${recommender}"`,
+        filter: `username = "${inputRecommender}"`,
       });
 
       if (result.items.length > 0) {
         alert('추천인이 확인되었습니다.');
-        validRecommender = recommender;
+        recommender = inputRecommender;
         disableInput(elements.recommenderInput, elements.recommenderButton);
       } else {
         alert('유효하지 않은 추천인입니다.');
-        validRecommender = null;
+        recommender = null;
       }
     } catch (error) {
       console.error('Recommender check error:', error);
@@ -48,20 +42,20 @@ export const setupInviteValidation = (pb) => {
     }
   });
 
-  elements.eventnameButton.addEventListener('click', async () => {
-    const eventName = elements.eventnameInput.value.trim();
-    if (!eventName) {
+  elements.eventnameButton.addEventListener('click', () => {
+    const inputEventName = elements.eventnameInput.value.trim();
+    if (!inputEventName) {
       alert('이벤트명을 입력해주세요.');
       return;
     }
 
     alert('이벤트 참여가 확인되었습니다.');
-    validEventName = eventName;
+    eventName = inputEventName;
     disableInput(elements.eventnameInput, elements.eventnameButton);
   });
 
   return {
-    getValidRecommender: () => validRecommender,
-    getValidEventName: () => validEventName,
+    getRecommender: () => recommender,
+    getEventName: () => eventName,
   };
 };
