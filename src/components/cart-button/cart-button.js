@@ -143,7 +143,7 @@ export class CartButton extends HTMLElement {
     }
 
     // 1.2초 뒤 모달이 자동으로 닫힘
-    // this.closeTimer = setTimeout(() => this.modalClose(), 1200);
+    this.closeTimer = setTimeout(() => this.modalClose(), 1200);
 
     // 모달이 닫힐 때 타이머를 취소하는 이벤트 리스너 추가
     modal.addEventListener('close', this.cancelCloseTimer.bind(this), { once: true });

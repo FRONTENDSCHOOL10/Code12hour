@@ -89,6 +89,15 @@
   &__signup {
     color: $primary-color;
   }
+
+  &__logout {
+    @extend %link-style;
+  }
+
+  &__username {
+    @extend %link-style;
+    color: $primary-color;
+  }
 }
 
 .search-area {
@@ -339,22 +348,12 @@
   background-color: #fff;
   z-index: 1200;
 
-  p {
-    font-size: 1rem;
-    font-weight: 500;
-    line-height: 150%;
-    letter-spacing: 0.02rem;
-  }
-
-  strong {
-    color: $primary-color;
-  }
-
   &-button {
     @include flex(row, space-between, flex-start);
     padding-top: 1rem;
 
     &__login {
+      flex: 1 0 0;
       display: inline-block;
       padding: 0.7rem 1.5rem;
       border: 1px solid $primary-color;
@@ -362,9 +361,11 @@
       font-size: 1rem;
       font-weight: 500;
       color: $primary-color;
+      text-align: center;
     }
 
     &__location {
+      flex: 1 0 0;
       padding: 0.6rem 3.4rem;
       border: 1px solid $primary-color;
       border-radius: 0.1875rem;
@@ -372,11 +373,31 @@
       font-weight: 500;
       color: $white-color;
       background-color: $primary-color;
+      text-align: center;
     }
   }
 }
 
 .modal {
+  &-notice {
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 150%;
+    letter-spacing: 0.02rem;
+    color: $primary-color;
+  }
+
+  &-notice2 {
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 150%;
+    letter-spacing: 0.02rem;
+
+    strong {
+      color: $primary-color;
+    }
+  }
+
   &-header {
     font-size: 1.25rem;
     font-weight: 500;
@@ -432,6 +453,82 @@
   &__close {
     background-color: $white-color;
     color: $primary-color;
+    padding: 0.5rem 1.8rem;
+    font-size: $label-medium;
+    font-weight: 500;
+    line-height: 150%;
+    border-radius: 0.3125rem;
+    border: 1px solid $primary-color;
+  }
+
+  &-location {
+    &-register__title {
+      font-size: 0.8125rem;
+      line-height: 150%;
+
+      span {
+        color: $primary-color;
+        font-weight: 500;
+      }
+    }
+
+    &__address {
+      font-size: 0.875rem;
+      font-weight: 500;
+      line-height: 150%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    &-delivery {
+      display: block;
+      width: fit-content;
+      font-size: 0.75rem;
+      font-weight: 500;
+      line-height: 150%;
+      color: $primary-color;
+    }
+  }
+}
+
+.logout-modal {
+  &__title {
+    margin-bottom: 0.5rem;
+    font-size: $label-large;
+    font-weight: 700;
+    line-height: 150%;
+    color: $primary-color;
+    text-align: center;
+  }
+
+  &__body {
+    margin: 2.5rem 0rem;
+    font-size: $paragraph-medium;
+    font-weight: 500;
+    line-height: 160%;
+    text-align: center;
+  }
+
+  &-button {
+    @include flex(row, center, center);
+    gap: 1rem;
+  }
+
+  &__close {
+    background-color: $white-color;
+    color: $primary-color;
+    padding: 0.5rem 1.8rem;
+    font-size: $label-medium;
+    font-weight: 500;
+    line-height: 150%;
+    border-radius: 0.3125rem;
+    border: 1px solid $primary-color;
+  }
+
+  &__logout {
+    background-color: $primary-color;
+    color: $white-color;
     padding: 0.5rem 1.8rem;
     font-size: $label-medium;
     font-weight: 500;

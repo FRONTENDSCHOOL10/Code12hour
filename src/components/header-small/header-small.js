@@ -174,23 +174,7 @@ headerSmallTemplate.innerHTML = `
               ></button>
             </li>
             <div class="location-tooltip">
-              <p><strong>배송지를 등록</strong>하고<br />구매 가능한 상품을 확인하세요!</p>
-              <div class="location-tooltip-button">
-                <a
-                  href="/src/pages/login/"
-                  role="button"
-                  class="location-tooltip-button__login"
-                  aria-label="로그인 페이지로 이동"
-                  >로그인</a
-                >
-                <button
-                  type="button"
-                  class="location-tooltip-button__location"
-                  aria-label="주소 등록 모달 버튼"
-                >
-                  주소 등록
-                </button>
-              </div>
+
             </div>
             <li>
               <a
@@ -247,14 +231,13 @@ export class headerSmall extends HTMLElement {
       menuItems: this.shadowRoot.querySelectorAll('.menu-list__item a'),
       locationButton: this.shadowRoot.querySelector('.user-actions__location'),
       locationTooltip: this.shadowRoot.querySelector('.location-tooltip'),
-      addressRegisterButton: this.shadowRoot.querySelector('.location-tooltip-button__location'),
       modal: this.shadowRoot.querySelector('c-modal'),
-      modalCloseButton: this.shadowRoot.querySelector('#close-btn'),
       cartIcon: this.shadowRoot.querySelector('.user-actions__cart'),
     };
   }
 
   connectedCallback() {
+    this.checkAuth();
     this.setupEventListeners();
     this.setupScrollListener();
     this.updateHeaderVisibility();
@@ -284,12 +267,6 @@ export class headerSmall extends HTMLElement {
       () => this.hideWithDelay(this.elements.locationTooltip)
     );
 
-    this.elements.addressRegisterButton.addEventListener('click', () => {
-      this.elements.modal.showModal();
-    });
-    this.elements.modalCloseButton.addEventListener('click', () => {
-      this.elements.modal.close();
-    });
     document.addEventListener('cartUpdated', this.updateCartBadge.bind(this));
   }
 
@@ -368,6 +345,110 @@ export class headerSmall extends HTMLElement {
       <span class="user-actions__badge">${cartItemCount}</span>
     `;
     }
+  }
+
+  checkAuth() {
+    const auth = JSON.parse(localStorage.getItem('auth') || '{}');
+    const { isAuth, user } = auth;
+    const locationTooltip = this.shadowRoot.querySelector('.location-tooltip');
+
+    const getLocationTooltipContent = () => {
+      if (isAuth) {
+        return `
+          <p class="modal-notice">배송지 변경</p>
+          <div class="modal-divider"></div>
+          <span class="modal-location-register__title"><span>${user.name}</span>님의 등록된 주소</span>
+          <p class="modal-location__address">${user.address}</p>
+          <span class="modal-location-delivery">${user.morning_delivery ? '샛별배송' : '일반배송'}</span>
+          <div class="location-tooltip-button">
+            <button
+              type="button"
+              class="location-tooltip-button__location"
+              aria-label="주소 변경 모달 버튼"
+            >
+              주소 변경
+            </button>
+          </div>
+        `;
+      } else {
+        return `
+          <p class="modal-notice2"><strong>배송지를 등록</strong>하고<br />구매 가능한 상품을 확인하세요!</p>
+          <div class="location-tooltip-button">
+            <a
+              href="/src/pages/login/"
+              role="button"
+              class="location-tooltip-button__login"
+              aria-label="로그인 페이지로 이동"
+            >로그인</a>
+          </div>
+        `;
+      }
+    };
+
+    locationTooltip.innerHTML = getLocationTooltipContent();
+
+    const locationButton = this.shadowRoot.querySelector('.location-tooltip-button__location');
+    locationButton?.addEventListener('click', this.handleLocationRegistration.bind(this, user));
+  }
+
+  handleLocationRegistration(user) {
+    const modalContent = {
+      title: '배송지 변경',
+      subTitle: user.address,
+      placeholder: '변경할 주소를 입력 해주세요.',
+      closeText: '닫기',
+      registerText: '변경하기',
+    };
+
+    const createModalHTML = ({ title, subTitle, placeholder, closeText, registerText }) => `
+    <h2 slot="header" class="modal-header">${title}</h2>
+    <h3 slot="header" class="modal-sub-header">${subTitle}</h3>
+    <span slot="header" class="modal-divider"></span>
+    <input slot="body" class="modal__input" type="text" placeholder="${placeholder}"/>
+    <div slot="footer" class="modal-button-group">
+      <button slot="footer" type="button" class="modal__close" id="close-btn" aria-label="배송지 변경 모달창 닫기">${closeText}</button>
+      <button slot="footer" class="modal__address-change" type="button" aria-label="배송지 변경 하기">${registerText}</button>
+    </div>
+  `;
+
+    const setupModal = () => {
+      this.elements.modal.setAttribute('width', '400px');
+      this.elements.modal.setAttribute('height', '190px');
+      this.elements.modal.innerHTML = createModalHTML(modalContent);
+      this.elements.modal.showModal();
+    };
+
+    const initEventListeners = () => {
+      const registerButton = this.shadowRoot.querySelector('.modal__address-change');
+      const closeButton = this.shadowRoot.querySelector('.modal__close');
+      const inputField = this.shadowRoot.querySelector('.modal__input');
+
+      const handleRegisterClick = () => {
+        const newAddress = inputField.value;
+        console.log('새로운 주소:', newAddress);
+        this.elements.modal.close();
+      };
+
+      const handleCloseClick = () => {
+        this.elements.modal.close();
+      };
+
+      registerButton.addEventListener('click', handleRegisterClick);
+      closeButton.addEventListener('click', handleCloseClick);
+
+      // 모달이 닫힐 때 이벤트 리스너 제거
+      this.elements.modal.addEventListener(
+        'close',
+        () => {
+          registerButton.removeEventListener('click', handleRegisterClick);
+          closeButton.removeEventListener('click', handleCloseClick);
+        },
+        { once: true }
+      );
+    };
+
+    setupModal();
+    initEventListeners();
   }
 
   showElement(element) {
