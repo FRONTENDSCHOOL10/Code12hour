@@ -4,11 +4,6 @@ export const setupSubmitButton = (pb, inviteValidation) => {
   const submitButton = document.querySelector('.register__button');
   const requiredCheckboxes = ['terms', 'privacy', 'age'].map((id) => document.getElementById(id));
 
-  if (!submitButton) {
-    console.error('제출 버튼을 찾을 수 없습니다');
-    return;
-  }
-
   submitButton.addEventListener('click', async (event) => {
     event.preventDefault();
 
@@ -25,15 +20,16 @@ export const setupSubmitButton = (pb, inviteValidation) => {
       const fullUserData = {
         ...userData,
         emailVisibility: true,
-        recommender,
+        recommender: recommender, // 수정된 부분
         event_name: eventName,
         ad_consent: userData.promotion,
       };
 
-      console.log('전송되는 데이터:', JSON.stringify(fullUserData, null, 2));
-
-      const user = await pb.collection('users').create(fullUserData);
-      console.log('생성된 사용자 데이터:', JSON.stringify(user, null, 2));
+      const user = await pb.collection('users').create({
+        ...fullUserData,
+        recommender: recommender, // 명시적으로 추가
+        event_name: eventName, // 명시적으로 추가
+      });
 
       if (morningDelivery) {
         await updateMorningDelivery(user.id, pb);
@@ -120,10 +116,21 @@ const checkMorningDeliveryAvailability = (address) => {
   return result;
 };
 
-const getInviteInfo = (inviteValidation) => ({
-  recommender: inviteValidation?.getValidRecommender() || null,
-  eventName: inviteValidation?.getValidEventName() || null,
-});
+const getInviteInfo = (inviteValidation) => {
+  if (typeof inviteValidation === 'object' && inviteValidation !== null) {
+    return {
+      recommender:
+        typeof inviteValidation.getValidRecommender === 'function'
+          ? inviteValidation.getValidRecommender()
+          : inviteValidation.validRecommender || null,
+      eventName:
+        typeof inviteValidation.getValidEventName === 'function'
+          ? inviteValidation.getValidEventName()
+          : inviteValidation.validEventName || null,
+    };
+  }
+  return { recommender: null, eventName: null };
+};
 
 const handleRegistrationError = (error) => {
   console.error('회원가입 오류:', error);
