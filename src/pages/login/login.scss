@@ -61,3 +61,22 @@ button {
     color: $primary-color;
   }
 }
+
+.login-modal {
+  &__title {
+    margin-bottom: 0.5rem;
+    font-size: $label-large;
+    font-weight: 700;
+    line-height: 150%;
+    color: $primary-color;
+    text-align: center;
+  }
+
+  &__body {
+    margin: 2.5rem 0rem;
+    font-size: $paragraph-medium;
+    font-weight: 500;
+    line-height: 160%;
+    text-align: center;
+  }
+}

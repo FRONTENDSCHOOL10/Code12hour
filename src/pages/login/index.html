@@ -9,7 +9,7 @@
 
   <body>
     <c-header></c-header>
-
+    <c-header-small></c-header-small>
     <main class="login-container">
       <h1 class="title">로그인</h1>
 
@@ -36,5 +36,10 @@
     </main>
 
     <c-footer> </c-footer>
+    <c-modal width="350px" height="200px">
+      <h2 slot="header" class="login-modal__title"></h2>
+      <p slot="header" class="login-modal__body"></p>
+      <button slot="footer" type="button" id="modal__close" class="modal__close">닫기</button>
+    </c-modal>
   </body>
 </html>
