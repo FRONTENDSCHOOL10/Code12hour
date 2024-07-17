@@ -261,4 +261,116 @@
       }
     }
   }
+
+  &-product {
+    @include flex(row, null, center);
+    padding: 1.25rem 0rem;
+
+    &__select-input {
+      display: none;
+    }
+
+    &__select-label {
+      display: flex;
+      align-items: center;
+      position: relative;
+      padding-left: 2.5rem;
+      cursor: pointer;
+
+      &::before {
+        content: '';
+        display: inline-block;
+        width: 1.5rem;
+        height: 1.5rem;
+        position: absolute;
+        left: 0rem;
+        background-image: url('/assets/icons/input/isChecked=false.svg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+      }
+    }
+
+    &__select-input:checked + &__select-label::before {
+      background-image: url('/assets/icons/input/isChecked=true.svg');
+    }
+
+    &__image {
+      @include size(3.75rem, 4.875rem);
+      margin-right: 1.25rem;
+    }
+
+    &__info {
+      @include flex(row, null, center);
+    }
+
+    &__title {
+      @include size(21.5625rem, null);
+      margin-right: 1.25rem;
+      overflow: hidden;
+      white-space: nowrap;
+      word-break: break-all;
+      font-size: $label-medium;
+      font-weight: 500;
+      line-height: 150%;
+    }
+
+    &__quantity {
+      @include flex(row, null, center);
+      @include size(5.5rem, auto);
+      border: 1px solid #dddfe1;
+      border-radius: 0.1875rem;
+
+      &-value {
+        @include flex(row, center, center);
+        @include size(1.9375rem, 1.75rem);
+        font-size: 0.875rem;
+        font-weight: 500;
+        line-height: 175%;
+      }
+      &-btn {
+        @include size(1.75rem, 1.75rem);
+        border: none;
+        font-size: 1px;
+        color: transparent;
+        background-size: cover;
+        background-color: transparent;
+
+        &--minus {
+          background-image: url('/assets/icons/product-cart/DefaultMinus.svg');
+        }
+
+        &--plus {
+          background-image: url('/assets/icons/product-cart/Plus.svg');
+        }
+      }
+    }
+
+    &__price {
+      @include flex(column, null, flex-end);
+      @include size(7.9375rem, auto);
+
+      &-discounted {
+        font-size: $label-medium;
+        font-weight: 700;
+        line-height: 150%;
+      }
+
+      &-original {
+        padding-top: 0.25rem;
+        font-size: 0.875rem;
+        line-height: 150%;
+        text-decoration: line-through;
+        color: $gray-200-color;
+      }
+    }
+
+    &__remove-btn {
+      @include size(1.875rem, 1.875rem);
+      margin-left: 0.5625rem;
+      background-size: cover;
+      background-color: transparent;
+      background-image: url('/assets/icons/product-cart/Delete.svg');
+    }
+  }
 }
