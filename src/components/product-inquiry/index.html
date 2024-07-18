@@ -15,6 +15,18 @@
         <button type="button" class="product-inquiry__write-btn" aria-haspopup="dialog">
           문의하기
         </button>
+        <c-modal width="400px" height="190px">
+          <h2 slot="header" class="review-modal__title">알림</h2>
+          <span slot="body" class="review-modal__body">로그인이 필요합니다.</span>
+          <button
+            slot="footer"
+            type="button"
+            class="review-modal__close"
+            aria-label="로그인 필요창 닫기"
+          >
+            닫기
+          </button>
+        </c-modal>
         <template id="modal-template">
           <!-- modal__overlay  -->
           <div class="modal__overlay">
@@ -224,7 +236,7 @@
               <span class="inquiry-list__item">
                 <h3 class="inquiry-list__title">팩이 터져서 왔어요!!!</h3>
               </span>
-              <span class="inquiry-list__item">야호</span>
+              <span class="inquiry-list__item">박*연</span>
               <span class="inquiry-list__item">2024.07.11</span>
               <span class="inquiry-list__item">
                 <!-- <span class="inquiry-list__item">답변대기</span> -->
