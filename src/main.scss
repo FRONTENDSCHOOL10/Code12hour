@@ -1,23 +1,11 @@
 /* 변수 */
 
 $width: 65.625rem;
-$line-height: 150%;
-$banner-button-size: 3.125rem;
-$banner-button-margin: 15rem;
-$list-button-size: 3.75rem;
-
-$rem-0-25: 0.25rem;
-$rem-0-5: 0.5rem;
-$rem-2-5: 2.5rem;
 
 /* 공통 적용 */
 
 a {
   display: inline-block;
-}
-
-img {
-  display: block;
 }
 
 /* 메인 배너 슬라이드 */
@@ -29,7 +17,7 @@ img {
 .main-banner {
   .swiper {
     @include size(auto, 23.125rem);
-    max-width: 118.5rem;
+    max-width: 118.75rem;
 
     &-button-prev,
     &-button-next {
@@ -37,12 +25,12 @@ img {
     }
 
     &-button-prev {
-      margin-left: $banner-button-margin;
+      left: $banner-button-position;
       background: url('/assets/icons/arrow/swiper-prev.svg') no-repeat;
     }
 
     &-button-next {
-      margin-right: $banner-button-margin;
+      right: $banner-button-position;
       background: url('/assets/icons/arrow/swiper-next.svg') no-repeat;
     }
 
@@ -53,8 +41,8 @@ img {
   }
 
   .swiper-slide {
-    @include flex(row nowrap, center, center);
     overflow: hidden;
+    @include flex(row nowrap, center, center);
 
     & img {
       @include size(118.75rem, 23.125rem);
@@ -74,8 +62,8 @@ img {
 }
 
 .product-header {
-  padding: $rem-0-25;
   margin-bottom: 1.75rem;
+  padding: $rem-0-25;
   text-align: center;
 
   &__link {
@@ -83,12 +71,11 @@ img {
   }
 
   &__title {
-    font-size: $label-xl;
-    font-weight: 500;
+    @include font($label-xl, 500, _, _);
   }
 
   &__sub-title {
-    margin-top: 0.125rem;
+    margin-top: 0.2rem;
     color: $gray-400-color;
   }
 }
@@ -124,13 +111,17 @@ img {
 
 .product-item {
   @include flex(column nowrap, space-between);
-  @include size(15.5625rem, 31.25rem); // 상품 목록 크기 조정
+  @include size(15.5625rem, 32rem); // 상품 목록 크기 조정
+
+  a {
+    @include size(15.5625rem, 29.5rem);
+  }
 
   &__img {
     @include size(100%, 20rem);
-    border-radius: $rem-0-25;
     background-color: $gray-100-color;
-    background: url('/src/assets/images/banner/1.jpg') no-repeat center;
+    background-position: center center;
+    border-radius: $rem-0-25;
     background-size: 100%;
     transition: background-size 0.3s ease;
   }
@@ -142,16 +133,15 @@ img {
   &__title {
     display: -webkit-box;
     overflow: hidden;
-    text-overflow: ellipsis;
     padding-top: $paragraph-medium;
+    text-overflow: ellipsis;
     line-clamp: 2;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
   }
 
   &__price {
-    font-size: 0.875rem;
-    color: #b5b5b5; //rgb 181, 181, 181
+    @include font($rem-0-875, _, _, $gray-181-color);
   }
 
   &__price--discounted {
@@ -159,50 +149,50 @@ img {
   }
 
   &__discount-rate {
-    color: $accent-yellow-color;
-    font-weight: 700;
-    font-size: 1.1875rem;
-    margin-right: 0.4375rem;
+    margin-right: 0.3rem;
+    @include font($rem-1-18, 700, _, $accent-yellow-color);
   }
 
   &__real-price {
-    font-weight: 700;
-    font-size: 1.1875rem;
+    @include font($rem-1-18, 700, _, _);
   }
 
   &__reviews {
-    font-size: 0.8125rem;
-    color: #999999; // rgb 153,153,153
+    @include font(0.8125rem, _, _, $gray-153-color);
 
     &::before {
       content: url('/assets/icons/product-list/reviews.svg');
-      width: 85px;
-      vertical-align: middle;
+      @include size(5.3125rem);
       margin-right: 0.125rem;
+      vertical-align: middle;
     }
   }
 
   &__button {
     @include size(100%, 2.25rem);
-    border: 1px solid #dddddd;
+    border: 1px solid $gray-221-color;
     border-radius: $rem-0-25;
 
     &::before {
       content: url('/assets/icons/product-list/Cart.svg');
-      vertical-align: middle;
       margin-right: $rem-0-25;
+      vertical-align: middle;
     }
   }
 
   &__view-all {
     @include flex(column nowrap, center, center);
-    text-align: center;
     @include size(100%, 31.25rem);
+    text-align: center;
 
     img {
       margin-bottom: 1.125rem;
     }
   }
+}
+
+.price-group {
+  margin: $rem-0-5 0 $rem-0-25 0;
 }
 
 /* 프로모션 배너 */
@@ -215,6 +205,6 @@ img {
   &__img {
     @include size($width, 8.6875rem);
     background-color: $gray-100-color;
-    background-image: url('/assets/images/banner/line-banner01.png');
+    background-image: url('/assets/images/banner/line-banner01.webp');
   }
 }

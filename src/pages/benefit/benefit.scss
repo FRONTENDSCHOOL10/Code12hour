@@ -1,0 +1,9 @@
+.benefit-list {
+  img {
+    display: block;
+  }
+
+  @include flex(column nowrap, center, center);
+  gap: 0.625rem;
+  margin: 0.625rem 0;
+}

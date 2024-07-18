@@ -80,35 +80,37 @@ import { pb, getImageUrl } from '@/api/index';
       : '';
 
     return `
-      <div class="product-item">
-        <a
-          class="product-item__link"
-          href="/src/pages/product-detail/?id=${product.id}"
-          tabindex="0"
-          aria-label="${product.product_name} 상품 페이지로 이동"
-        >
-          <div class="product-item__img" role="img" aria-label="${product.product_name}" style="background-image: url(${imageUrl})"></div>
-          <p class="product-item__delivery">샛별배송</p>
-          <p class="product-item__title">${product.product_name}</p>
-          <p class="product-item__description">${product.product_description}</p>
+    <div class="product-item">
+      <a
+        class="product-item__link"
+        href="/src/pages/product-detail/?id=${product.id}"
+        tabindex="0"
+        aria-label="${product.product_name} 상품 페이지로 이동"
+      >
+        <div class="product-item__img" role="img" aria-label="${product.product_name}" style="background-image: url(${imageUrl})"></div>
+        <p class="product-item__delivery">샛별배송</p>
+        <p class="product-item__title">${product.product_name}</p>
+        <p class="product-item__description">${product.product_description}</p>
+        <div class="price-group">
           ${priceHtml}
           <p class="product-item__real-price">
             ${discountRateHtml}
             <span class="sr-only">구매가</span>${discountedPrice.toLocaleString()}원
           </p>
-          <p class="product-item__reviews"><span class="sr-only">리뷰 수</span>${reviewCountText}</p>
-          ${kurlyOnly}
-          ${eventProduct}
-        </a>
-        <c-cart
-          data-product-id="${product.id}"
-          data-product-image="${imageUrl}"
-          data-product-name="${product.product_name}"
-          data-product-price="${product.product_price}"
-          data-discounted-price="${discountedPrice}"
-        ></c-cart>
-      </div>
-    `;
+        </div>
+        <p class="product-item__reviews"><span class="sr-only">리뷰 수</span>${reviewCountText}</p>
+        ${kurlyOnly}
+        ${eventProduct}
+      </a>
+      <c-cart
+        data-product-id="${product.id}"
+        data-product-image="${imageUrl}"
+        data-product-name="${product.product_name}"
+        data-product-price="${product.product_price}"
+        data-discounted-price="${discountedPrice}"
+      ></c-cart>
+    </div>
+  `;
   };
 
   // 상품 목록을 렌더링하는 함수. 필터와 페이지 정보를 받아 상품을 가져오고 화면에 표시

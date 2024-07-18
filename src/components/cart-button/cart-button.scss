@@ -1,16 +1,13 @@
 .cart-dialog-wrapper {
   @include flex(column nowrap, space-between);
   gap: 1.75rem;
-  // border-radius: 1rem;
-  // border: 0;
-  // box-shadow: $below-medium;
-  // padding: 1.5rem 1.25rem;
 }
+
 .cart-dialog {
-  border: 0;
-  border-radius: 1rem;
-  box-shadow: $below-medium;
   padding: 1.5rem 1.25rem;
+  border: 0;
+  box-shadow: $below-medium;
+  border-radius: 1rem;
 
   &__title,
   &__price--sale,
@@ -21,57 +18,62 @@
 
   &__content-group {
     @include flex(row nowrap, space-between, center);
-    padding: 12px 0;
-    border-top: 1px solid rgb(244, 244, 244); //TODO: 컬리 오리지널 참고
-    border-bottom: 1px solid rgb(244, 244, 244); //TODO: 컬리 오리지널 참고
+    padding: 0.75rem 0;
+    border-top: 1px solid $gray-244-color;
+    border-bottom: 1px solid $gray-244-color;
+  }
+
+  &__button--decrease {
+    background-image: url(/assets/icons/product-detail/Minus.svg);
+  }
+
+  &__button--increase {
+    background-image: url(/assets/icons/product-cart/Plus.svg);
   }
 
   &__quantity-value {
+    @include size(1.6875rem);
     max-width: 1.6875rem;
     min-width: 1.6875rem;
-    width: 1.6875rem;
     text-align: center;
   }
 
   &__price--original {
-    font-size: 0.75rem;
-    color: rgb(181, 181, 181);
+    @include font(0.75rem, _, _, $gray-181-color);
     text-decoration: line-through;
   }
 
   &__quantity-group {
     @include flex(row nowrap, center, center);
     gap: 0.5rem;
-
-    border: 1px solid rgb(221, 223, 225); //TODO: 컬리 오리지널 참고
-    border-radius: 3px; //TODO: 컬리 오리지널 참고
+    border: 1px solid #dddfe1;
+    border-radius: $rem-0-18;
 
     button {
-      width: 1.875rem;
-      height: 1.875rem;
+      @include size(1.875rem, 1.875rem);
     }
   }
 
   &__form-group {
-    height: 3.375rem;
     @include flex(row nowrap, space-between);
+    height: 3.375rem;
     gap: 0.5rem;
   }
 
   &__form-button--cancel,
   &__form-button--submit {
-    width: 10.9rem;
-    border-radius: 3px;
+    @include size(10.9rem);
+    border-radius: $rem-0-18;
     font-weight: 600;
   }
 
   &__form-button--cancel {
-    border: 1px solid rgb(221, 221, 221);
+    border: 1px solid $gray-221-color;
   }
 
   &__form-button--submit {
-    color: $white-color;
     background-color: $primary-color;
+    color: $white-color;
   }
 
   &__total-group {
@@ -86,72 +88,59 @@
 .product-item {
   &__button {
     @include size(100%, 2.25rem);
-    border: 1px solid #dddddd;
-    border-radius: 0.25rem;
+    border: 1px solid $gray-221-color;
+    border-radius: $rem-0-25;
 
     &::before {
       content: url('/assets/icons/product-list/Cart.svg');
+      margin-right: $rem-0-25;
       vertical-align: middle;
-      margin-right: 0.25rem;
     }
   }
 }
 
 .modal {
   &-header {
-    font-size: 1rem;
-    font-weight: 500;
-    color: $primary-color;
-    line-height: 160%;
+    @include font($heading-medium, 500, 160%, $primary-color);
   }
 
   &-divider {
     display: block;
-    width: 100%;
-    height: 0.0625rem;
+    @include size(100%, 0.0625rem);
+    margin: $rem-0-5 0;
     background-color: $gray-200-color;
-    margin: 0.5rem 0rem;
   }
 
   &-sub-header {
-    font-size: 0.8rem;
-    font-weight: 500;
-    line-height: 150%;
+    @include font(0.8rem, 500, 150%, _);
   }
 
   &-image {
-    width: 15.625rem;
+    @include size(15.625rem);
     border-radius: 0.125rem;
     object-fit: cover;
     object-position: center;
   }
 
   &__cart {
-    width: 100%;
-    background-color: $white-color;
-    color: $white-color;
+    @include size(100%);
     margin-top: 0.5rem;
     padding: 0.3rem 1rem;
-    font-size: $label-medium;
-    font-weight: 500;
-    line-height: 150%;
-    border-radius: 0.3125rem;
     border: 1px solid $primary-color;
+    border-radius: 0.3125rem;
     background-color: $primary-color;
+    @include font($label-medium, 500, 150%, $white-color);
     text-align: center;
   }
 
   &__close {
-    width: 100%;
-    background-color: $white-color;
-    color: $primary-color;
+    @include size(100%);
     margin-top: 0.5rem;
     padding: 0.3rem 1rem;
-    font-size: $label-medium;
-    font-weight: 500;
-    line-height: 150%;
-    border-radius: 0.3125rem;
+    @include font($label-medium, 500, 150%, $primary-color);
     border: 1px solid $primary-color;
+    border-radius: 0.3125rem;
+    background-color: $white-color;
   }
 
   &-button-group {
