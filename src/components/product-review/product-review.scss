@@ -351,10 +351,18 @@ $line-height-md: 150%;
           '/assets/icons/product-review/helpful.svg'
         );
         margin-right: 0.25rem;
+
+        &--active {
+          background-color: $primary-color;
+        }
       }
 
       &-text {
         @include font-style($label-small, $font-weight-sm, $line-height-md, $gray-400-color);
+
+        &--active {
+          color: $primary-color;
+        }
       }
 
       &:hover,
