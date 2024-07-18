@@ -465,15 +465,16 @@ export class inquiry extends HTMLElement {
       this.updateCharCount(contentTextarea, charCountCurrent)
     );
 
+    const titleInput = modalOverlay.querySelector('#modalTitle');
     const submitButton = modalOverlay.querySelector('.modal__button--submit');
     contentTextarea.addEventListener('input', () =>
-      this.checkInputs(contentTextarea, submitButton)
+      this.checkInputs(titleInput, contentTextarea, submitButton)
     );
 
     submitButton.addEventListener('click', (e) => {
       e.preventDefault();
-      if (contentTextarea.value.trim() !== '') {
-        this.addReview(contentTextarea.value);
+      if (titleInput.value.trim() !== '' && contentTextarea.value.trim() !== '') {
+        this.addInquiry(titleInput.value, contentTextarea.value);
         this.closeModal(modalOverlay);
       }
     });
