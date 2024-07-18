@@ -265,6 +265,9 @@ export class review extends HTMLElement {
     this.currentPage = 1;
     this.perPage = 10;
     this.sortOption = 'recommended';
+    this.likedReviews = new Set();
+    this.isLoggedIn = false;
+    this.hasReviewed = false; // 사용자가 이미 리뷰를 작성했는지 여부
 
     this.initElements();
   }
@@ -295,17 +298,41 @@ export class review extends HTMLElement {
     }, {});
   }
 
-  connectedCallback() {
+  async connectedCallback() {
+    await this.checkLoginStatus();
+    if (this.isLoggedIn) {
+      await this.fetchLikedReviews();
+      await this.checkUserReview(); // 사용자의 리뷰 여부 확인
+    }
     this.setupEventListeners();
     this.renderReview(this.sortOption);
   }
 
+  // 로그인 상태 확인
+  async checkLoginStatus() {
+    const auth = JSON.parse(localStorage.getItem('auth') || '{}');
+    this.isLoggedIn = auth.isAuth;
+  }
+
+  // 사용자가 이미 리뷰를 작성했는지 확인하는 메서드
+  async checkUserReview() {
+    try {
+      const authUser = pb.authStore.model;
+      const productId = this.currentProductId();
+      const result = await pb.collection('product_review').getList(1, 1, {
+        filter: `user="${authUser.id}" && product="${productId}"`,
+      });
+      this.hasReviewed = result.totalItems > 0;
+      this.updateReviewButtonState();
+    } catch (error) {
+      console.error('Error checking user review:', error);
+    }
+  }
+
+  // 이벤트 설정 부분
   setupEventListeners() {
     this.elements.writeReviewButton.addEventListener('click', () => {
-      const auth = JSON.parse(localStorage.getItem('auth') || '{}');
-      const isAuth = auth.isAuth;
-
-      if (isAuth) {
+      if (this.isLoggedIn) {
         this.openReviewModal();
       } else {
         this.elements.modal.showModal();
@@ -332,11 +359,25 @@ export class review extends HTMLElement {
     this.elements.nextButton.addEventListener('click', () => this.nextPage());
   }
 
-  // 현재 페이지의 상품 id
+  // URL에서 현재 페이지의 상품 id 가져옴
   currentProductId() {
     const params = new URLSearchParams(location.search);
     const productId = params.get('id');
     return productId;
+  }
+
+  // 리뷰 버튼 상태 업데이트
+  updateReviewButtonState() {
+    if (this.hasReviewed) {
+      this.elements.writeReviewButton.disabled = true;
+      this.elements.writeReviewButton.setAttribute('aria-disabled', 'true');
+      this.elements.writeReviewButton.setAttribute(
+        'aria-label',
+        '이미 후기를 1회 작성 하셨습니다.'
+      );
+      this.elements.writeReviewButton.style.fontWeight = '700';
+      this.elements.writeReviewButton.style.backgroundColor = '#EBEBE4';
+    }
   }
 
   // 리뷰 렌더링 (추천순 - 기본값 / 등록순)
@@ -506,44 +547,171 @@ export class review extends HTMLElement {
     const date = new Date(review.created);
     const writtenDate = `${date.getFullYear()}.${String(date.getMonth() + 1).padStart(2, '0')}.${String(date.getDate()).padStart(2, '0')}`;
 
+    const authUser = pb.authStore.model;
+    const isOwnReview = authUser && authUser.id === review.user;
+    const isLiked = this.isLoggedIn && this.likedReviews.has(review.id);
+    const helpfulButtonClass = isLiked ? 'review__helpful-btn--active' : '';
+    const isDisabled = !this.isLoggedIn || isOwnReview ? 'disabled' : '';
+
     reviewArticle.innerHTML = `
     <article class="review-article__list" aria-labelledby="고객 후기">
-    <div class="review-article__list-area">
-      <div class="review-item">
-        <div class="review-item__user">
-          <span class="review-item__badge">${bestIcon}</span>
-          <span class="review-item__author">${userName}</span>
+      <div class="review-article__list-area">
+        <div class="review-item">
+          <div class="review-item__user">
+            <span class="review-item__badge">${bestIcon}</span>
+            <span class="review-item__author">${userName}</span>
+          </div>
         </div>
+        <article class="review">
+          <span class="review__product-name" aria-label="리뷰 대상 제품:">
+            ${productName}
+          </span>
+          <p class="review__text">${review.review_content}</p>
+          <div class="review__gallery">
+          </div>
+          <footer class="review__footer">
+            <time class="review__date" datetime="2024-07-08">${writtenDate}</time>
+            <button type="button" class="review__helpful-btn ${helpfulButtonClass}" ${isDisabled} aria-pressed="${isLiked}" aria-label="${this.getHelpfulButtonAriaLabel(review.recommendCount, isLiked, isOwnReview)}">
+              <span class="review__helpful-btn-icon ${isLiked ? 'review__helpful-btn-icon--active' : ''}" aria-hidden="true"></span>
+              <span class="review__helpful-btn-text ${isLiked ? 'review__helpful-btn-text--active' : ''}">도움돼요 ${review.recommendCount}</span>
+            </button>
+          </footer>
+        </article>
       </div>
-      <article class="review">
-        <span class="review__product-name" aria-label="리뷰 대상 제품:">
-          ${productName}
-        </span>
-        <p class="review__text">${review.review_content}</p>
-        <div class="review__gallery">
-        </div>
-        <footer class="review__footer">
-          <time class="review__date" datetime="2024-07-08">${writtenDate}</time>
-          <button type="button" class="review__helpful-btn" aria-pressed="false" aria-label="이 리뷰가 도움이 되었습니다. 현재 10명이 도움이 되었다고 평가했습니다.">
-            <span class="review__helpful-btn-icon" aria-hidden="true"></span>
-            <span class="review__helpful-btn-text">도움돼요 ${review.recommendCount}</span>
-          </button>
-        </footer>
-      </article>
-    </div>
-  </article>
+    </article>
     `;
 
     const helpfulButton = reviewArticle.querySelector('.review__helpful-btn');
-    const helpfulConutNum = helpfulButton.querySelector('.review__helpful-btn-text');
-    let helpfulCount = review.recommendCount;
-
-    helpfulButton.addEventListener('click', () => {
-      helpfulCount++;
-      helpfulConutNum.textContent = `도움돼요 ${helpfulCount}`;
-    });
+    helpfulButton.addEventListener('click', () =>
+      this.handleLikeButtonClick(review.id, review.user, helpfulButton)
+    );
 
     return reviewArticle;
+  }
+
+  // 사용자가 좋아요한 리뷰 목록 가져오기
+  async fetchLikedReviews() {
+    try {
+      const authUser = pb.authStore.model;
+      if (!authUser) return;
+
+      const likes = await pb.collection('like').getList(1, 50, {
+        filter: `user_id="${authUser.id}"`,
+      });
+
+      this.likedReviews = new Set(likes.items.map((like) => like.review_id));
+    } catch (error) {
+      console.error('Error fetching liked reviews:', error);
+    }
+  }
+
+  // 좋아요 버튼 클릭 핸들러
+  async handleLikeButtonClick(reviewId, reviewUserId, button) {
+    console.log('dd');
+    if (!this.isLoggedIn) {
+      this.showLoginPrompt();
+      return;
+    }
+
+    const authUser = pb.authStore.model;
+    if (authUser.id === reviewUserId) {
+      console.log('자신의 리뷰에는 좋아요를 누를 수 없습니다.');
+      return;
+    }
+
+    await this.toggleLike(reviewId, button);
+  }
+
+  // 좋아요 토글 메서드
+  async toggleLike(reviewId, button) {
+    try {
+      const authUser = pb.authStore.model;
+      if (!authUser) {
+        console.error('인증된 유저가 아닙니다.');
+        return;
+      }
+
+      const isCurrentlyLiked = this.likedReviews.has(reviewId);
+
+      if (isCurrentlyLiked) {
+        // 좋아요 취소
+        const likeRecord = await pb
+          .collection('like')
+          .getFirstListItem(`user_id="${authUser.id}" && review_id="${reviewId}"`);
+        await pb.collection('like').delete(likeRecord.id);
+        this.likedReviews.delete(reviewId);
+      } else {
+        // 좋아요 추가
+        await pb.collection('like').create({
+          user_id: authUser.id,
+          review_id: reviewId,
+        });
+        this.likedReviews.add(reviewId);
+      }
+
+      // 리뷰의 recommendCount 업데이트
+      const review = await pb.collection('product_review').getOne(reviewId);
+      const newRecommendCount = isCurrentlyLiked
+        ? review.recommendCount - 1
+        : review.recommendCount + 1;
+      const updatedReview = await pb.collection('product_review').update(reviewId, {
+        recommendCount: newRecommendCount,
+      });
+
+      // UI 업데이트
+      this.updateLikeUI(button, updatedReview.recommendCount, !isCurrentlyLiked);
+    } catch (error) {
+      console.error('Error toggling like:', error);
+    }
+  }
+
+  // 좋아요 UI 업데이트 메서드
+  updateLikeUI(button, recommendCount, isLiked) {
+    const iconElement = button.querySelector('.review__helpful-btn-icon');
+    const textElement = button.querySelector('.review__helpful-btn-text');
+
+    // 클래스와 속성을 한 번에 업데이트
+    button.classList.toggle('review__helpful-btn--active', isLiked);
+    iconElement.classList.toggle('review__helpful-btn-icon--active', isLiked);
+    textElement.classList.toggle('review__helpful-btn-text--active', isLiked);
+
+    button.setAttribute('aria-pressed', isLiked.toString());
+
+    textElement.textContent = `도움돼요 ${recommendCount}`;
+
+    button.setAttribute('aria-label', this.getHelpfulButtonAriaLabel(recommendCount, isLiked));
+
+    // 베스트 아이콘 업데이트
+    this.updateBestIcon(button, recommendCount);
+  }
+
+  // 도움돼요 버튼의 aria-label 생성 메서드 수정
+  getHelpfulButtonAriaLabel(recommendCount, isLiked, isOwnReview) {
+    if (!this.isLoggedIn) {
+      return `이 리뷰에 도움이 되었다고 평가하려면 로그인이 필요합니다. 현재 ${recommendCount}명이 도움이 되었다고 평가했습니다.`;
+    }
+    if (isOwnReview) {
+      return `자신의 리뷰에는 좋아요를 누를 수 없습니다. 현재 ${recommendCount}명이 도움이 되었다고 평가했습니다.`;
+    }
+    return `이 리뷰가 도움이 ${isLiked ? '되었습니다 라고 평가하셨습니다' : '되지 않았습니다'}. 현재 ${recommendCount}명이 도움이 되었다고 평가했습니다.`;
+  }
+
+  // 베스트 아이콘 업데이트
+  updateBestIcon(button, recommendCount) {
+    const reviewItem = button.closest('.review-article__list').querySelector('.review-item');
+    const bestIcon = reviewItem.querySelector('.review-item__badge');
+    if (recommendCount >= 10) {
+      if (!bestIcon) {
+        const newBestIcon = document.createElement('span');
+        newBestIcon.className = 'review-item__badge';
+        newBestIcon.textContent = '베스트';
+        reviewItem.insertBefore(newBestIcon, reviewItem.firstChild);
+      }
+    } else {
+      if (bestIcon) {
+        bestIcon.remove();
+      }
+    }
   }
 
   // 리뷰 리스트 업데이트
