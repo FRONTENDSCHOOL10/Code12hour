@@ -1,4 +1,4 @@
-import './benefit.scss';
+import './delivery.scss';
 import { defineCustomElements } from '@/utils/index';
 import { footer, header, headerSmall } from '@/components/index';
 

@@ -1,0 +1,41 @@
+.delivery {
+  @include flex(column nowrap, center, center);
+  background-color: #e8e5e2;
+
+  &__header {
+    @include font(2.1875rem, 600, _, _);
+    margin: 4rem 0 2rem 0;
+  }
+
+  &__title {
+    padding: 0.75rem;
+    background-color: $primary-color;
+    @include font(1.45rem, 500, _, $white-color);
+  }
+
+  &__item {
+    padding: 1rem 1.5625rem;
+    background-color: $white-color;
+    @include font(1.35rem, 400, _, _);
+  }
+
+  &__note {
+    line-height: 150%;
+  }
+
+  &__note:nth-of-type(1) {
+    margin-top: 1.25rem;
+  }
+
+  &__note:last-of-type {
+    margin-bottom: 4rem;
+  }
+}
+
+.delivery-container {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  grid-template-rows: repeat(5, auto);
+  padding: 10px;
+  text-align: center;
+}
