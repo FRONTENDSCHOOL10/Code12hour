@@ -14,7 +14,7 @@ const initCustomElements = (elements) => defineCustomElements(elements);
 
 const initEventListener = () => {
   const locationChange = document.querySelector('.cart-edit__location-change');
-  locationChange.addEventListener('click', handleChangeLocationModal);
+  locationChange?.addEventListener('click', handleChangeLocationModal);
 };
 
 // 아코디언 화살표 변경 하는 함수
