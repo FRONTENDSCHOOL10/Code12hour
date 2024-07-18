@@ -186,10 +186,12 @@ const createProductDetail = (product) => {
             ></button>
             <button
               type="button"
-              class="product-detail__cart-bell"
+              class="product-detail__cart-bell ${product.product_stock === 0 ? 'product-detail__cart-bell--out-of-stock' : ''}"
               aria-label="알림 설정"
             ></button>
-            <button type="button" class="product-detail__cart-add">장바구니 담기</button>
+            <button type="button" class="product-detail__cart-add" ${product.product_stock === 0 ? 'disabled' : ''}>
+              ${product.product_stock === 0 ? '일시 품절' : '장바구니 담기'}
+            </button>
           </div>
         </section>
       </div>
@@ -214,7 +216,7 @@ const createProductDetail = (product) => {
         role="button"
         class="product-navigation__button product-navigation__button--review"
       >
-        후기<span class="product-navigation__review-count">(1,000)</span>
+        후기<span class="product-navigation__review-count"></span>
       </a>
       <a
         href="#product-inquiry"
@@ -349,6 +351,16 @@ const renderProductDetail = (productData) => {
     const { html, initializeQuantityHandlers } = createProductDetail(productData);
     productArticle.insertAdjacentHTML('afterbegin', html);
     initializeQuantityHandlers();
+
+    // 상품 재고에 따른 UI 업데이트
+    const bellButton = document.querySelector('.product-detail__cart-bell');
+    const addToCartButton = document.querySelector('.product-detail__cart-add');
+
+    if (productData.product_stock === 0) {
+      bellButton.classList.add('product-detail__cart-bell--out-of-stock');
+      addToCartButton.disabled = true;
+      addToCartButton.textContent = '일시 품절';
+    }
   } else {
     console.error('Product article not found');
   }

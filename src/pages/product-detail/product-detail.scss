@@ -298,6 +298,12 @@
       background-image: url('/assets/icons/product-detail/Bell.svg');
       background-repeat: no-repeat;
       background-position: center;
+      cursor: not-allowed;
+
+      &--out-of-stock {
+        background-image: url('/assets/icons/product-detail/BellEnable.svg');
+        cursor: pointer;
+      }
     }
 
     &-add {
@@ -305,6 +311,12 @@
       @include size(auto, 3.375rem);
       background-color: $primary-color;
       color: $white-color;
+
+      &:disabled {
+        background-color: #f2f2f2;
+        color: #ccc;
+        cursor: not-allowed;
+      }
     }
   }
 }
