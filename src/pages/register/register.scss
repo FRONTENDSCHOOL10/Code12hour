@@ -48,6 +48,9 @@ body {
       padding: 0.25rem;
       @include size(8.1875rem);
 
+      &-address {
+        padding-bottom: 5.625rem;
+      }
       &-text {
         padding: 0.25rem;
         @include font($label-medium, 600, 150%);
@@ -67,6 +70,13 @@ body {
       }
     }
 
+    &__notice {
+      @include flex(column);
+      position: absolute;
+      padding-top: 0.25px;
+      @include font(0.8125rem, 400, 160%, $info--error-color);
+    }
+
     &__button {
       @include size(8.9375rem, 2.75rem);
       border: 0.0625rem solid $primary-color;
@@ -76,15 +86,36 @@ body {
         @include font($paragraph-medium, 600, 150%);
         color: $primary-color;
       }
-
       &-search {
-        @include size(20.9375rem);
+        position: absolute;
+        margin-left: 0.625rem;
+      }
+    }
+
+    &__search {
+      &-address {
+      }
+
+      &-button {
+        align-items: normal;
+        @include size(8.9375rem);
+      }
+
+      &-input {
+        display: flex;
+        flex-direction: column;
+        gap: 0.625rem;
       }
     }
 
     &__address {
       @include flex(column);
       gap: 0.25rem;
+
+      &-search {
+        align-items: normal;
+        padding-bottom: 0;
+      }
 
       &-notice {
         padding-top: 0.25rem;
@@ -215,7 +246,6 @@ body {
     @include font($paragraph-small, 400, 160%, $primary-color);
     text-align: right;
   }
-  // 체크박스 이미지 false
   &__checkbox {
     position: relative;
     appearance: none;
@@ -226,7 +256,6 @@ body {
     background-repeat: no-repeat;
     background-size: contain;
     background-image: url('/assets/icons/input/isChecked=false.svg');
-    // 체크박스 이미지 true
     &:checked {
       position: relative;
       background-image: url('/assets/icons/input/isChecked=true.svg');
