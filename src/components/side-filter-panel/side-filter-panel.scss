@@ -1,6 +1,6 @@
 .filter-panel {
   @include size(16.6875rem, 100%);
-
+  margin-bottom: 1rem;
   &__header {
     @include flex(row, space-between, center);
     @include size(13.75rem, 3.25rem);

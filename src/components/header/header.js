@@ -46,7 +46,7 @@ headerTemplate.innerHTML = `
           <div class="search-box">
             <label for="product_search" class="sr-only">상품 검색</label>
             <input type="text" id="product_search" placeholder="검색어를 입력해주세요" />
-            <button type="button" aria-label="검색"></button>
+            <button type="button" class="product_search_button" aria-label="검색"></button>
           </div>
           <ul class="user-actions">
             <li>
@@ -87,133 +87,91 @@ headerTemplate.innerHTML = `
               <ul class="menu-list">
                 <li class="menu-list__item">
                   <img src="/assets/icons/Menu/Gift.png" alt="선물하기" aria-hidden="true" />
-                  <a href="#" aria-label="선물하기 카테고리로 이동">선물하기</a>
+                  <a href="/src/pages/product-list/?category=선물하기" aria-label="선물하기 카테고리로 이동">선물하기</a>
                 </li>
                 <li class="menu-list__item">
                   <img src="/assets/icons/Menu/Vegetable.png" alt="채소" aria-hidden="true" />
-                  <a href="#" aria-label="채소 카테고리로 이동">채소</a>
+                  <a href="/src/pages/product-list/?category=채소" aria-label="채소 카테고리로 이동">채소</a>
                 </li>
                 <li class="menu-list__item">
                   <img src="/assets/icons/Menu/Fruit.png" alt="과일·견과·쌀" aria-hidden="true" />
-                  <a href="#" aria-label="과일·견과·쌀 카테고리로 이동">과일·견과·쌀</a>
+                  <a href="/src/pages/product-list/?category=과일·견과·쌀" aria-label="과일·견과·쌀 카테고리로 이동">과일·견과·쌀</a>
                 </li>
                 <li class="menu-list__item">
-                  <img
-                    src="/assets/icons/Menu/SeaFood.png"
-                    alt="수산·해산·건어물"
-                    aria-hidden="true"
-                  />
-                  <a href="#" aria-label="수산·해산·건어물 카테고리로 이동">수산·해산·건어물</a>
+                  <img src="/assets/icons/Menu/SeaFood.png" alt="수산·해산·건어물" aria-hidden="true" />
+                  <a href="/src/pages/product-list/?category=수산·해산·건어물" aria-label="수산·해산·건어물 카테고리로 이동">수산·해산·건어물</a>
                 </li>
                 <li class="menu-list__item">
                   <img src="/assets/icons/Menu/Meet.png" alt="정육·계란" aria-hidden="true" />
-                  <a href="#" aria-label="정육·계란 카테고리로 이동">정육·계란</a>
+                  <a href="/src/pages/product-list/?category=정육·계란" aria-label="정육·계란 카테고리로 이동">정육·계란</a>
                 </li>
                 <li class="menu-list__item">
-                  <img
-                    src="/assets/icons/Menu/Cook.png"
-                    alt="국·반찬·메인요리"
-                    aria-hidden="true"
-                  />
-                  <a href="#" aria-label="국·반찬·메인요리 카테고리로 이동">국·반찬·메인요리</a>
+                  <img src="/assets/icons/Menu/Cook.png" alt="국·반찬·메인요리" aria-hidden="true" />
+                  <a href="/src/pages/product-list/?category=국·반찬·메인요리" aria-label="국·반찬·메인요리 카테고리로 이동">국·반찬·메인요리</a>
                 </li>
                 <li class="menu-list__item">
                   <img src="/assets/icons/Menu/Salad.png" alt="샐러드·간편식" aria-hidden="true" />
-                  <a href="#" aria-label="샐러드·간편식 카테고리로 이동">샐러드·간편식</a>
+                  <a href="/src/pages/product-list/?category=샐러드·간편식" aria-label="샐러드·간편식 카테고리로 이동">샐러드·간편식</a>
                 </li>
                 <li class="menu-list__item">
                   <img src="/assets/icons/Menu/Oil.png" alt="면·양념·오일" aria-hidden="true" />
-                  <a href="#" aria-label="면·양념·오일 카테고리로 이동">면·양념·오일</a>
+                  <a href="/src/pages/product-list/?category=면·양념·오일" aria-label="면·양념·오일 카테고리로 이동">면·양념·오일</a>
                 </li>
                 <li class="menu-list__item">
-                  <img
-                    src="/assets/icons/Menu/Coffee.png"
-                    alt="생수·음료·우유·커피"
-                    aria-hidden="true"
-                  />
-                  <a href="#" aria-label="생수·음료·우유·커피 카테고리로 이동"
-                    >생수·음료·우유·커피</a
-                  >
+                  <img src="/assets/icons/Menu/Coffee.png" alt="생수·음료·우유·커피" aria-hidden="true" />
+                  <a href="/src/pages/product-list/?category=생수·음료·우유·커피" aria-label="생수·음료·우유·커피 카테고리로 이동">생수·음료·우유·커피</a>
                 </li>
                 <li class="menu-list__item">
                   <img src="/assets/icons/Menu/Snack.png" alt="간식·과자·떡" aria-hidden="true" />
-                  <a href="#" aria-label="간식·과자·떡 카테고리로 이동">간식·과자·떡</a>
+                  <a href="/src/pages/product-list/?category=간식·과자·떡" aria-label="간식·과자·떡 카테고리로 이동">간식·과자·떡</a>
                 </li>
                 <li class="menu-list__item">
-                  <img
-                    src="/assets/icons/Menu/Bread.png"
-                    alt="베이커리·치즈·델리"
-                    aria-hidden="true"
-                  />
-                  <a href="#" aria-label="베이커리·치즈·델리 카테고리로 이동">베이커리·치즈·델리</a>
+                  <img src="/assets/icons/Menu/Bread.png" alt="베이커리·치즈·델리" aria-hidden="true" />
+                  <a href="/src/pages/product-list/?category=베이커리·치즈·델리" aria-label="베이커리·치즈·델리 카테고리로 이동">베이커리·치즈·델리</a>
                 </li>
                 <li class="menu-list__item">
                   <img src="/assets/icons/Menu/Health.png" alt="건강식품" aria-hidden="true" />
-                  <a href="#" aria-label="건강식품 카테고리로 이동">건강식품</a>
+                  <a href="/src/pages/product-list/?category=건강식품" aria-label="건강식품 카테고리로 이동">건강식품</a>
                 </li>
                 <li class="menu-list__item">
                   <img src="/assets/icons/Menu/Wine.png" alt="와인" aria-hidden="true" />
-                  <a href="#" aria-label="와인 카테고리로 이동">와인</a>
+                  <a href="/src/pages/product-list/?category=와인" aria-label="와인 카테고리로 이동">와인</a>
                 </li>
                 <li class="menu-list__item">
-                  <img
-                    src="/assets/icons/Menu/Traditional-Liquor.png"
-                    alt="전통주"
-                    aria-hidden="true"
-                  />
-                  <a href="#" aria-label="전통주 카테고리로 이동">전통주</a>
+                  <img src="/assets/icons/Menu/Traditional-Liquor.png" alt="전통주" aria-hidden="true" />
+                  <a href="/src/pages/product-list/?category=전통주" aria-label="전통주 카테고리로 이동">전통주</a>
                 </li>
                 <li class="menu-list__item">
-                  <img
-                    src="/assets/icons/Menu/Detergent.png"
-                    alt="생활용품·리빙·캠핑"
-                    aria-hidden="true"
-                  />
-                  <a href="#" aria-label="생활용품·리빙·캠핑 카테고리로 이동">생활용품·리빙·캠핑</a>
+                  <img src="/assets/icons/Menu/Detergent.png" alt="생활용품·리빙·캠핑" aria-hidden="true" />
+                  <a href="/src/pages/product-list/?category=생활용품·리빙·캠핑" aria-label="생활용품·리빙·캠핑 카테고리로 이동">생활용품·리빙·캠핑</a>
                 </li>
                 <li class="menu-list__item">
-                  <img
-                    src="/assets/icons/Menu/Cosmetics.png"
-                    alt="스킨케어·메이크업"
-                    aria-hidden="true"
-                  />
-                  <a href="#" aria-label="스킨케어·메이크업 카테고리로 이동">스킨케어·메이크업</a>
+                  <img src="/assets/icons/Menu/Cosmetics.png" alt="스킨케어·메이크업" aria-hidden="true" />
+                  <a href="/src/pages/product-list/?category=스킨케어·메이크업" aria-label="스킨케어·메이크업 카테고리로 이동">스킨케어·메이크업</a>
                 </li>
                 <li class="menu-list__item">
-                  <img
-                    src="/assets/icons/Menu/Shampoo.png"
-                    alt="헤어·바디·구강"
-                    aria-hidden="true"
-                  />
-                  <a href="#" aria-label="헤어·바디·구강 카테고리로 이동">헤어·바디·구강</a>
+                  <img src="/assets/icons/Menu/Shampoo.png" alt="헤어·바디·구강" aria-hidden="true" />
+                  <a href="/src/pages/product-list/?category=헤어·바디·구강" aria-label="헤어·바디·구강 카테고리로 이동">헤어·바디·구강</a>
                 </li>
                 <li class="menu-list__item">
                   <img src="/assets/icons/Menu/Food.png" alt="주방용품" aria-hidden="true" />
-                  <a href="#" aria-label="주방용품 카테고리로 이동">주방용품</a>
+                  <a href="/src/pages/product-list/?category=주방용품" aria-label="주방용품 카테고리로 이동">주방용품</a>
                 </li>
                 <li class="menu-list__item">
-                  <img
-                    src="/assets/icons/Menu/HomeAppliances.png"
-                    alt="가전제품"
-                    aria-hidden="true"
-                  />
-                  <a href="#" aria-label="가전제품 카테고리로 이동">가전제품</a>
+                  <img src="/assets/icons/Menu/HomeAppliances.png" alt="가전제품" aria-hidden="true" />
+                  <a href="/src/pages/product-list/?category=가전제품" aria-label="가전제품 카테고리로 이동">가전제품</a>
                 </li>
                 <li class="menu-list__item">
                   <img src="/assets/icons/Menu/Dog.png" alt="반려동물" aria-hidden="true" />
-                  <a href="#" aria-label="반려동물 카테고리로 이동">반려동물</a>
+                  <a href="/src/pages/product-list/?category=반려동물" aria-label="반려동물 카테고리로 이동">반려동물</a>
                 </li>
                 <li class="menu-list__item">
-                  <img
-                    src="/assets/icons/Menu/Baby.png"
-                    alt="베이비·키즈·완구"
-                    aria-hidden="true"
-                  />
-                  <a href="#" aria-label="베이비·키즈·완구 카테고리로 이동">베이비·키즈·완구</a>
+                  <img src="/assets/icons/Menu/Baby.png" alt="베이비·키즈·완구" aria-hidden="true" />
+                  <a href="/src/pages/product-list/?category=베이비·키즈·완구" aria-label="베이비·키즈·완구 카테고리로 이동">베이비·키즈·완구</a>
                 </li>
                 <li class="menu-list__item">
                   <img src="/assets/icons/Menu/Travel.png" alt="여행·티켓" aria-hidden="true" />
-                  <a href="#" aria-label="여행·티켓 카테고리로 이동">여행·티켓</a>
+                  <a href="/src/pages/product-list/?category=여행·티켓" aria-label="여행·티켓 카테고리로 이동">여행·티켓</a>
                 </li>
               </ul>
             </div>
@@ -221,24 +179,24 @@ headerTemplate.innerHTML = `
         </div>
         <ul class="shopping-categories">
           <li class="category-item">
-            <a href="#" aria-label="신상품 카테고리 페이지로 이동">신상품</a>
+            <a class="category-item__link" href="/src/pages/product-collection/?category=recent" aria-label="신상품 카테고리 페이지로 이동">신상품</a>
           </li>
           <li class="category-item">
-            <a href="#" aria-label="베스트 카테고리 페이지로 이동">베스트</a>
+            <a class="category-item__link" href="/src/pages/product-collection/?category=best" aria-label="베스트 카테고리 페이지로 이동">베스트</a>
           </li>
           <li class="category-item">
-            <a href="#" aria-label="알뜰쇼핑 카테고리 페이지로 이동">알뜰쇼핑</a>
+            <a class="category-item__link" href="/src/pages/product-collection/?category=discount" aria-label="알뜰쇼핑 카테고리 페이지로 이동">알뜰쇼핑</a>
           </li>
           <li class="category-item">
-            <a href="#" aria-label="특가,혜택 카테고리 페이지로 이동">특가/혜택</a>
+            <a class="category-item__link" href="/src/pages/product-list/" aria-label="전체보기 카테고리 페이지로 이동">전체보기</a>
           </li>
         </ul>
         <button class="notification" aria-label="배송 안내"><span>샛별·낮</span> 배송안내</button>
       </nav>
     </header>
     <c-modal width="400px" height="190px">
-      <h2 slot="header" class="modal-header">배송지 등록</h2>
-      <h3 slot="header" class="modal-sub-header">경상북도 영주시 구성로 142번길 20</h3>
+      <h2 slot="header" class="modal-header"></h2>
+      <h3 slot="header" class="modal-sub-header"></h3>
       <span slot="header" class="modal-divider"></span>
       <input slot="body" class="modal__input" type="text" placeholder="등록할 주소를 입력 해주세요."/>
       <div slot="footer" class="modal-button-group">
@@ -277,10 +235,13 @@ export class header extends HTMLElement {
       topBannerCloseButton: '.top-banner__close',
       modal: 'c-modal',
       cartIcon: '.user-actions__cart',
+      categoryLinks: '.category-item__link',
+      searchField: '#product_search',
+      searchButton: '.product_search_button',
     };
 
     this.elements = Object.entries(selectors).reduce((acc, [key, selector]) => {
-      if (key === 'menuLists' || key === 'menuItems') {
+      if (key === 'menuLists' || key === 'menuItems' || key === 'categoryLinks') {
         acc[key] = this.shadowRoot.querySelectorAll(selector);
       } else {
         acc[key] = this.shadowRoot.querySelector(selector);
@@ -295,6 +256,7 @@ export class header extends HTMLElement {
     this.checkAuth();
     this.setupEventListeners();
     this.updateCartBadge();
+    this.setActiveCategoryLink();
   }
 
   // 이벤트 위임 및 이벤트 리스너를 사용하여 사용자 상호작용 처리
@@ -322,6 +284,7 @@ export class header extends HTMLElement {
     );
 
     this.elements.topBannerCloseButton.addEventListener('click', this.handleCloseBanner.bind(this));
+    this.elements.searchButton.addEventListener('click', this.handleSearchProduct.bind(this));
     document.addEventListener('cartUpdated', this.updateCartBadge.bind(this));
   }
 
@@ -410,6 +373,33 @@ export class header extends HTMLElement {
     }
   }
 
+  // 현재 URL에 따라 활성 카테고리 링크 설정
+  setActiveCategoryLink() {
+    const currentUrl = new URL(window.location.href);
+    const category = currentUrl.searchParams.get('category');
+    const search = currentUrl.searchParams.get('search');
+    const pathname = currentUrl.pathname;
+
+    this.elements.categoryLinks.forEach((link) => {
+      link.classList.remove('__is-active');
+    });
+
+    // 검색 파라미터가 있으면 어떤 카테고리도 활성화하지 않음
+    if (search) {
+      return;
+    }
+
+    if (category === 'best') {
+      this.elements.categoryLinks[1].classList.add('__is-active'); // 베스트
+    } else if (category === 'discount') {
+      this.elements.categoryLinks[2].classList.add('__is-active'); // 알뜰쇼핑
+    } else if (pathname === '/src/pages/product-list/' && !category) {
+      this.elements.categoryLinks[3].classList.add('__is-active'); // 전체보기
+    } else if (category === 'recent' || pathname === '/src/pages/product-collection/') {
+      this.elements.categoryLinks[0].classList.add('__is-active'); // 신상품
+    }
+  }
+
   // 로그인 여부에 따른 조건부 렌더링
   checkAuth() {
     const auth = JSON.parse(localStorage.getItem('auth') || '{}');
@@ -443,7 +433,7 @@ export class header extends HTMLElement {
         return `
           <p class="modal-notice">배송지 변경</p>
           <div class="modal-divider"></div>
-          <span class="modal-location-register__title"><span>${user.name}</span>님의 등록된 주소</span>
+          <span class="modal-location-register__title">현재 주소</span>
           <p class="modal-location__address">${user.address}</p>
           <span class="modal-location-delivery">${user.morning_delivery ? '샛별배송' : '일반배송'}</span>
           <div class="location-tooltip-button">
@@ -551,7 +541,7 @@ export class header extends HTMLElement {
   }
 
   // 주소 등록 메서드
-  handleLocationRegistration(user) {
+  async handleLocationRegistration(user) {
     const modalContent = {
       title: '배송지 변경',
       subTitle: user.address,
@@ -571,11 +561,103 @@ export class header extends HTMLElement {
     </div>
   `;
 
-    const setupModal = () => {
+    const createDialog = (className, innerHTML) => {
+      const dialog = document.createElement('dialog');
+      dialog.className = className;
+      dialog.innerHTML = innerHTML;
+      return dialog;
+    };
+
+    const showModal = (modal) => {
+      this.shadowRoot.appendChild(modal);
+      modal.showModal();
+      return modal;
+    };
+
+    const showAlertModal = (message) => {
+      const alertModal = createDialog(
+        'alert-modal',
+        `
+          <style>
+          dialog {
+            width: 25rem;
+            height: 11.875rem;
+            border: none;
+            border-radius: 0.3125rem;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+          }
+          .alert-modal {
+            display: flex;
+            flex-flow: column nowrap;
+            justify-content: space-between;
+            align-items: center;
+          }
+          .alert-modal::backdrop {
+            background-color: rgba(0, 0, 0, 0.5);
+          }
+          .modal__message {
+            font-size: 1rem;
+            font-weight: 500;
+          }
+          </style>
+          <h2 slot="header" class="modal-header">알림</h2>
+          <p slot="body" class="modal__message">${message}</p>
+          <div slot="footer" class="modal-button-group">
+            <button slot="footer" type="button" class="modal__close" id="alert-close-btn" aria-label="알림 모달창 닫기">확인</button>
+          </div>
+      `
+      );
+
+      const closeAlertModal = () => {
+        alertModal.close();
+        alertModal.remove();
+        location.reload();
+      };
+
+      alertModal
+        .querySelector('#alert-close-btn')
+        .addEventListener('click', closeAlertModal, { once: true });
+      showModal(alertModal);
+    };
+
+    const setupMainModal = () => {
       this.elements.modal.setAttribute('width', '400px');
       this.elements.modal.setAttribute('height', '190px');
       this.elements.modal.innerHTML = createModalHTML(modalContent);
-      this.elements.modal.showModal();
+      showModal(this.elements.modal);
+    };
+
+    const updateLocalStorage = (updatedUser) => {
+      const authData = JSON.parse(localStorage.getItem('auth'));
+      if (authData && authData.user) {
+        if (typeof updatedUser === 'object') {
+          authData.user = { ...authData.user, ...updatedUser };
+        } else {
+          authData.user = { ...authData.user, address: updatedUser };
+        }
+        localStorage.setItem('auth', JSON.stringify(authData));
+      }
+    };
+
+    const handleAddressChange = async (inputField) => {
+      const newAddress = inputField.value.trim();
+      if (!newAddress) {
+        showAlertModal('새 주소를 입력해주세요.');
+        return;
+      }
+
+      try {
+        const data = { address: newAddress };
+        // eslint-disable-next-line no-unused-vars
+        const updatedRecord = await pb.collection('users').update(user.id, data);
+        this.elements.modal.close();
+        updateLocalStorage({ address: newAddress });
+        showAlertModal('주소가 성공적으로 변경되었습니다');
+      } catch (error) {
+        console.error('주소 변경 중 오류 발생:', error.message);
+      }
     };
 
     const initEventListeners = () => {
@@ -583,32 +665,36 @@ export class header extends HTMLElement {
       const closeButton = this.shadowRoot.querySelector('.modal__close');
       const inputField = this.shadowRoot.querySelector('.modal__input');
 
-      const handleRegisterClick = () => {
-        const newAddress = inputField.value;
-        console.log('새로운 주소:', newAddress);
-        this.elements.modal.close();
-      };
+      registerButton.addEventListener('click', () => handleAddressChange(inputField));
+      closeButton.addEventListener('click', () => this.elements.modal.close());
 
-      const handleCloseClick = () => {
-        this.elements.modal.close();
-      };
-
-      registerButton.addEventListener('click', handleRegisterClick);
-      closeButton.addEventListener('click', handleCloseClick);
-
-      // 모달이 닫힐 때 이벤트 리스너 제거
       this.elements.modal.addEventListener(
         'close',
         () => {
-          registerButton.removeEventListener('click', handleRegisterClick);
-          closeButton.removeEventListener('click', handleCloseClick);
+          registerButton.removeEventListener('click', handleAddressChange);
+          closeButton.removeEventListener('click', () => this.elements.modal.close());
         },
         { once: true }
       );
     };
 
-    setupModal();
+    const subscribeToAddressChanges = () => {
+      pb.collection('users').subscribe(user.id, (e) => {
+        if (e.record.address !== user.address) {
+          updateLocalStorage({ address: e.record.address });
+          user.address = e.record.address;
+        }
+      });
+    };
+
+    setupMainModal();
     initEventListeners();
+    subscribeToAddressChanges(); // 실시간 구독 시작
+  }
+
+  // 제품 검색 기능
+  handleSearchProduct() {
+    window.location.href = `/src/pages/product-list/?search=${this.elements.searchField.value}`;
   }
 
   // 유틸리티 함수: 요소 표시

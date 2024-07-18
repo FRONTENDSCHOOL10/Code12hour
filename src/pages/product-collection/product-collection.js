@@ -1,55 +1,65 @@
-import './product-list.scss';
+import './product-collection.scss';
 import { defineCustomElements } from '@/utils/index';
-import { CartButton, footer, header, SideFilter, headerSmall, Sidebar } from '@/components/index';
+import { CartButton, footer, header, headerSmall, Sidebar, SideFilter } from '@/components/index';
 import { pb, getImageUrl } from '@/api/index';
 
 (function () {
-  // 페이지 수 상수로 정의
   const ITEMS_PER_PAGE = 15;
+  const FILTER_MAP = {
+    recent: '-created',
+    best: '-sales_count',
+    discount: '-discount_rate',
+  };
 
-  // 상태 변수 정의
   let isLoading = false;
+  let initialCategory;
   let allProducts = [];
-  let currentCategory = '';
-  let currentFilter = '';
 
-  // 로딩 상태를 설정하는 함수
   const setLoading = (loading) => {
     isLoading = loading;
   };
 
-  // URL에서 카테고리 파라미터를 가져오는 함수
   const getCategoryFromURL = () => {
     const urlParams = new URLSearchParams(window.location.search);
-    return urlParams.get('category') || '';
+    return urlParams.get('category') || 'recent';
   };
 
-  // URL에서 검색 파라미터를 가져오는 함수
-  const getSearchFromURL = () => {
-    const urlParams = new URLSearchParams(window.location.search);
-    return urlParams.get('search') || '';
+  const fetchProducts = async (filter = 'recent') => {
+    const sort = FILTER_MAP[filter] || FILTER_MAP.recent;
+    return await pb.collection('product').getList(1, 1000, { sort });
   };
 
-  // 주어진 필터와 페이지 번호에 따라 상품 데이터를 서버에서 가져오는 함수
-  const fetchAllProducts = async (category, search) => {
-    let filter = '';
+  const sortProducts = (products, additionalFilter) => {
+    return products.sort((a, b) => {
+      // 초기 정렬 기준에 따른 비교
+      if (initialCategory === 'recent') {
+        const dateA = new Date(a.created);
+        const dateB = new Date(b.created);
+        if (dateA.getTime() !== dateB.getTime()) {
+          return dateB.getTime() - dateA.getTime();
+        }
+      } else if (initialCategory === 'best') {
+        if (a.sales_count !== b.sales_count) {
+          return b.sales_count - a.sales_count;
+        }
+      } else if (initialCategory === 'discount') {
+        if (a.discount_rate !== b.discount_rate) {
+          return b.discount_rate - a.discount_rate;
+        }
+      }
 
-    if (category) {
-      filter += `category.category_name = "${category}"`;
-    }
+      // 초기 정렬 기준이 같은 경우, 추가 필터 적용
+      if (additionalFilter === 'lowPrice') {
+        return a.product_price - b.product_price;
+      } else if (additionalFilter === 'highPrice') {
+        return b.product_price - a.product_price;
+      }
 
-    if (search) {
-      if (filter) filter += ' && ';
-      filter += `(product_name ~ "${search}" || product_description ~ "${search}" || category.category_name ~ "${search}")`;
-    }
-
-    return await pb.collection('product').getFullList({
-      expand: 'category',
-      filter: filter,
+      // 모든 기준이 같으면 순서 유지
+      return 0;
     });
   };
 
-  // 단일 상품 정보를 받아 HTML로 상품 카드를 생성하는 함수
   const createProductCard = (product) => {
     const discountedPrice = Math.floor(product.product_price * (1 - product.discount_rate / 100));
     const imageUrl = getImageUrl(product);
@@ -76,7 +86,7 @@ import { pb, getImageUrl } from '@/api/index';
       : '';
 
     const kurlyOnly = product.kurly_only
-      ? `<span class="product-item__kurly-only">Kurly Only</span>`
+      ? `<span class="product-item__kurly-only">Karly Only</span>`
       : '';
 
     return `
@@ -111,24 +121,49 @@ import { pb, getImageUrl } from '@/api/index';
     `;
   };
 
-  // 상품 목록을 렌더링하는 함수. 필터와 페이지 정보를 받아 상품을 가져오고 화면에 표시
-  const renderProductList = (products, page = 1) => {
-    const startIndex = (page - 1) * ITEMS_PER_PAGE;
-    const endIndex = startIndex + ITEMS_PER_PAGE;
-    const displayedProducts = products.slice(startIndex, endIndex);
+  const renderProductList = async (filter = 'recent', page = 1) => {
+    try {
+      setLoading(true);
 
-    const countText = document.querySelector('.product-filter__count');
-    const itemGroup = document.querySelector('.product-item-group');
+      if (allProducts.length === 0) {
+        const productsData = await fetchProducts(filter);
+        allProducts = productsData.items;
+      }
 
-    countText.textContent = `총 ${products.length}건`;
-    itemGroup.innerHTML = displayedProducts.map(createProductCard).join('');
+      const sortedProducts = sortProducts([...allProducts], filter);
 
-    updatePagination(products.length, ITEMS_PER_PAGE, page);
-    updateActiveFilter(currentFilter);
+      const start = (page - 1) * ITEMS_PER_PAGE;
+      const end = start + ITEMS_PER_PAGE;
+      const paginatedProducts = sortedProducts.slice(start, end);
+
+      const productCount = allProducts.length;
+
+      const countText = document.querySelector('.product-filter__count');
+      const categoryTitle = document.querySelector('.product-header');
+      const itemGroup = document.querySelector('.product-item-group');
+
+      countText.textContent = `총 ${productCount}건`;
+      categoryTitle.textContent =
+        initialCategory === 'recent'
+          ? '신상품'
+          : initialCategory === 'best'
+            ? '베스트'
+            : initialCategory === 'discount'
+              ? '알뜰쇼핑'
+              : '';
+
+      itemGroup.innerHTML = paginatedProducts.map(createProductCard).join('');
+
+      updatePagination(productCount, ITEMS_PER_PAGE, page, filter);
+      updateActiveFilter(filter);
+    } catch (e) {
+      console.error('Error : ', e);
+    } finally {
+      setLoading(false);
+    }
   };
 
-  // 페이지네이션을 업데이트하는 함수. 총 아이템 수, 페이지당 아이템 수, 현재 페이지, 현재 필터를 기반으로 페이지네이션을 생성
-  const updatePagination = (totalItems, itemsPerPage, currentPage) => {
+  const updatePagination = (totalItems, itemsPerPage, currentPage, filter) => {
     const pageCount = Math.ceil(totalItems / itemsPerPage);
     const numbers = document.querySelector('.numbers');
     numbers.innerHTML = Array.from(
@@ -140,27 +175,25 @@ import { pb, getImageUrl } from '@/api/index';
 
     numberButtons.forEach((item) => {
       const pageNum = parseInt(item.dataset.page);
-      item.addEventListener('click', (e) => handlePageClick(e, pageNum));
+      item.addEventListener('click', (e) => handlePageClick(e, pageNum, filter));
       item.classList.toggle('pagination__link--is-selected', pageNum === currentPage);
       item.toggleAttribute('aria-current', pageNum === currentPage);
     });
 
-    setupPaginationButtons(currentPage, pageCount);
+    setupPaginationButtons(currentPage, pageCount, filter);
   };
 
-  // 페이지 번호를 클릭했을 때 실행되는 함수입. 해당 페이지의 상품 목록을 렌더링
-  const handlePageClick = (e, pageNum) => {
+  const handlePageClick = async (e, pageNum, filter) => {
     e.preventDefault();
     if (isLoading) return;
-    renderProductList(allProducts, pageNum);
+    await renderProductList(filter, pageNum);
   };
 
-  // 페이지네이션 버튼(첫 페이지, 이전, 다음, 마지막 페이지)의 동작을 설정하는 함수
-  const setupPaginationButtons = (currentPage, pageCount) => {
+  const setupPaginationButtons = (currentPage, pageCount, filter) => {
     const buttons = document.querySelectorAll('.pagination__button');
     buttons.forEach((button) => {
       button.removeEventListener('click', button._listener);
-      button._listener = () => {
+      button._listener = async () => {
         if (isLoading) return;
 
         let newPage;
@@ -172,38 +205,21 @@ import { pb, getImageUrl } from '@/api/index';
         else if (button.classList.contains('last-next-button')) newPage = pageCount;
 
         if (newPage !== currentPage) {
-          renderProductList(allProducts, newPage);
+          await renderProductList(filter, newPage);
         }
       };
       button.addEventListener('click', button._listener);
     });
   };
 
-  // 필터 버튼을 클릭했을 때 실행되는 함수 선택된 필터에 따라 상품 목록을 다시 렌더링
-  const handleClickFilter = (e) => {
+  const handleClickFilter = async (e) => {
     if (isLoading) return;
     const filter = e.target.dataset.filter;
     if (filter) {
-      currentFilter = filter;
-      const sortedProducts = sortProducts(allProducts, filter);
-      renderProductList(sortedProducts);
+      await renderProductList(filter);
     }
   };
 
-  // 상품을 정렬하는 함수
-  const sortProducts = (products, filter) => {
-    const sortFunctions = {
-      recent: (a, b) => new Date(b.created) - new Date(a.created),
-      best: (a, b) => b.sales_count - a.sales_count,
-      discount: (a, b) => b.discount_rate - a.discount_rate,
-      lowPrice: (a, b) => a.product_price - b.product_price,
-      highPrice: (a, b) => b.product_price - a.product_price,
-    };
-
-    return [...products].sort(sortFunctions[filter]);
-  };
-
-  // 현재 활성화된 필터 버튼의 스타일을 업데이트하는 함수
   const updateActiveFilter = (activeFilter) => {
     const filterButtons = document.querySelectorAll('.product-filter__button');
     filterButtons.forEach((button) => {
@@ -212,16 +228,6 @@ import { pb, getImageUrl } from '@/api/index';
         button.dataset.filter === activeFilter
       );
     });
-  };
-
-  // 카테고리 제목을 설정하는 함수
-  const setCategoryTitle = (category, search) => {
-    const categoryTitle = document.querySelector('.product-header');
-    if (search) {
-      categoryTitle.textContent = `'${search}' 검색 결과`;
-    } else {
-      categoryTitle.textContent = category || '전체보기';
-    }
   };
 
   // 최근 본 상품 로컬 스토리지에서 가져오는 함수
@@ -275,7 +281,6 @@ import { pb, getImageUrl } from '@/api/index';
     addProductLinkListeners();
   };
 
-  // 커스텀 엘리먼트를 정의, 이벤트 리스너를 설정, URL 파라미터를 읽어와 초기 상품 목록을 렌더링
   const init = async () => {
     defineCustomElements([
       ['c-header', header],
@@ -289,20 +294,9 @@ import { pb, getImageUrl } from '@/api/index';
     const filterContainer = document.querySelector('.product-filter__list');
     filterContainer.addEventListener('click', handleClickFilter);
 
-    currentCategory = getCategoryFromURL();
-    const currentSearch = getSearchFromURL();
-    setCategoryTitle(currentCategory, currentSearch);
-
-    try {
-      setLoading(true);
-      allProducts = await fetchAllProducts(currentCategory, currentSearch);
-      renderProductList(allProducts);
-      initViewedProducts();
-    } catch (error) {
-      console.error('Failed to fetch products:', error);
-    } finally {
-      setLoading(false);
-    }
+    initialCategory = getCategoryFromURL();
+    await renderProductList(initialCategory);
+    initViewedProducts();
   };
 
   init();

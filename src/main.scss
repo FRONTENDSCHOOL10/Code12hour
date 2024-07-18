@@ -22,6 +22,10 @@ img {
 
 /* 메인 배너 슬라이드 */
 
+.main {
+  position: relative;
+}
+
 .main-banner {
   .swiper {
     @include size(auto, 23.125rem);

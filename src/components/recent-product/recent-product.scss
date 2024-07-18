@@ -1,15 +1,24 @@
+:host {
+  --top: 50%;
+  --transform: translateY(-50%);
+  --margin-top: calc(50vh - 40%);
+  --right: 5.25rem;
+}
+
 .sidebar-wrapper {
-  // background-color: yellow;
   position: absolute;
-  right: 1.25rem;
-  margin-top: 14.75rem; // 마켓컬리 사이트 참고
-  height: 200%;
+  right: var(--right);
+  margin-top: 14.75rem;
+  height: auto;
+  top: 0;
+  bottom: 0;
 }
 
 .recent-products {
   position: sticky;
-  top: 50%;
-  transform: translateY(-50%);
+  top: var(--top);
+  transform: var(--transform);
+  margin-top: var(--margin-top);
   @include flex(column nowrap);
   @include size(3.63rem, auto);
   max-height: 17.4375rem;
