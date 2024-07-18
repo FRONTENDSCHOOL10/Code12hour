@@ -38,18 +38,11 @@ const handleAddressSearch = () => {
  * 주소 검색 완료 시 처리를 담당합니다.
  */
 const handleAddressComplete = (data) => {
-  let addr = data.userSelectedType === 'R' ? data.roadAddress : data.jibunAddress;
-  let extraAddr = getExtraAddress(data);
+  const addr = data.userSelectedType === 'R' ? data.roadAddress : data.jibunAddress;
+  const extraAddr = getExtraAddress(data);
 
   let searchedAddress = `(${data.zonecode}) ${addr} ${extraAddr}`;
-
-  if (data.userSelectedType === 'R' && data.buildingName) {
-    searchedAddress += `, ${data.buildingName}`;
-  }
-
-  if (data.autoJibunAddress) {
-    searchedAddress += ` (지번: ${data.autoJibunAddress})`;
-  }
+  searchedAddress += getBuildingAndJibunAddress(data);
 
   addressInput.value = searchedAddress;
   sessionStorage.setItem('searchedAddress', searchedAddress);
@@ -59,19 +52,33 @@ const handleAddressComplete = (data) => {
  * 추가 주소 정보를 생성합니다.
  */
 const getExtraAddress = (data) => {
+  if (data.userSelectedType !== 'R') return '';
+
   let extraAddr = '';
-  if (data.userSelectedType === 'R') {
-    if (data.bname !== '' && /[동|로|가]$/g.test(data.bname)) {
-      extraAddr += data.bname;
-    }
-    if (data.buildingName !== '' && data.apartment === 'Y') {
-      extraAddr += extraAddr !== '' ? ', ' + data.buildingName : data.buildingName;
-    }
-    if (extraAddr !== '') {
-      extraAddr = ' (' + extraAddr + ')';
-    }
+  if (data.bname !== '' && /[동|로|가]$/g.test(data.bname)) {
+    extraAddr += data.bname;
+  }
+  if (data.buildingName !== '' && data.apartment === 'Y') {
+    extraAddr += extraAddr !== '' ? ', ' + data.buildingName : data.buildingName;
+  }
+  if (extraAddr !== '') {
+    extraAddr = ` (${extraAddr})`;
   }
   return extraAddr;
+};
+
+/**
+ * 건물명과 지번 주소를 추가합니다.
+ */
+const getBuildingAndJibunAddress = (data) => {
+  let result = '';
+  if (data.userSelectedType === 'R' && data.buildingName) {
+    result += `, ${data.buildingName}`;
+  }
+  if (data.autoJibunAddress) {
+    result += ` (지번: ${data.autoJibunAddress})`;
+  }
+  return result;
 };
 
 /**

@@ -16,30 +16,32 @@ export const setupAddOptions = () => {
    */
   const toggleVisibility = () => {
     if (elements.addInfoFriend.checked) {
-      showRecommenderField();
+      showField(
+        elements.inviteRecommenderGroup,
+        elements.inviteEventnameGroup,
+        elements.inviteEventnameInput
+      );
     } else if (elements.addInfoEvent.checked) {
-      showEventField();
+      showField(
+        elements.inviteEventnameGroup,
+        elements.inviteRecommenderGroup,
+        elements.inviteRecommenderInput
+      );
     } else {
       hideAllFields();
     }
   };
 
   /**
-   * 추천인 입력 필드를 표시하고 이벤트명 필드를 숨깁니다.
+   * 특정 입력 필드를 표시하고 다른 입력 필드를 숨깁니다.
+   * @param {HTMLElement} showGroup - 표시할 입력 필드 그룹
+   * @param {HTMLElement} hideGroup - 숨길 입력 필드 그룹
+   * @param {HTMLInputElement} hideInput - 초기화할 입력 필드
    */
-  const showRecommenderField = () => {
-    elements.inviteRecommenderGroup.style.display = 'flex';
-    elements.inviteEventnameGroup.style.display = 'none';
-    clearInput(elements.inviteEventnameInput);
-  };
-
-  /**
-   * 이벤트명 입력 필드를 표시하고 추천인 필드를 숨깁니다.
-   */
-  const showEventField = () => {
-    elements.inviteRecommenderGroup.style.display = 'none';
-    elements.inviteEventnameGroup.style.display = 'flex';
-    clearInput(elements.inviteRecommenderInput);
+  const showField = (showGroup, hideGroup, hideInput) => {
+    showGroup.style.display = 'flex';
+    hideGroup.style.display = 'none';
+    clearInput(hideInput);
   };
 
   /**

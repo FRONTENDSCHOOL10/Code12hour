@@ -22,7 +22,7 @@
           <legend class="sr-only">회원가입 폼</legend>
           <!-- 아이디 -->
           <div class="register-form__group">
-            <label class="register-form__label register-form__label--required" for="userid">
+            <label class="register-form__label register-form__label--required" for="userId">
               <span class="register-form__label-text">아이디</span>
               <span class="register__notice-star" aria-label="필수입력 사항">*</span>
             </label>
@@ -155,13 +155,26 @@
             </label>
             <div class="register-form__address">
               <div class="register-form__search-input">
-                <input
-                  type="text"
-                  class="register-form__input register-form__address-input"
-                  id="address-input"
-                  placeholder="주소를 검색해 주세요"
-                  readonly
-                />
+                <div class="register-form__search-address">
+                  <input
+                    type="text"
+                    class="register-form__input register-form__address-input"
+                    id="address-input"
+                    placeholder="주소를 검색해 주세요"
+                    readonly
+                  />
+                  <button
+                    class="register-form__button register-form__button-search"
+                    type="button"
+                    id="address-button"
+                  >
+                    <span
+                      class="register-form__button-text"
+                      aria-label="주소입력은 필수입력 사항. 주소 검색"
+                      >주소 검색</span
+                    >
+                  </button>
+                </div>
                 <input
                   type="text"
                   class="register-form__input register-form__address-input"
@@ -173,19 +186,6 @@
                 >배송지에 따라 상품 정보가 달라질 수 있습니다.</span
               >
               <div class="register-form__search-button"></div>
-            </div>
-            <div class="register-form__search">
-              <button
-                class="register-form__button register-form__button-search"
-                type="button"
-                id="address-button"
-              >
-                <span
-                  class="register-form__button-text"
-                  aria-label="주소입력은 필수입력 사항. 주소 검색"
-                  >주소 검색</span
-                >
-              </button>
             </div>
           </div>
           <!-- 성별 -->
@@ -226,7 +226,7 @@
                 <label
                   class="register-form__radio-label"
                   for="gender-other"
-                  aria-label="선택 안함 선택됨. 성별을 방향키로 선택해주세요"
+                  aria-label="성별 선택 안함 선택됨. 성별을 좌우방향키로 선택해주세요"
                   >선택 안함</label
                 >
               </div>

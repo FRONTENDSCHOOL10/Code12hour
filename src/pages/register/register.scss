@@ -86,13 +86,15 @@ body {
         @include font($paragraph-medium, 600, 150%);
         color: $primary-color;
       }
-      &-research {
+      &-search {
         position: absolute;
+        margin-left: 0.625rem;
       }
     }
 
     &__search {
-      position: relative;
+      &-address {
+      }
 
       &-button {
         align-items: normal;

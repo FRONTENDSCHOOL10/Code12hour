@@ -10,28 +10,22 @@ export const setupPasswordValidation = () => {
     pwdNotice2: document.getElementById('pwdNotice-2'),
   };
 
-  /**
-   * 비밀번호 입력 처리를 담당합니다.
-   */
-  const handlePasswordInput = () => {
-    const password = elements.passwordInput.value;
+  const updatePasswordValidationUI = (password) => {
     if (password.length < 8) {
       showElement(elements.pwdNotice1);
       hideElement(elements.pwdNotice2);
+    } else if (validatePassword(password)) {
+      hideElement(elements.pwdNotice1);
+      hideElement(elements.pwdNotice2);
     } else {
-      const isValid = validatePassword(password);
-      if (isValid) {
-        hideElement(elements.pwdNotice1);
-        hideElement(elements.pwdNotice2);
-      } else {
-        hideElement(elements.pwdNotice1);
-        showElement(elements.pwdNotice2);
-      }
+      hideElement(elements.pwdNotice1);
+      showElement(elements.pwdNotice2);
     }
   };
 
-  // 이벤트 리스너 등록
-  elements.passwordInput.addEventListener('input', handlePasswordInput);
+  elements.passwordInput.addEventListener('input', () =>
+    updatePasswordValidationUI(elements.passwordInput.value)
+  );
 };
 
 /**
@@ -44,16 +38,12 @@ export const setupPasswordConfirmation = () => {
     pwdConfirmNotice: document.getElementById('pwdConfirm'),
   };
 
-  /**
-   * 비밀번호 확인 입력 처리를 담당합니다.
-   */
-  const handleConfirmPasswordInput = () => {
+  const updatePasswordConfirmationUI = () => {
     const passwordsMatch = elements.passwordInput.value === elements.confirmPasswordInput.value;
     passwordsMatch
       ? hideElement(elements.pwdConfirmNotice)
       : showElement(elements.pwdConfirmNotice);
   };
 
-  // 이벤트 리스너 등록
-  elements.confirmPasswordInput.addEventListener('input', handleConfirmPasswordInput);
+  elements.confirmPasswordInput.addEventListener('input', updatePasswordConfirmationUI);
 };

@@ -10,99 +10,84 @@ export const setupSubmitButton = (pb) => {
     return;
   }
 
-  submitButton.addEventListener('click', async (event) => {
-    event.preventDefault();
-    // 필수 입력 항목 확인
-    const userId = document.getElementById('userId')?.value;
-    const password = document.getElementById('password')?.value;
-    const confirmPassword = document.getElementById('confirmPassword')?.value;
-    const name = document.getElementById('name')?.value;
-    const email = document.getElementById('email')?.value;
-    const gender = document.querySelector('input[name="gender"]:checked')?.value;
-    const birthdate = document.getElementById('birth-date')?.value;
-    const promotion = document.getElementById('promotion')?.checked;
-    const recommender = document.getElementById('invite-recommender')?.value;
-    const eventName = document.getElementById('invite-eventname')?.value;
+  const getFormData = () => ({
+    userId: document.getElementById('userId')?.value,
+    password: document.getElementById('password')?.value,
+    confirmPassword: document.getElementById('confirmPassword')?.value,
+    name: document.getElementById('name')?.value,
+    email: document.getElementById('email')?.value,
+    gender: document.querySelector('input[name="gender"]:checked')?.value,
+    birthdate: document.getElementById('birth-date')?.value,
+    promotion: document.getElementById('promotion')?.checked,
+    recommender: document.getElementById('invite-recommender')?.value,
+    eventName: document.getElementById('invite-eventname')?.value,
+    addressDetail: document.getElementById('address-to-input')?.value,
+  });
 
-    const searchedAddress = getSearchedAddress();
-    const addressDetail = document.getElementById('address-to-input')?.value;
-    const fullAddress = `${searchedAddress} ${addressDetail}`.trim();
-
-    if (!userId || !password || !confirmPassword || !name || !email || !searchedAddress) {
-      alert('모든 필수 항목을 입력해주세요.');
-      return;
+  const validateFormData = (formData) => {
+    if (
+      !formData.userId ||
+      !formData.password ||
+      !formData.confirmPassword ||
+      !formData.name ||
+      !formData.email ||
+      !getSearchedAddress()
+    ) {
+      throw new Error('모든 필수 항목을 입력해주세요.');
     }
+    if (!validateUsername(formData.userId)) throw new Error('아이디를 올바르게 입력해주세요.');
+    if (!validatePassword(formData.password)) throw new Error('비밀번호를 올바르게 입력해주세요.');
+    if (formData.password !== formData.confirmPassword)
+      throw new Error('비밀번호가 일치하지 않습니다.');
+    if (!validateEmail(formData.email)) throw new Error('이메일을 올바르게 입력해주세요.');
+    if (!requiredCheckboxes.every((cb) => cb && cb.checked))
+      throw new Error('필수 이용 약관에 동의해 주세요.');
+  };
 
-    // 유효성 검사
-    if (!validateUsername(userId)) {
-      alert('아이디를 올바르게 입력해주세요.');
-      return;
-    }
-
-    if (!validatePassword(password)) {
-      alert('비밀번호를 올바르게 입력해주세요.');
-      return;
-    }
-
-    if (password !== confirmPassword) {
-      alert('비밀번호가 일치하지 않습니다.');
-      return;
-    }
-
-    if (!validateEmail(email)) {
-      alert('이메일을 올바르게 입력해주세요.');
-      return;
-    }
-
-    // 필수 약관 동의 확인
-    if (!requiredCheckboxes.every((cb) => cb && cb.checked)) {
-      alert('필수 이용 약관에 동의해 주세요.');
-      return;
-    }
-
-    // 아침 배송 가능 도시 확인
+  const isMorningDeliveryAvailable = (address) => {
     const morningDeliveryCities = ['거제', '영주', '서울', '안성'];
-    const isMorningDeliveryAvailable = morningDeliveryCities.some((city) =>
-      searchedAddress.includes(city)
-    );
+    return morningDeliveryCities.some((city) => address.includes(city));
+  };
 
+  const createUserData = (formData) => {
+    const searchedAddress = getSearchedAddress();
+    const fullAddress = `${searchedAddress} ${formData.addressDetail}`.trim();
+    return {
+      username: formData.userId,
+      email: formData.email,
+      emailVisibility: true,
+      password: formData.password,
+      passwordConfirm: formData.confirmPassword,
+      name: formData.name,
+      address: fullAddress,
+      gender: formData.gender || 'not_specified',
+      birthdate: formData.birthdate || null,
+      promotionAgreed: formData.promotion || false,
+      morning_delivery: isMorningDeliveryAvailable(searchedAddress),
+      recommender: formData.recommender,
+      event_name: formData.eventName,
+      ad_consent: formData.promotion,
+    };
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
     try {
-      const userData = {
-        username: userId,
-        email: email,
-        emailVisibility: true,
-        password: password,
-        passwordConfirm: confirmPassword,
-        name: name,
-        address: fullAddress,
-        gender: gender || 'not_specified',
-        birthdate: birthdate || null,
-        promotionAgreed: promotion || false,
-        morning_delivery: isMorningDeliveryAvailable,
-        recommender: recommender,
-        event_name: eventName,
-        ad_consent: promotion,
-      };
-
+      const formData = getFormData();
+      validateFormData(formData);
+      const userData = createUserData(formData);
       const user = await pb.collection('users').create(userData);
-
-      try {
-        await pb.collection('users').requestVerification(email);
-      } catch (verificationError) {
-        console.error('이메일 인증 요청 중 오류 발생:', verificationError);
-      }
-
+      await pb.collection('users').requestVerification(formData.email);
       alert(
         `환영합니다! ${user.name}님 가입을 진심으로 축하드립니다! 이메일로 전송된 인증 링크를 확인해 주세요.`
       );
-
       window.location.href = '/src/pages/login/';
     } catch (error) {
       console.error('Registration error:', error);
-      if (error.data) {
-        console.error('Error details:', error.data);
-      }
-      alert('회원가입 중 오류가 발생했습니다. 다시 시도해주세요.');
+      if (error.data) console.error('Error details:', error.data);
+      alert(error.message || '회원가입 중 오류가 발생했습니다. 다시 시도해주세요.');
     }
-  });
+  };
+
+  submitButton.addEventListener('click', handleSubmit);
 };

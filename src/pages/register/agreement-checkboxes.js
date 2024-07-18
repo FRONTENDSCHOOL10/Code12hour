@@ -7,13 +7,17 @@ export const setupAgreementCheckboxes = () => {
     document.getElementById('promotion'),
   ];
 
-  agreeAllCheckbox.addEventListener('click', () => {
+  const handleAgreeAllClick = () => {
     requiredCheckboxes.forEach((checkbox) => (checkbox.checked = agreeAllCheckbox.checked));
-  });
+  };
+
+  const handleCheckboxChange = () => {
+    agreeAllCheckbox.checked = requiredCheckboxes.every((checkbox) => checkbox.checked);
+  };
+
+  agreeAllCheckbox.addEventListener('click', handleAgreeAllClick);
 
   requiredCheckboxes.forEach((checkbox) => {
-    checkbox.addEventListener('change', () => {
-      agreeAllCheckbox.checked = requiredCheckboxes.every((cb) => cb.checked);
-    });
+    checkbox.addEventListener('change', handleCheckboxChange);
   });
 };

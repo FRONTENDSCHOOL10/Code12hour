@@ -10,13 +10,12 @@ export const setupInviteValidation = (pb) => {
   let eventName = null;
 
   const disableInput = (input, button) => {
-    input.disabled = true;
-    button.disabled = true;
+    input.disabled = button.disabled = true;
     button.style.borderColor = '#a6a6a6';
     button.querySelector('.register-form__button-text').style.color = '#a6a6a6';
   };
 
-  elements.recommenderButton.addEventListener('click', async () => {
+  const handleRecommenderValidation = async () => {
     const inputRecommender = elements.recommenderInput.value.trim();
     if (!inputRecommender) {
       alert('추천인 아이디를 입력해주세요.');
@@ -40,9 +39,9 @@ export const setupInviteValidation = (pb) => {
       console.error('Recommender check error:', error);
       alert('추천인 확인 중 오류가 발생했습니다. 다시 시도해주세요.');
     }
-  });
+  };
 
-  elements.eventnameButton.addEventListener('click', () => {
+  const handleEventNameValidation = () => {
     const inputEventName = elements.eventnameInput.value.trim();
     if (!inputEventName) {
       alert('이벤트명을 입력해주세요.');
@@ -52,7 +51,10 @@ export const setupInviteValidation = (pb) => {
     alert('이벤트 참여가 확인되었습니다.');
     eventName = inputEventName;
     disableInput(elements.eventnameInput, elements.eventnameButton);
-  });
+  };
+
+  elements.recommenderButton.addEventListener('click', handleRecommenderValidation);
+  elements.eventnameButton.addEventListener('click', handleEventNameValidation);
 
   return {
     getRecommender: () => recommender,

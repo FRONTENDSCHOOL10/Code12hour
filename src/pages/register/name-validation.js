@@ -8,58 +8,32 @@ export const setupNameValidation = () => {
     nameNotice2: document.getElementById('nameNotice-2'),
   };
 
-  /**
-   * 지정된 알림 요소를 표시합니다.
-   */
-  const showNotice = (notice) => {
-    notice.style.display = '';
+  const toggleNotice = (notice, show) => {
+    notice.style.display = show ? '' : 'none';
   };
 
-  /**
-   * 지정된 알림 요소를 숨깁니다.
-   */
-  const hideNotice = (notice) => {
-    notice.style.display = 'none';
-  };
-
-  /**
-   * 모든 알림 요소를 숨깁니다.
-   */
   const hideAllNotices = () => {
-    hideNotice(elements.nameNotice1);
-    hideNotice(elements.nameNotice2);
+    toggleNotice(elements.nameNotice1, false);
+    toggleNotice(elements.nameNotice2, false);
   };
 
-  /**
-   * 이름이 유효한지 검사합니다.
-   */
-  const isValidName = (name) => {
-    const regex = /^[가-힣a-zA-Z]+$/;
-    return regex.test(name);
-  };
+  const isValidName = (name) => /^[가-힣a-zA-Z]+$/.test(name);
 
-  /**
-   * 이름 입력 처리를 담당합니다.
-   */
   const handleNameInput = () => {
     const name = elements.nameInput.value.replace(/\s/g, '');
-
     elements.nameInput.value = name;
 
     if (name === '') {
-      showNotice(elements.nameNotice1);
-      hideNotice(elements.nameNotice2);
+      toggleNotice(elements.nameNotice1, true);
+      toggleNotice(elements.nameNotice2, false);
     } else if (!isValidName(name)) {
-      hideNotice(elements.nameNotice1);
-      showNotice(elements.nameNotice2);
+      toggleNotice(elements.nameNotice1, false);
+      toggleNotice(elements.nameNotice2, true);
     } else {
       hideAllNotices();
     }
   };
 
-  // 이벤트 리스너 등록
   elements.nameInput.addEventListener('input', handleNameInput);
-
-  // 초기 상태 설정
   hideAllNotices();
 };
