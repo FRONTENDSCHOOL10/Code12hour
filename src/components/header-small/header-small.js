@@ -231,6 +231,9 @@ export class headerSmall extends HTMLElement {
     );
 
     this.elements.searchButton.addEventListener('click', this.handleSearchProduct.bind(this));
+    this.elements.searchField.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') this.handleSearchProduct.bind(this)();
+    });
     document.addEventListener('cartUpdated', this.updateCartBadge.bind(this));
   }
 

@@ -4,6 +4,19 @@ let addressToInput;
 /**
  * 주소 검색 기능을 설정합니다.
  */
+
+// 모달 관련 함수
+const showModal = (title, message) => {
+  const modal = document.querySelector('c-modal');
+  const titleElement = modal.querySelector('.register-modal__title');
+  const bodyElement = modal.querySelector('.register-modal__body');
+
+  if (titleElement) titleElement.textContent = title;
+  if (bodyElement) bodyElement.textContent = message;
+
+  modal.showModal();
+};
+
 export const setupAddressSearch = () => {
   const addressSearchButton = document.getElementById('address-button');
   addressInput = document.getElementById('address-input');
@@ -30,7 +43,7 @@ const handleAddressSearch = () => {
       oncomplete: handleAddressComplete,
     }).open();
   } else {
-    alert('주소 검색 서비스를 불러오는 중입니다. 잠시 후 다시 시도해주세요.');
+    showModal('알림', '주소 검색 서비스를 불러오는 중입니다. 잠시 후 다시 시도해주세요.');
   }
 };
 

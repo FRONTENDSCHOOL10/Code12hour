@@ -10,7 +10,7 @@
 
   <body>
     <c-header></c-header>
-
+    <c-header-small></c-header-small>
     <main class="register" aria-label="회원가입">
       <h1 class="register__title">회원가입</h1>
       <div class="register__notice">
@@ -415,5 +415,12 @@
     </main>
 
     <c-footer></c-footer>
+    <c-modal width="450px" height="200px">
+      <h2 slot="header" class="register-modal__title"></h2>
+      <p slot="header" class="register-modal__body"></p>
+      <button slot="footer" type="button" id="modal__close" class="register-modal__close">
+        닫기
+      </button>
+    </c-modal>
   </body>
 </html>

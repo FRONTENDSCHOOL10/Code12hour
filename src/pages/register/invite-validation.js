@@ -1,3 +1,15 @@
+// 모달 관련 함수
+const showModal = (title, message) => {
+  const modal = document.querySelector('c-modal');
+  const titleElement = modal.querySelector('.register-modal__title');
+  const bodyElement = modal.querySelector('.register-modal__body');
+
+  if (titleElement) titleElement.textContent = title;
+  if (bodyElement) bodyElement.textContent = message;
+
+  modal.showModal();
+};
+
 export const setupInviteValidation = (pb) => {
   const elements = {
     recommenderInput: document.getElementById('invite-recommender'),
@@ -18,7 +30,7 @@ export const setupInviteValidation = (pb) => {
   const handleRecommenderValidation = async () => {
     const inputRecommender = elements.recommenderInput.value.trim();
     if (!inputRecommender) {
-      alert('추천인 아이디를 입력해주세요.');
+      showModal('알림', '추천인 아이디를 입력해주세요.');
       return;
     }
 
@@ -28,27 +40,25 @@ export const setupInviteValidation = (pb) => {
       });
 
       if (result.items.length > 0) {
-        alert('추천인이 확인되었습니다.');
+        showModal('알림', '추천인이 확인되었습니다.');
         recommender = inputRecommender;
         disableInput(elements.recommenderInput, elements.recommenderButton);
       } else {
-        alert('유효하지 않은 추천인입니다.');
+        showModal('알림', '유효하지 않은 추천인입니다.');
         recommender = null;
       }
     } catch (error) {
       console.error('Recommender check error:', error);
-      alert('추천인 확인 중 오류가 발생했습니다. 다시 시도해주세요.');
     }
   };
 
   const handleEventNameValidation = () => {
     const inputEventName = elements.eventnameInput.value.trim();
     if (!inputEventName) {
-      alert('이벤트명을 입력해주세요.');
+      showModal('알림', '이벤트명을 입력해주세요.');
       return;
     }
-
-    alert('이벤트 참여가 확인되었습니다.');
+    showModal('알림', '이벤트 참여가 확인되었습니다.');
     eventName = inputEventName;
     disableInput(elements.eventnameInput, elements.eventnameButton);
   };

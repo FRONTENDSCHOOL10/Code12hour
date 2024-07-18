@@ -40,11 +40,11 @@ import { pb, getImageUrl } from '@/api/index';
 
     if (search) {
       if (filter) filter += ' && ';
-      filter += `(product_name ~ "${search}" || product_description ~ "${search}" || category.category_name ~ "${search}")`;
+      filter += `(product_name ~ "${search}" || product_description ~ "${search}" || category.category_name ~ "${search}" || brand.brand_name ~ "${search}")`;
     }
 
     return await pb.collection('product').getFullList({
-      expand: 'category',
+      expand: 'category, brand',
       filter: filter,
     });
   };
