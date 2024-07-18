@@ -1,13 +1,6 @@
 /* 변수 */
 
-$line-height: 150%;
-$banner-button-size: 3.125rem;
 $banner-button-margin: 21.88rem;
-$list-button-size: 3.75rem;
-
-$rem-0-25: 0.25rem;
-$rem-0-5: 0.5rem;
-$rem-2-5: 2.5rem;
 
 /* 공통 적용 */
 
@@ -15,26 +8,19 @@ a {
   display: inline-block;
 }
 
-img {
-  display: block;
-}
-
 /* 상품 리스트 & 추천 상품 리스트 */
 
 .product-list-page {
   position: relative;
   @include size(65.625rem);
-  line-height: $line-height;
-  // background-color: rgb(255, 72, 0); //TODO: 삭제
   margin: 0 auto;
+  line-height: $line-height;
 }
 
 .product-header {
-  text-align: center;
-  line-height: $line-height;
-  font-size: $label-xl;
-  font-weight: 500;
   padding: 3rem 0;
+  @include font($label-xl, 500, $line-height, _);
+  text-align: center;
 }
 
 .product-list-group {
@@ -42,10 +28,9 @@ img {
 }
 
 .product-contents-group {
-  @include size(48.9375rem);
   @include flex(column nowrap);
+  @include size(48.9375rem);
   margin: 0 auto;
-  // background-color: rgb(255, 255, 189); //TODO: 삭제
 }
 
 .product-filter {
@@ -58,16 +43,11 @@ img {
   }
 
   &__button {
-    font-size: 0.875rem;
-    color: #999999; //rgb 153, 153, 153
+    @include font(0.875rem, _, _, $gray-153-color);
 
     &--is-active {
       color: $content-color;
     }
-  }
-
-  &__tooltip {
-    visibility: hidden;
   }
 
   ul {
@@ -77,33 +57,39 @@ img {
   li {
     &:nth-child(n + 2):nth-child(-n + 6)::before {
       content: '';
-      @include size(0.0625rem, 0.625rem);
       display: inline-block;
-      font-size: 0.625rem;
+      @include size(0.0625rem, 0.625rem);
       margin: 0 $rem-0-5;
       background-color: $gray-100-color;
+      font-size: 0.625rem;
     }
   }
 }
 
 .product-item-group {
-  box-sizing: border-box;
   display: grid;
-  grid-template-columns: repeat(3, 15.5625rem);
   justify-content: space-between;
+  grid-template-columns: repeat(3, 15.5625rem);
   row-gap: 1.5rem;
+  box-sizing: border-box;
+}
+
+.price-group {
+  margin: $rem-0-5 0 $rem-0-25 0;
 }
 
 .product-item {
   @include flex(column nowrap, space-between);
-  // background-color: rgb(244, 255, 228); //TODO: 삭제
-  @include size(15.5625rem, 36.5rem); //TODO: 세로크기 피그마 시안이랑 다르게 함
+  @include size(15.5625rem, 37rem);
+
+  a {
+    @include size(15.5625rem, 35.4rem);
+  }
 
   &__img {
     @include size(100%, 20rem);
     border-radius: $rem-0-25;
     background-color: $gray-100-color;
-    // background: url('/src/assets/images/banner/1.jpg') no-repeat center;
     background-size: 100%;
     background-position: center center;
     transition: background-size 0.3s ease;
@@ -115,13 +101,13 @@ img {
 
   &__delivery {
     padding-top: $paragraph-medium;
-    font-size: 0.875rem;
-    color: #999999;
+    @include font($rem-0-875, _, _, $gray-153-color);
   }
 
   &__title {
     display: -webkit-box;
     overflow: hidden;
+    margin-top: $rem-0-18;
     text-overflow: ellipsis;
     line-clamp: 2;
     -webkit-line-clamp: 2;
@@ -129,48 +115,47 @@ img {
   }
 
   &__price {
-    font-size: 0.875rem;
-    color: #b5b5b5; //rgb 181, 181, 181
+    @include font($rem-0-875, _, _, $gray-181-color);
     text-decoration: line-through;
   }
 
   &__description {
+    margin-top: $rem-0-18;
+    color: $gray-153-color;
     font-size: $paragraph-small;
-    color: #999999;
+    line-height: 140%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   &__discount-rate {
-    color: $accent-yellow-color;
-    font-weight: 700;
-    font-size: 1.1875rem;
     margin-right: 0.4375rem;
+    @include font($rem-1-18, 700, _, $accent-yellow-color);
   }
 
   &__real-price {
-    font-weight: 700;
-    font-size: 1.1875rem;
+    @include font($rem-1-18, 700, _, _);
   }
 
   &__reviews {
-    font-size: 0.8125rem;
-    color: #999999; // rgb 153,153,153
+    @include font(0.8125rem, _, _, $gray-153-color);
     padding-bottom: 5px;
 
     &::before {
       content: url('/assets/icons/product-list/reviews.svg');
-      width: 85px;
-      vertical-align: middle;
+      width: 5.3125rem;
       margin-right: 0.125rem;
+      vertical-align: middle;
     }
   }
 
   &__kurly-only,
   &__limited {
     padding: $rem-0-25;
-    font-weight: 500;
-    font-size: $label-small;
-    background-color: #f4f4f4;
     border-radius: $rem-0-25;
+    background-color: $gray-244-color;
+    @include font($label-small, 500, _, _);
   }
 
   &__kurly-only {
@@ -184,8 +169,8 @@ img {
 
     &::before {
       content: url('/assets/icons/product-list/Cart.svg');
-      vertical-align: middle;
       margin-right: $rem-0-25;
+      vertical-align: middle;
     }
   }
 }
@@ -212,15 +197,15 @@ img {
   &__button,
   a {
     @include flex(row nowrap, center, center);
-    box-sizing: border-box;
     @include size(2.125rem, 2.125rem);
-    border: 1px solid $gray-100-color;
-    padding: $rem-0-25;
     margin-right: -0.0625rem;
+    padding: $rem-0-25;
+    box-sizing: border-box;
+    border: 1px solid $gray-100-color;
   }
 
   a {
-    font-size: 0.875rem;
+    font-size: $rem-0-875;
   }
 
   &__button:hover,

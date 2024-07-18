@@ -3,14 +3,13 @@
   position: absolute;
   top: 10rem;
   left: 10rem;
-  z-index: 2;
+  z-index: 19;
   @include size(27.5rem, 42rem);
   border-radius: 1rem;
   background-color: white;
   box-shadow: $below-medium;
 
   &__img {
-    display: block;
     @include size(100%, 36.625rem);
   }
 }
@@ -20,7 +19,7 @@
 
   button {
     @include size(13.8rem, 5.38rem);
-    font-weight: 500; // 400 → 500으로 변경
+    font-weight: 500;
   }
 
   button:nth-child(1) {

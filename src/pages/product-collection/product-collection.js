@@ -101,11 +101,13 @@ import { pb, getImageUrl } from '@/api/index';
           <p class="product-item__delivery">샛별배송</p>
           <p class="product-item__title">${product.product_name}</p>
           <p class="product-item__description">${product.product_description}</p>
+          <div class="price-group">
           ${priceHtml}
           <p class="product-item__real-price">
             ${discountRateHtml}
             <span class="sr-only">구매가</span>${discountedPrice.toLocaleString()}원
           </p>
+        </div>
           <p class="product-item__reviews"><span class="sr-only">리뷰 수</span>${reviewCountText}</p>
           ${kurlyOnly}
           ${eventProduct}

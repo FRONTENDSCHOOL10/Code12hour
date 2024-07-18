@@ -6,7 +6,11 @@ $white-color: #ffffff;
 $content-color: #333333;
 $gray-50-color: #f9f9f9;
 $gray-100-color: #e1e1e1;
+$gray-153-color: #999999;
+$gray-181-color: #b5b5b5;
 $gray-200-color: #c4c4c4;
+$gray-221-color: #dddddd;
+$gray-244-color: #f4f4f4;
 $gray-300-color: #a6a6a6;
 $gray-400-color: #898989;
 $gray-500-color: #6b6b6b;
@@ -51,3 +55,15 @@ $above-low: 0px -4px 24px rgba(0, 0, 0, 0.1);
 $below-high: 0px 16px 48px rgba(0, 0, 0, 0.3);
 $below-medium: 0px 8px 36px rgba(0, 0, 0, 0.2);
 $below-low: 0px 4px 24px rgba(0, 0, 0, 0.1);
+
+/* 자주 사용하는 사이즈 */
+$list-button-size: 3.75rem;
+$line-height: 150%;
+$banner-button-size: 3.125rem;
+$banner-button-position: 15rem;
+$rem-0-18: 0.1875rem; //3px
+$rem-0-25: 0.25rem; // 4px
+$rem-0-5: 0.5rem; // 8px
+$rem-0-875: 0.875rem; // 14px
+$rem-1-18: 1.1875rem; // 19px
+$rem-2-5: 2.5rem; // 40px

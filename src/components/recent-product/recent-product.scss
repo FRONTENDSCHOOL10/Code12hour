@@ -15,35 +15,33 @@
 }
 
 .recent-products {
+  @include flex(column nowrap);
   position: sticky;
   top: var(--top);
   transform: var(--transform);
   margin-top: var(--margin-top);
-  @include flex(column nowrap);
   @include size(3.63rem, auto);
   max-height: 17.4375rem;
+  padding: 0.5rem;
   border: 1px solid $gray-200-color;
   background-color: $white-color;
-  padding: 0.5rem;
   gap: 0.5rem;
 
   &__title {
-    font-size: 0.75rem;
-    font-weight: 600;
+    @include font(0.75rem, 600, _, _);
   }
 
   &__img {
+    @include size(100%, 5rem);
     background: url('/src/assets/images/banner/1.webp') no-repeat;
     background-color: $gray-100-color;
     background-size: cover;
-    @include size(100%, 5rem);
   }
 
   .swiper {
     overflow: hidden;
     @include size(100%, auto);
     max-height: 80%;
-    // background-color: green;
   }
 
   .swiper-button-prev,
@@ -63,7 +61,7 @@
   }
 }
 
-@media (max-width: 1300px) {
+@media (max-width: 1450px) {
   .recent-products {
     display: none;
   }

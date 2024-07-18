@@ -15,20 +15,27 @@ const CUSTOM_ELEMENTS = [
   ['c-cart', CartButton],
 ];
 
+// const changeImgAlt = () => {
+//   const img = document.querySelectorAll('.swiper-slide img');
+//   const imgArray = [...img];
+//   console.log(imgArray[0].src.slice(-13), imgArray[0].alt);
+// };
+// changeImgAlt();
+
 // Swiper 옵션을 생성하는 함수
 const createSwiperOptions = (type) =>
   ({
     mainBanner: {
       autoplay: { delay: 2000 },
       loop: true,
-      speed: 2000,
+      speed: 1500,
       navigation: {
         nextEl: '#banner-next',
         prevEl: '#banner-prev',
       },
       a11y: {
-        prevSlideMessage: '이전 배너',
-        nextSlideMessage: '다음 배너',
+        prevSlideMessage: '이전',
+        nextSlideMessage: '다음',
       },
     },
     productList: (listType) => ({
@@ -42,8 +49,8 @@ const createSwiperOptions = (type) =>
         disabledClass: 'swiper-button-hidden',
       },
       a11y: {
-        prevSlideMessage: '이전 목록',
-        nextSlideMessage: '다음 목록',
+        prevSlideMessage: '이전',
+        nextSlideMessage: '다음',
       },
     }),
   })[type];
@@ -65,12 +72,18 @@ const createProductCard = (product) => {
       : '';
 
   const productPriceHtml =
-    product.discount_rate > 0 ? `${product.product_price.toLocaleString()}원` : '&nbsp';
+    product.discount_rate > 0 ? `${product.product_price.toLocaleString()}원` : '';
 
   const priceClass =
     product.discount_rate > 0
       ? 'product-item__price product-item__price--discounted'
       : 'product-item__price';
+
+  // 리뷰 수 처리
+  let reviewCountText = '';
+  if (product.review_count >= 9999) reviewCountText = '9,999+';
+  if (product.review_count >= 999) reviewCountText = '999+';
+  else reviewCountText = product.review_count;
 
   return `
     <div class="swiper-slide">
@@ -78,17 +91,18 @@ const createProductCard = (product) => {
         <a
           class="product-item__link"
           href="/src/pages/product-detail/?id=${product.id}"
-          tabindex="0"
-          aria-label="${product.product_name} 상품 페이지로 이동"
+          aria-label="${product.product_name} 상품 페이지"
         >
           <div class="product-item__img" role="img" aria-label="${product.product_name}" style="background-image: url(${imageUrl})"></div>
           <p class="product-item__title">${product.product_name}</p>
-          <p class="${priceClass}"><span class="sr-only">정가</span>${productPriceHtml}</p>
-          <p class="product-item__real-price">
-            ${discountRateHtml}
-            <span class="sr-only">구매가</span>${discountedPrice.toLocaleString()}원
-          </p>
-          <p class="product-item__reviews"><span class="sr-only">리뷰 수</span>${product.review_count}+</p>
+          <div class="price-group">
+            <p class="${priceClass}"><span class="sr-only">정가</span>${productPriceHtml}</p>
+            <p class="product-item__real-price">
+              ${discountRateHtml}
+              <span class="sr-only">구매가</span>${discountedPrice.toLocaleString()}원
+            </p>
+          </div>
+          <p class="product-item__reviews"><span class="sr-only">리뷰 수</span>${reviewCountText}</p>
         </a>
         <c-cart
           data-product-id="${product.id}"
@@ -110,7 +124,6 @@ const createViewAllCard = () => {
       <a
         class="product-item__link"
         href="/src/pages/product-list/"
-        tabindex="0"
         aria-label="상품 페이지로 이동"
       >
         <img src="/assets/icons/arrow/view-all.svg" alt="전체보기" />

@@ -1,29 +1,29 @@
 import './cart-button.scss';
 import { cart, addToCart } from '@/utils/index';
-import css from './cart-button.scss?inline'; // css 파일 inline 가져오기 이렇게 하지 않으면 동적으로 css를 못넣음 빌드하면 파일 위치, 명이 다 바뀌기 때문
+import css from './cart-button.scss?inline';
 
 const cartButtonTemplate = document.createElement('template');
 cartButtonTemplate.innerHTML = `
   <style>${css}</style>
   <dialog class="cart-dialog" aria-labelledby="item-title">
       <div class="cart-dialog-wrapper">
-        <p class="cart-dialog__title" id="item-title">[하코야] 살얼음 동동 냉메밀 소바</p>
+        <p class="cart-dialog__title" id="item-title"></p>
         <div class="cart-dialog__content-group">
           <div class="cart-dialog__price-group">
-            <span class="cart-dialog__price--sale"><span class="sr-only">할인가</span>4,980원</span>
+            <span class="cart-dialog__price--sale"><span class="sr-only">할인가</span></span>
             <span class="cart-dialog__price--original"
-              ><span class="sr-only">정가</span>5,000원</span
+              ><span class="sr-only">정가</span></span
             >
           </div>
           <div class="cart-dialog__quantity-group">
-            <button class="cart-dialog__button--decrease" type="button">-</button>
+            <button class="cart-dialog__button--decrease" type="button" aria-label="상품 개수 감소"></button>
             <span class="cart-dialog__quantity-value"><span class="sr-only">개수</span>1</span>
-            <button class="cart-dialog__button--increase" type="button">+</button>
+            <button class="cart-dialog__button--increase" type="button" aria-label="상품 개수 증가"></button>
           </div>
         </div>
         <div class="cart-dialog__total-group">
           <span>합계</span>
-          <span class="cart-dialog__total">4,950원</span>
+          <span class="cart-dialog__total"></span>
         </div>
         <form class="cart-dialog__form-group" method="dialog">
           <button class="cart-dialog__form-button--cancel" type="button">취소</button>
@@ -31,7 +31,7 @@ cartButtonTemplate.innerHTML = `
         </form>
       </div>
     </dialog>
-    <button class="product-item__button" type="button">담기</button>
+    <button class="product-item__button" type="button" aria-haspopup="true">담기</button>
     <c-modal width="250px" height="440px">
       <h2 slot="header" class="modal-header">장바구니 담기 완료</h2>
       <div slot="body" class="modal-body">
