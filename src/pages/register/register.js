@@ -2,7 +2,7 @@ import './register.scss';
 import './add-options';
 import pb from '@/api/pocketbase';
 import { defineCustomElements } from '@/utils/index';
-import { footer, header } from '@/components/index';
+import { footer, header, headerSmall } from '@/components/index';
 import { setupUsernameValidation } from './username-validation';
 import { setupPasswordValidation, setupPasswordConfirmation } from './password-validation';
 import { setupEmailValidation } from './email-validation';
@@ -16,11 +16,19 @@ const init = () => {
   defineCustomElements([
     ['c-header', header],
     ['c-footer', footer],
+    ['c-header-small', headerSmall],
   ]);
+};
+
+const initEventListeners = () => {
+  document.querySelector('#modal__close')?.addEventListener('click', () => {
+    document.querySelector('c-modal')?.close();
+  });
 };
 
 const initializeApp = () => {
   init();
+  initEventListeners();
   setupNameValidation();
   setupUsernameValidation(pb);
   setupPasswordValidation(pb);

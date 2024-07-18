@@ -19,6 +19,7 @@ export default defineConfig({
         product_detail: resolve(__dirname, 'src/pages/product-detail/index.html'),
         product_cart: resolve(__dirname, 'src/pages/product-cart/index.html'),
         product_collection: resolve(__dirname, 'src/pages/product-collection/index.html'),
+        delivery: resolve(__dirname, 'src/pages/delivery/index.html'),
       },
     },
   },

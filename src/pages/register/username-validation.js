@@ -3,6 +3,19 @@ import { validateUsername, showElement, hideElement } from './utils';
 /**
  * 사용자 아이디 유효성 검사를 설정합니다.
  */
+
+// 모달 관련 함수
+const showModal = (title, message) => {
+  const modal = document.querySelector('c-modal');
+  const titleElement = modal.querySelector('.register-modal__title');
+  const bodyElement = modal.querySelector('.register-modal__body');
+
+  if (titleElement) titleElement.textContent = title;
+  if (bodyElement) bodyElement.textContent = message;
+
+  modal.showModal();
+};
+
 export const setupUsernameValidation = (pb) => {
   const useridInput = document.getElementById('userId');
   const idNotice = document.getElementById('idNotice');
@@ -24,7 +37,7 @@ export const setupUsernameValidation = (pb) => {
   const handleCheckButtonClick = async () => {
     const username = useridInput.value.trim().toLowerCase();
     if (!validateUsername(username)) {
-      alert('5자 이상 16자 이하의 영문 혹은 영문과 숫자를 조합해 주세요.');
+      showModal('알림', '5자 이상 16자 이하의 영문 혹은 영문과 숫자를 조합해 주세요.');
       return;
     }
 
@@ -34,16 +47,16 @@ export const setupUsernameValidation = (pb) => {
       const isDuplicate = users.some((user) => user.username.toLowerCase() === username);
 
       if (isDuplicate) {
-        alert('사용 불가능한 아이디 입니다.');
+        showModal('알림', '사용 불가능한 아이디 입니다.');
         checkButton.disabled = false;
       } else {
-        alert('사용 가능한 아이디 입니다.');
+        showModal('알림', '사용 가능한 아이디 입니다.');
         checkButton.style.borderColor = '#a6a6a6';
         checkButtonText.style.color = '#a6a6a6';
       }
     } catch (error) {
       console.error('Username check error:', error);
-      alert('아이디 확인 중 오류가 발생했습니다. 다시 시도해 주세요.');
+      showModal('알림', '아이디 확인 중 오류가 발생했습니다. 다시 시도해 주세요.');
       checkButton.disabled = false;
     }
   };
