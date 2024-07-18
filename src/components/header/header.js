@@ -191,7 +191,7 @@ headerTemplate.innerHTML = `
             <a class="category-item__link" href="/src/pages/product-list/" aria-label="전체보기 카테고리 페이지로 이동">전체보기</a>
           </li>
         </ul>
-        <button class="notification" aria-label="배송 안내"><span>샛별·낮</span> 배송안내</button>
+        <a href="/src/pages/delivery/" class="notification" aria-label="배송 안내"><span>샛별·낮</span> 배송안내</a>
       </nav>
     </header>
     <c-modal width="400px" height="190px">
