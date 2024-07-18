@@ -453,6 +453,7 @@ export class inquiry extends HTMLElement {
   setupModalEventListeners(modalOverlay) {
     const closeButton = modalOverlay.querySelector('.modal__close-btn');
     const cancelButton = modalOverlay.querySelector('.modal__button--cancel');
+    const privateCheckbox = modalOverlay.querySelector('#privateInquiry');
     closeButton.addEventListener('click', () => this.closeModal(modalOverlay));
     cancelButton.addEventListener('click', () => this.closeModal(modalOverlay));
 
@@ -474,7 +475,8 @@ export class inquiry extends HTMLElement {
     submitButton.addEventListener('click', (e) => {
       e.preventDefault();
       if (titleInput.value.trim() !== '' && contentTextarea.value.trim() !== '') {
-        this.addInquiry(titleInput.value, contentTextarea.value);
+        const isPrivate = privateCheckbox.checked;
+        this.addInquiry(titleInput.value, contentTextarea.value, isPrivate);
         this.closeModal(modalOverlay);
       }
     });
