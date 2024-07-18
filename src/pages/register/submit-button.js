@@ -86,7 +86,6 @@ export const setupSubmitButton = (pb) => {
 
       const user = await pb.collection('users').create(userData);
 
-      // 이메일 인증 요청 추가
       try {
         await pb.collection('users').requestVerification(email);
       } catch (verificationError) {
@@ -97,7 +96,7 @@ export const setupSubmitButton = (pb) => {
         `환영합니다! ${user.name}님 가입을 진심으로 축하드립니다! 이메일로 전송된 인증 링크를 확인해 주세요.`
       );
 
-      window.location.href = 'https://code12hour.netlify.app/src/pages/login/';
+      window.location.href = '/src/pages/login/';
     } catch (error) {
       console.error('Registration error:', error);
       if (error.data) {
