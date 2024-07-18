@@ -3,134 +3,7 @@ import '@/components/modal/modal.scss';
 import css from './product-inquiry.scss?inline';
 import css2 from '@/components/review-modal/modal.scss?inline';
 import pb from '@/api/pocketbase';
-
-/* document.addEventListener('DOMContentLoaded', () => {
-  // 후기 작성하기 버튼 클릭 => 모달창 열림
-  const writeInquiryButton = document.querySelector('.product-inquiry__write-btn');
-  const modalTemplate = document.getElementById('modal-template');
-
-  function openModal() {
-    const inquiryModal = modalTemplate.content.cloneNode(true);
-    document.body.appendChild(inquiryModal);
-
-    const modal = document.body.lastElementChild;
-    modal.style.display = 'flex';
-
-    const closeButton = modal.querySelector('.modal__close-btn');
-    const cancelButton = modal.querySelector('.modal__button--cancel');
-
-    // 닫기, 취소 버튼 클릭 => 모달창 닫힘
-    function closeModal() {
-      modal.style.display = 'none';
-      modal.remove();
-    }
-
-    closeButton.addEventListener('click', closeModal);
-    cancelButton.addEventListener('click', closeModal);
-
-    // textarea 클릭 시 placeholder 사라지고 포커스 해제 시 나타남
-    const contentTextarea = document.getElementById('modalContent');
-    const placeholder = document.querySelector('.modal__textarea-placeholder');
-
-    placeholder.addEventListener('click', function () {
-      placeholder.style.display = 'none';
-      contentTextarea.focus();
-    });
-
-    contentTextarea.addEventListener('focus', () => {
-      placeholder.style.display = 'none';
-    });
-
-    contentTextarea.addEventListener('blur', () => {
-      if (contentTextarea.value.trim() === '') {
-        placeholder.style.display = 'block';
-      }
-    });
-
-    // textarea 현재 입력 텍스트 카운터수
-    const charCountCurrent = modal.querySelector('.modal__char-count-current');
-
-    function charCountState() {
-      const currentLength = contentTextarea.value.length;
-      charCountCurrent.textContent = currentLength.toLocaleString();
-    }
-    contentTextarea.addEventListener('input', charCountState);
-
-    // 제목과 내용이 작성될 시 등록 버튼에 배경색(primary-color) 변경
-    const titleInput = document.getElementById('modalTitle');
-    const submitButton = modal.querySelector('.modal__button--submit');
-
-    function checkInputs() {
-      if (titleInput.value.trim() !== '' && contentTextarea.value.trim() !== '') {
-        submitButton.classList.add('active');
-        submitButton.removeAttribute('disabled');
-        submitButton.setAttribute('aria-disbled', 'false');
-      } else {
-        submitButton.classList.remove('active');
-        submitButton.setAttribute('disabled', '');
-        submitButton.setAttribute('aria-disabled', 'true');
-      }
-    }
-
-    contentTextarea.addEventListener('input', checkInputs);
-
-    // 제출 버튼 클릭 시 문의 추가됨
-    submitButton.addEventListener('click', (e) => {
-      e.preventDefault();
-      if (contentTextarea.value.trim() !== '') {
-        addReview(contentTextarea.value);
-        closeModal();
-      }
-    });
-  }
-
-  // 문의 innerHTML
-  function addReview(title, content) {
-    const inquiryList = document.querySelector('.inquiry-wrapper');
-    const newInquiry = document.createElement('div');
-    newInquiry.className = 'inquiry-area';
-
-    const currentDate = new Date();
-    const writtenDate = `${currentDate.getFullYear()}.${String(currentDate.getMonth() + 1).padStart(2, '0')}.${String(currentDate.getDate()).padStart(2, '0')}`;
-
-    newInquiry.innerHTML = `
-  <details id="inqiry-list-1" class="inquiry-list" aria-expanded="false">
-  <summary class="inquiry-list__summary">
-    <span class="inquiry-list__item">
-      <h3 class="inquiry-list__title">${title}</h3>
-    </span>
-    <span class="inquiry-list__item">야호</span>
-    <span class="inquiry-list__item">${writtenDate}</span>
-    <span class="inquiry-list__item">
-      <span class="inquiry-list__item">답변대기</span>
-      <!-- <span class="inquiry-list__item item-status__ture">답변완료</span> -->
-    </span>
-  </summary>
-  <div class="inquiry-list__content">
-    <div class="inquiry-list__content-message">
-      <span class="inquiry-list__content-icon--q"></span>
-      <p class="inquiry-list__content-message--question">${content}</p>
-    </div>
-    <div class="inquiry-list__content-message">
-      <span class="inquiry-list__content-icon--a"></span>
-      <div class="inquiry-list__content-message--wrapper">
-        <p class="inquiry-list__content-message--answer">답변답변답변</p>
-        <span
-          class="inquiry-list__content-message--answer inquiry-list__content-message--date"
-          >${writtenDate}</span
-        >
-      </div>
-    </div>
-  </div>
-</details>
-  `;
-
-    // 새 리뷰를 리스트의 맨 위에 추가
-    inquiryList.insertBefore(newInquiry, inquiryList.firstChild);
-  }
-
-  writeInquiryButton.addEventListener('click', openModal);
-}); */
+import getImageUrl from '@/api/imageUrl';
 
 const inquiryTemplate = document.createElement('template');
 inquiryTemplate.innerHTML = `
@@ -143,6 +16,18 @@ inquiryTemplate.innerHTML = `
         <button type="button" class="product-inquiry__write-btn" aria-haspopup="dialog">
           문의하기
         </button>
+        <c-modal width="400px" height="190px">
+        <h2 slot="header" class="inquiry-modal__title">알림</h2>
+        <span slot="body" class="inquiry-modal__body">로그인이 필요합니다.</span>
+        <button
+        slot="footer"
+        type="button"
+        class="inquiry-modal__close"
+        aria-label="로그인 필요창 닫기"
+      >
+        닫기
+      </button>
+      </c-modal>
         <template id="modal-template">
           <!-- modal__overlay  -->
           <div class="modal__overlay">
@@ -347,13 +232,12 @@ inquiryTemplate.innerHTML = `
       <!-- 비밀글입니다. -->
       <div class="inquiry-private__wrapper"></div>
         <div class="inquiry-area-fix">
-
           <details id="inqiry-list" class="inquiry-list" aria-expanded="false">
             <summary class="inquiry-list__summary">
               <span class="inquiry-list__item">
                 <h3 class="inquiry-list__title">팩이 터져서 왔어요!!!</h3>
               </span>
-              <span class="inquiry-list__item">야호</span>
+              <span class="inquiry-list__item">박*연</span>
               <span class="inquiry-list__item">2024.07.11</span>
               <span class="inquiry-list__item">
                 <!-- <span class="inquiry-list__item">답변대기</span> -->
@@ -423,156 +307,187 @@ export class inquiry extends HTMLElement {
     super();
     this.attachShadow({ mode: 'open' });
     this.shadowRoot.appendChild(inquiryTemplate.content.cloneNode(true));
+
+    // 1페이지에 고정된 게시글(답변 있는 게시글)이 존재함 -> 최종 10개 표시
     this.currentPage = 1;
-    // 고정된 게시글(답변 있는 게시글)이 존재 -> 총 10개 표시
     this.perPage = 9;
+
+    this.initElements();
+  }
+
+  initElements() {
+    const selectors = {
+      writeReviewButton: '.product-inquiry__write-btn',
+      modal: 'c-modal',
+      modalCloseBtn: '.inquiry-modal__close',
+      inquiryList: '.inquiry-area',
+      privateWrapper: '.inquiry-private__wrapper',
+      privateMessage: '.inquiry-private__message',
+      prevButton: '.paging__button--prev',
+      nextButton: '.paging__button--next',
+      modalTemplate: '#modal-template',
+      popupTemplate: '#privatePostPopup',
+    };
+
+    this.elements = Object.entries(selectors).reduce((acc, [key, selector]) => {
+      if (key === 'menuLists' || key === 'menuItems') {
+        acc[key] = this.shadowRoot.querySelectorAll(selector);
+      } else {
+        acc[key] = this.shadowRoot.querySelector(selector);
+      }
+      return acc;
+    }, {});
   }
 
   connectedCallback() {
-    this.writeInquiryButton = this.shadowRoot.querySelector('.product-inquiry__write-btn');
-    this.modalTemplate = this.shadowRoot.getElementById('modal-template');
-    this.inquiryList = this.shadowRoot.querySelector('.inquiry-area');
-    this.popupTemplate = this.shadowRoot.getElementById('privatePostPopup');
-
-    this.privateMessage = this.shadowRoot.querySelector('.inquiry-private__message');
-    this.privateWrapper = this.shadowRoot.querySelector('.inquiry-private__wrapper');
-
-    this.prevButton = this.shadowRoot.querySelector('.paging__button--prev');
-    this.nextButton = this.shadowRoot.querySelector('.paging__button--next');
-    this.prevButton.addEventListener('click', () => this.prevPage());
-    this.nextButton.addEventListener('click', () => this.nextPage());
-
-    this.writeInquiryButton.addEventListener('click', () => this.openModal());
-    this.privateWrapper.addEventListener('click', () => this.openPopup());
-
+    this.setupEventListeners();
     this.renderInquiry();
   }
 
-  // 데이터 가져오기
+  setupEventListeners() {
+    this.elements.writeReviewButton.addEventListener('click', () => {
+      const auth = JSON.parse(localStorage.getItem('auth') || '{}');
+      const isAuth = auth.isAuth;
+
+      if (isAuth) {
+        this.openInquiryModal();
+      } else {
+        this.elements.modal.showModal();
+      }
+    });
+
+    this.elements.privateWrapper.addEventListener('click', () => this.openPopup());
+
+    this.elements.modalCloseBtn.addEventListener('click', () => {
+      this.elements.modal.close();
+    });
+
+    this.elements.prevButton.addEventListener('click', () => this.prevPage());
+    this.elements.nextButton.addEventListener('click', () => this.nextPage());
+  }
+
+  // 현재 페이지의 상품 id
+  currentProductId() {
+    const params = new URLSearchParams(location.search);
+    const productId = params.get('id');
+    return productId;
+  }
+
+  // 문의글 렌더링
   async renderInquiry() {
+    const productId = this.currentProductId();
     try {
       let queryOptions = {
         sort: '-created',
         page: this.currentPage,
         perPage: this.perPage,
         expand: 'user, product',
+        filter: `product="${productId}"`,
       };
+
+      const authUser = await pb.authStore.model;
+      this.currentUser = authUser ? authUser.id : null;
+
       const inquiryData = await pb.collection('product_inquiry').getList(1, 5, queryOptions);
-      console.log(inquiryData);
-      this.updateInquiryList(inquiryData);
+      this.updateInquiryList(inquiryData, this.currentUser);
       this.updatePaginationButton(inquiryData.totalItems);
     } catch (error) {
-      console.error('못가져왔다', error);
+      console.error(error);
     }
   }
 
-  // 총 페이지 수
-  updatePaginationButton(totalItems) {
-    const totalPage = Math.ceil(totalItems / this.perPage);
-    if (this.currentPage <= 1) {
-      this.prevButton.disabled = true;
-      this.prevButton.setAttribute('aria-disabled', 'true');
-    } else {
-      this.prevButton.disabled = false;
-      this.prevButton.setAttribute('aria-disabled', 'false');
-    }
+  // 문의글 작성
+  async addInquiry(title, content, isPrivate) {
+    try {
+      const productId = this.currentProductId();
+      const authUser = await pb.authStore.model;
 
-    if (this.currentPage >= totalPage) {
-      this.nextButton.disabled = true;
-      this.nextButton.setAttribute('aria-disabled', 'true');
-    } else {
-      this.nextButton.disabled = false;
-      this.nextButton.setAttribute('aria-disabled', 'false');
-    }
-  }
+      const data = {
+        user: authUser.id,
+        product: productId,
+        inquiry_title: title,
+        inquiry_content: content,
+        secret: isPrivate,
+      };
 
-  prevPage() {
-    if (this.currentPage > 1) {
-      this.currentPage--;
-      this.renderInquiry();
+      await pb.collection('product_inquiry').create(data);
+      await this.renderInquiry();
+    } catch (error) {
+      console.error(error);
     }
   }
 
-  nextPage() {
-    this.currentPage++;
-    this.renderInquiry();
+  // 문의 입력 모달창
+  async openInquiryModal() {
+    const modalContent = this.elements.modalTemplate.content.cloneNode(true);
+    const modalOverlay = modalContent.querySelector('.modal__overlay');
+
+    try {
+      const productId = this.currentProductId();
+      const product = await pb.collection('product').getOne(productId);
+
+      this.updateModalProductInfo(modalOverlay, product);
+      this.setupModalEventListeners(modalOverlay);
+
+      this.shadowRoot.appendChild(modalOverlay);
+      modalOverlay.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    } catch (error) {
+      console.log(error);
+    }
   }
 
-  // 문의 리스트 업데이트
-  updateInquiryList(inquiryData) {
-    if (this.inquiryList) {
-      this.inquiryList.innerHTML = '';
-      if (inquiryData.items.length > 0) {
-        inquiryData.items.forEach((inquiry) => {
-          const inquiryElement = this.createInquiryElement(inquiry);
-          this.inquiryList.appendChild(inquiryElement);
-        });
+  // 문의 입력창 상품 인포
+  updateModalProductInfo(modalOverlay, product) {
+    const productImage = modalOverlay.querySelector('.modal__product-image');
+    const productName = modalOverlay.querySelector('.modal__product-name');
+
+    if (product.product_image) {
+      productImage.src = getImageUrl(product);
+    }
+    productImage.alt = `${product.product_name} 상품 이미지`;
+    productName.textContent = product.product_name;
+  }
+
+  // 문의 입력창 이벤트 리스너
+  setupModalEventListeners(modalOverlay) {
+    const closeButton = modalOverlay.querySelector('.modal__close-btn');
+    const cancelButton = modalOverlay.querySelector('.modal__button--cancel');
+    closeButton.addEventListener('click', () => this.closeModal(modalOverlay));
+    cancelButton.addEventListener('click', () => this.closeModal(modalOverlay));
+
+    const contentTextarea = modalOverlay.querySelector('#modalContent');
+    const placeholder = modalOverlay.querySelector('.modal__textarea-placeholder');
+    this.setupTextareaPlaceholder(contentTextarea, placeholder);
+
+    const charCountCurrent = modalOverlay.querySelector('.modal__char-count-current');
+    contentTextarea.addEventListener('input', () =>
+      this.updateCharCount(contentTextarea, charCountCurrent)
+    );
+
+    const submitButton = modalOverlay.querySelector('.modal__button--submit');
+    contentTextarea.addEventListener('input', () =>
+      this.checkInputs(contentTextarea, submitButton)
+    );
+
+    submitButton.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (contentTextarea.value.trim() !== '') {
+        this.addReview(contentTextarea.value);
+        this.closeModal(modalOverlay);
       }
-    }
+    });
   }
 
-  // 문의 생성
-  createInquiryElement(inquiry) {
-    const inquiryDetails = document.createElement('div');
-    inquiryDetails.className = 'inquiry-wrapper';
-
-    const userName = inquiry.expand.user.name;
-
-    const date = new Date(inquiry.created);
-    const writtenDate = `${date.getFullYear()}.${String(date.getMonth() + 1).padStart(2, '0')}.${String(date.getDate()).padStart(2, '0')}`;
-
-    if (inquiry.secret) {
-      inquiryDetails.innerHTML = `
-        <div class="inquiry-private__wrapper">
-          <div class="inquiry-private">
-            <span class="inquiry-private__item">
-              <span class="inquiry-private__message">비밀글입니다.</span>
-              <span class="inquiry-private__icon"></span>
-            </span>
-            <span class="inquiry-private__item">${userName}</span>
-            <span class="inquiry-private__item">${writtenDate}</span>
-            <span class="inquiry-private__item">
-              <span class="inquiry-private__item">답변대기</span>
-            </span>
-          </div>
-        </div>
-      `;
-    } else {
-      inquiryDetails.innerHTML = `
-    <details id="inquiry-list" class="inquiry-list" aria-expanded="false">
-      <summary class="inquiry-list__summary">
-        <span class="inquiry-list__item">
-          <h3 class="inquiry-list__title">${inquiry.inquiry_title}</h3>
-        </span>
-        <span class="inquiry-list__item">${userName}</span>
-        <span class="inquiry-list__item">${writtenDate}</span>
-        <span class="inquiry-list__item">
-          <span class="inquiry-list__item">답변대기</span>
-        </span>
-      </summary>
-      <div class="inquiry-list__content">
-        <div class="inquiry-list__content-message">
-          <span class="inquiry-list__content-icon--q"></span>
-          <p class="inquiry-list__content-message--question">${inquiry.inquiry_content}</p>
-        </div>
-        <div class="inquiry-list__content-message">
-          <span class="inquiry-list__content-icon--a"></span>
-          <div class="inquiry-list__content-message--wrapper">
-            <p class="inquiry-list__content-message--answer"></p>
-            <span class="inquiry-list__content-message--answer inquiry-list__content-message--date"></span>
-          </div>
-        </div>
-      </div>
-    </details>
-  `;
-    }
-
-    return inquiryDetails;
+  closeModal(modal) {
+    modal.style.display = 'none';
+    modal.remove();
+    document.body.style.overflow = 'auto';
   }
 
-  // 비밀글입니다. 팝업창
+  // 비밀글 알림 팝업창
   openPopup() {
-    const privatePopup = this.popupTemplate.content.cloneNode(true);
+    const privatePopup = this.elements.popupTemplate.content.cloneNode(true);
     this.shadowRoot.appendChild(privatePopup);
     const popup = this.shadowRoot.lastElementChild;
 
@@ -589,54 +504,7 @@ export class inquiry extends HTMLElement {
     document.body.style.overflow = 'auto';
   }
 
-  openModal() {
-    const modalContent = this.modalTemplate.content.cloneNode(true);
-    const modalOverlay = modalContent.querySelector('.modal__overlay');
-    this.shadowRoot.appendChild(modalOverlay);
-
-    modalOverlay.style.display = 'flex';
-    document.body.style.overflow = 'hidden';
-
-    const closeButton = modalOverlay.querySelector('.modal__close-btn');
-    const cancelButton = modalOverlay.querySelector('.modal__button--cancel');
-    closeButton.addEventListener('click', () => this.closeModal(modalOverlay));
-    cancelButton.addEventListener('click', () => this.closeModal(modalOverlay));
-
-    const contentTextarea = modalOverlay.querySelector('#modalContent');
-    const placeholder = modalOverlay.querySelector('.modal__textarea-placeholder');
-    this.setupTextareaPlaceholder(contentTextarea, placeholder);
-
-    const charCountCurrent = modalOverlay.querySelector('.modal__char-count-current');
-    contentTextarea.addEventListener('input', () =>
-      this.updateCharCount(contentTextarea, charCountCurrent)
-    );
-
-    const titleInput = modalOverlay.querySelector('#modalTitle');
-    const submitButton = modalOverlay.querySelector('.modal__button--submit');
-    contentTextarea.addEventListener('input', () =>
-      this.checkInputs(titleInput, contentTextarea, submitButton)
-    );
-    titleInput.addEventListener('input', () =>
-      this.checkInputs(titleInput, contentTextarea, submitButton)
-    );
-
-    submitButton.addEventListener('click', (e) => {
-      e.preventDefault();
-      if (contentTextarea.value.trim() !== '' && titleInput.value.trim() !== '') {
-        const isPrivate = modalOverlay.querySelector('#privateInquiry').checked;
-        this.addInquiry(titleInput.value, contentTextarea.value, isPrivate);
-        this.closeModal(modalOverlay);
-      }
-    });
-  }
-
-  closeModal(modal) {
-    modal.style.display = 'none';
-    modal.remove();
-    document.body.style.overflow = 'auto';
-  }
-
-  // textarea 영역 안내 사항 (placeholder 역할의 div) 디스플레이 설정
+  // 문의 입력창 내부 안내 사항 (placeholder 역할의 div) 디스플레이 설정
   setupTextareaPlaceholder(contentTextarea, placeholder) {
     placeholder.addEventListener('click', () => {
       placeholder.style.display = 'none';
@@ -654,12 +522,13 @@ export class inquiry extends HTMLElement {
     });
   }
 
-  // textarea 입력 시 글자 수 카운트
+  // 문의 입력창 내용 입력 시 글자 수 카운트
   updateCharCount(textarea, countElement) {
     const currentLength = textarea.value.length;
     countElement.textContent = currentLength.toLocaleString();
   }
 
+  // 폼 유효성
   checkInputs(titleInput, contentTextarea, submitButton) {
     if (titleInput.value.trim() !== '' && contentTextarea.value.trim() !== '') {
       submitButton.classList.add('active');
@@ -672,56 +541,145 @@ export class inquiry extends HTMLElement {
     }
   }
 
-  // 비밀글 체크 시 비밀글로 작성 -> 이후 다시 비밀글 팝업창 뜨게끔
+  // 비밀글 문의
   addPrivateInquiry(writtenDate) {
     const privatePost = document.createElement('div');
     privatePost.className = 'inquiry-private';
 
     privatePost.innerHTML = `
-    <div class="inquiry-private">
-          <span class="inquiry-private__item">
-            <span class="inquiry-private__message">비밀글입니다.</span>
-            <span class="inquiry-private__icon"></span>
-          </span>
-          <span class="inquiry-private__item">이름</span>
-          <span class="inquiry-private__item">${writtenDate}</span>
-          <span class="inquiry-private__item">
-            <span class="inquiry-private__item">답변대기</span>
-          </span>
-          </div>
-      `;
+        <div class="inquiry-private">
+              <span class="inquiry-private__item">
+                <span class="inquiry-private__message">비밀글입니다.</span>
+                <span class="inquiry-private__icon"></span>
+              </span>
+              <span class="inquiry-private__item">이름</span>
+              <span class="inquiry-private__item">${writtenDate}</span>
+              <span class="inquiry-private__item">
+                <span class="inquiry-private__item">답변대기</span>
+              </span>
+              </div>
+          `;
 
     this.privateWrapper.insertBefore(privatePost, this.privateWrapper.firstChild);
     const privateMessage = privatePost.querySelector('.inquiry-private__message');
     privateMessage.addEventListener('click', () => this.openPopup());
   }
 
-  // 보내기
-  async addInquiry(title, content, isPrivate) {
-    try {
-      const productId = this.currentProductId();
-      const user = 'e8uvm6jynn06pnp'; // user01
+  // 문의 생성 (일반글 / 비밀글: 비밀글 관련 현재 사용자와 작성 유저 아이디 대조)
+  createInquiryElement(inquiry, currentUser) {
+    const inquiryDetails = document.createElement('div');
+    inquiryDetails.className = 'inquiry-wrapper';
 
-      const data = {
-        user: user,
-        product: productId,
-        inquiry_title: title,
-        inquiry_content: content,
-        secret: isPrivate,
-      };
+    const userName = this.maskName(inquiry.expand.user.name);
 
-      await pb.collection('product_inquiry').create(data);
-      await this.renderInquiry();
-    } catch (error) {
-      console.error('에러', error);
+    const date = new Date(inquiry.created);
+    const writtenDate = `${date.getFullYear()}.${String(date.getMonth() + 1).padStart(2, '0')}.${String(date.getDate()).padStart(2, '0')}`;
+
+    if (inquiry.secret && inquiry.expand.user.id !== currentUser) {
+      inquiryDetails.innerHTML = `
+          <div class="inquiry-private__wrapper">
+            <div class="inquiry-private">
+              <span class="inquiry-private__item">
+                <span class="inquiry-private__message">비밀글입니다.</span>
+                <span class="inquiry-private__icon"></span>
+              </span>
+              <span class="inquiry-private__item">${userName}</span>
+              <span class="inquiry-private__item">${writtenDate}</span>
+              <span class="inquiry-private__item">
+                <span class="inquiry-private__item">답변대기</span>
+              </span>
+            </div>
+          </div>
+        `;
+      inquiryDetails
+        .querySelector('.inquiry-private__wrapper')
+        .addEventListener('click', () => this.openPopup());
+    } else {
+      inquiryDetails.innerHTML = `
+      <details id="inquiry-list" class="inquiry-list" aria-expanded="false">
+        <summary class="inquiry-list__summary">
+          <span class="inquiry-list__item">
+            <h3 class="inquiry-list__title">${inquiry.inquiry_title}</h3>
+          </span>
+          <span class="inquiry-list__item">${userName}</span>
+          <span class="inquiry-list__item">${writtenDate}</span>
+          <span class="inquiry-list__item">
+            <span class="inquiry-list__item">답변대기</span>
+          </span>
+        </summary>
+        <div class="inquiry-list__content">
+          <div class="inquiry-list__content-message">
+            <span class="inquiry-list__content-icon--q"></span>
+            <p class="inquiry-list__content-message--question">${inquiry.inquiry_content}</p>
+          </div>
+          <div class="inquiry-list__content-message">
+            <span class="inquiry-list__content-icon--a"></span>
+            <div class="inquiry-list__content-message--wrapper">
+              <p class="inquiry-list__content-message--answer"></p>
+              <span class="inquiry-list__content-message--answer inquiry-list__content-message--date"></span>
+            </div>
+          </div>
+        </div>
+      </details>
+    `;
+    }
+
+    return inquiryDetails;
+  }
+
+  // 문의 리스트 업데이트
+  updateInquiryList(inquiryData, currentUser) {
+    if (this.elements.inquiryList) {
+      this.elements.inquiryList.innerHTML = '';
+      if (inquiryData.items.length > 0) {
+        inquiryData.items.forEach((inquiry) => {
+          const inquiryElement = this.createInquiryElement(inquiry, currentUser);
+          this.elements.inquiryList.appendChild(inquiryElement);
+        });
+      }
     }
   }
 
-  currentProductId() {
-    const params = new URLSearchParams(location.search);
-    console.log(params);
-    const productId = params.get('id');
-    console.log(productId);
-    return productId;
+  // 개인정보 관련 이름 마스킹 작업
+  maskName(name) {
+    if (name.length === 1) {
+      return name;
+    } else if (name.length === 2) {
+      return name.slice(0, 1) + '*';
+    } else {
+      return name.slice(0, 1) + '*'.repeat(name.length - 2) + name.slice(-1);
+    }
+  }
+
+  // 문의 게시판 페이지 버튼 관련
+  updatePaginationButton(totalItems) {
+    const totalPage = Math.ceil(totalItems / this.perPage);
+    if (this.currentPage <= 1) {
+      this.elements.prevButton.disabled = true;
+      this.elements.prevButton.setAttribute('aria-disabled', 'true');
+    } else {
+      this.elements.prevButton.disabled = false;
+      this.elements.prevButton.setAttribute('aria-disabled', 'false');
+    }
+
+    if (this.currentPage >= totalPage) {
+      this.elements.nextButton.disabled = true;
+      this.elements.nextButton.setAttribute('aria-disabled', 'true');
+    } else {
+      this.elements.nextButton.disabled = false;
+      this.elements.nextButton.setAttribute('aria-disabled', 'false');
+    }
+  }
+
+  prevPage() {
+    if (this.currentPage > 1) {
+      this.currentPage--;
+      this.renderInquiry();
+    }
+  }
+
+  nextPage() {
+    this.currentPage++;
+    this.renderInquiry();
   }
 }

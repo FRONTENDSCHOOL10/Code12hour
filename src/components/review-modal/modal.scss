@@ -65,7 +65,7 @@ $review-textarea-height: 16.25rem;
     @include size($modal-width);
     @include flex(column, _, _);
     min-height: $modal-height;
-    // overflow: hidden;
+    border: none;
     border-radius: $modal-border-radius;
     background-color: $white-color;
     padding: $modal-padding;
@@ -293,4 +293,43 @@ $review-textarea-height: 16.25rem;
   border: 0;
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
+}
+
+// c-modal 로그인이 필요합니다. (후기, 문의)
+@mixin prod-rev-inq-cmodal {
+  &__title {
+    margin-bottom: 0.5rem;
+    font-size: $label-large;
+    font-weight: 700;
+    line-height: 150%;
+    color: $primary-color;
+    text-align: center;
+  }
+
+  &__body {
+    display: block;
+    margin: 2.5rem 0rem;
+    font-size: $paragraph-medium;
+    font-weight: 500;
+    line-height: 160%;
+    text-align: center;
+  }
+  &__close {
+    background-color: $white-color;
+    width: 100%;
+    color: $primary-color;
+    padding: 0.5rem 1.8rem;
+    font-size: $label-medium;
+    font-weight: 500;
+    line-height: 150%;
+    border-radius: 0.3125rem;
+    border: 1px solid $primary-color;
+  }
+}
+.review-modal {
+  @include prod-rev-inq-cmodal;
+}
+
+.inquiry-modal {
+  @include prod-rev-inq-cmodal;
 }
