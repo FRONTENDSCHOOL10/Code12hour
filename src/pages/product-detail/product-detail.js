@@ -87,7 +87,7 @@ const createProductDetail = (product) => {
                 : ''
             }
           </div>
-          <span class="product-detail__login-noti">로그인 후, 적립 혜택이 제공됩니다.</span>
+          <!-- <span class="product-detail__login-noti">로그인 후, 적립 혜택이 제공됩니다.</span> !-->
         </section>
         <section class="product-detail__info-mid">
           <dl class="product-detail__details-list">
@@ -172,10 +172,11 @@ const createProductDetail = (product) => {
               <span class="product-detail__total-amount">${discountedPrice.toLocaleString()}</span>
               <span class="product-detail__total-unit">원</span>
             </div>
+            <!--
             <div class="product-detail__benefits">
               <span class="product-detail__benefits-badge">적립</span>
               <span class="product-detail__benefits-noti">로그인 후, 적립 혜택 제공</span>
-            </div>
+            </div> !-->
           </div>
           <div class="product-detail__cart">
             <button

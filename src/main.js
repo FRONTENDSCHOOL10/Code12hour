@@ -109,7 +109,7 @@ const createViewAllCard = () => {
     <div class="product-item__view-all">
       <a
         class="product-item__link"
-        href="/src/pages/product-detail/"
+        href="/src/pages/product-list/"
         tabindex="0"
         aria-label="상품 페이지로 이동"
       >

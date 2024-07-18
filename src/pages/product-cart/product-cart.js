@@ -12,6 +12,11 @@ const CUSTOM_ELEMENTS = [
 
 const initCustomElements = (elements) => defineCustomElements(elements);
 
+const initEventListener = () => {
+  const locationChange = document.querySelector('.cart-edit__location-change');
+  locationChange.addEventListener('click', handleChangeLocationModal);
+};
+
 // 아코디언 화살표 변경 하는 함수
 const initAccordion = () => {
   const accordion = document.querySelectorAll('.cart__category details');
@@ -330,9 +335,152 @@ const initCartFunctions = () => {
   initializeCartState();
 };
 
+// 로그인 여부에 따른 배송지 UI 렌더링
+const renderUserInfo = async () => {
+  const { isAuth, user } = (await JSON.parse(localStorage.getItem('auth'))) || {};
+
+  if (!isAuth) return;
+
+  const locationHtml = `
+    <div class="cart-edit__location-area">
+      <div class="cart-edit__location-icon">
+        <img src="/assets/icons/product-cart/Location.svg" alt="" aria-hidden="true" />
+        <span class="cart-edit__location-text">배송지</span>
+      </div>
+      <p class="cart-edit__location-address">${user.address}</p>
+      <span class="cart-edit__location-method">${user.morning_delivery ? '샛별배송' : '일반배송'}</span>
+      <button class="cart-edit__location-change" type="button">배송지 변경</button>
+    </div>
+  `;
+
+  const location = document.querySelector('.cart-edit__location');
+
+  if (location) {
+    location.insertAdjacentHTML('afterbegin', locationHtml);
+  }
+};
+
+const handleChangeLocationModal = async () => {
+  const { isAuth, user } = (await JSON.parse(localStorage.getItem('auth'))) || {};
+
+  if (!isAuth) return;
+
+  const modalContent = `
+    <h2 slot="header" class="cart-modal-header">배송지 변경</h2>
+    <h3 slot="header" class="cart-modal-sub-header">${user.address}</h3>
+    <span slot="header" class="cart-modal-divider"></span>
+    <input
+      slot="body"
+      class="modal__input"
+      id="cart-modal__input"
+      type="text"
+      placeholder="등록할 주소를 입력 해주세요."
+    />
+    <div slot="footer" class="cart-modal-button-group">
+      <button
+        slot="footer"
+        type="button"
+        class="cart-modal__close"
+        aria-label="배송지 등록 모달창 닫기"
+      >
+        닫기
+      </button>
+      <button
+        slot="footer"
+        class="cart-modal__address-change"
+        type="button"
+        aria-label="배송지 등록 하기"
+      >
+        등록하기
+      </button>
+    </div>
+  `;
+  const modal = document.querySelector('c-modal');
+  modal.innerHTML = modalContent;
+  modal.showModal();
+
+  modal.querySelector('.cart-modal__close').addEventListener('click', () => modal.close());
+  modal.querySelector('.cart-modal__address-change').addEventListener('click', () => {
+    const inputField = modal.querySelector('#cart-modal__input').value;
+
+    if (!inputField) {
+      alert('새 주소를 입력해주세요.');
+      return;
+    }
+
+    modal.close();
+    setTimeout(() => {
+      changeLocation(user, inputField);
+    }, 500);
+  });
+};
+
+const changeLocation = async (user, inputField) => {
+  const updateLocalStorage = (updatedUser) => {
+    const authData = JSON.parse(localStorage.getItem('auth'));
+    if (authData && authData.user) {
+      if (typeof updatedUser === 'object') {
+        authData.user = { ...authData.user, ...updatedUser };
+      } else {
+        authData.user = { ...authData.user, address: updatedUser };
+      }
+      localStorage.setItem('auth', JSON.stringify(authData));
+    }
+  };
+
+  const showAlertModal = (message) => {
+    const modalContent = `
+      <h2 slot="header" class="cart-alert-modal__title">알림</h2>
+      <p slot="body" class="cart-alert-modal__body">${message}</p>
+      <button
+        slot="footer"
+        type="button"
+        class="cart-alert-modal__close"
+        aria-label="알림 모달창 닫기"
+      >
+        닫기
+      </button>
+    `;
+
+    const modal = document.querySelector('c-modal');
+    modal.innerHTML = modalContent;
+    modal.showModal();
+
+    modal.querySelector('.cart-alert-modal__close').addEventListener('click', () => {
+      modal.close();
+      location.reload();
+    });
+  };
+
+  try {
+    const data = { address: inputField };
+    // eslint-disable-next-line no-unused-vars
+    const updatedRecord = await pb.collection('users').update(user.id, data);
+    updateLocalStorage({ address: inputField });
+    showAlertModal('주소가 성공적으로 변경되었습니다.');
+  } catch (error) {
+    console.error('주소 변경 중 오류 발생:', error.message);
+  }
+
+  // 실시간 주소 변경 구독
+  const subscribeToAddressChanges = () => {
+    pb.collection('users').subscribe(user.id, (e) => {
+      if (e.record.address !== user.address) {
+        updateLocalStorage({ address: e.record.address });
+        user.address = e.record.address;
+      }
+    });
+  };
+
+  // 주소 변경 구독 시작
+  subscribeToAddressChanges();
+};
+
 const init = async () => {
   initCustomElements(CUSTOM_ELEMENTS);
   initAccordion();
+  await renderUserInfo();
+  initEventListener();
 
   const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
   if (cartItems.length === 0) return;
