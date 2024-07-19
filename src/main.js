@@ -3,7 +3,7 @@ import 'swiper/swiper-bundle.css';
 import './main.scss';
 import { defineCustomElements } from '@/utils/index';
 import { footer, header, headerSmall, AdPopup, Sidebar, CartButton } from '@/components/index';
-import { pb, getImageUrl } from '@/api/index';
+import { pb, getImageUrl, defaultAuthData } from '@/api/index';
 
 // 사용자 정의 커스텀 요소 목록 정의
 const CUSTOM_ELEMENTS = [
@@ -249,6 +249,9 @@ const init = async () => {
   await renderProductList('recommended');
   await renderProductList('discount');
   initViewedProducts();
+  if (!(await JSON.parse(localStorage.getItem('auth')))) {
+    localStorage.setItem('auth', JSON.stringify(defaultAuthData));
+  }
 };
 
 init();
