@@ -141,13 +141,16 @@ const renderProductList = async (type) => {
     const sortOption = type === 'recommended' ? '-sales_count' : '-discount_rate';
     let queryOptions = {
       sort: sortOption,
+      page: 1,
+      perPage: 16,
     };
 
     if (type !== 'recommended') {
       queryOptions.filter = 'discount_rate >= 10';
     }
 
-    const productList = await pb.collection('product').getFullList(queryOptions);
+    const productListResult = await pb.collection('product').getList(1, 16, queryOptions);
+    const productList = productListResult.items;
     const swiperWrapper = document.querySelector(`#${type}-product-list-swiper .swiper-wrapper`);
 
     if (swiperWrapper) {
