@@ -483,7 +483,10 @@ export class header extends HTMLElement {
     }
 
     const locationButton = this.shadowRoot.querySelector('.location-tooltip-button__location');
-    locationButton?.addEventListener('click', this.handleLocationRegistration.bind(this, user));
+    locationButton?.addEventListener(
+      'click',
+      this.handleLocationRegistration.bind(this, user, getLocationTooltipContent)
+    );
   }
 
   // 로그아웃 기능 메서드
@@ -544,7 +547,7 @@ export class header extends HTMLElement {
   }
 
   // 주소 등록 메서드
-  async handleLocationRegistration(user) {
+  async handleLocationRegistration(user, getLocationTooltipContent) {
     const modalContent = {
       title: '배송지 변경',
       subTitle: user.address,
@@ -635,13 +638,15 @@ export class header extends HTMLElement {
     const updateLocalStorage = (updatedUser) => {
       const authData = JSON.parse(localStorage.getItem('auth'));
       if (authData && authData.user) {
-        if (typeof updatedUser === 'object') {
-          authData.user = { ...authData.user, ...updatedUser };
-        } else {
-          authData.user = { ...authData.user, address: updatedUser };
-        }
+        authData.user = { ...authData.user, ...updatedUser };
         localStorage.setItem('auth', JSON.stringify(authData));
       }
+    };
+
+    // 배송 유형 업데이트
+    const updateMorningDelivery = (address) => {
+      const morningDeliveryAreas = ['안성', '서울', '영주', '거제'];
+      return morningDeliveryAreas.some((area) => address.includes(area));
     };
 
     const handleAddressChange = async (inputField) => {
@@ -652,12 +657,16 @@ export class header extends HTMLElement {
       }
 
       try {
-        const data = { address: newAddress };
+        const newMorningDelivery = updateMorningDelivery(newAddress);
+        const data = { address: newAddress, morning_delivery: newMorningDelivery };
         // eslint-disable-next-line no-unused-vars
         const updatedRecord = await pb.collection('users').update(user.id, data);
         this.elements.modal.close();
-        updateLocalStorage({ address: newAddress });
-        showAlertModal('주소가 성공적으로 변경되었습니다');
+        updateLocalStorage({
+          address: newAddress,
+          morning_delivery: newMorningDelivery,
+        });
+        showAlertModal('주소가 성공적으로 변경되었습니다.');
       } catch (error) {
         console.error('주소 변경 중 오류 발생:', error.message);
       }
@@ -683,9 +692,20 @@ export class header extends HTMLElement {
 
     const subscribeToAddressChanges = () => {
       pb.collection('users').subscribe(user.id, (e) => {
-        if (e.record.address !== user.address) {
-          updateLocalStorage({ address: e.record.address });
+        if (
+          e.record.address !== user.address ||
+          e.record.morning_delivery !== user.morning_delivery
+        ) {
+          updateLocalStorage({
+            address: e.record.address,
+            morning_delivery: e.record.morning_delivery,
+          });
           user.address = e.record.address;
+          user.morning_delivery = e.record.morning_delivery;
+
+          // 툴팁 내용 업데이트
+          const locationTooltip = this.shadowRoot.querySelector('.location-tooltip');
+          locationTooltip.innerHTML = getLocationTooltipContent();
         }
       });
     };

@@ -376,10 +376,13 @@ export class headerSmall extends HTMLElement {
     locationTooltip.innerHTML = getLocationTooltipContent();
 
     const locationButton = this.shadowRoot.querySelector('.location-tooltip-button__location');
-    locationButton?.addEventListener('click', this.handleLocationRegistration.bind(this, user));
+    locationButton?.addEventListener(
+      'click',
+      this.handleLocationRegistration.bind(this, user, getLocationTooltipContent)
+    );
   }
 
-  async handleLocationRegistration(user) {
+  async handleLocationRegistration(user, getLocationTooltipContent) {
     const modalContent = {
       title: '배송지 변경',
       subTitle: user.address,
@@ -479,6 +482,12 @@ export class headerSmall extends HTMLElement {
       }
     };
 
+    // 배송 유형 업데이트
+    const updateMorningDelivery = (address) => {
+      const morningDeliveryAreas = ['안성', '서울', '영주', '거제'];
+      return morningDeliveryAreas.some((area) => address.includes(area));
+    };
+
     const handleAddressChange = async (inputField) => {
       const newAddress = inputField.value.trim();
       if (!newAddress) {
@@ -487,12 +496,16 @@ export class headerSmall extends HTMLElement {
       }
 
       try {
-        const data = { address: newAddress };
+        const newMorningDelivery = updateMorningDelivery(newAddress);
+        const data = { address: newAddress, morning_delivery: newMorningDelivery };
         // eslint-disable-next-line no-unused-vars
         const updatedRecord = await pb.collection('users').update(user.id, data);
         this.elements.modal.close();
-        updateLocalStorage({ address: newAddress });
-        showAlertModal('주소가 성공적으로 변경되었습니다');
+        updateLocalStorage({
+          address: newAddress,
+          morning_delivery: newMorningDelivery,
+        });
+        showAlertModal('주소가 성공적으로 변경되었습니다.');
       } catch (error) {
         console.error('주소 변경 중 오류 발생:', error.message);
       }
@@ -518,9 +531,20 @@ export class headerSmall extends HTMLElement {
 
     const subscribeToAddressChanges = () => {
       pb.collection('users').subscribe(user.id, (e) => {
-        if (e.record.address !== user.address) {
-          updateLocalStorage({ address: e.record.address });
+        if (
+          e.record.address !== user.address ||
+          e.record.morning_delivery !== user.morning_delivery
+        ) {
+          updateLocalStorage({
+            address: e.record.address,
+            morning_delivery: e.record.morning_delivery,
+          });
           user.address = e.record.address;
+          user.morning_delivery = e.record.morning_delivery;
+
+          // 툴팁 내용 업데이트
+          const locationTooltip = this.shadowRoot.querySelector('.location-tooltip');
+          locationTooltip.innerHTML = getLocationTooltipContent();
         }
       });
     };
