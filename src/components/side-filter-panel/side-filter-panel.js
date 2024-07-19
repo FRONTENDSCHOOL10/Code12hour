@@ -22,7 +22,7 @@ sideFilterPanelTemplate.innerHTML = `
             id="category-1"
             name="category"
           /><label class="filter-panel__category-name" for="category-1"
-            >국 · 반찬 · 메인요리
+            >채소
             <p class="category-count">22</p></label
           >
         </div>
@@ -33,7 +33,7 @@ sideFilterPanelTemplate.innerHTML = `
             id="category-2"
             name="category"
           /><label class="filter-panel__category-name" for="category-2"
-            >국 · 반찬 · 메인요리
+            >과일·견과·쌀
             <p class="category-count">22</p></label
           >
         </div>
@@ -51,8 +51,8 @@ sideFilterPanelTemplate.innerHTML = `
             id="brand-1"
             name="brand"
           /><label class="filter-panel__category-name" for="brand-1"
-            >슬비쌤
-            <p class="category-count">22</p></label
+            >하루12시간코딩하조
+            <p class="category-count">80</p></label
           >
         </div>
       </details>
@@ -70,7 +70,7 @@ sideFilterPanelTemplate.innerHTML = `
             name="delivery"
           /><label class="filter-panel__category-name" for="delivery-1"
             >샛별배송
-            <p class="category-count">22</p></label
+            <p class="category-count">80</p></label
           >
         </div>
       </details>
@@ -88,7 +88,7 @@ sideFilterPanelTemplate.innerHTML = `
             id="price-1"
           /><label class="filter-panel__category-name" for="price-1"
             >10,000원 미만
-            <p class="category-count">22</p></label
+            <p class="category-count">12</p></label
           >
         </div>
         <div class="filter-panel__category-box">
@@ -99,7 +99,7 @@ sideFilterPanelTemplate.innerHTML = `
             id="price-2"
           /><label class="filter-panel__category-name" for="price-2"
             >10,000원 이상
-            <p class="category-count">22</p></label
+            <p class="category-count">12</p></label
           >
       </details>
       <details class="filter-panel__category-list" id="benefits">
@@ -134,7 +134,7 @@ sideFilterPanelTemplate.innerHTML = `
             name="type"
           /><label class="filter-panel__category-name" for="type-1"
             >Karly Only
-            <p class="category-count">22</p></label
+            <p class="category-count">40</p></label
           >
         </div>
       </details>
