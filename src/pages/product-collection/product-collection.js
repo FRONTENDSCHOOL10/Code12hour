@@ -99,7 +99,7 @@ import { pb, getImageUrl } from '@/api/index';
           aria-label="${product.product_name} 상품 페이지로 이동"
         >
           <div class="product-item__img" role="img" aria-label="${product.product_name}" style="background-image: url(${imageUrl})"></div>
-          <p class="product-item__delivery">${authData.user.morning_delivery ? '샛별배송' : '일반배송'}</p>
+          <p class="product-item__delivery">${authData.user?.morning_delivery ? '샛별배송' : '일반배송'}</p>
           <p class="product-item__title">${product.product_name}</p>
           <p class="product-item__description">${product.product_description}</p>
           <div class="price-group">
