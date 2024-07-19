@@ -1,4 +1,4 @@
-![header](https://capsule-render.vercel.app/api?type=Waving&color=5f0080&height=230&section=header&text=마켓칼리&fontSize=84)
+![header](https://capsule-render.vercel.app/api?type=Waving&color=5f0080&height=230&section=header&text=마켓칼리&fontSize=84&fontColor=d6ace6)
 
 ![project](https://github.com/user-attachments/assets/32ffbd87-d9c0-444e-8ed8-168b50e3424e)
 

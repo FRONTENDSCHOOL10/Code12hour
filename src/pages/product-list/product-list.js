@@ -77,7 +77,7 @@ import { pb, getImageUrl } from '@/api/index';
       : '';
 
     const kurlyOnly = product.kurly_only
-      ? `<span class="product-item__kurly-only">Kurly Only</span>`
+      ? `<span class="product-item__kurly-only">Karly Only</span>`
       : '';
 
     return `

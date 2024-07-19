@@ -15,13 +15,6 @@ const CUSTOM_ELEMENTS = [
   ['c-cart', CartButton],
 ];
 
-// const changeImgAlt = () => {
-//   const img = document.querySelectorAll('.swiper-slide img');
-//   const imgArray = [...img];
-//   console.log(imgArray[0].src.slice(-13), imgArray[0].alt);
-// };
-// changeImgAlt();
-
 // Swiper 옵션을 생성하는 함수
 const createSwiperOptions = (type) =>
   ({
@@ -54,6 +47,14 @@ const createSwiperOptions = (type) =>
       },
     }),
   })[type];
+
+// Swiper 이미지 alt 텍스트를 변경하는 함수
+const changeImgAlt = (swiper) => {
+  const imgElements = swiper.slides[swiper.activeIndex].querySelectorAll('img');
+  imgElements.forEach((img) => {
+    img.alt = `${img.alt}`; // 이미지 파일명을 대체 텍스트로 설정
+  });
+};
 
 // Swiper 인스턴스를 생성하는 함수
 const createSwiper = (selector, options) => new Swiper(selector, options);
@@ -167,7 +168,9 @@ const renderProductList = async (type) => {
 
 // 메인 배너 Swiper 초기화 함수
 const initSwipers = () => {
-  createSwiper('#main-banner-swiper', createSwiperOptions('mainBanner'));
+  const mainBannerSwiper = createSwiper('#main-banner-swiper', createSwiperOptions('mainBanner'));
+  mainBannerSwiper.on('slideChange', () => changeImgAlt(mainBannerSwiper));
+  changeImgAlt(mainBannerSwiper); // 초기 로드시 alt 텍스트 설정
 };
 
 // 최근 본 상품 로컬 스토리지에서 가져오는 함수
